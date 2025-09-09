@@ -6,9 +6,10 @@
 .header {
   position: sticky;
   top: 0;
-  background: rgba(11, 13, 18, 0.8); /* Fondo semi-transparente */
-  backdrop-filter: blur(8px);        /* Efecto de desenfoque */
-  border-bottom: 1px solid #1e2433;  /* Border inferior sutil */
+  background: rgba(248, 250, 252, 0.95); /* Fondo claro semi-transparente */
+  backdrop-filter: blur(8px);             /* Efecto de desenfoque */
+  border-bottom: 1px solid var(--border); /* Border con variable CSS */
+  box-shadow: 0 1px 3px var(--shadow);   /* Sombra sutil */
 }
 
 /* Contenedor flex del header */
@@ -25,10 +26,12 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: #e6e9f2;
-  padding: 8px;           /* Espacio alrededor del logo */
-  border-radius: 12px;    /* Esquinas redondeadas */
+  color: var(--text);         /* Usar variable de color */
+  padding: 8px;               /* Espacio alrededor del logo */
+  border-radius: 12px;        /* Esquinas redondeadas */
   transition: transform 0.2s ease; /* Animación suave */
+  background: rgba(255, 255, 255, 0.8); /* Fondo blanco suave para el logo */
+  box-shadow: 0 2px 8px var(--shadow);  /* Sombra para destacar */
 }
 
 .brand:hover {
@@ -39,7 +42,7 @@
 .logo {
   border-radius: 12px;    /* Esquinas redondeadas */
   object-fit: contain;    /* Mantener proporción del logo */
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)); /* Sombra sutil */
+  /* Removemos el filtro de sombra ya que ahora tenemos fondo blanco */
 }
 
 /* Contenedor de enlaces de navegación */

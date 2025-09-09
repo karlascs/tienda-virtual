@@ -135,13 +135,17 @@ npm start
 
 ```css
 :root {
-  --bg: #0b0d12;      /* Fondo principal */
-  --card: #121521;    /* Fondo de tarjetas */
-  --text: #e6e9f2;    /* Texto principal */
-  --muted: #8892a6;   /* Texto secundario */
-  --brand: #6aa3ff;   /* Color de marca */
+  --bg: #f8fafc;        /* Fondo principal - blanco suave */
+  --card: #ffffff;      /* Fondo de tarjetas - blanco puro */
+  --text: #1e293b;      /* Texto principal - gris oscuro */
+  --muted: #64748b;     /* Texto secundario - gris medio */
+  --brand: #2563eb;     /* Color de marca - azul profesional */
+  --border: #e2e8f0;    /* Bordes - gris muy claro */
+  --shadow: rgba(0, 0, 0, 0.1); /* Sombras suaves */
 }
 ```
+
+**Diseño optimizado para logo transparente de Casa Viva**
 
 ## 🤝 Contribuir
 
