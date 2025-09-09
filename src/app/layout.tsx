@@ -1,12 +1,19 @@
 import "./globals.css";
 
+import "./globals.css";
+
 /**
  * Metadata de la aplicación
  * Define el título y descripción que aparecen en el navegador y motores de búsqueda
  */
 export const metadata = { 
   title: "Casa Viva - Tienda Online", 
-  description: "Casa Viva - Tu tienda de confianza para el hogar y decoración" 
+  description: "Casa Viva - Tu tienda de confianza para el hogar y decoración",
+  icons: {
+    icon: '/logo_casaviva.png', // Favicon usando el logo existente
+    shortcut: '/logo_casaviva.png',
+    apple: '/logo_casaviva.png',
+  },
 };
 
 /**
