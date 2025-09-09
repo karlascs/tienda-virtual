@@ -56,8 +56,10 @@ html, body {
 
 .card img {
   width: 100%;
-  height: 160px;
-  object-fit: cover;    /* Mantener aspecto de imagen */
+  height: 200px;            /* Altura aumentada para mejor visualización */
+  object-fit: contain;      /* Mostrar imagen completa sin recortar */
+  background: #f8fafc;      /* Fondo suave para mejor presentación */
+  padding: 12px;            /* Espaciado interno para mejor visualización */
 }
 
 .card .body {
