@@ -4,7 +4,10 @@ import "./globals.css";
  * Metadata de la aplicación
  * Define el título y descripción que aparecen en el navegador y motores de búsqueda
  */
-export const metadata = { title: "Mi Tienda", description: "Vitrina e-commerce" };
+export const metadata = { 
+  title: "Casa Viva - Tienda Online", 
+  description: "Casa Viva - Tu tienda de confianza para el hogar y decoración" 
+};
 
 /**
  * Layout Principal de la Aplicación
