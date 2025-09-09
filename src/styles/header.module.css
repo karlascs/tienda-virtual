@@ -1,6 +1,39 @@
-.header{position:sticky;top:0;background:rgba(11,13,18,.8);backdrop-filter:blur(8px);
-border-bottom:1px solid #1e2433}
-.row{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
-.brand{font-weight:800;font-size:20px;text-decoration:none;color:#e6e9f2}
-.brand span{color:#6aa3ff}
-.nav{display:flex;gap:14px}
+/* ===================================
+   ESTILOS DEL HEADER
+   =================================== */
+
+/* Header principal con posicionamiento sticky */
+.header {
+  position: sticky;
+  top: 0;
+  background: rgba(11, 13, 18, 0.8); /* Fondo semi-transparente */
+  backdrop-filter: blur(8px);        /* Efecto de desenfoque */
+  border-bottom: 1px solid #1e2433;  /* Border inferior sutil */
+}
+
+/* Contenedor flex del header */
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Espacio entre logo y navegación */
+  padding: 16px 0;
+}
+
+/* Estilo del logo/branding */
+.brand {
+  font-weight: 800;
+  font-size: 20px;
+  text-decoration: none;
+  color: #e6e9f2;
+}
+
+/* Destacar el dominio .cl en el logo */
+.brand span {
+  color: #6aa3ff; /* Color de marca */
+}
+
+/* Contenedor de enlaces de navegación */
+.nav {
+  display: flex;
+  gap: 14px; /* Espacio entre enlaces */
+}

@@ -1,11 +1,72 @@
-:root { --bg:#0b0d12; --card:#121521; --text:#e6e9f2; --muted:#8892a6; --brand:#6aa3ff; }
-*{box-sizing:border-box} html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
-font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial}
-.container{max-width:1200px;margin:0 auto;padding:24px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
-.price{color:var(--brand);font-weight:700}
-.card{background:var(--card);border:1px solid #1e2433;border-radius:16px;overflow:hidden}
-.card img{width:100%;height:160px;object-fit:cover}
-.card .body{padding:14px}
-.link{color:var(--text);text-decoration:none;opacity:.9}
-.link:hover{opacity:1}
+/* ===================================
+   VARIABLES CSS - SISTEMA DE DISEÑO
+   =================================== */
+:root { 
+  --bg: #0b0d12;      /* Fondo principal - azul oscuro */
+  --card: #121521;    /* Fondo de tarjetas - azul medio */
+  --text: #e6e9f2;    /* Texto principal - blanco suave */
+  --muted: #8892a6;   /* Texto secundario - gris */
+  --brand: #6aa3ff;   /* Color de marca - azul brillante */
+}
+
+/* ===================================
+   RESET Y CONFIGURACIÓN BASE
+   =================================== */
+* {
+  box-sizing: border-box; /* Incluir padding y border en el width/height */
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, Segoe UI, Roboto, Helvetica, Arial; /* Stack de fuentes del sistema */
+}
+
+/* ===================================
+   CLASES UTILITARIAS
+   =================================== */
+.container {
+  max-width: 1200px;    /* Ancho máximo del contenido */
+  margin: 0 auto;       /* Centrar horizontalmente */
+  padding: 24px;        /* Espaciado interno */
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Grid responsivo */
+  gap: 20px;            /* Espacio entre elementos */
+}
+
+.price {
+  color: var(--brand);  /* Color de marca para precios */
+  font-weight: 700;     /* Peso de fuente bold */
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid #1e2433;  /* Border sutil */
+  border-radius: 16px;        /* Esquinas redondeadas */
+  overflow: hidden;           /* Ocultar contenido que sobresale */
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;    /* Mantener aspecto de imagen */
+}
+
+.card .body {
+  padding: 14px;        /* Espaciado interno de la tarjeta */
+}
+
+.link {
+  color: var(--text);
+  text-decoration: none;
+  opacity: 0.9;         /* Ligeramente transparente */
+}
+
+.link:hover {
+  opacity: 1;           /* Completamente opaco al hacer hover */
+}

@@ -1,1 +1,13 @@
-.card{display:flex;flex-direction:column}
+/* ===================================
+   ESTILOS DE LA TARJETA DE PRODUCTO
+   =================================== */
+
+/* 
+ * Layout flex para la tarjeta
+ * Los estilos principales están en globals.css (.card)
+ * Aquí solo definimos el layout específico
+ */
+.card {
+  display: flex;
+  flex-direction: column; /* Imagen arriba, contenido abajo */
+}
