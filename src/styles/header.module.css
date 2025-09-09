@@ -19,32 +19,27 @@
   padding: 16px 0;
 }
 
-/* Estilo del contenedor del logo/branding */
+/* Estilo del contenedor del logo - ELEMENTO PRINCIPAL */
 .brand {
   display: flex;
   align-items: center;
-  gap: 12px; /* Espacio entre logo e imagen */
-  font-weight: 800;
-  font-size: 20px;
+  justify-content: center;
   text-decoration: none;
   color: #e6e9f2;
+  padding: 8px;           /* Espacio alrededor del logo */
+  border-radius: 12px;    /* Esquinas redondeadas */
+  transition: transform 0.2s ease; /* Animación suave */
 }
 
-/* Estilos específicos para el logo */
+.brand:hover {
+  transform: scale(1.05); /* Efecto hover: crecer ligeramente */
+}
+
+/* Estilos específicos para el logo - MÁS GRANDE */
 .logo {
-  border-radius: 8px; /* Esquinas ligeramente redondeadas */
-  object-fit: contain; /* Mantener proporción del logo */
-}
-
-/* Texto del brand junto al logo */
-.brandText {
-  display: flex;
-  align-items: center;
-}
-
-/* Destacar el dominio .cl en el nombre */
-.brandText span {
-  color: #6aa3ff; /* Color de marca */
+  border-radius: 12px;    /* Esquinas redondeadas */
+  object-fit: contain;    /* Mantener proporción del logo */
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)); /* Sombra sutil */
 }
 
 /* Contenedor de enlaces de navegación */
@@ -53,9 +48,14 @@
   gap: 14px; /* Espacio entre enlaces */
 }
 
-/* Responsive: En pantallas pequeñas, ocultar el texto del brand */
+/* Responsive: En pantallas pequeñas, mantener el logo centrado */
 @media (max-width: 480px) {
-  .brandText {
-    display: none;
+  .row {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .brand {
+    order: -1; /* Logo primero en móviles */
   }
 }

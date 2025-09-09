@@ -22,19 +22,16 @@ export default function Header() {
       <div className="container">
         {/* Navegación principal con etiqueta semántica */}
         <nav className={styles.row} aria-label="principal">
-          {/* Logo de Casa Viva */}
+          {/* Logo de Casa Viva como elemento principal */}
           <Link href="/" className={styles.brand}>
             <Image 
               src="/logo_casaviva.png"
               alt="Casa Viva - Tienda Online"
-              width={40}
-              height={40}
+              width={60}
+              height={60}
               className={styles.logo}
               priority={true} // Cargar el logo con alta prioridad
             />
-            <span className={styles.brandText}>
-              Casa Viva<span>.cl</span>
-            </span>
           </Link>
           
           {/* Enlaces de navegación */}
