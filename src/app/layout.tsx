@@ -10,9 +10,9 @@ export const metadata = {
   title: "Casa Viva - Tienda Online", 
   description: "Casa Viva - Tu tienda de confianza para el hogar y decoración",
   icons: {
-    icon: '/logo_casaviva.png', // Favicon usando el logo existente
-    shortcut: '/logo_casaviva.png',
-    apple: '/logo_casaviva.png',
+    icon: '/favicon_casaviva.ico',      // Favicon personalizado de Casa Viva
+    shortcut: '/favicon_casaviva.ico',  // Atajo del navegador
+    apple: '/logo_casaviva.png',        // Dispositivos iOS (PNG es mejor para Apple)
   },
 };
 
