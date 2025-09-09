@@ -1,0 +1,11 @@
+:root { --bg:#0b0d12; --card:#121521; --text:#e6e9f2; --muted:#8892a6; --brand:#6aa3ff; }
+*{box-sizing:border-box} html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
+font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial}
+.container{max-width:1200px;margin:0 auto;padding:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+.price{color:var(--brand);font-weight:700}
+.card{background:var(--card);border:1px solid #1e2433;border-radius:16px;overflow:hidden}
+.card img{width:100%;height:160px;object-fit:cover}
+.card .body{padding:14px}
+.link{color:var(--text);text-decoration:none;opacity:.9}
+.link:hover{opacity:1}

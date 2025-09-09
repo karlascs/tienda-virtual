@@ -1,0 +1,6 @@
+.header{position:sticky;top:0;background:rgba(11,13,18,.8);backdrop-filter:blur(8px);
+border-bottom:1px solid #1e2433}
+.row{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+.brand{font-weight:800;font-size:20px;text-decoration:none;color:#e6e9f2}
+.brand span{color:#6aa3ff}
+.nav{display:flex;gap:14px}
