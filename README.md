@@ -1,41 +1,164 @@
-<<<<<<< HEAD
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 Tienda Virtual - Next.js
 
-## Getting Started
+> **Fase 1: MVP Estático** - Proyecto de e-commerce moderno desarrollado con Next.js 15, TypeScript y CSS Modules.
 
-First, run the development server:
+## 🚀 Demo en Vivo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+🔗 **[Ver Demo](https://github.com/karlascs/tienda-virtual)** | 📱 **Responsive Design**
+
+## ✨ Características
+
+- ⚡ **Next.js 15** con App Router
+- 🎯 **TypeScript** para type safety
+- 🎨 **CSS Modules** para estilos aislados
+- 📱 **Responsive Design** con CSS Grid
+- 🧩 **Componentes Reutilizables**
+- 🌙 **Tema Oscuro** incorporado
+- 🏷️ **HTML Semántico** para SEO y accesibilidad
+- 💰 **Formateo de Precios** en pesos chilenos (CLP)
+
+## 📁 Estructura del Proyecto
+
+```
+tienda-next/
+├── src/
+│   ├── app/                 # App Router de Next.js
+│   │   ├── globals.css      # Estilos globales y variables
+│   │   ├── layout.tsx       # Layout principal
+│   │   └── page.tsx         # Página de inicio
+│   ├── components/          # Componentes reutilizables
+│   │   ├── Header.tsx       # Header con navegación
+│   │   ├── ProductCard.tsx  # Tarjeta de producto
+│   │   └── ProductGrid.tsx  # Grid de productos
+│   └── styles/              # CSS Modules
+│       ├── header.module.css
+│       └── card.module.css
+├── public/                  # Recursos estáticos
+└── package.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Tecnologías
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Framework**: Next.js 15
+- **Lenguaje**: TypeScript
+- **Estilos**: CSS Modules + CSS Variables
+- **Layout**: CSS Grid + Flexbox
+- **Deployment**: Ready for Vercel
+- **Control de Versiones**: Git + GitHub
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Instalación y Desarrollo
 
-## Learn More
+### Prerrequisitos
+- Node.js 18+ 
+- npm o yarn
+- Git
 
-To learn more about Next.js, take a look at the following resources:
+### Clonar el repositorio
+```bash
+git clone https://github.com/karlascs/tienda-virtual.git
+cd tienda-next
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Instalar dependencias
+```bash
+npm install
+# o
+yarn install
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Ejecutar en desarrollo
+```bash
+npm run dev
+# o
+yarn dev
+```
 
-## Deploy on Vercel
+Abrir [http://localhost:3000](http://localhost:3000) en el navegador.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Build para producción
+```bash
+npm run build
+npm start
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-=======
-# tienda-virtual
-Proyecto de tienda online desarrollado con Next.js 14 y React 19.  Incluye interfaz estática, componentes reutilizables y despliegue en Vercel.
->>>>>>> d31ba69987472d1b020bad64930a06669208a0c2
+## 🎨 Componentes
+
+### Header
+- Navegación sticky
+- Branding con logo
+- Enlaces de navegación
+- Responsive design
+
+### ProductCard
+- Props tipadas con TypeScript
+- Formateo de precios automático
+- Imágenes optimizadas
+- Diseño card moderno
+
+### ProductGrid
+- Layout responsive con CSS Grid
+- Datos mock integrados
+- Auto-fit columns (220px mínimo)
+- Gap consistente
+
+## 🎯 Objetivos Cumplidos (Fase 1)
+
+- ✅ **Estructura del Proyecto**: Organización clara en carpetas
+- ✅ **HTML Semántico**: `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>`
+- ✅ **CSS Responsivo**: Grid moderno sin media queries
+- ✅ **Componentes**: División lógica y reutilizable
+- ✅ **TypeScript**: Props tipadas y type safety
+- ✅ **CSS Modules**: Estilos aislados por componente
+- ✅ **Git**: Historial de commits y repositorio configurado
+
+## 🚀 Próximas Fases
+
+### Fase 2: Funcionalidad (Próximamente)
+- [ ] Estado global con Context API
+- [ ] Carrito de compras funcional
+- [ ] Sistema de filtros
+- [ ] Modal de detalles de producto
+
+### Fase 3: Datos Dinámicos (Próximamente)
+- [ ] API Routes de Next.js
+- [ ] Base de datos (MongoDB/PostgreSQL)
+- [ ] CRUD de productos
+- [ ] Sistema de autenticación
+
+## 📱 Responsive Design
+
+- **Desktop**: Layout de múltiples columnas
+- **Tablet**: Adaptación automática del grid
+- **Mobile**: Single column optimizado
+
+## 🎨 Tema y Colores
+
+```css
+:root {
+  --bg: #0b0d12;      /* Fondo principal */
+  --card: #121521;    /* Fondo de tarjetas */
+  --text: #e6e9f2;    /* Texto principal */
+  --muted: #8892a6;   /* Texto secundario */
+  --brand: #6aa3ff;   /* Color de marca */
+}
+```
+
+## 🤝 Contribuir
+
+1. Fork el proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/nueva-caracteristica`)
+3. Commit tus cambios (`git commit -m 'feat: agregar nueva característica'`)
+4. Push a la rama (`git push origin feature/nueva-caracteristica`)
+5. Abre un Pull Request
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para detalles.
+
+## 👩‍💻 Autor
+
+**Karla** - [@karlascs](https://github.com/karlascs)
+
+---
+
+⭐ **Si te gusta este proyecto, ¡dale una estrella!**
