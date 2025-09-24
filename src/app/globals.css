@@ -9,6 +9,14 @@
   --brand: #2563eb;     /* Color de marca - azul profesional */
   --border: #e2e8f0;    /* Bordes - gris muy claro */
   --shadow: rgba(0, 0, 0, 0.1); /* Sombras suaves */
+  
+  /* Variables adicionales para categorías */
+  --background-secondary: #f8fafc;  /* Fondo secundario */
+  --text-primary: var(--text);      /* Texto principal */
+  --text-secondary: var(--muted);   /* Texto secundario */
+  --primary-color: var(--brand);    /* Color primario */
+  --border-color: var(--border);    /* Color de borde */
+  --card-background: var(--card);   /* Fondo de tarjetas */
 }
 
 /* ===================================

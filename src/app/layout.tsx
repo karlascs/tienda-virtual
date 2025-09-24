@@ -5,12 +5,12 @@ import "./globals.css";
  * Define el título y descripción que aparecen en el navegador y motores de búsqueda
  */
 export const metadata = { 
-  title: "Casa Viva - Tienda Online", 
-  description: "Casa Viva - Tu tienda de confianza para el hogar y decoración",
+  title: "IZA & CAS - Tienda Online", 
+  description: "IZA & CAS - Tu tienda de confianza para el hogar y decoración",
   icons: {
     icon: '/favicon.ico',      // Favicon personalizado de Casa Viva
     shortcut: '/favicon.ico',  // Atajo del navegador
-    apple: '/logo_casaviva.png',        // Dispositivos iOS (PNG es mejor para Apple)
+    apple: '/logo_isa&cas.png',        // Dispositivos iOS (PNG es mejor para Apple)
   },
 };
 

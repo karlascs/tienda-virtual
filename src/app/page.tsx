@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import Categories from "@/components/Categories";
 import ProductGrid from "@/components/ProductGrid";
 
 /**
@@ -6,6 +7,7 @@ import ProductGrid from "@/components/ProductGrid";
  * 
  * Esta es la página de inicio que muestra:
  * - Header con navegación
+ * - Categorías de productos
  * - Grid de productos
  * - Footer con información del proyecto
  * 
@@ -16,6 +18,9 @@ export default function Home() {
     <>
       {/* Header fijo con navegación */}
       <Header />
+      
+      {/* Categorías de productos */}
+      <Categories />
       
       {/* Contenido principal de la página */}
       <main>

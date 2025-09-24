@@ -5,10 +5,10 @@ import ProductCard from "./ProductCard";
  * En futuras fases, estos datos vendrán de una API o base de datos
  */
 const MOCK = [
-  { name: "Hervidor Eléctrico 1.7L", price: 29990, image: "/hervidor.webp" },
-  { name: "Batidora", price: 59990, image: "/batidora.avif" },
-  { name: "Batidora Inmersión", price: 25990, image: "/batidora-inmersion.avif" },
-  { name: "Horno Eléctrico", price: 42990, image: "/hornoelectrico.jpg" },
+  { name: "Hervidor Eléctrico 1.7L", price: 29990, image: "/images/hogar/hervidor-electrico.webp" },
+  { name: "Batidora", price: 59990, image: "/images/hogar/batidora-inmersion.avif" },
+  { name: "Batidora Inmersión", price: 25990, image: "/images/hogar/batidora-inmersion.avif" },
+  { name: "Horno Eléctrico", price: 42990, image: "/images/hogar/horno-electrico.jpg" },
 ];
 
 /**
