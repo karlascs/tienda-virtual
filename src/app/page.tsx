@@ -30,7 +30,8 @@ export default function Home() {
           padding: "24px 24px 48px"
         }}
       >
-        © 2025 Casa Viva.cl — Fase 1 (MVP estático)
+        © 2025 Casa Viva.cl — hecho  por karla cuevas
+        {/* © 2025 Casa Viva.cl — Fase 1 (MVP estático) */}
       </footer>
     </>
   );

@@ -2,7 +2,7 @@
    VARIABLES CSS - SISTEMA DE DISEÑO
    =================================== */
 :root { 
-  --bg: #f8fafc;        /* Fondo principal - blanco suave */
+  --bg: rgb(199, 255, 255);        /* Fondo principal - blanco suave */
   --card: #ffffff;      /* Fondo de tarjetas - blanco puro */
   --text: #1e293b;      /* Texto principal - gris oscuro */
   --muted: #64748b;     /* Texto secundario - gris medio */
