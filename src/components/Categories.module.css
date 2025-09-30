@@ -1,16 +1,72 @@
-/* Componente de Categorías */
+/* Componente de Categorías - IZA & CAS */
 .categories {
   padding: 32px 0;
-  background: var(--background-secondary);
+  background: linear-gradient(135deg, 
+    rgb(199, 255, 255) 0%, 
+    var(--brand) 25%, 
+    rgb(199, 255, 255) 50%, 
+    #305497 75%, 
+    rgb(199, 255, 255) 100%);
+  background-size: 300% 300%;
+  animation: izaCasGradient 12s ease-in-out infinite;
+  position: relative;
   border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 8px 32px rgba(91, 236, 188, 0.12);
+}
+
+.categories::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 25% 75%, rgba(42, 75, 27, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 75% 25%, rgba(199, 255, 255, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+  pointer-events: none;
+  animation: izaCasBreath 10s ease-in-out infinite;
+}
+
+@keyframes izaCasGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 50% 100%;
+  }
+  75% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes izaCasBreath {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
 }
 
 .title {
   font-size: 28px;
   font-weight: 700;
-  color: var(--text-primary);
+  color: white;
   margin-bottom: 24px;
   text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 2;
 }
 
 /* Grid de categorías */
