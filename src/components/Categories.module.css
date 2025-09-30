@@ -16,68 +16,78 @@
 /* Grid de categorías */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Card de categoría */
-.card {
+/* Banner de categoría */
+.banner {
   display: flex;
   align-items: center;
-  padding: 20px;
-  background: var(--card-background);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
+  justify-content: flex-start;
+  min-height: 200px;
+  padding: 30px;
+  border-radius: 16px;
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  text-decoration: none; /* Quitar subrayado de los enlaces */
-  color: inherit; /* Heredar color del padre */
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: white;
+  position: relative;
+  overflow: hidden;
 }
 
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  border-color: var(--primary-color);
+.banner:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
 
-.card:focus {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
+.banner:focus {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 3px;
 }
 
-/* Icono de la categoría */
-.icon {
-  font-size: 32px;
-  margin-right: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  background: var(--background-secondary);
-  border-radius: 10px;
-  flex-shrink: 0;
+/* Contenido del banner */
+.content {
+  z-index: 2;
+  position: relative;
 }
 
-/* Información de la categoría */
-.info {
-  flex: 1;
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 8px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.name {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin: 0 0 4px 0;
-}
-
-.count {
-  font-size: 14px;
-  color: var(--text-secondary);
+.subtitle {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 20px 0;
   font-weight: 400;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.button {
+  display: inline-block;
+  background: white;
+  color: #333;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.banner:hover .button {
+  background: var(--primary-color);
+  color: white;
+  transform: scale(1.05);
 }
 
 /* Responsive Design */
@@ -93,35 +103,40 @@
   
   .grid {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 16px;
   }
   
-  .card {
-    padding: 16px;
+  .banner {
+    min-height: 160px;
+    padding: 20px;
   }
   
-  .icon {
-    font-size: 28px;
-    width: 45px;
-    height: 45px;
-    margin-right: 12px;
+  .title {
+    font-size: 24px;
   }
   
-  .name {
-    font-size: 16px;
+  .subtitle {
+    font-size: 14px;
+    margin-bottom: 16px;
   }
   
-  .count {
-    font-size: 13px;
+  .button {
+    padding: 10px 20px;
+    font-size: 12px;
   }
 }
 
 @media (max-width: 480px) {
-  .grid {
-    grid-template-columns: 1fr;
+  .banner {
+    min-height: 140px;
+    padding: 16px;
   }
   
-  .card {
-    padding: 14px;
+  .title {
+    font-size: 20px;
+  }
+  
+  .subtitle {
+    font-size: 13px;
   }
 }

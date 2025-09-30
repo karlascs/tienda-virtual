@@ -137,7 +137,7 @@ export default function ActividadPage() {
           padding: "24px 24px 48px"
         }}
       >
-        © 2025 Casa Viva.cl — hecho por karla cuevas
+        © 2025 IZAYCAS.cl — hecho por karla cuevas
       </footer>
     </>
   );

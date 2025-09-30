@@ -9,35 +9,45 @@ const CATEGORIES = [
   {
     id: 'hogar',
     name: 'Hogar',
-    icon: '🏠',
+    title: 'Mesas Naturales',
+    subtitle: 'Productos esenciales para tu hogar',
+    image: '/images/categorias/hogar.png',
     count: 6,
     href: '/products/hogar'
   },
   {
     id: 'herramientas',
     name: 'Herramientas',
-    icon: '🔧',
+    title: 'Herramientas Profesionales',
+    subtitle: 'Todo lo que necesitas para tus proyectos',
+    image: '/images/categorias/herramientas.png',
     count: 8,
     href: '/products/herramientas'
   },
   {
     id: 'juguetes',
     name: 'Juguetes',
-    icon: '🧸',
+    title: 'Diversión y Aprendizaje',
+    subtitle: 'Juguetes educativos para todas las edades',
+    image: '/images/categorias/juguetes.png',
     count: 10,
     href: '/products/juguetes'
   },
   {
     id: 'tecnologia',
     name: 'Tecnología',
-    icon: '💻',
+    title: 'Tecnología Avanzada',
+    subtitle: 'Los últimos avances tecnológicos',
+    image: '/images/categorias/tecnologia.png',
     count: 10,
     href: '/products/tecnologia'
   },
   {
     id: 'actividad',
     name: 'Actividad',
-    icon: '⚽',
+    title: 'Vida Activa',
+    subtitle: 'Equipos para mantenerte en forma',
+    image: '/images/categorias/actividad.png',
     count: 6,
     href: '/products/actividad'
   }
@@ -46,10 +56,10 @@ const CATEGORIES = [
 /**
  * Componente de Categorías
  * 
- * Muestra las diferentes categorías de productos disponibles
- * en un diseño de cards horizontales responsive
+ * Muestra las diferentes categorías de productos como banners horizontales
+ * con imágenes de fondo y diseño moderno inspirado en tiendas premium
  * 
- * @returns Componente de categorías con navegación
+ * @returns Componente de categorías con navegación visual
  */
 export default function Categories() {
   return (
@@ -61,13 +71,19 @@ export default function Categories() {
             <Link
               key={category.id}
               href={category.href}
-              className={styles.card}
+              className={styles.banner}
+              style={{
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${category.image})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
+              }}
               aria-label={`Ver ${category.name} (${category.count} productos)`}
             >
-              <div className={styles.icon}>{category.icon}</div>
-              <div className={styles.info}>
-                <h3 className={styles.name}>{category.name}</h3>
-                <span className={styles.count}>{category.count} productos</span>
+              <div className={styles.content}>
+                <h3 className={styles.title}>{category.title}</h3>
+                <p className={styles.subtitle}>{category.subtitle}</p>
+                <span className={styles.button}>VER MÁS</span>
               </div>
             </Link>
           ))}
