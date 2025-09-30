@@ -1,4 +1,7 @@
+'use client';
+
 import ProductCard from "./ProductCard";
+import { useScrollAnimation, useScrollAnimationList } from "@/hooks/useScrollAnimation";
 
 /**
  * Datos de productos mock para la demo
@@ -14,11 +17,12 @@ const MOCK = [
 /**
  * Componente ProductGrid
  * 
- * Grid responsivo que muestra todos los productos disponibles.
+ * Grid responsivo que muestra todos los productos disponibles con animaciones de scroll.
  * 
  * Características:
  * - Layout CSS Grid responsivo
  * - Auto-ajuste de columnas (mínimo 220px)
+ * - Animaciones de aparición progresiva
  * - Datos mock integrados
  * - HTML semántico con <section>
  * - Mapeo eficiente de productos
@@ -30,18 +34,34 @@ const MOCK = [
  * - Loading states
  */
 export default function ProductGrid() {
+  const { elementRef: titleRef, isVisible: titleVisible } = useScrollAnimation(0.3);
+  const { containerRef, visibleItems } = useScrollAnimationList(MOCK.length, 0.2);
+
   return (
     <section className="container">
-      {/* Título de la sección */}
-      <h2>Productos</h2>
+      {/* Título de la sección con animación */}
+      <h2 
+        ref={titleRef as React.RefObject<HTMLHeadingElement>}
+        className={`fade-in-up ${titleVisible ? 'visible' : ''}`}
+      >
+        Productos
+      </h2>
       
-      {/* Grid responsivo de productos */}
-      <div className="grid">
+      {/* Grid responsivo de productos con animaciones */}
+      <div 
+        ref={containerRef as React.RefObject<HTMLDivElement>}
+        className="grid"
+      >
         {MOCK.map((product, index) => (
-          <ProductCard 
-            key={index} 
-            {...product} // Spread de todas las propiedades del producto
-          />
+          <div
+            key={index}
+            data-index={index}
+            className={`fade-in-up fade-in-delay-${Math.min(index + 1, 6)} ${visibleItems[index] ? 'visible' : ''}`}
+          >
+            <ProductCard 
+              {...product} // Spread de todas las propiedades del producto
+            />
+          </div>
         ))}
       </div>
     </section>

@@ -6,10 +6,13 @@
 .header {
   position: sticky;
   top: 0;
-  background: rgba(248, 250, 252, 0.95); /* Fondo claro semi-transparente */
-  backdrop-filter: blur(8px);             /* Efecto de desenfoque */
-  border-bottom: 1px solid var(--border); /* Border con variable CSS */
-  box-shadow: 0 1px 3px var(--shadow);   /* Sombra sutil */
+  background: linear-gradient(135deg, 
+    rgba(71, 85, 105, 0.95) 0%, 
+    rgba(168, 189, 218, 0.92) 50%, 
+    rgba(71, 85, 105, 0.95) 100%); /* Gris azulado que complementa el azul de IZA & CAS */
+  backdrop-filter: blur(12px);             /* Efecto de desenfoque mejorado */
+  border-bottom: 1px solid rgba(37, 99, 235, 0.2); /* Border con toque del azul de marca */
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);   /* Sombra con tinte azul */
 }
 
 /* Contenedor flex del header */
@@ -30,19 +33,21 @@
   padding: 8px;               /* Espacio alrededor del logo */
   border-radius: 12px;        /* Esquinas redondeadas */
   transition: transform 0.2s ease; /* Animación suave */
-  background: rgba(255, 255, 255, 0.8); /* Fondo blanco suave para el logo */
-  box-shadow: 0 2px 8px var(--shadow);  /* Sombra para destacar */
+  background: rgba(255, 255, 255, 0.95); /* Fondo blanco más opaco para contraste */
+  box-shadow: 0 3px 12px rgba(37, 99, 235, 0.2);  /* Sombra con tinte azul IZA & CAS */
+  border: 1px solid rgba(37, 99, 235, 0.1); /* Border sutil con azul de marca */
 }
 
 .brand:hover {
   transform: scale(1.05); /* Efecto hover: crecer ligeramente */
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.3); /* Sombra más intensa en hover */
 }
 
-/* Estilos específicos para el logo - MÁS GRANDE */
+/* Estilos específicos para el logo - Optimizado para header gris */
 .logo {
   border-radius: 12px;    /* Esquinas redondeadas */
   object-fit: contain;    /* Mantener proporción del logo */
-  /* Removemos el filtro de sombra ya que ahora tenemos fondo blanco */
+  filter: drop-shadow(0 1px 3px rgba(37, 99, 235, 0.2)); /* Sombra sutil con azul de marca */
 }
 
 /* Contenedor de enlaces de navegación */

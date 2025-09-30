@@ -6,7 +6,7 @@
   --card: #ffffff;      /* Fondo de tarjetas - blanco puro */
   --text: #1e293b;      /* Texto principal - gris oscuro */
   --muted: #64748b;     /* Texto secundario - gris medio */
-  --brand: #2563eb;     /* Color de marca - azul profesional */
+  --brand: #243e77;     /* Color de marca - azul profesional */
   --border: #e2e8f0;    /* Bordes - gris muy claro */
   --shadow: rgba(0, 0, 0, 0.1); /* Sombras suaves */
   
@@ -24,6 +24,33 @@
    =================================== */
 * {
   box-sizing: border-box; /* Incluir padding y border en el width/height */
+}
+
+/* Scroll suave y armonioso */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Compensar header fijo */
+}
+
+/* Optimizaciones para mejor rendimiento de animaciones */
+body {
+  overflow-x: hidden; /* Prevenir scroll horizontal */
+}
+
+/* Reducir movimiento para usuarios con preferencias de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  .fade-in-up,
+  .fade-in-left,
+  .fade-in-right,
+  .fade-in-scale {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 html, body {
@@ -75,11 +102,77 @@ html, body {
 }
 
 .link {
-  color: var(--text);
+  color: rgba(255, 255, 255, 0.9); /* Texto blanco para contraste con header gris */
   text-decoration: none;
   opacity: 0.9;         /* Ligeramente transparente */
+  transition: all 0.3s ease; /* Transición suave */
+  padding: 8px 12px;    /* Espacio alrededor del enlace */
+  border-radius: 8px;   /* Esquinas redondeadas */
 }
 
 .link:hover {
   opacity: 1;           /* Completamente opaco al hacer hover */
+  background: rgba(37, 99, 235, 0.2); /* Fondo azul sutil en hover */
+  color: rgba(255, 255, 255, 1); /* Blanco puro en hover */
+  transform: translateY(-1px); /* Ligero efecto de elevación */
 }
+
+/* ===================================
+   ANIMACIONES DE APARICIÓN PROGRESIVA
+   =================================== */
+
+/* Elementos que aparecen desde abajo */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Elementos que aparecen desde la izquierda */
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Elementos que aparecen desde la derecha */
+.fade-in-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Efecto de escalado suave */
+.fade-in-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Delay progresivo para elementos en grid */
+.fade-in-delay-1 { transition-delay: 0.1s; }
+.fade-in-delay-2 { transition-delay: 0.2s; }
+.fade-in-delay-3 { transition-delay: 0.3s; }
+.fade-in-delay-4 { transition-delay: 0.4s; }
+.fade-in-delay-5 { transition-delay: 0.5s; }
+.fade-in-delay-6 { transition-delay: 0.6s; }
