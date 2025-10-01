@@ -1,25 +1,41 @@
-# 🏠 Casa Viva - Tienda Virtual Completa
+# 🏠 IZA & CAS - Tienda Virtual E-commerce Completa
 
-> **Sistema completo de e-commerce** con categorías, navegación avanzada y estructura escalable desarrollada con Next.js 15, TypeScript y CSS Modules.
+> **Sistema completo de e-commerce funcional** con carrito de compras, modal de productos, carruseles de imágenes y funcionalidad completa de tienda online desarrollada con Next.js 15, TypeScript y CSS Modules.
 
 ## 🚀 Demo en Vivo
 
-🔗 **[Ver Demo](https://github.com/karlascs/tienda-virtual)** | 📱 **Responsive Design** | 🛍️ **5 Categorías** | 🏠 **Casa Viva**
+🔗 **[Ver Demo](https://github.com/karlascs/tienda-virtual)** | 📱 **Responsive Design** | � **E-commerce Funcional** | 🏠 **IZA & CAS**
 
 ## ✨ Características Principales
 
-- ⚡ **Next.js 15** con App Router y Turbopack
-- 🎯 **TypeScript** para type safety completo
-- 🎨 **CSS Modules** para estilos aislados y escalables
-- �️ **Sistema de Categorías** completo (5 categorías)
-- �📱 **Responsive Design** con CSS Grid avanzado
-- 🧩 **40+ Componentes** reutilizables y documentados
-- 🌟 **Tema Claro** optimizado para Casa Viva
-- 🏷️ **HTML Semántico** para SEO y accesibilidad
-- 💰 **Formateo de Precios** en pesos chilenos (CLP)
-- 🏠 **Branding Completo** con logo optimizado
-- 🖼️ **Estructura de Imágenes** organizada y documentada
-- 🛒 **Carrito de Compras** con diseño profesional
+### 🛒 **E-commerce Funcional Completo**
+- **Carrito de compras** dinámico con React Context
+- **Modal de detalles** de productos interactivo
+- **Botones funcionales** en todas las categorías
+- **Contador dinámico** en header del carrito
+- **Notificaciones toast** al añadir productos
+- **Gestión completa** de cantidades y productos
+
+### 🎨 **Diseño y UX Profesional**
+- **Banner IZA&CAS** promocional en página principal
+- **Carruseles de imágenes** con navegación avanzada
+- **Paleta de colores** IZA&CAS consistente
+- **Animaciones suaves** y efectos hover elegantes
+- **Responsive design** optimizado para móviles
+
+### ⚡ **Tecnologías Avanzadas**
+- **Next.js 15** con App Router y Turbopack
+- **TypeScript** para type safety completo
+- **React Context API** para gestión de estado global
+- **CSS Modules** para estilos aislados y escalables
+- **Intersection Observer** para animaciones de scroll
+
+### 🎯 **Funcionalidades Técnicas**
+- **40+ Componentes** reutilizables y documentados
+- **HTML Semántico** para SEO y accesibilidad
+- **Error handling** en carga de imágenes
+- **Performance optimizado** con lazy loading
+- **Estructura escalable** y mantenible
 
 ## 📁 Estructura del Proyecto
 
@@ -382,25 +398,60 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 
 **Karla Cuevas** - [@karlascs](https://github.com/karlascs)
 
-### 🏆 Logros del Proyecto Casa Viva
-- ✅ **Sistema Completo** - 5 categorías con 40+ productos
+### 🏆 Logros del Proyecto IZA & CAS
+- ✅ **E-commerce Funcional** - Carrito, modal y funcionalidad completa
+- ✅ **Sistema de Carrusel** - Navegación avanzada de imágenes
+- ✅ **Banner Promocional** - IZA&CAS integrado con animaciones
+- ✅ **Gestión de Estado** - React Context API implementado
+- ✅ **UX/UI Profesional** - Animaciones y efectos elegantes
 - ✅ **Arquitectura Escalable** - Preparado para crecimiento futuro  
-- ✅ **Branding Profesional** - Logo, favicon y identidad completa
-- ✅ **Organización de Assets** - Estructura de imágenes documentada
-- ✅ **UX/UI Avanzada** - Navegación intuitiva y diseño moderno
+- ✅ **Branding Consistente** - Paleta IZA&CAS en todo el sitio
+- ✅ **Responsive Design** - Optimizado para todos los dispositivos
+- ✅ **Performance Optimizado** - Next.js 15 con Turbopack
 - ✅ **Código Limpio** - TypeScript, CSS Modules y best practices
 - ✅ **Documentación Técnica** - README completo y detallado
-- ✅ **Performance Optimizado** - Imágenes WebP/AVIF y componentes eficientes
 
 ### 📊 Estadísticas del Proyecto
-- **40+ productos** distribuidos en 5 categorías
-- **10+ componentes** reutilizables y tipados
-- **7 páginas** con navegación completa
-- **Estructura organizada** de +50 archivos
+- **35+ productos** distribuidos en 5 categorías
+- **15+ componentes** reutilizables y tipados
+- **8 páginas** con navegación completa y funcionalidad
+- **Carrito funcional** con gestión completa de estado
+- **Sistema de modal** con detalles de productos
+- **Carruseles avanzados** con múltiples imágenes
+- **Banner promocional** con animaciones
+- **Estructura organizada** de +70 archivos
 - **Responsive design** 100% funcional
 - **TypeScript** coverage completo
 
+### 🆕 Nuevas Funcionalidades Implementadas (v2.0)
+
+#### 🛒 **Sistema de E-commerce Completo**
+- **CartContext**: Gestión global del estado del carrito
+- **Botones funcionales**: "Añadir al carrito" en todas las categorías
+- **Contador dinámico**: Header actualiza automáticamente
+- **Página de carrito**: Gestión completa con +/- cantidades
+- **Notificaciones**: Toast animadas al añadir productos
+
+#### 📱 **Componentes Avanzados**
+- **ProductModal**: Modal interactivo con detalles completos
+- **ProductCarousel**: Carrusel con navegación por teclado y táctil
+- **Banner**: Componente promocional IZA&CAS responsive
+- **Hooks personalizados**: useScrollAnimation, useCarouselKeyboard
+
+#### 🎨 **Mejoras de Diseño**
+- **Paleta IZA&CAS**: Verde oscuro (#2d4a4a) y beige dorado (#d4a574)
+- **Animaciones suaves**: Scroll animations y efectos hover
+- **CSS Modules**: Estilos específicos por categoría
+- **Error handling**: Placeholders para imágenes faltantes
+
+#### ⚡ **Optimizaciones Técnicas**
+- **React Context API**: Estado global eficiente
+- **TypeScript**: Tipado completo en todos los componentes
+- **Performance**: Lazy loading y optimización de imágenes
+- **SEO mejorado**: Meta tags y estructura semántica
+
 ---
 
-⭐ **¡Casa Viva - Tu hogar, nuestro compromiso!** 🏠  
-🛍️ **Sistema completo de e-commerce desarrollado con tecnologías modernas** 💻
+⭐ **¡IZA & CAS - Tu tienda de confianza para el hogar y más!** 🏠  
+🛍️ **E-commerce completo desarrollado con las últimas tecnologías** 💻  
+🎯 **v2.0 - Carrito funcional, modal de productos y carruseles avanzados** �
