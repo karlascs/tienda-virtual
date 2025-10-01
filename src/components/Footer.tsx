@@ -178,6 +178,21 @@ export default function Footer() {
             <p>✨ ¡Síguenos en redes sociales para ofertas exclusivas!</p>
           </div>
         </div>
+
+        {/* Botón volver arriba */}
+        <div className={styles.backToTop}>
+          <button 
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className={styles.backToTopButton}
+            aria-label="Volver al inicio"
+            title="Volver al inicio"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 4l-8 8h5v8h6v-8h5l-8-8z"/>
+            </svg>
+            <span>Volver al Inicio</span>
+          </button>
+        </div>
       </div>
     </footer>
   );

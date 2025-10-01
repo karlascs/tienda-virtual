@@ -29,33 +29,35 @@ export default function ProductGrid() {
   const { containerRef, visibleItems } = useScrollAnimationList(FEATURED_PRODUCTS.length, 0.2);
 
   return (
-    <section className="container">
-      {/* Título de la sección con animación */}
-      <h2 
-        ref={titleRef as React.RefObject<HTMLHeadingElement>}
-        className={`fade-in-bounce ${titleVisible ? 'visible' : ''}`}
-      >
-        Productos Destacados
-      </h2>
-      
-      {/* Grid responsivo de productos con animaciones */}
-      <div 
-        ref={containerRef as React.RefObject<HTMLDivElement>}
-        className="grid"
-      >
-        {FEATURED_PRODUCTS.map((product, index) => (
-          <div
-            key={product.id}
-            data-index={index}
-            className={`fade-in-up fade-in-delay-${Math.min(index + 1, 6)} ${visibleItems[index] ? 'visible' : ''}`}
-          >
-            <ProductCard 
-              name={product.name}
-              price={product.price}
-              image={product.image!}
-            />
-          </div>
-        ))}
+    <section className="products-section">
+      <div className="container">
+        {/* Título de la sección con animación */}
+        <h2 
+          ref={titleRef as React.RefObject<HTMLHeadingElement>}
+          className={`fade-in-bounce ${titleVisible ? 'visible' : ''}`}
+        >
+          Productos Destacados
+        </h2>
+        
+        {/* Grid responsivo de productos con animaciones */}
+        <div 
+          ref={containerRef as React.RefObject<HTMLDivElement>}
+          className="grid"
+        >
+          {FEATURED_PRODUCTS.map((product, index) => (
+            <div
+              key={product.id}
+              data-index={index}
+              className={`fade-in-up fade-in-delay-${Math.min(index + 1, 6)} ${visibleItems[index] ? 'visible' : ''}`}
+            >
+              <ProductCard 
+                name={product.name}
+                price={product.price}
+                image={product.image!}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

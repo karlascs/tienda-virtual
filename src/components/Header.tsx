@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import styles from "@/styles/header.module.css";
 import { useCart } from "@/context/CartContext";
 
@@ -13,9 +14,11 @@ import { useCart } from "@/context/CartContext";
  * - Navegación principal
  * - Enlaces a páginas importantes
  * - Contador del carrito de compras
+ * - Efecto de transparencia dinámico al hacer scroll
  * 
  * Características:
  * - Sticky positioning (se mantiene fijo al hacer scroll)
+ * - Transparencia dinámica basada en scroll
  * - Responsive design
  * - Accesibilidad con aria-label
  * - Logo optimizado con Next.js Image
@@ -23,9 +26,20 @@ import { useCart } from "@/context/CartContext";
  */
 export default function Header() {
   const { state } = useCart();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 100;
+      setScrolled(isScrolled);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
       <div className="container">
         {/* Navegación principal con etiqueta semántica */}
         <nav className={styles.row} aria-label="principal">
