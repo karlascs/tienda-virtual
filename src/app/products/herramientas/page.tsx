@@ -19,28 +19,28 @@ const HERRAMIENTAS_PRODUCTS = [
   {
     id: 1,
     name: "Cables Auxiliares para Auto",
-    price: 15990,
+    price: 7990,
     image: "/images/herramientas/car/cableAuxiliares/0WNyc+Si42f13LcBw7Uw8A==.jpg",
     description: "Cables auxiliares de alta calidad para arranque de vehículos"
   },
   {
     id: 2,
     name: "Compresor de Aire Portátil",
-    price: 45990,
+    price: 16990,
     image: "/images/herramientas/car/compresordeaireportatil/6uxYH0xUbI5Ia7hYcbirA==.jpg",
     description: "Compresor portátil para inflar neumáticos y equipos deportivos"
   },
   {
     id: 3,
     name: "Espejo Retrovisor con Cámara",
-    price: 89990,
+    price: 17990,
     image: "/images/herramientas/car/espejoretrovisorcon camara/Puvs6DbFSFmAOHTx3srljQ==.jpg",
     description: "Espejo retrovisor inteligente con cámara de seguridad integrada"
   },
   {
     id: 4,
     name: "Tabla Volante Multifuncional",
-    price: 32990,
+    price: 10990,
     image: "/images/herramientas/car/tabavolante/Iovi68LXRxpNSbZYaP1J1Q==.jpg",
     description: "Tabla para volante ajustable, ideal para comer o trabajar en el auto"
   },
@@ -49,35 +49,35 @@ const HERRAMIENTAS_PRODUCTS = [
   {
     id: 5,
     name: "Foco LED AC 200W",
-    price: 78990,
+    price: 12990,
     image: "/images/herramientas/iluminacion/focoledacorriente200w/2TSThogXVzL0xN9w3e4OQ==.jpg",
     description: "Foco LED de alta potencia para iluminación exterior"
   },
   {
     id: 6,
     name: "Foco LED AC 100W",
-    price: 58990,
+    price: 9990,
     image: "/images/herramientas/iluminacion/focoledcorriente100w/9C9rrsRtNG1kyKwEQAQmMg==.jpg",
     description: "Foco LED eficiente para uso doméstico e industrial"
   },
   {
     id: 7,
     name: "Foco Solar 260W",
-    price: 125990,
+    price: 21990,
     image: "/images/herramientas/iluminacion/focosolar260w/AzFQZIjc2Lb0Axc+sCfFw==.jpg",
     description: "Foco solar de alta potencia con panel integrado"
   },
   {
     id: 8,
     name: "Foco Solar 50W con Panel",
-    price: 65990,
+    price: 14990,
     image: "/images/herramientas/iluminacion/focosolar50wconpanel/8mEb4UzQDQa8dXrQStOKA==.jpg",
     description: "Foco solar con panel separado y control remoto"
   },
   {
     id: 9,
     name: "Foco Solar con Panel 100W",
-    price: 89990,
+    price: 9990,
     image: "/images/herramientas/iluminacion/focosolarconpanel100w/6kohZNLgUWtytLE0OMoILw==.jpg",
     description: "Sistema de iluminación solar profesional 100W"
   },
@@ -91,7 +91,7 @@ const HERRAMIENTAS_PRODUCTS = [
   {
     id: 11,
     name: "Foco Solar 50W",
-    price: 39990,
+    price: 7990,
     image: "/images/herramientas/iluminacion/focosolarr50w/+JYijteB0oPddgFJiP43jw==.jpg",
     description: "Foco solar económico para jardines y patios"
   },
@@ -161,21 +161,25 @@ const HERRAMIENTAS_PRODUCTS = [
 ];
 
 export default function HerramientasPage() {
-  const { containerRef, visibleItems } = useScrollAnimationList(HERRAMIENTAS_PRODUCTS.length, 0.2);
+  // Hooks separados para cada sección
+  const { containerRef: automotrizRef, visibleItems: automotrizVisible } = useScrollAnimationList(4, 0.2);
+  const { containerRef: iluminacionRef, visibleItems: iluminacionVisible } = useScrollAnimationList(16, 0.2);
   
   // Organizar productos por categorías
   const automotrizProducts = HERRAMIENTAS_PRODUCTS.slice(0, 4);  // IDs 1-4
   const iluminacionProducts = HERRAMIENTAS_PRODUCTS.slice(4);    // IDs 5-20
 
-  const renderProductGrid = (products: typeof HERRAMIENTAS_PRODUCTS, startIndex: number = 0) => (
+  const renderProductGrid = (
+    products: typeof HERRAMIENTAS_PRODUCTS, 
+    visibleItems: boolean[]
+  ) => (
     <div className="grid" style={{ marginBottom: '60px' }}>
       {products.map((product, index) => {
-        const globalIndex = startIndex + index;
         return (
           <div 
             key={product.id} 
-            data-index={globalIndex}
-            className={`card fade-in-up fade-in-delay-${Math.min((index % 6) + 1, 6)} ${visibleItems[globalIndex] ? 'visible' : ''}`}
+            data-index={index}
+            className={`card fade-in-up fade-in-delay-${Math.min((index % 6) + 1, 6)} ${visibleItems[index] ? 'visible' : ''}`}
           >
             <img 
               src={product.image} 
@@ -321,8 +325,8 @@ export default function HerramientasPage() {
               }}>
                 Herramientas y accesorios esenciales para tu vehículo
               </p>
-              <div ref={containerRef as React.RefObject<HTMLDivElement>}>
-                {renderProductGrid(automotrizProducts, 0)}
+              <div ref={automotrizRef as React.RefObject<HTMLDivElement>}>
+                {renderProductGrid(automotrizProducts, automotrizVisible)}
               </div>
             </div>
           </AnimatedSection>
@@ -348,7 +352,9 @@ export default function HerramientasPage() {
               }}>
                 Focos LED, solares y sistemas de iluminación profesional
               </p>
-              {renderProductGrid(iluminacionProducts, 4)}
+              <div ref={iluminacionRef as React.RefObject<HTMLDivElement>}>
+                {renderProductGrid(iluminacionProducts, iluminacionVisible)}
+              </div>
             </div>
           </AnimatedSection>
         </div>
