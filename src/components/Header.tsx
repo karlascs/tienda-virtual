@@ -15,11 +15,12 @@ import { useCart } from "@/context/CartContext";
  * - Enlaces a páginas importantes
  * - Contador del carrito de compras
  * - Efecto de transparencia dinámico al hacer scroll
+ * - Menú hamburguesa responsive para móviles
  * 
  * Características:
  * - Sticky positioning (se mantiene fijo al hacer scroll)
  * - Transparencia dinámica basada en scroll
- * - Responsive design
+ * - Responsive design con menú hamburguesa
  * - Accesibilidad con aria-label
  * - Logo optimizado con Next.js Image
  * - Contador dinámico del carrito
@@ -27,6 +28,7 @@ import { useCart } from "@/context/CartContext";
 export default function Header() {
   const { state } = useCart();
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,13 +40,21 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
       <div className="container">
         {/* Navegación principal con etiqueta semántica */}
         <nav className={styles.row} aria-label="principal">
           {/* Logo de Casa Viva como elemento principal */}
-          <Link href="/" className={styles.brand}>
+          <Link href="/" className={styles.brand} onClick={closeMenu}>
             <Image 
               src="/logo_isa&cas.png"
               alt="IZA & CAS - Tienda Online"
@@ -55,20 +65,43 @@ export default function Header() {
             />
           </Link>
           
-          {/* Enlaces de navegación */}
+          {/* Botón hamburguesa para móviles */}
+          <button 
+            className={styles.hamburger}
+            onClick={toggleMenu}
+            aria-label="Abrir menú de navegación"
+            aria-expanded={menuOpen}
+          >
+            <span className={`${styles.hamburgerLine} ${menuOpen ? styles.active : ''}`}></span>
+            <span className={`${styles.hamburgerLine} ${menuOpen ? styles.active : ''}`}></span>
+            <span className={`${styles.hamburgerLine} ${menuOpen ? styles.active : ''}`}></span>
+          </button>
+          
+          {/* Enlaces de navegación - siempre visible en desktop */}
           <div className={styles.nav}>
-            <Link href="/" className="link">Inicio</Link>
-            <Link href="/products/hogar" className="link">Hogar</Link>
-            <Link href="/products/herramientas" className="link">Herramientas</Link>
-            <Link href="/products/juguetes" className="link">Juguetes</Link>
-            <Link href="/products/tecnologia" className="link">Tecnología</Link>
-            <Link href="/products/actividad" className="link">Actividad</Link>
-            {/* Enlace al carrito de compras con contador dinámico */}
-            <Link href="/cart" className={`link ${styles.cartLink}`}>
-              🛒 Carrito ({state.itemCount})
-            </Link>
+            <Link href="/" className="link" onClick={closeMenu}>Inicio</Link>
+            <Link href="/products/hogar" className="link" onClick={closeMenu}>Hogar</Link>
+            <Link href="/products/herramientas" className="link" onClick={closeMenu}>Herramientas</Link>
+            <Link href="/products/juguetes" className="link" onClick={closeMenu}>Juguetes</Link>
+            <Link href="/products/tecnologia" className="link" onClick={closeMenu}>Tecnología</Link>
+            <Link href="/products/actividad" className="link" onClick={closeMenu}>Actividad</Link>
           </div>
+          
+          {/* Enlace al carrito - siempre visible */}
+          <Link href="/cart" className={`link ${styles.cartLink}`} onClick={closeMenu}>
+            🛒 Carrito ({state.itemCount})
+          </Link>
         </nav>
+        
+        {/* Menú móvil desplegable */}
+        <div className={`${styles.mobileMenu} ${menuOpen ? styles.open : ''}`}>
+          <Link href="/" className={styles.mobileLink} onClick={closeMenu}>Inicio</Link>
+          <Link href="/products/hogar" className={styles.mobileLink} onClick={closeMenu}>Hogar</Link>
+          <Link href="/products/herramientas" className={styles.mobileLink} onClick={closeMenu}>Herramientas</Link>
+          <Link href="/products/juguetes" className={styles.mobileLink} onClick={closeMenu}>Juguetes</Link>
+          <Link href="/products/tecnologia" className={styles.mobileLink} onClick={closeMenu}>Tecnología</Link>
+          <Link href="/products/actividad" className={styles.mobileLink} onClick={closeMenu}>Actividad</Link>
+        </div>
       </div>
     </header>
   );

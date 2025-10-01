@@ -68,6 +68,22 @@
 .nav {
   display: flex;
   gap: 14px; /* Espacio entre enlaces */
+  align-items: center;
+}
+
+/* Ocultar enlaces de navegación en móviles pero mantener carrito */
+@media (max-width: 768px) {
+  .nav {
+    display: none; /* Ocultar navegación completa en tablets y móviles */
+  }
+  
+  .hamburger {
+    display: flex; /* Mostrar botón hamburguesa */
+  }
+  
+  .mobileMenu {
+    display: flex; /* Habilitar menú móvil */
+  }
 }
 
 /* Estilo especial para el enlace del carrito */
@@ -87,6 +103,80 @@
   box-shadow: 0 4px 12px rgba(45, 74, 74, 0.4);
 }
 
+/* Botón hamburguesa - solo visible en móviles */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
+}
+
+.hamburgerLine {
+  width: 25px;
+  height: 3px;
+  background-color: var(--text);
+  margin: 3px 0;
+  transition: 0.3s;
+  border-radius: 2px;
+}
+
+.hamburgerLine.active:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburgerLine.active:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburgerLine.active:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Menú móvil desplegable */
+.mobileMenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, 
+    rgba(35, 53, 51, 0.95) 0%, 
+    rgba(74, 107, 107, 0.90) 50%, 
+    rgba(240, 226, 189, 0.95) 100%);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(45, 74, 74, 0.15);
+  box-shadow: 0 4px 20px rgba(45, 74, 74, 0.2);
+  padding: 20px;
+  flex-direction: column;
+  gap: 15px;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+  z-index: 999;
+}
+
+.mobileMenu.open {
+  transform: translateY(0);
+}
+
+.mobileLink {
+  color: white;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  text-align: center;
+  font-weight: 500;
+}
+
+.mobileLink:hover {
+  background: rgba(212, 165, 116, 0.3);
+  transform: translateX(5px);
+}
+
 /* Responsive: En pantallas pequeñas, mantener el logo centrado */
 @media (max-width: 768px) {
   .header {
@@ -98,13 +188,31 @@
     padding: 0 15px;
   }
   
+  .row {
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+  }
+  
   .brand {
-    font-size: 1.5rem;
+    padding: 6px;
+    flex: 1; /* Tomar espacio disponible */
+  }
+  
+  .logo {
+    width: 60px;
+    height: 50px;
   }
   
   .cartLink {
     padding: 8px 12px;
     font-size: 0.85rem;
+    border-radius: 15px;
+    order: 2; /* Carrito después del hamburguesa */
+  }
+  
+  .hamburger {
+    order: 1; /* Hamburguesa en el medio */
   }
 }
 
@@ -119,24 +227,38 @@
   }
   
   .row {
-    flex-direction: row; /* Mantener horizontal en móviles */
     justify-content: space-between;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
   }
   
   .brand {
-    order: 0; /* Logo al inicio */
-    font-size: 1.3rem;
+    padding: 4px;
     flex: 1;
-    text-align: left;
+  }
+  
+  .logo {
+    width: 50px;
+    height: 42px;
   }
   
   .cartLink {
-    order: 1; /* Carrito al final */
     padding: 6px 10px;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+    border-radius: 12px;
     min-width: auto;
     white-space: nowrap;
+    order: 2;
+  }
+  
+  .hamburger {
+    order: 1;
+    padding: 6px;
+  }
+  
+  .hamburgerLine {
+    width: 20px;
+    height: 2px;
+    margin: 2px 0;
   }
 }
