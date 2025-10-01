@@ -7,7 +7,7 @@
   position: sticky;
   top: 0;
   background: linear-gradient(135deg, 
-    rgba(236, 210, 198, 0.95) 0%, 
+    rgba(35, 53, 51, 0.95) 0%, 
     rgba(74, 107, 107, 0.92) 50%, 
     rgba(240, 226, 189, 0.95) 100%); /* Verde oscuro IZA&CAS */
   backdrop-filter: blur(12px);             /* Efecto de desenfoque mejorado */
@@ -33,7 +33,7 @@
   padding: 8px;               /* Espacio alrededor del logo */
   border-radius: 12px;        /* Esquinas redondeadas */
   transition: transform 0.2s ease; /* Animación suave */
-  background: rgba(247, 245, 243, 0.95); /* Fondo beige claro para contraste */
+  background: rgba(206, 219, 212, 0.95); /* Fondo beige claro para contraste */
   box-shadow: 0 3px 12px rgba(45, 74, 74, 0.2);  /* Sombra con tinte verde IZA&CAS */
   border: 1px solid rgba(212, 165, 116, 0.3); /* Border con beige dorado */
 }

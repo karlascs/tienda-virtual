@@ -2,30 +2,21 @@
 
 import ProductCard from "./ProductCard";
 import { useScrollAnimation, useScrollAnimationList } from "@/hooks/useScrollAnimation";
-
-/**
- * Datos de productos mock para la demo
- * En futuras fases, estos datos vendrán de una API o base de datos
- */
-const MOCK = [
-  { name: "Hervidor Eléctrico 1.7L", price: 29990, image: "/images/hogar/hervidor-electrico.webp" },
-  { name: "Batidora", price: 59990, image: "/images/hogar/batidora-inmersion.avif" },
-  { name: "Batidora Inmersión", price: 25990, image: "/images/hogar/batidora-inmersion.avif" },
-  { name: "Horno Eléctrico", price: 42990, image: "/images/hogar/horno-electrico.jpg" },
-];
+import { FEATURED_PRODUCTS } from "@/data/products";
 
 /**
  * Componente ProductGrid
  * 
- * Grid responsivo que muestra todos los productos disponibles con animaciones de scroll.
+ * Grid responsivo que muestra productos destacados de diferentes categorías en la página principal.
+ * Los productos se obtienen de la base de datos centralizada y se actualizan automáticamente.
  * 
  * Características:
  * - Layout CSS Grid responsivo
  * - Auto-ajuste de columnas (mínimo 220px)
  * - Animaciones de aparición progresiva
- * - Datos mock integrados
+ * - Productos sincronizados con la base de datos central
  * - HTML semántico con <section>
- * - Mapeo eficiente de productos
+ * - Mapeo eficiente de productos destacados
  * 
  * Futuras mejoras:
  * - Integración con API
@@ -35,7 +26,7 @@ const MOCK = [
  */
 export default function ProductGrid() {
   const { elementRef: titleRef, isVisible: titleVisible } = useScrollAnimation(0.3);
-  const { containerRef, visibleItems } = useScrollAnimationList(MOCK.length, 0.2);
+  const { containerRef, visibleItems } = useScrollAnimationList(FEATURED_PRODUCTS.length, 0.2);
 
   return (
     <section className="container">
@@ -44,7 +35,7 @@ export default function ProductGrid() {
         ref={titleRef as React.RefObject<HTMLHeadingElement>}
         className={`fade-in-up ${titleVisible ? 'visible' : ''}`}
       >
-        Productos
+        Productos Destacados
       </h2>
       
       {/* Grid responsivo de productos con animaciones */}
@@ -52,14 +43,16 @@ export default function ProductGrid() {
         ref={containerRef as React.RefObject<HTMLDivElement>}
         className="grid"
       >
-        {MOCK.map((product, index) => (
+        {FEATURED_PRODUCTS.map((product, index) => (
           <div
-            key={index}
+            key={product.id}
             data-index={index}
             className={`fade-in-up fade-in-delay-${Math.min(index + 1, 6)} ${visibleItems[index] ? 'visible' : ''}`}
           >
             <ProductCard 
-              {...product} // Spread de todas las propiedades del producto
+              name={product.name}
+              price={product.price}
+              image={product.image!}
             />
           </div>
         ))}

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Product } from '@/context/CartContext';
+import { Product } from '@/data/products';
 import styles from '@/styles/ProductModal.module.css';
 
 interface ProductModalProps {

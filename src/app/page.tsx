@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Banner from "@/components/Banner";
 import Categories from "@/components/Categories";
 import ProductGrid from "@/components/ProductGrid";
-import AnimatedFooter from "@/components/AnimatedFooter";
+import Footer from "@/components/Footer";
 
 /**
  * Página Principal de la Tienda Virtual
@@ -12,7 +12,7 @@ import AnimatedFooter from "@/components/AnimatedFooter";
  * - Banner promocional IZA&CAS
  * - Categorías de productos con animaciones
  * - Grid de productos con aparición progresiva
- * - Footer con información del proyecto
+ * - Footer completo con información de contacto y enlaces
  * 
  * Incluye animaciones de scroll suaves y armoniosas
  */
@@ -33,18 +33,8 @@ export default function Home() {
         <ProductGrid />
       </main>
       
-      {/* Footer con información del proyecto */}
-      <AnimatedFooter 
-        animation="fade-in-up" 
-        threshold={0.8}
-        className="container"
-        style={{
-          opacity: 0.7, 
-          padding: "24px 24px 48px"
-        }}
-      >
-        © 2025 IZA & CAS — hecho por karla cuevas
-      </AnimatedFooter>
+      {/* Footer completo con información de IZA&CAS */}
+      <Footer />
     </>
   );
 }
