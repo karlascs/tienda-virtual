@@ -581,20 +581,48 @@
 
 @media (max-width: 480px) {
   .container {
-    padding: 0 15px;
+    padding: 0 10px;
   }
   
   .content {
-    gap: 25px;
-    padding: 30px 0 15px;
+    gap: 20px;
+    padding: 25px 0 15px;
   }
   
   .title {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
   
   .subtitle {
-    font-size: 1.1rem;
+    font-size: 1rem;
+  }
+  
+  .companyInfo,
+  .locationSection,
+  .socialAndSchedule,
+  .quickLinks,
+  .support {
+    padding: 15px;
+    margin: 0 5px;
+  }
+  
+  .socialIcons {
+    gap: 12px;
+    justify-content: center;
+  }
+  
+  .socialIcon {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .mapContainer {
+    margin: 12px 0;
+    border-radius: 8px;
+  }
+  
+  .mapContainer iframe {
+    height: 200px; /* Altura más pequeña en móviles */
   }
 }
 

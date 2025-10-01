@@ -37,11 +37,34 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px; /* Compensar header fijo */
+  -webkit-text-size-adjust: 100%; /* Evitar zoom automático en iOS */
+  -ms-text-size-adjust: 100%;
 }
 
 /* Optimizaciones para mejor rendimiento de animaciones */
 body {
   overflow-x: hidden; /* Prevenir scroll horizontal */
+  margin: 0;
+  padding: 0;
+  min-width: 320px; /* Ancho mínimo para evitar problemas en pantallas muy pequeñas */
+  font-size: 16px; /* Tamaño base para mejor legibilidad en móviles */
+  line-height: 1.6; /* Mejor espaciado de líneas */
+  -webkit-font-smoothing: antialiased; /* Suavizar fuentes en WebKit */
+  -moz-osx-font-smoothing: grayscale; /* Suavizar fuentes en Firefox macOS */
+}
+
+/* Mejoras de tipografía responsive */
+@media (max-width: 768px) {
+  body {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+    line-height: 1.5;
+  }
 }
 
 /* Reducir movimiento para usuarios con preferencias de accesibilidad */
@@ -73,8 +96,22 @@ html, body {
    =================================== */
 .container {
   max-width: 1200px;    /* Ancho máximo del contenido */
-  margin: 0 auto;       /* Centrar horizontalmente */
-  padding: 24px;        /* Espaciado interno */
+  margin: 0 auto;       /* Centrado horizontal */
+  padding: 0 20px;      /* Espaciado interno horizontal */
+  width: 100%;          /* Asegurar que use todo el ancho disponible */
+}
+
+/* Mejoras responsive para containers */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 10px;
+  }
 }
 
 /* Sección de productos con fondo crema */
@@ -141,6 +178,28 @@ html, body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Grid responsivo */
   gap: 20px;            /* Espacio entre elementos */
+}
+
+/* Mejoras responsive para el grid */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .grid {
+    grid-template-columns: 1fr 1fr; /* Solo 2 columnas en pantallas muy pequeñas */
+    gap: 10px;
+  }
 }
 
 .price {
