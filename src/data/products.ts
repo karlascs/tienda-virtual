@@ -65,6 +65,7 @@ const HOGAR_PRODUCTS_DATA = [
     description: "Hornilla de una fuente, perfecta para espacios pequeños",
     category: "Cocina"
   },
+  // Electrodomésticos
   {
     id: 5,
     name: "Batidora RAF MIXER",
@@ -88,6 +89,43 @@ const HOGAR_PRODUCTS_DATA = [
     ],
     description: "Moledor de café eléctrico, granos frescos siempre",
     category: "Electrodomésticos"
+  },
+  // Ropa de Cama
+  {
+    id: 7,
+    name: "Cobertor con Diseño 2 Plazas",
+    price: 32990,
+    images: [
+      "/images/hogar/ropa%20de%20cama/cobertorcon%20diseño2plazas/eOTcYbvYGAQe3udS+ja5w==.jpg"
+    ],
+    description: "Cobertor cálido y cómodo con diseño elegante para 2 plazas",
+    category: "Ropa de Cama"
+  },
+  {
+    id: 8,
+    name: "Cobertor Chiporro Diseño 2 Plazas",
+    price: 35990,
+    images: [
+      "/images/hogar/ropa%20de%20cama/cobertorconchiporrodiseño2plazas/F9A6a7rv5tUCGeR462eDQ==.jpg",
+      "/images/hogar/ropa%20de%20cama/cobertorconchiporrodiseño2plazas/JfKu7Z2pqcy1ESm+8oN34A==.jpg",
+      "/images/hogar/ropa%20de%20cama/cobertorconchiporrodiseño2plazas/QvTNEIFZi1qhZsLUSjbKZA==.jpg",
+      "/images/hogar/ropa%20de%20cama/cobertorconchiporrodiseño2plazas/TSnisvJ0D8Rr2aAAtvA3mA==.jpg"
+    ],
+    description: "Cobertor con diseño chiporro, suave y abrigador",
+    category: "Ropa de Cama"
+  },
+  // Alfombras
+  {
+    id: 9,
+    name: "Alfombra Peluda 150",
+    price: 18990,
+    images: [
+      "/images/hogar/alfomfrapeluda150/4KZJGt6taJMn9B33bK2dmw==.jpg",
+      "/images/hogar/alfomfrapeluda150/jL0a1PHT+Z3y4HvRgayXNg==.jpg",
+      "/images/hogar/alfomfrapeluda150/KFV6aotZwYU21WY5OBn0+A==.jpg"
+    ],
+    description: "Alfombra peluda de 150cm, suave y cómoda para cualquier habitación",
+    category: "Alfombras"
   }
 ];
 
