@@ -33,7 +33,7 @@ export default function ProductGrid() {
       {/* Título de la sección con animación */}
       <h2 
         ref={titleRef as React.RefObject<HTMLHeadingElement>}
-        className={`fade-in-up ${titleVisible ? 'visible' : ''}`}
+        className={`fade-in-bounce ${titleVisible ? 'visible' : ''}`}
       >
         Productos Destacados
       </h2>

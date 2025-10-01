@@ -73,7 +73,7 @@ export default function Categories() {
       <div className="container">
         <h2 
           ref={titleRef as React.RefObject<HTMLHeadingElement>}
-          className={`${styles.title} fade-in-up ${titleVisible ? 'visible' : ''}`}
+          className={`${styles.title} fade-in-bounce ${titleVisible ? 'visible' : ''}`}
         >
           Categorías
         </h2>

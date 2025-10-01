@@ -1,6 +1,6 @@
 /* Footer principal de IZA&CAS */
 .footer {
-  background: linear-gradient(135deg, var(--primary-dark) 0%, #1a3333 100%);
+  background: linear-gradient(135deg, var(--primary-dark) 0%, #1a3333 50%, #0f2626 100%);
   color: var(--light);
   margin-top: 60px;
   position: relative;
@@ -13,8 +13,20 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+  height: 3px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--accent-gold) 20%, 
+    #FFD700 50%, 
+    var(--accent-gold) 80%, 
+    transparent 100%
+  );
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
 
 .container {
@@ -24,14 +36,138 @@
 }
 
 .content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 40px;
   padding: 50px 0 30px;
 }
 
+/* Sección principal con IZA&CAS, ubicación, redes y horarios */
+.mainSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.companyInfo {
+  background: rgba(255, 255, 255, 0.02);
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 165, 116, 0.1);
+  transition: all 0.3s ease;
+}
+
+.locationSection {
+  background: rgba(255, 255, 255, 0.02);
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 165, 116, 0.1);
+  transition: all 0.3s ease;
+}
+
+.socialAndSchedule {
+  background: rgba(255, 255, 255, 0.02);
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 165, 116, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Sección de enlaces (categorías y soporte) */
+.linksSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(212, 165, 116, 0.2);
+}
+
+.quickLinks,
+.support {
+  background: rgba(255, 255, 255, 0.02);
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 165, 116, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Efectos hover para todas las secciones */
+.companyInfo:hover,
+.locationSection:hover,
+.socialAndSchedule:hover,
+.quickLinks:hover,
+.support:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(212, 165, 116, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para horarios */
+.schedule {
+  margin-bottom: 20px;
+}
+
+.scheduleList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.scheduleList p {
+  color: #b8c5c5;
+  font-size: 0.9rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.highlight {
+  color: var(--accent-gold) !important;
+  font-weight: 600;
+  background: rgba(212, 165, 116, 0.1);
+  padding: 8px 12px;
+  border-radius: 8px;
+  border-left: 3px solid var(--accent-gold);
+}
+
 .section {
   animation: slideInUp 0.6s ease-out forwards;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 165, 116, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.section:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(212, 165, 116, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.section:hover::before {
+  opacity: 1;
 }
 
 .section:nth-child(1) { animation-delay: 0.1s; }
@@ -71,6 +207,68 @@
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+/* Botones de WhatsApp */
+.whatsappButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.whatsappButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.whatsappButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.whatsappButton:hover::before {
+  left: 100%;
+}
+
+.whatsappButton:hover {
+  background: linear-gradient(135deg, #20B858 0%, #25D366 100%);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+/* Estilo para el botón secundario de WhatsApp */
+.whatsappSecondary {
+  background: linear-gradient(135deg, #128C7E 0%, #075E54 100%);
+  box-shadow: 0 4px 15px rgba(18, 140, 126, 0.4);
+}
+
+.whatsappSecondary:hover {
+  background: linear-gradient(135deg, #0F7A6C 0%, #128C7E 100%);
+  box-shadow: 0 6px 20px rgba(18, 140, 126, 0.5);
 }
 
 .links {
@@ -128,6 +326,13 @@
   gap: 20px;
 }
 
+.bottomLinks {
+  text-align: center;
+  color: var(--accent-gold);
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
 .copyright {
   display: flex;
   flex-direction: column;
@@ -147,35 +352,106 @@
 
 .social {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  flex-direction: column;
+  gap: 16px;
   color: #b8c5c5;
   font-size: 0.9rem;
 }
 
+.social span {
+  font-weight: 600;
+  color: var(--accent-gold);
+  font-size: 1rem;
+  text-align: center;
+}
+
 .socialLinks {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 8px;
+  width: 100%;
 }
 
 .socialLinks a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 10px;
   text-decoration: none;
-  font-size: 1.1rem;
+  font-weight: 500;
+  font-size: 0.75rem;
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
 }
 
-.socialLinks a:hover {
-  background: var(--accent-gold);
-  transform: translateY(-2px) scale(1.1);
-  box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);
+.socialLinks a span {
+  display: none;
+}
+
+.socialLinks a svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* Facebook */
+.facebook {
+  background: linear-gradient(135deg, #1877F2 0%, #42A5F5 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
+}
+
+.facebook:hover {
+  background: linear-gradient(135deg, #166FE5 0%, #1877F2 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(24, 119, 242, 0.4);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Instagram */
+.instagram {
+  background: linear-gradient(135deg, #E4405F 0%, #F56040 50%, #FFAD00 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(228, 64, 95, 0.3);
+}
+
+.instagram:hover {
+  background: linear-gradient(135deg, #D73654 0%, #E4405F 50%, #F56040 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(228, 64, 95, 0.4);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* TikTok */
+.tiktok {
+  background: linear-gradient(135deg, #000000 0%, #FF0050 50%, #00F2EA 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.tiktok:hover {
+  background: linear-gradient(135deg, #1a1a1a 0%, #FF0050 50%, #00F2EA 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 0, 80, 0.4);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* WhatsApp */
+.whatsapp {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp:hover {
+  background: linear-gradient(135deg, #20B858 0%, #25D366 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 /* Animaciones */
@@ -193,9 +469,45 @@
 /* Responsivo */
 @media (max-width: 768px) {
   .content {
-    grid-template-columns: 1fr;
     gap: 30px;
     padding: 40px 0 20px;
+  }
+  
+  .mainSection {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .linksSection {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .companyInfo,
+  .locationSection,
+  .socialAndSchedule,
+  .quickLinks,
+  .support {
+    padding: 20px;
+  }
+  
+  .socialAndSchedule {
+    gap: 20px;
+  }
+  
+  .socialLinks {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  
+  .socialLinks a {
+    padding: 10px 6px;
+    font-size: 0.7rem;
+  }
+  
+  .socialLinks a svg {
+    width: 16px;
+    height: 16px;
   }
   
   .bottom {
@@ -206,10 +518,6 @@
   
   .title {
     font-size: 1.5rem;
-  }
-  
-  .social {
-    justify-content: center;
   }
 }
 
@@ -229,5 +537,134 @@
   
   .subtitle {
     font-size: 1.1rem;
+  }
+}
+
+/* Estilos para el mapa de Google */
+.mapContainer {
+  margin: 16px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  border: 2px solid rgba(212, 165, 116, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+.mapContainer:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  border-color: var(--accent-gold);
+}
+
+.mapContainer iframe {
+  width: 100%;
+  height: 200px;
+  border: none;
+  border-radius: 10px;
+  filter: grayscale(0.2) contrast(1.1);
+  transition: filter 0.3s ease;
+}
+
+.mapContainer:hover iframe {
+  filter: grayscale(0) contrast(1.2);
+}
+
+.mapDescription {
+  font-size: 0.85rem;
+  color: #b8c5c5;
+  text-align: center;
+  margin-top: 12px;
+  font-style: italic;
+  opacity: 0.9;
+}
+
+/* Responsivo para el mapa */
+@media (max-width: 768px) {
+  .mapContainer iframe {
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  .content {
+    gap: 25px;
+    padding: 30px 0 15px;
+  }
+  
+  .mainSection {
+    gap: 20px;
+  }
+  
+  .linksSection {
+    gap: 20px;
+  }
+  
+  .companyInfo,
+  .locationSection,
+  .socialAndSchedule,
+  .quickLinks,
+  .support {
+    padding: 16px;
+  }
+  
+  .title {
+    font-size: 1.3rem;
+  }
+  
+  .subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .mapContainer {
+    margin: 12px 0;
+  }
+  
+  .mapContainer iframe {
+    height: 160px;
+  }
+  
+  .mapDescription {
+    font-size: 0.8rem;
+  }
+  
+  .whatsappButton {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+  }
+  
+  .whatsappButtons {
+    gap: 6px;
+    margin-top: 12px;
+  }
+  
+  .socialLinks {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  
+  .socialLinks a {
+    padding: 8px;
+    font-size: 0.7rem;
+    gap: 4px;
+  }
+  
+  .socialLinks a svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .scheduleList p {
+    font-size: 0.8rem;
+  }
+  
+  .highlight {
+    padding: 6px 10px;
+    font-size: 0.8rem;
   }
 }

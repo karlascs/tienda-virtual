@@ -83,25 +83,45 @@
   display: flex;
   align-items: center;
   justify-content: center; /* Centrar el contenido horizontalmente */
-  min-height: 200px;
+  height: 250px; /* Altura fija para uniformidad */
+  min-height: 250px; /* Altura mínima garantizada */
+  max-height: 250px; /* Altura máxima para evitar diferencias */
   padding: 30px;
   border-radius: 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   text-decoration: none;
   color: white;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .banner:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
 }
 
 .banner:focus {
   outline: 3px solid var(--primary-color);
   outline-offset: 3px;
+}
+
+/* Efecto de brillo en hover */
+.banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+  z-index: 1;
+}
+
+.banner:hover::before {
+  left: 100%;
 }
 
 /* Contenido del banner */
@@ -132,20 +152,23 @@
   display: inline-block;
   background: white;
   color: #333;
-  padding: 12px 24px;
-  border-radius: 25px;
+  padding: 12px 28px;
+  border-radius: 30px;
   font-weight: 600;
   font-size: 14px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.8px;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  z-index: 3;
+  position: relative;
 }
 
 .banner:hover .button {
-  background: var(--primary-color);
-  color: white;
-  transform: scale(1.0);
+  background: var(--accent-gold);
+  color: var(--primary-dark);
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 /* Responsive Design */
@@ -160,22 +183,23 @@
   }
   
   .grid {
-    grid-template-columns: 1fr;
     gap: 16px;
+    grid-template-columns: 1fr;
   }
   
   .banner {
-    min-height: 160px;
+    height: 200px; /* Altura uniforme en móvil */
+    min-height: 200px;
+    max-height: 200px;
     padding: 20px;
   }
   
-  .title {
-    font-size: 24px;
+  .content .title {
+    font-size: 22px;
   }
   
   .subtitle {
     font-size: 14px;
-    margin-bottom: 16px;
   }
   
   .button {
@@ -186,15 +210,22 @@
 
 @media (max-width: 480px) {
   .banner {
-    min-height: 140px;
+    height: 180px; /* Altura uniforme en móviles pequeños */
+    min-height: 180px;
+    max-height: 180px;
     padding: 16px;
   }
   
-  .title {
+  .content .title {
     font-size: 20px;
   }
   
   .subtitle {
     font-size: 13px;
+  }
+  
+  .button {
+    padding: 8px 16px;
+    font-size: 11px;
   }
 }
