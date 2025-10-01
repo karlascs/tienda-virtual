@@ -4,6 +4,8 @@ import Header from "@/components/Header";
 import AnimatedSection from "@/components/AnimatedSection";
 import AnimatedFooter from "@/components/AnimatedFooter";
 import { useScrollAnimationList } from "@/hooks/useScrollAnimation";
+import { useCart } from "@/context/CartContext";
+import { useRouter } from "next/navigation";
 
 /**
  * Productos de Herramientas - IZA & CAS
@@ -84,7 +86,7 @@ const HERRAMIENTAS_PRODUCTS = [
   {
     id: 10,
     name: "Foco Solar con Sensor",
-    price: 45990,
+    price: 9990,
     image: "/images/herramientas/iluminacion/focosolarconsensor/1RSAVCIjArog3zLC1C4w==.jpg",
     description: "Foco solar automático con sensor de movimiento"
   },
@@ -98,63 +100,63 @@ const HERRAMIENTAS_PRODUCTS = [
   {
     id: 12,
     name: "Foco Solar Triple",
-    price: 145990,
+    price: 14990,
     image: "/images/herramientas/iluminacion/focosolartriple/A1fBJ9jMYFkHu9fHm6Uvrw==.jpg",
     description: "Sistema de iluminación solar con tres focos direccionales"
   },
   {
     id: 13,
     name: "Foco Solar Triple Panel Separado",
-    price: 156990,
+    price: 14990,
     image: "/images/herramientas/iluminacion/focosolartriplepanelseparado/PXkDMxA8s9Cl5nYRxyl9Yw==.jpg",
     description: "Sistema triple con panel solar independiente"
   },
   {
     id: 14,
     name: "Lámpara Bola de Cristal 8cm",
-    price: 24990,
+    price: 5990,
     image: "/images/herramientas/iluminacion/lamparaboladecristalconfigura8cm/Xz7t1T5zVyae8EQYL+IOjQ==.jpg",
     description: "Lámpara decorativa de cristal configurable con colores"
   },
   {
     id: 15,
     name: "Lámpara de Escritorio LED",
-    price: 35990,
+    price: 9990,
     image: "/images/herramientas/iluminacion/lamparadeescritorio/+37x1lodfAFSpQlc0NdfHQ==.jpg",
     description: "Lámpara LED ajustable para escritorio y estudio"
   },
   {
     id: 16,
     name: "Lámpara Espanta Cucos Proyector",
-    price: 42990,
+    price: 4990,
     image: "/images/herramientas/iluminacion/lamparaespantacucosproyectorestrellas/5o0rbEbKIKC9e1fl8ilEWA==.jpg",
     description: "Lámpara proyector de estrellas con función espanta insectos"
   },
   {
     id: 17,
     name: "Linterna Parlante Bluetooth",
-    price: 28990,
+    price: 9990,
     image: "/images/herramientas/iluminacion/linternaparlante/CnLlWchpCm1Cwn+7DXo4Ag==.jpg",
     description: "Linterna LED con parlante Bluetooth integrado"
   },
   {
     id: 18,
     name: "Linterna Solar LED Recargable",
-    price: 19990,
+    price: 9990,
     image: "/images/herramientas/iluminacion/linternasolarledrecargableusb/+3quwlIYcA3ZN683T4klSw==.jpg",
     description: "Linterna solar con carga USB y múltiples modos"
   },
   {
     id: 19,
     name: "Linterna LED SWAT Recargable",
-    price: 22990,
+    price: 9990,
     image: "/images/herramientas/iluminacion/liternaledswatrecargable/E0hJPQE7ZsUyrFX6syjPA==.jpg",
     description: "Linterna táctica LED de alta potencia recargable"
   },
   {
     id: 20,
     name: "Panel de Luz 36x25cm con Trípode",
-    price: 85990,
+    price: 22990,
     image: "/images/herramientas/iluminacion/paneldeluz36X25cmtripodecontrol/F6Pu0H12fsWLK4O7MribQ==.jpg",
     description: "Panel LED profesional con trípode y control remoto"
   }
@@ -164,6 +166,10 @@ export default function HerramientasPage() {
   // Hooks separados para cada sección
   const { containerRef: automotrizRef, visibleItems: automotrizVisible } = useScrollAnimationList(4, 0.2);
   const { containerRef: iluminacionRef, visibleItems: iluminacionVisible } = useScrollAnimationList(16, 0.2);
+  
+  // Hooks para funcionalidad del carrito
+  const { addToCart } = useCart();
+  const router = useRouter();
   
   // Organizar productos por categorías
   const automotrizProducts = HERRAMIENTAS_PRODUCTS.slice(0, 4);  // IDs 1-4
@@ -226,7 +232,15 @@ export default function HerramientasPage() {
               }}>
                 <button 
                   className="addToCartBtn"
-                  onClick={() => console.log('Añadir al carrito:', product.name)}
+                  onClick={() => addToCart({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    images: [product.image],
+                    image: product.image,
+                    description: product.description,
+                    category: 'Herramientas'
+                  })}
                   style={{
                     flex: '1',
                     background: 'linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%)',
@@ -240,12 +254,20 @@ export default function HerramientasPage() {
                     transition: 'all 0.3s ease',
                     boxShadow: '0 4px 12px rgba(45, 74, 74, 0.2)'
                   }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 6px 16px rgba(45, 74, 74, 0.3)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(45, 74, 74, 0.2)';
+                  }}
                 >
                   🛒 Añadir al carrito
                 </button>
                 <button 
                   className="viewDetailsBtn"
-                  onClick={() => console.log('Ver detalles:', product.name)}
+                  onClick={() => router.push(`/products/herramientas/${product.id}`)}
                   style={{
                     background: 'transparent',
                     color: 'var(--brand)',
@@ -257,6 +279,16 @@ export default function HerramientasPage() {
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
                     whiteSpace: 'nowrap'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'var(--brand)';
+                    e.currentTarget.style.color = 'white';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'transparent';
+                    e.currentTarget.style.color = 'var(--brand)';
+                    e.currentTarget.style.transform = 'translateY(0)';
                   }}
                 >
                   Ver detalles
