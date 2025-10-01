@@ -1,4 +1,5 @@
 import "./globals.css";
+import { CartProvider } from "@/context/CartContext";
 
 /**
  * Metadata de la aplicación
@@ -25,7 +26,10 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
-      <body>{children}
+      <body>
+        <CartProvider>
+          {children}
+        </CartProvider>
       </body>
     </html>
   );

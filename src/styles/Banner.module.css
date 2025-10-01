@@ -1,0 +1,287 @@
+/* Banner Principal IZA&CAS - Versión Final */
+.bannerSection {
+  width: 100%;
+  padding: 20px 0;
+  margin: 0;
+  background: linear-gradient(135deg, 
+    rgba(247, 245, 243, 0.3) 0%, 
+    rgba(212, 165, 116, 0.1) 50%, 
+    rgba(45, 74, 74, 0.1) 100%
+  );
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.bannerSection.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bannerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.bannerWrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 8px 32px rgba(45, 74, 74, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bannerWrapper:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(45, 74, 74, 0.25);
+}
+
+.bannerImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 400px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.bannerWrapper:hover .bannerImage {
+  transform: scale(1.02);
+}
+
+/* Efectos adicionales */
+.bannerWrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    rgba(212, 165, 116, 0.05) 25%,
+    transparent 50%,
+    rgba(45, 74, 74, 0.05) 75%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bannerWrapper:hover::before {
+  opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .bannerSection {
+    padding: 16px 0;
+  }
+  
+  .bannerContainer {
+    padding: 0 16px;
+  }
+  
+  .bannerWrapper {
+    border-radius: 16px;
+  }
+  
+  .bannerImage {
+    max-height: 250px;
+  }
+  
+  .bannerWrapper:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@media (max-width: 480px) {
+  .bannerSection {
+    padding: 12px 0;
+  }
+  
+  .bannerContainer {
+    padding: 0 12px;
+  }
+  
+  .bannerWrapper {
+    border-radius: 12px;
+  }
+  
+  .bannerImage {
+    max-height: 200px;
+  }
+  
+  .bannerWrapper:hover {
+    transform: none;
+  }
+  
+  .bannerWrapper:hover .bannerImage {
+    transform: scale(1.01);
+  }
+}
+
+.bannerWrapper:hover .bannerImage {
+  transform: scale(1.02);
+}
+
+.bannerOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(45, 74, 74, 0.1) 0%,
+    rgba(212, 165, 116, 0.1) 50%,
+    rgba(247, 245, 243, 0.1) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.bannerWrapper:hover .bannerOverlay {
+  opacity: 1;
+}
+
+.bannerContent {
+  text-align: center;
+  color: white;
+  z-index: 2;
+  background: rgba(45, 74, 74, 0.9);
+  padding: 24px 32px;
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.bannerTitle {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(135deg, #ffffff 0%, #d4a574 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bannerSubtitle {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .bannerContainer {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bannerSection {
+    padding: 0;
+  }
+  
+  .bannerContainer {
+    padding: 0 12px;
+  }
+  
+  .bannerWrapper {
+    border-radius: 16px;
+  }
+  
+  .bannerContent {
+    padding: 20px 24px;
+  }
+  
+  .bannerTitle {
+    font-size: 24px;
+  }
+  
+  .bannerSubtitle {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bannerSection {
+    padding: 0;
+  }
+  
+  .bannerContainer {
+    padding: 0 8px;
+  }
+  
+  .bannerWrapper {
+    border-radius: 12px;
+  }
+  
+  .bannerContent {
+    padding: 16px 20px;
+  }
+  
+  .bannerTitle {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  
+  .bannerSubtitle {
+    font-size: 13px;
+  }
+}
+
+/* Efectos adicionales */
+.bannerWrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    rgba(212, 165, 116, 0.1) 25%,
+    transparent 50%,
+    rgba(45, 74, 74, 0.1) 75%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bannerWrapper:hover::before {
+  opacity: 1;
+}
+
+/* Animación de carga */
+@keyframes bannerLoad {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.bannerSection.visible .bannerWrapper {
+  animation: bannerLoad 1s ease-out 0.2s both;
+}

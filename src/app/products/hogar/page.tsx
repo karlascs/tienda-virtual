@@ -1,10 +1,13 @@
 'use client';
 
+import { useState } from "react";
 import Header from "@/components/Header";
 import AnimatedSection from "@/components/AnimatedSection";
 import AnimatedFooter from "@/components/AnimatedFooter";
 import { useScrollAnimationList } from "@/hooks/useScrollAnimation";
 import ProductCarousel from "@/components/ProductCarousel";
+import ProductModal from "@/components/ProductModal";
+import { useCart, Product } from "@/context/CartContext";
 import styles from '@/styles/hogar.module.css';
 
 /**
@@ -149,7 +152,36 @@ const categoryEmojis: Record<string, string> = {
 };
 
 export default function HogarPage() {
+  const { addToCart } = useCart();
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const productsByCategory = groupProductsByCategory(HOGAR_PRODUCTS);
+
+  // Función para convertir producto a formato del carrito
+  const convertToCartProduct = (product: typeof HOGAR_PRODUCTS[0]): Product => ({
+    id: product.id,
+    name: product.name,
+    price: product.price,
+    image: product.images[0], // Usar la primera imagen
+    description: product.description,
+    category: product.category
+  });
+
+  // Función para manejar "Ver detalles"
+  const handleViewDetails = (product: typeof HOGAR_PRODUCTS[0]) => {
+    setSelectedProduct(convertToCartProduct(product));
+    setIsModalOpen(true);
+  };
+
+  // Función para manejar "Añadir al carrito"
+  const handleAddToCart = (product: typeof HOGAR_PRODUCTS[0]) => {
+    addToCart(convertToCartProduct(product));
+  };
+
+  // Función para manejar "Añadir al carrito" desde el modal
+  const handleAddToCartFromModal = (product: Product) => {
+    addToCart(product);
+  };
 
   return (
     <>
@@ -212,11 +244,14 @@ export default function HogarPage() {
                       <div className={styles.productActions}>
                         <button 
                           className={styles.addToCartBtn}
-                          onClick={() => console.log(`Agregado al carrito: ${product.name}`)}
+                          onClick={() => handleAddToCart(product)}
                         >
                           🛒 Añadir al Carrito
                         </button>
-                        <button className={styles.viewDetailsBtn}>
+                        <button 
+                          className={styles.viewDetailsBtn}
+                          onClick={() => handleViewDetails(product)}
+                        >
                           Ver Detalles
                         </button>
                       </div>
@@ -240,6 +275,14 @@ export default function HogarPage() {
       >
         © 2025 IZA & CAS — hecho por karla cuevas
       </AnimatedFooter>
+
+      {/* Modal de detalles del producto */}
+      <ProductModal
+        product={selectedProduct}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onAddToCart={handleAddToCartFromModal}
+      />
     </>
   );
 }

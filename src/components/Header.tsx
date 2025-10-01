@@ -1,6 +1,9 @@
+'use client';
+
 import Link from "next/link";
 import Image from "next/image";
 import styles from "@/styles/header.module.css";
+import { useCart } from "@/context/CartContext";
 
 /**
  * Componente Header
@@ -9,14 +12,18 @@ import styles from "@/styles/header.module.css";
  * - Logo de Casa Viva
  * - Navegación principal
  * - Enlaces a páginas importantes
+ * - Contador del carrito de compras
  * 
  * Características:
  * - Sticky positioning (se mantiene fijo al hacer scroll)
  * - Responsive design
  * - Accesibilidad con aria-label
  * - Logo optimizado con Next.js Image
+ * - Contador dinámico del carrito
  */
 export default function Header() {
+  const { state } = useCart();
+
   return (
     <header className={styles.header}>
       <div className="container">
@@ -42,8 +49,10 @@ export default function Header() {
             <Link href="/products/juguetes" className="link">Juguetes</Link>
             <Link href="/products/tecnologia" className="link">Tecnología</Link>
             <Link href="/products/actividad" className="link">Actividad</Link>
-            {/* Enlace al carrito de compras */}
-            <Link href="/cart" className="link">Carrito (0)</Link>
+            {/* Enlace al carrito de compras con contador dinámico */}
+            <Link href="/cart" className={`link ${styles.cartLink}`}>
+              🛒 Carrito ({state.itemCount})
+            </Link>
           </div>
         </nav>
       </div>

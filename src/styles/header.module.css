@@ -57,6 +57,23 @@
   gap: 14px; /* Espacio entre enlaces */
 }
 
+/* Estilo especial para el enlace del carrito */
+.cartLink {
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
+  color: white !important;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(45, 74, 74, 0.3);
+}
+
+.cartLink:hover {
+  background: linear-gradient(135deg, var(--brand-light) 0%, var(--accent) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(45, 74, 74, 0.4);
+}
+
 /* Responsive: En pantallas pequeñas, mantener el logo centrado */
 @media (max-width: 480px) {
   .row {

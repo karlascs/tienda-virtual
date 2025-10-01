@@ -1,0 +1,7 @@
+<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="300" height="300" fill="#F3F4F6"/>
+<rect x="75" y="75" width="150" height="150" fill="#E5E7EB" rx="8"/>
+<circle cx="120" cy="120" r="15" fill="#9CA3AF"/>
+<path d="M105 165L135 135L165 165L195 135L225 165L225 195C225 199.418 221.418 203 217 203L83 203C78.5817 203 75 199.418 75 195L75 165L105 165Z" fill="#9CA3AF"/>
+<text x="150" y="240" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="14">Imagen no disponible</text>
+</svg>
