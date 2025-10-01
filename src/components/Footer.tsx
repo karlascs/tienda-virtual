@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import styles from '@/styles/Footer.module.css';
 
@@ -44,11 +45,11 @@ export default function Footer() {
           <div className={styles.section}>
             <h4 className={styles.subtitle}>Enlaces Rápidos</h4>
             <ul className={styles.links}>
-              <li><a href="/">Inicio</a></li>
-              <li><a href="/products/hogar">Hogar</a></li>
-              <li><a href="/products/tecnologia">Tecnología</a></li>
-              <li><a href="/products/juguetes">Juguetes</a></li>
-              <li><a href="/cart">Carrito</a></li>
+              <li><Link href="/">Inicio</Link></li>
+              <li><Link href="/products/hogar">Hogar</Link></li>
+              <li><Link href="/products/tecnologia">Tecnología</Link></li>
+              <li><Link href="/products/juguetes">Juguetes</Link></li>
+              <li><Link href="/cart">Carrito</Link></li>
             </ul>
           </div>
 
@@ -56,11 +57,11 @@ export default function Footer() {
           <div className={styles.section}>
             <h4 className={styles.subtitle}>Categorías</h4>
             <ul className={styles.links}>
-              <li><a href="/products/hogar">Electrodomésticos</a></li>
-              <li><a href="/products/tecnologia">Computadores</a></li>
-              <li><a href="/products/herramientas">Herramientas</a></li>
-              <li><a href="/products/actividad">Actividades</a></li>
-              <li><a href="/products/juguetes">Juguetes</a></li>
+              <li><Link href="/products/hogar">Electrodomésticos</Link></li>
+              <li><Link href="/products/tecnologia">Computadores</Link></li>
+              <li><Link href="/products/herramientas">Herramientas</Link></li>
+              <li><Link href="/products/actividad">Actividades</Link></li>
+              <li><Link href="/products/juguetes">Juguetes</Link></li>
             </ul>
           </div>
 

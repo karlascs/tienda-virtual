@@ -4,7 +4,6 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import AnimatedSection from "@/components/AnimatedSection";
 import AnimatedFooter from "@/components/AnimatedFooter";
-import { useScrollAnimationList } from "@/hooks/useScrollAnimation";
 import ProductCarousel from "@/components/ProductCarousel";
 import ProductModal from "@/components/ProductModal";
 import { useCart } from "@/context/CartContext";
@@ -98,7 +97,7 @@ export default function HogarPage() {
               
               {/* Grid de productos */}
               <div className={styles.productsGrid}>
-                {products.map((product, index) => (
+                {products.map((product) => (
                   <div key={product.id} className={styles.productCard}>
                     <ProductCarousel 
                       images={product.images}
