@@ -7,12 +7,12 @@
   position: sticky;
   top: 0;
   background: linear-gradient(135deg, 
-    rgba(71, 85, 105, 0.95) 0%, 
-    rgba(168, 189, 218, 0.92) 50%, 
-    rgba(71, 85, 105, 0.95) 100%); /* Gris azulado que complementa el azul de IZA & CAS */
+    rgba(236, 210, 198, 0.95) 0%, 
+    rgba(74, 107, 107, 0.92) 50%, 
+    rgba(240, 226, 189, 0.95) 100%); /* Verde oscuro IZA&CAS */
   backdrop-filter: blur(12px);             /* Efecto de desenfoque mejorado */
-  border-bottom: 1px solid rgba(37, 99, 235, 0.2); /* Border con toque del azul de marca */
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);   /* Sombra con tinte azul */
+  border-bottom: 1px solid rgba(45, 74, 74, 0.2); /* Border con verde de marca */
+  box-shadow: 0 2px 8px rgba(45, 74, 74, 0.15);   /* Sombra con tinte verde */
 }
 
 /* Contenedor flex del header */
@@ -33,21 +33,22 @@
   padding: 8px;               /* Espacio alrededor del logo */
   border-radius: 12px;        /* Esquinas redondeadas */
   transition: transform 0.2s ease; /* Animación suave */
-  background: rgba(255, 255, 255, 0.95); /* Fondo blanco más opaco para contraste */
-  box-shadow: 0 3px 12px rgba(37, 99, 235, 0.2);  /* Sombra con tinte azul IZA & CAS */
-  border: 1px solid rgba(37, 99, 235, 0.1); /* Border sutil con azul de marca */
+  background: rgba(247, 245, 243, 0.95); /* Fondo beige claro para contraste */
+  box-shadow: 0 3px 12px rgba(45, 74, 74, 0.2);  /* Sombra con tinte verde IZA&CAS */
+  border: 1px solid rgba(212, 165, 116, 0.3); /* Border con beige dorado */
 }
 
 .brand:hover {
   transform: scale(1.05); /* Efecto hover: crecer ligeramente */
-  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.3); /* Sombra más intensa en hover */
+  box-shadow: 0 4px 16px rgba(45, 74, 74, 0.3); /* Sombra más intensa en hover */
+  background: rgba(212, 165, 116, 0.1); /* Fondo con toque dorado en hover */
 }
 
-/* Estilos específicos para el logo - Optimizado para header gris */
+/* Estilos específicos para el logo - Optimizado para header verde */
 .logo {
   border-radius: 12px;    /* Esquinas redondeadas */
   object-fit: contain;    /* Mantener proporción del logo */
-  filter: drop-shadow(0 1px 3px rgba(37, 99, 235, 0.2)); /* Sombra sutil con azul de marca */
+  filter: drop-shadow(0 1px 3px rgba(45, 74, 74, 0.2)); /* Sombra sutil con verde de marca */
 }
 
 /* Contenedor de enlaces de navegación */

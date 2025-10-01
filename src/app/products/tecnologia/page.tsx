@@ -1,83 +1,61 @@
+'use client';
+
 import Header from "@/components/Header";
+import AnimatedSection from "@/components/AnimatedSection";
+import AnimatedFooter from "@/components/AnimatedFooter";
+import { useScrollAnimationList } from "@/hooks/useScrollAnimation";
 
 /**
- * Productos de Tecnología - Casa Viva
+ * Productos de Tecnología - IZA & CAS
  * 
  * Categoría dedicada a tecnología y electrónicos
- * Incluye: smartphones, laptops, accesorios tech, gadgets
+ * Incluye: computadoras, smartphones, tablets, accesorios
+ * Con animaciones suaves y experiencia de usuario moderna
  */
 
 // Datos de productos de tecnología (estáticos para MVP)
 const TECNOLOGIA_PRODUCTS = [
   {
     id: 1,
-    name: "Smartphone 128GB",
-    price: 299990,
-    image: "/images/tecnologia/smartphone-128gb.jpg",
-    description: "Smartphone con pantalla AMOLED 6.7' y cámara triple de 108MP"
+    name: "Laptop Gaming MSI",
+    price: 1299990,
+    image: "/images/tecnologia/laptop-gaming.jpg",
+    description: "Laptop gaming de alto rendimiento con procesador Intel i7 y RTX 4060"
   },
   {
     id: 2,
-    name: "Laptop Gaming 16GB RAM",
-    price: 899990,
-    image: "/images/tecnologia/laptop-gaming.jpg",
-    description: "Laptop para gaming con procesador i7 y tarjeta gráfica RTX"
+    name: "iPhone 15 Pro",
+    price: 999990,
+    image: "/images/tecnologia/iphone-15-pro.jpg",
+    description: "iPhone 15 Pro con chip A17 Pro y cámaras profesionales"
   },
   {
     id: 3,
-    name: "Auriculares Bluetooth Premium",
-    price: 129990,
-    image: "/images/tecnologia/auriculares-bluetooth.jpg",
-    description: "Auriculares inalámbricos con cancelación activa de ruido"
+    name: "MacBook Air M2",
+    price: 899990,
+    image: "/images/tecnologia/macbook-air.jpg",
+    description: "MacBook Air con chip M2, ultraligero y potente para trabajo profesional"
   },
   {
     id: 4,
-    name: "Monitor 4K 27 pulgadas",
-    price: 349990,
-    image: "/images/tecnologia/monitor-4k.jpg",
-    description: "Monitor Ultra HD con tecnología IPS y 144Hz"
+    name: "Samsung Galaxy S24",
+    price: 799990,
+    image: "/images/tecnologia/galaxy-s24.jpg",
+    description: "Samsung Galaxy S24 con inteligencia artificial y cámaras avanzadas"
   },
   {
     id: 5,
-    name: "Teclado Mecánico RGB",
-    price: 89990,
-    image: "/images/tecnologia/teclado-mecanico.jpg",
-    description: "Teclado mecánico gaming con switches Cherry MX y RGB"
+    name: "iPad Pro 12.9",
+    price: 749990,
+    image: "/images/tecnologia/ipad-pro.jpg",
+    description: "iPad Pro de 12.9 pulgadas con chip M2 y pantalla Liquid Retina XDR"
   },
   {
     id: 6,
-    name: "Webcam 4K Profesional",
-    price: 79990,
-    image: "/images/tecnologia/webcam-4k.jpg",
-    description: "Cámara web 4K con micrófono estéreo para streaming"
-  },
-  {
-    id: 7,
-    name: "Power Bank 20000mAh",
-    price: 39990,
-    image: "/images/tecnologia/power-bank.jpg",
-    description: "Batería portátil de carga rápida con display LED"
-  },
-  {
-    id: 8,
-    name: "Smart Watch Deportivo",
-    price: 189990,
-    image: "/images/tecnologia/smartwatch-deportivo.jpg",
-    description: "Reloj inteligente con GPS y monitoreo de salud 24/7"
-  },
-  {
-    id: 9,
-    name: "Router Wi-Fi 6 Mesh",
-    price: 159990,
-    image: "/images/tecnologia/router-wifi6.jpg",
-    description: "Sistema mesh Wi-Fi 6 para cobertura total del hogar"
-  },
-  {
-    id: 10,
-    name: "Disco SSD 1TB NVMe",
-    price: 89990,
-    image: "/images/tecnologia/ssd-1tb.jpg",
-    description: "Unidad de estado sólido NVMe Gen 4 ultra rápida"
+    name: "AirPods Pro 2",
+    price: 199990,
+    image: "/images/tecnologia/airpods-pro.jpg",
+    description: "AirPods Pro de segunda generación con cancelación activa de ruido"
   }
 ];
 
@@ -100,7 +78,7 @@ export default function TecnologiaPage() {
               justifyContent: 'center',
               gap: '12px'
             }}>
-              💻 Tecnología
+              💻 Tecnología & Electrónicos
             </h1>
             <p style={{ 
               color: 'var(--text-secondary)', 
@@ -108,7 +86,7 @@ export default function TecnologiaPage() {
               maxWidth: '600px',
               margin: '0 auto'
             }}>
-              Los últimos avances en tecnología y electrónicos para el hogar y oficina
+              Los últimos avances en tecnología para tu vida digital
             </p>
           </div>
 
@@ -151,6 +129,51 @@ export default function TecnologiaPage() {
                   }}>
                     ${product.price.toLocaleString('es-CL')}
                   </div>
+                  <div className="productActions" style={{
+                    display: 'flex',
+                    gap: '12px',
+                    marginTop: '16px',
+                    paddingTop: '16px',
+                    borderTop: '1px solid var(--border-color)'
+                  }}>
+                    <button 
+                      className="addToCartBtn"
+                      onClick={() => console.log('Añadir al carrito:', product.name)}
+                      style={{
+                        flex: '1',
+                        background: 'linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%)',
+                        color: 'white',
+                        border: 'none',
+                        padding: '12px 16px',
+                        borderRadius: '8px',
+                        fontWeight: '600',
+                        fontSize: '14px',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        boxShadow: '0 4px 12px rgba(45, 74, 74, 0.2)'
+                      }}
+                    >
+                      🛒 Añadir al carrito
+                    </button>
+                    <button 
+                      className="viewDetailsBtn"
+                      onClick={() => console.log('Ver detalles:', product.name)}
+                      style={{
+                        background: 'transparent',
+                        color: 'var(--brand)',
+                        border: '2px solid var(--brand)',
+                        padding: '12px 16px',
+                        borderRadius: '8px',
+                        fontWeight: '600',
+                        fontSize: '14px',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        whiteSpace: 'nowrap'
+                      }}
+                    >
+                      Ver detalles
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -165,7 +188,7 @@ export default function TecnologiaPage() {
           padding: "24px 24px 48px"
         }}
       >
-        © 2025 Casa Viva.cl — hecho por karla cuevas
+        © 2025 IZA & CAS — hecho por karla cuevas
       </footer>
     </>
   );

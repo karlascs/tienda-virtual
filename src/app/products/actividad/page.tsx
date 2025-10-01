@@ -1,10 +1,16 @@
+'use client';
+
 import Header from "@/components/Header";
+import AnimatedSection from "@/components/AnimatedSection";
+import AnimatedFooter from "@/components/AnimatedFooter";
+import { useScrollAnimationList } from "@/hooks/useScrollAnimation";
 
 /**
- * Productos de Actividad - Casa Viva
+ * Productos de Actividad - IZA & CAS
  * 
  * Categoría dedicada a deportes, fitness y actividades al aire libre
  * Incluye: equipos deportivos, fitness, outdoor, recreación
+ * Con animaciones suaves y experiencia de usuario moderna
  */
 
 // Datos de productos de actividad (estáticos para MVP)
@@ -123,6 +129,51 @@ export default function ActividadPage() {
                   }}>
                     ${product.price.toLocaleString('es-CL')}
                   </div>
+                  <div className="productActions" style={{
+                    display: 'flex',
+                    gap: '12px',
+                    marginTop: '16px',
+                    paddingTop: '16px',
+                    borderTop: '1px solid var(--border-color)'
+                  }}>
+                    <button 
+                      className="addToCartBtn"
+                      onClick={() => console.log('Añadir al carrito:', product.name)}
+                      style={{
+                        flex: '1',
+                        background: 'linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%)',
+                        color: 'white',
+                        border: 'none',
+                        padding: '12px 16px',
+                        borderRadius: '8px',
+                        fontWeight: '600',
+                        fontSize: '14px',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        boxShadow: '0 4px 12px rgba(45, 74, 74, 0.2)'
+                      }}
+                    >
+                      🛒 Añadir al carrito
+                    </button>
+                    <button 
+                      className="viewDetailsBtn"
+                      onClick={() => console.log('Ver detalles:', product.name)}
+                      style={{
+                        background: 'transparent',
+                        color: 'var(--brand)',
+                        border: '2px solid var(--brand)',
+                        padding: '12px 16px',
+                        borderRadius: '8px',
+                        fontWeight: '600',
+                        fontSize: '14px',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        whiteSpace: 'nowrap'
+                      }}
+                    >
+                      Ver detalles
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -137,7 +188,7 @@ export default function ActividadPage() {
           padding: "24px 24px 48px"
         }}
       >
-        © 2025 IZAYCAS.cl — hecho por karla cuevas
+        © 2025 IZA & CAS — hecho por karla cuevas
       </footer>
     </>
   );

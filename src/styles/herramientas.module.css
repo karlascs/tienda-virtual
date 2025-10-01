@@ -1,0 +1,186 @@
+/* ===================================
+   PÁGINA DE HERRAMIENTAS - IZA & CAS
+   =================================== */
+
+/* Fondo principal con gradiente animado */
+.herramientasMain {
+  background: linear-gradient(135deg, 
+    rgb(99, 102, 241) 0%, 
+    var(--brand) 25%, 
+    rgb(239, 68, 68) 50%, 
+    #0a0e16 75%, 
+    rgb(156, 163, 175) 100%);
+  background-size: 300% 300%;
+  animation: izaCasGradient 12s ease-in-out infinite;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Overlay de efectos */
+.herramientasOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 25% 75%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 75% 25%, rgba(239, 68, 68, 0.4) 0%, transparent 50%),
+              radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+  pointer-events: none;
+  animation: izaCasBreath 10s ease-in-out infinite;
+}
+
+/* Resto de estilos iguales */
+.herramientasContainer {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.categoryTitle {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-top: 20px;
+}
+
+.categoryCount {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.productCard {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.productCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.imageContainer {
+  height: 280px;
+  background: #f8fafc;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+}
+
+.productImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 16px;
+}
+
+.productInfo {
+  padding: 20px;
+}
+
+.productName {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.productDescription {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.productFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--brand);
+}
+
+.categoryTag {
+  background: var(--background-secondary);
+  color: var(--text-secondary);
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.subcategorySection {
+  margin-bottom: 60px;
+}
+
+.subcategoryTitle {
+  font-size: 28px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 12px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.productCount {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .productsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .categoryTitle {
+    font-size: 24px;
+  }
+  
+  .productCard {
+    margin: 0 12px;
+  }
+}

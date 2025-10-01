@@ -1,10 +1,16 @@
+'use client';
+
 import Header from "@/components/Header";
+import AnimatedSection from "@/components/AnimatedSection";
+import AnimatedFooter from "@/components/AnimatedFooter";
+import { useScrollAnimationList } from "@/hooks/useScrollAnimation";
 
 /**
- * Productos de Juguetes - Casa Viva
+ * Productos de Juguetes - IZA & CAS
  * 
  * Categoría dedicada a juguetes y entretenimiento infantil
  * Incluye: juguetes educativos, electrónicos, creativos
+ * Con animaciones suaves y experiencia de usuario moderna
  */
 
 // Datos de productos de juguetes (estáticos para MVP)
@@ -42,7 +48,7 @@ const JUGUETES_PRODUCTS = [
     name: "Robot Programable",
     price: 119990,
     image: "/images/juguetes/robot-programable.jpg",
-    description: "Robot educativo programable para aprender coding"
+    description: "Robot educativo programable con Scratch y Python"
   },
   {
     id: 6,
@@ -50,34 +56,6 @@ const JUGUETES_PRODUCTS = [
     price: 34990,
     image: "/images/juguetes/kit-arte.jpg",
     description: "Set completo de materiales para manualidades creativas"
-  },
-  {
-    id: 7,
-    name: "Bicicleta Eléctrica Infantil",
-    price: 189990,
-    image: "/images/juguetes/bici-electrica-ninos.jpg",
-    description: "Bicicleta eléctrica segura para niños de 8-12 años"
-  },
-  {
-    id: 8,
-    name: "Casa de Muñecas Moderna",
-    price: 94990,
-    image: "/images/juguetes/casa-munecas.jpg",
-    description: "Casa de muñecas de madera con muebles y accesorios incluidos"
-  },
-  {
-    id: 9,
-    name: "Set de Ciencia para Niños",
-    price: 42990,
-    image: "/images/juguetes/kit-ciencia.jpg",
-    description: "Kit de experimentos científicos seguros y educativos"
-  },
-  {
-    id: 10,
-    name: "Consola de Videojuegos Portátil",
-    price: 159990,
-    image: "/images/juguetes/consola-portatil.jpg",
-    description: "Consola portátil con 200+ juegos clásicos incluidos"
   }
 ];
 
@@ -100,7 +78,7 @@ export default function JuguetesPage() {
               justifyContent: 'center',
               gap: '12px'
             }}>
-              🧸 Juguetes
+              🧸 Juguetes & Diversión
             </h1>
             <p style={{ 
               color: 'var(--text-secondary)', 
@@ -108,7 +86,7 @@ export default function JuguetesPage() {
               maxWidth: '600px',
               margin: '0 auto'
             }}>
-              Juguetes educativos y entretenimiento para todas las edades
+              Juguetes educativos y de entretenimiento para todas las edades
             </p>
           </div>
 
@@ -151,6 +129,51 @@ export default function JuguetesPage() {
                   }}>
                     ${product.price.toLocaleString('es-CL')}
                   </div>
+                  <div className="productActions" style={{
+                    display: 'flex',
+                    gap: '12px',
+                    marginTop: '16px',
+                    paddingTop: '16px',
+                    borderTop: '1px solid var(--border-color)'
+                  }}>
+                    <button 
+                      className="addToCartBtn"
+                      onClick={() => console.log('Añadir al carrito:', product.name)}
+                      style={{
+                        flex: '1',
+                        background: 'linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%)',
+                        color: 'white',
+                        border: 'none',
+                        padding: '12px 16px',
+                        borderRadius: '8px',
+                        fontWeight: '600',
+                        fontSize: '14px',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        boxShadow: '0 4px 12px rgba(45, 74, 74, 0.2)'
+                      }}
+                    >
+                      🛒 Añadir al carrito
+                    </button>
+                    <button 
+                      className="viewDetailsBtn"
+                      onClick={() => console.log('Ver detalles:', product.name)}
+                      style={{
+                        background: 'transparent',
+                        color: 'var(--brand)',
+                        border: '2px solid var(--brand)',
+                        padding: '12px 16px',
+                        borderRadius: '8px',
+                        fontWeight: '600',
+                        fontSize: '14px',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        whiteSpace: 'nowrap'
+                      }}
+                    >
+                      Ver detalles
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -165,7 +188,7 @@ export default function JuguetesPage() {
           padding: "24px 24px 48px"
         }}
       >
-        © 2025 Casa Viva.cl — hecho por karla cuevas
+        © 2025 IZA & CAS — hecho por karla cuevas
       </footer>
     </>
   );
