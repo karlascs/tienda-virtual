@@ -32,7 +32,11 @@ const JUGUETES_PRODUCTS = [
     name: "Carpa Casita de Princesa",
     price: 13990,
     image: "/images/juguetes/carpas/carpacasitadeprincesa/Lhhy21XKrkVC65vB32M2A==.jpg",
-    images: ["/images/juguetes/carpas/carpacasitadeprincesa/Lhhy21XKrkVC65vB32M2A==.jpg"],
+    images: [
+      "/images/juguetes/carpas/carpacasitadeprincesa/Lhhy21XKrkVC65vB32M2A==.jpg",
+      "/images/juguetes/carpas/carpacasitadeprincesa/u2iQ9YPR48hRApbF2jakHQ==.jpg",
+      "/images/juguetes/carpas/carpacasitadeprincesa/ziYL69zCRtGjaok3ens60g==.jpg"
+    ],
     description: "Carpa infantil rosa con diseño de castillo de princesa, perfecta para juegos imaginativos",
     category: "Carpas"
   },
@@ -41,7 +45,13 @@ const JUGUETES_PRODUCTS = [
     name: "Carpa de Castillo Infantil",
     price: 9990,
     image: "/images/juguetes/carpas/carpadecastilloinfantil/9OY2PNp1LAMvXlx0yBIceQ==.jpg",
-    images: ["/images/juguetes/carpas/carpadecastilloinfantil/9OY2PNp1LAMvXlx0yBIceQ==.jpg"],
+    images: [
+      "/images/juguetes/carpas/carpadecastilloinfantil/9OY2PNp1LAMvXlx0yBIceQ==.jpg",
+      "/images/juguetes/carpas/carpadecastilloinfantil/FIn12o6i1gaPKuO+ir78GQ==.jpg",
+      "/images/juguetes/carpas/carpadecastilloinfantil/hObt9WlKpFmp4gWUzD6WoA==.jpg",
+      "/images/juguetes/carpas/carpadecastilloinfantil/RhKj87FQw798PyY33Yo5TQ==.jpg",
+      "/images/juguetes/carpas/carpadecastilloinfantil/zAYeqC3ZEiSC3rfUjsGTjg==.jpg"
+    ],
     description: "Carpa de castillo medieval con torres, ideal para aventuras imaginarias",
     category: "Carpas"
   },
@@ -50,7 +60,11 @@ const JUGUETES_PRODUCTS = [
     name: "Carpa Túnel",
     price: 15990,
     image: "/images/juguetes/carpas/carpatull/5akH6Dp3dL2d1M7an3cdw==.jpg",
-    images: ["/images/juguetes/carpas/carpatull/5akH6Dp3dL2d1M7an3cdw==.jpg"],
+    images: [
+      "/images/juguetes/carpas/carpatull/5akH6Dp3dL2d1M7an3cdw==.jpg",
+      "/images/juguetes/carpas/carpatull/lLTBj4tHvNc1IUlCYVSX7g==.jpg",
+      "/images/juguetes/carpas/carpatull/tPNXM4NQv3ivQ9TFi9Gkg==.jpg"
+    ],
     description: "Carpa túnel colorida para gatear y explorar, estimula el desarrollo motor",
     category: "Carpas"
   },
@@ -59,7 +73,12 @@ const JUGUETES_PRODUCTS = [
     name: "Carpa Túnel y Piscina",
     price: 14990,
     image: "/images/juguetes/carpas/carpatunelypiscina/2YkhYBannBV+S8VKicaftg==.jpg",
-    images: ["/images/juguetes/carpas/carpatunelypiscina/2YkhYBannBV+S8VKicaftg==.jpg"],
+    images: [
+      "/images/juguetes/carpas/carpatunelypiscina/2YkhYBannBV+S8VKicaftg==.jpg",
+      "/images/juguetes/carpas/carpatunelypiscina/JeEFgPLwV7KuQP5rqeeCsQ==.jpg",
+      "/images/juguetes/carpas/carpatunelypiscina/lj6ApDeY1ZaFhh+9LC5mlg==.jpg",
+      "/images/juguetes/carpas/carpatunelypiscina/RvSaKd51opXMRN0DRDptvA==.jpg"
+    ],
     description: "Set completo con carpa túnel y piscina de pelotas incluida",
     category: "Carpas"
   },
@@ -70,7 +89,11 @@ const JUGUETES_PRODUCTS = [
     name: "Balón de Fútbol Air Power",
     price: 4990,
     image: "/images/juguetes/juegos/balondefutbollairpower/CCCoe523QU66+hsy944EkA==.jpg",
-    images: ["/images/juguetes/juegos/balondefutbollairpower/CCCoe523QU66+hsy944EkA==.jpg"],
+    images: [
+      "/images/juguetes/juegos/balondefutbollairpower/CCCoe523QU66+hsy944EkA==.jpg",
+      "/images/juguetes/juegos/balondefutbollairpower/La805Apadcwjxd4+iWZKvA==.jpg",
+      "/images/juguetes/juegos/balondefutbollairpower/zZr2cEVFeQpyCfqcfa9L0A==.jpg"
+    ],
     description: "Balón de fútbol flotante con tecnología air power, se desliza suavemente sobre cualquier superficie",
     category: "Juegos"
   },
@@ -97,7 +120,15 @@ const JUGUETES_PRODUCTS = [
     name: "Proyector Astronauta Infantil",
     price: 14990,
     image: "/images/juguetes/juegos/proyectorastronautainfantil/Oi5EV9Yz0RwTxkXfdZOWA==.jpg",
-    images: ["/images/juguetes/juegos/proyectorastronautainfantil/Oi5EV9Yz0RwTxkXfdZOWA==.jpg"],
+    images: [
+      "/images/juguetes/juegos/proyectorastronautainfantil/Oi5EV9Yz0RwTxkXfdZOWA==.jpg",
+      "/images/juguetes/juegos/proyectorastronautainfantil/fQufiBJlm0IJsOKDxK97zg==.jpg",
+      "/images/juguetes/juegos/proyectorastronautainfantil/PfFpTZvFgKektD7iuuMplQ==.jpg",
+      "/images/juguetes/juegos/proyectorastronautainfantil/Q28HQiNBZDCb8srFs4OAVg==.jpg",
+      "/images/juguetes/juegos/proyectorastronautainfantil/QQfeaw00fLT+mmK7gkSTw==.jpg",
+      "/images/juguetes/juegos/proyectorastronautainfantil/rlhCuhe9xP+qzVZ43Uwow==.jpg",
+      "/images/juguetes/juegos/proyectorastronautainfantil/s6fL7J38gM9KxzRYb32g==.jpg"
+    ],
     description: "Proyector LED con forma de astronauta, crea un ambiente mágico en la habitación",
     category: "Juegos"
   },
@@ -115,7 +146,10 @@ const JUGUETES_PRODUCTS = [
     name: "Set Tocador de Belleza para Niña",
     price: 12990,
     image: "/images/juguetes/juegos/settocadordebellezaparaniñadejuguete/GznbYQsPTThf9iOYkgQEeg==.jpg",
-    images: ["/images/juguetes/juegos/settocadordebellezaparaniñadejuguete/GznbYQsPTThf9iOYkgQEeg==.jpg"],
+    images: [
+      "/images/juguetes/juegos/settocadordebellezaparaniñadejuguete/GznbYQsPTThf9iOYkgQEeg==.jpg",
+      "/images/juguetes/juegos/settocadordebellezaparaniñadejuguete/uv05jG6c3ujnU0h5qaDEg==.jpg"
+    ],
     description: "Tocador de juguete con espejo y accesorios de belleza para niñas",
     category: "Juegos"
   },
@@ -124,7 +158,10 @@ const JUGUETES_PRODUCTS = [
     name: "Tabla de Skate Patineta",
     price: 13990,
     image: "/images/juguetes/juegos/tabladeskatepatineta/PlN2ht5vQi3OreVv4FI8+g==.jpg",
-    images: ["/images/juguetes/juegos/tabladeskatepatineta/PlN2ht5vQi3OreVv4FI8+g==.jpg"],
+    images: [
+      "/images/juguetes/juegos/tabladeskatepatineta/PlN2ht5vQi3OreVv4FI8+g==.jpg",
+      "/images/juguetes/juegos/tabladeskatepatineta/g8cya8q+XUi0fSkvDVFEBg==.jpg"
+    ],
     description: "Patineta profesional para niños y adolescentes, diseño moderno y resistente",
     category: "Juegos"
   },
@@ -135,7 +172,13 @@ const JUGUETES_PRODUCTS = [
     name: "Estuche Hello Kitty",
     price: 5000,
     image: "/images/juguetes/libreria/estuchehellokyte/18lRr4+0SYTdK1AUhA1aKg==.jpg",
-    images: ["/images/juguetes/libreria/estuchehellokyte/18lRr4+0SYTdK1AUhA1aKg==.jpg"],
+    images: [
+      "/images/juguetes/libreria/estuchehellokyte/18lRr4+0SYTdK1AUhA1aKg==.jpg",
+      "/images/juguetes/libreria/estuchehellokyte/9h+wpLVnZR6M2pHXcpWcFg==.jpg",
+      "/images/juguetes/libreria/estuchehellokyte/arykM3QdiH1fbw6fiyN18w==.jpg",
+      "/images/juguetes/libreria/estuchehellokyte/efkaTx4U5IPdaaYBOVQACw==.jpg",
+      "/images/juguetes/libreria/estuchehellokyte/Id7oN58ecAvcSg11JHAE0A==.jpg"
+    ],
     description: "Estuche escolar de Hello Kitty con múltiples compartimentos",
     category: "Librería"
   },
@@ -153,7 +196,12 @@ const JUGUETES_PRODUCTS = [
     name: "Maleta de Plumones 80 Piezas",
     price: 8990,
     image: "/images/juguetes/libreria/maletadeplumonesde80piezas/2xKvxI0PoB2FbTvN4+HPJA==.jpg",
-    images: ["/images/juguetes/libreria/maletadeplumonesde80piezas/2xKvxI0PoB2FbTvN4+HPJA==.jpg"],
+    images: [
+      "/images/juguetes/libreria/maletadeplumonesde80piezas/2xKvxI0PoB2FbTvN4+HPJA==.jpg",
+      "/images/juguetes/libreria/maletadeplumonesde80piezas/FrmlZskO43aFTgHJvLEWyQ==.jpg",
+      "/images/juguetes/libreria/maletadeplumonesde80piezas/lhQsIHb6FdMN5rJ6CRScA==.jpg",
+      "/images/juguetes/libreria/maletadeplumonesde80piezas/ZKfGt27D2RvafXAxMPUiiw==.jpg"
+    ],
     description: "Set de 80 plumones y marcadores en maleta organizadora",
     category: "Librería"
   },
@@ -162,7 +210,12 @@ const JUGUETES_PRODUCTS = [
     name: "Mesa y Sillas Infantil",
     price: 29990,
     image: "/images/juguetes/libreria/mesaysillasinfantil/2NHTYN8GJnO9ChovZXBnGw==.jpg",
-    images: ["/images/juguetes/libreria/mesaysillasinfantil/2NHTYN8GJnO9ChovZXBnGw==.jpg"],
+    images: [
+      "/images/juguetes/libreria/mesaysillasinfantil/2NHTYN8GJnO9ChovZXBnGw==.jpg",
+      "/images/juguetes/libreria/mesaysillasinfantil/61uiOuFtKOWZ0ortZ7Ro0A==.jpg",
+      "/images/juguetes/libreria/mesaysillasinfantil/vw3W8hxNSGNgnuWsvCWJhg==.jpg",
+      "/images/juguetes/libreria/mesaysillasinfantil/zqQKbyHwfDQi1Hmre8SqHQ==.jpg"
+    ],
     description: "Conjunto de mesa y sillas de madera para niños, ideal para estudiar y jugar",
     category: "Librería"
   }

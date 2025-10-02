@@ -421,6 +421,13 @@ html, body {
 /* ===================================
    ESTILOS PARA CARRUSEL EN TARJETAS
    =================================== */
+.card-carousel {
+  height: 220px !important;
+  min-height: 220px !important;
+  display: block !important;
+  overflow: visible !important;
+}
+
 .card .card-carousel {
   height: 220px;
   min-height: 220px;

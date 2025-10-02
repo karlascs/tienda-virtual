@@ -32,7 +32,11 @@ const TECNOLOGIA_PRODUCTS: Product[] = [
     name: "Audífonos Inalámbricos IRM",
     price: 24990,
     image: "/images/tecnologia/audifonos/audifonosinalambricosirm/jXmOW83qKBBaXHrhzcq7Zw==.jpg",
-    images: ["/images/tecnologia/audifonos/audifonosinalambricosirm/jXmOW83qKBBaXHrhzcq7Zw==.jpg"],
+    images: [
+      "/images/tecnologia/audifonos/audifonosinalambricosirm/jXmOW83qKBBaXHrhzcq7Zw==.jpg",
+      "/images/tecnologia/audifonos/audifonosinalambricosirm/ubbVX0vZLdxoCnlR0R15lA==.jpg",
+      "/images/tecnologia/audifonos/audifonosinalambricosirm/v47zqCYPFOJfgeLZigcV0w==.jpg"
+    ],
     description: "Audífonos inalámbricos IRM con cancelación de ruido y excelente calidad de sonido",
     category: "Audífonos"
   },
@@ -43,7 +47,14 @@ const TECNOLOGIA_PRODUCTS: Product[] = [
     name: "Cámara de Seguridad 360° Tipo Ampolleta",
     price: 35990,
     image: "/images/tecnologia/camaras/camaradeseguridad360°tipoampolleta/J1AhCK8dbjhy+nHwWgFfA==.jpg",
-    images: ["/images/tecnologia/camaras/camaradeseguridad360°tipoampolleta/J1AhCK8dbjhy+nHwWgFfA==.jpg"],
+    images: [
+      "/images/tecnologia/camaras/camaradeseguridad360°tipoampolleta/J1AhCK8dbjhy+nHwWgFfA==.jpg",
+      "/images/tecnologia/camaras/camaradeseguridad360°tipoampolleta/cEFBWiCJt9NR7ruJKFX4Jg==.jpg",
+      "/images/tecnologia/camaras/camaradeseguridad360°tipoampolleta/iTKKzaJUaquV6Q+XWBs9Lw==.jpg",
+      "/images/tecnologia/camaras/camaradeseguridad360°tipoampolleta/lArfNVY6byYKzlCGFfOSMg==.jpg",
+      "/images/tecnologia/camaras/camaradeseguridad360°tipoampolleta/Qkcmd2feBIkdRKpjEYstzA==.jpg",
+      "/images/tecnologia/camaras/camaradeseguridad360°tipoampolleta/zAO0y9lUxdI2cTqjulRw==.jpg"
+    ],
     description: "Cámara de seguridad con rotación 360°, fácil instalación tipo ampolleta",
     category: "Cámaras"
   },
@@ -52,7 +63,13 @@ const TECNOLOGIA_PRODUCTS: Product[] = [
     name: "Cámara de Seguridad Exteriores 360° IP66",
     price: 49990,
     image: "/images/tecnologia/camaras/camaradeseguridadexteriores360°ip66/IyGF+Wh1RSRZPSeKnsDztw==.jpg",
-    images: ["/images/tecnologia/camaras/camaradeseguridadexteriores360°ip66/IyGF+Wh1RSRZPSeKnsDztw==.jpg"],
+    images: [
+      "/images/tecnologia/camaras/camaradeseguridadexteriores360°ip66/IyGF+Wh1RSRZPSeKnsDztw==.jpg",
+      "/images/tecnologia/camaras/camaradeseguridadexteriores360°ip66/bTevcTlUYWcSW1OL6AbhYw==.jpg",
+      "/images/tecnologia/camaras/camaradeseguridadexteriores360°ip66/MDc9tatdfk5AaZnvZuBnlA==.jpg",
+      "/images/tecnologia/camaras/camaradeseguridadexteriores360°ip66/mdDiAZKBMPQXUaFehB8+kA==.jpg",
+      "/images/tecnologia/camaras/camaradeseguridadexteriores360°ip66/X1g233Zzet6K2dlEmgvjqQ==.jpg"
+    ],
     description: "Cámara resistente al agua IP66 para exteriores con visión 360°",
     category: "Cámaras"
   },
@@ -61,7 +78,10 @@ const TECNOLOGIA_PRODUCTS: Product[] = [
     name: "Mini Cámara Espía HD",
     price: 19990,
     image: "/images/tecnologia/camaras/minicamarapiahd/I4w7ZNf27PNKQWFCgXXLCg==.jpg",
-    images: ["/images/tecnologia/camaras/minicamarapiahd/I4w7ZNf27PNKQWFCgXXLCg==.jpg"],
+    images: [
+      "/images/tecnologia/camaras/minicamarapiahd/I4w7ZNf27PNKQWFCgXXLCg==.jpg",
+      "/images/tecnologia/camaras/minicamarapiahd/mWEdsUvA4NYrduqWvVsRCQ==.jpg"
+    ],
     description: "Cámara espía discreta de alta definición, ideal para seguridad personal",
     category: "Cámaras"
   },
@@ -72,7 +92,11 @@ const TECNOLOGIA_PRODUCTS: Product[] = [
     name: "Cable USB Tipo C para Celular",
     price: 4990,
     image: "/images/tecnologia/celular/cableusbtipocparacelurar/D2MQz8GnMZp0qgQUh9H4rA==.jpg",
-    images: ["/images/tecnologia/celular/cableusbtipocparacelurar/D2MQz8GnMZp0qgQUh9H4rA==.jpg"],
+    images: [
+      "/images/tecnologia/celular/cableusbtipocparacelurar/D2MQz8GnMZp0qgQUh9H4rA==.jpg",
+      "/images/tecnologia/celular/cableusbtipocparacelurar/k+IQgeQMS97PpnsBj7Ps+g==.jpg",
+      "/images/tecnologia/celular/cableusbtipocparacelurar/MZbCEyazJdMASSTwVGmg==.jpg"
+    ],
     description: "Cable USB tipo C de alta calidad para carga rápida de celulares",
     category: "Celular"
   },
@@ -81,7 +105,9 @@ const TECNOLOGIA_PRODUCTS: Product[] = [
     name: "Cargador Dual USB Tipo C",
     price: 12990,
     image: "/images/tecnologia/celular/cargadordualusbtipoc/wPkBUpS3C5Jl2s607N1tQ==.jpg",
-    images: ["/images/tecnologia/celular/cargadordualusbtipoc/wPkBUpS3C5Jl2s607N1tQ==.jpg"],
+    images: [
+      "/images/tecnologia/celular/cargadordualusbtipoc/wPkBUpS3C5Jl2s607N1tQ==.jpg"
+    ],
     description: "Cargador dual con puerto USB tipo C para carga rápida de dispositivos",
     category: "Celular"
   },
@@ -90,7 +116,10 @@ const TECNOLOGIA_PRODUCTS: Product[] = [
     name: "Cargador iPhone + Cable",
     price: 15990,
     image: "/images/tecnologia/celular/cargadoriphone+cable/C9qVyXDkwWRMaBh3PIW9rg==.jpg",
-    images: ["/images/tecnologia/celular/cargadoriphone+cable/C9qVyXDkwWRMaBh3PIW9rg==.jpg"],
+    images: [
+      "/images/tecnologia/celular/cargadoriphone+cable/C9qVyXDkwWRMaBh3PIW9rg==.jpg",
+      "/images/tecnologia/celular/cargadoriphone+cable/vp1+NRBYp4IHMymUwFErPQ==.jpg"
+    ],
     description: "Cargador original para iPhone con cable Lightning incluido",
     category: "Celular"
   }
