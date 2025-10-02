@@ -20,47 +20,123 @@ export default function HogarPage() {
     addToCart(product);
   };
   return (
-    <div>
+    <>
       <Header />
-      <main className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">
-          🏠 Productos para el Hogar
-        </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {HOGAR_PRODUCTS.map((product) => (
-            <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-              <img
-                src={product.images[0]}
-                alt={product.name}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="text-lg font-semibold mb-2 text-gray-800">
-                  {product.name}
-                </h3>
-                <p className="text-gray-600 text-sm mb-3">
-                  {product.description}
-                </p>
-                <div className="text-xl font-bold text-blue-600 mb-3">
-                  ${product.price.toLocaleString('es-CL')}
-                </div>
-                <div className="flex gap-2">
-                  <button 
-                    className="flex-1 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
-                    onClick={() => handleViewDetails(product)}
-                  >
-                    Ver detalles
-                  </button>
-                  <button 
-                    className="flex-1 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-colors"
-                    onClick={() => handleAddToCart(product)}
-                  >
-                    Añadir al carrito
-                  </button>
+      
+      <main>
+        <div className="container">
+          {/* Título de la categoría */}
+          <div style={{ textAlign: 'center', marginBottom: '40px', paddingTop: '20px' }}>
+            <h1 style={{ 
+              fontSize: '36px', 
+              fontWeight: '700', 
+              color: 'var(--text-primary)', 
+              marginBottom: '12px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '12px'
+            }}>
+              🏠 Productos para el Hogar
+            </h1>
+            <p style={{ 
+              color: 'var(--text-secondary)', 
+              fontSize: '18px',
+              maxWidth: '600px',
+              margin: '0 auto'
+            }}>
+              Todo lo que necesitas para hacer tu hogar más cómodo y funcional
+            </p>
+          </div>
+
+          {/* Grid de productos */}
+          <div className="grid" style={{ marginBottom: '60px' }}>
+            {HOGAR_PRODUCTS.map((product) => (
+              <div key={product.id} className="card">
+                <img 
+                  src={product.images[0]} 
+                  alt={product.name}
+                  style={{
+                    width: '100%',
+                    height: '200px',
+                    objectFit: 'contain',
+                    background: '#f8fafc',
+                    padding: '12px'
+                  }}
+                />
+                <div className="card body" style={{ padding: '16px' }}>
+                  <h3 style={{ 
+                    fontSize: '18px', 
+                    fontWeight: '600',
+                    marginBottom: '8px',
+                    color: 'var(--text-primary)'
+                  }}>
+                    {product.name}
+                  </h3>
+                  <p style={{ 
+                    fontSize: '14px',
+                    color: 'var(--text-secondary)',
+                    marginBottom: '12px',
+                    lineHeight: '1.4'
+                  }}>
+                    {product.description}
+                  </p>
+                  <div className="price" style={{ 
+                    fontSize: '20px',
+                    fontWeight: '700',
+                    color: 'var(--brand)'
+                  }}>
+                    ${product.price.toLocaleString('es-CL')}
+                  </div>
+                  <div className="productActions" style={{
+                    display: 'flex',
+                    gap: '12px',
+                    marginTop: '16px',
+                    paddingTop: '16px',
+                    borderTop: '1px solid var(--border-color)'
+                  }}>
+                    <button 
+                      className="addToCartBtn"
+                      onClick={() => handleAddToCart(product)}
+                      style={{
+                        flex: '1',
+                        background: 'linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%)',
+                        color: 'white',
+                        border: 'none',
+                        padding: '12px 16px',
+                        borderRadius: '8px',
+                        fontWeight: '600',
+                        fontSize: '14px',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        boxShadow: '0 4px 12px rgba(45, 74, 74, 0.2)'
+                      }}
+                    >
+                      🛒 Añadir al carrito
+                    </button>
+                    <button 
+                      className="viewDetailsBtn"
+                      onClick={() => handleViewDetails(product)}
+                      style={{
+                        background: 'transparent',
+                        color: 'var(--brand)',
+                        border: '2px solid var(--brand)',
+                        padding: '12px 16px',
+                        borderRadius: '8px',
+                        fontWeight: '600',
+                        fontSize: '14px',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        whiteSpace: 'nowrap'
+                      }}
+                    >
+                      Ver detalles
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </main>
       
@@ -72,9 +148,15 @@ export default function HogarPage() {
         onAddToCart={handleAddToCart}
       />
       
-      <footer className="bg-gray-800 text-white text-center py-8 mt-16">
-        <p>© 2025 IZA & CAS — hecho por karla cuevas</p>
+      <footer 
+        className="container" 
+        style={{
+          opacity: 0.7, 
+          padding: "24px 24px 48px"
+        }}
+      >
+        © 2025 IZA & CAS — hecho por karla cuevas
       </footer>
-    </div>
+    </>
   );
 }

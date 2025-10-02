@@ -182,10 +182,10 @@ const HERRAMIENTAS_PRODUCTS = [
   },
   {
     id: 20,
-    name: "Luces Colgantes 15M",
-    price: 14990,
-    image: "/images/herramientas/iluminacion/lucescolgantes15m/FPyTyVSWoRIjdhTxLxsaNA==.jpg",
-    description: "Cadena de luces LED decorativas de 15 metros",
+    name: "Panel de Luz 36X25cm con Trípode",
+    price: 19990,
+    image: "/images/herramientas/iluminacion/paneldeluz36X25cmtripodecontrol/F6Pu0H12fsWLK4O7MribQ==.jpg",
+    description: "Panel de luz LED profesional con trípode y control remoto",
     category: "Iluminación"
   }
 ];
