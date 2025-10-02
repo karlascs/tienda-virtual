@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from "react";
-import Header from "@/components/Header";
-import ProductModal from "@/components/ProductModal";
-import { useCart } from "@/context/CartContext";
+import { useState } from 'react';
+import Header from '@/components/Header';
+import ProductCarousel from '@/components/ProductCarousel';
+import ProductModal from '@/components/ProductModal';
+import { useCart } from '@/context/CartContext';
 
 /**
  * Productos de Actividad - IZA & CAS
@@ -152,16 +153,10 @@ export default function ActividadPage() {
           <div className="grid" style={{ marginBottom: '60px' }}>
             {ACTIVIDAD_PRODUCTS.map((product) => (
               <div key={product.id} className="card">
-                <img 
-                  src={product.image} 
-                  alt={product.name}
-                  style={{
-                    width: '100%',
-                    height: '200px',
-                    objectFit: 'contain',
-                    background: '#f8fafc',
-                    padding: '12px'
-                  }}
+                <ProductCarousel 
+                  images={product.images} 
+                  productName={product.name}
+                  className="card-carousel"
                 />
                 <div className="card body" style={{ padding: '16px' }}>
                   <h3 style={{ 

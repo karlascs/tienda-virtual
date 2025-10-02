@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Header from "@/components/Header";
+import ProductCarousel from "@/components/ProductCarousel";
 import ProductModal from "@/components/ProductModal";
 import { useCart } from "@/context/CartContext";
 
@@ -59,8 +60,8 @@ const TECNOLOGIA_PRODUCTS: Product[] = [
     id: 4,
     name: "Mini Cámara Espía HD",
     price: 19990,
-    image: "/images/tecnologia/camaras/minicamaraespiahd/jWfGGdhNYLEy0LGz4qC61A==.jpg",
-    images: ["/images/tecnologia/camaras/minicamaraespiahd/jWfGGdhNYLEy0LGz4qC61A==.jpg"],
+    image: "/images/tecnologia/camaras/minicamarapiahd/I4w7ZNf27PNKQWFCgXXLCg==.jpg",
+    images: ["/images/tecnologia/camaras/minicamarapiahd/I4w7ZNf27PNKQWFCgXXLCg==.jpg"],
     description: "Cámara espía discreta de alta definición, ideal para seguridad personal",
     category: "Cámaras"
   },
@@ -68,38 +69,29 @@ const TECNOLOGIA_PRODUCTS: Product[] = [
   // === CATEGORÍA CELULAR ===
   {
     id: 5,
-    name: "Cargador Inalámbrico Magnético",
-    price: 14990,
-    image: "/images/tecnologia/celular/cargadorinalambricomagnetico/bNP2HpBLDo8VlCCTqhZ77w==.jpg",
-    images: ["/images/tecnologia/celular/cargadorinalambricomagnetico/bNP2HpBLDo8VlCCTqhZ77w==.jpg"],
-    description: "Cargador inalámbrico con tecnología magnética, compatible con múltiples dispositivos",
+    name: "Cable USB Tipo C para Celular",
+    price: 4990,
+    image: "/images/tecnologia/celular/cableusbtipocparacelurar/D2MQz8GnMZp0qgQUh9H4rA==.jpg",
+    images: ["/images/tecnologia/celular/cableusbtipocparacelurar/D2MQz8GnMZp0qgQUh9H4rA==.jpg"],
+    description: "Cable USB tipo C de alta calidad para carga rápida de celulares",
     category: "Celular"
   },
   {
     id: 6,
-    name: "Lámpara de Escritorio con Cargador Inalámbrico",
-    price: 24990,
-    image: "/images/tecnologia/celular/lamparadeescritorioconcargadorinalambrico/RtWyJTZRR0Ar6jGkRMV0QA==.jpg",
-    images: ["/images/tecnologia/celular/lamparadeescritorioconcargadorinalambrico/RtWyJTZRR0Ar6jGkRMV0QA==.jpg"],
-    description: "Lámpara LED multifuncional con cargador inalámbrico integrado para dispositivos móviles",
+    name: "Cargador Dual USB Tipo C",
+    price: 12990,
+    image: "/images/tecnologia/celular/cargadordualusbtipoc/wPkBUpS3C5Jl2s607N1tQ==.jpg",
+    images: ["/images/tecnologia/celular/cargadordualusbtipoc/wPkBUpS3C5Jl2s607N1tQ==.jpg"],
+    description: "Cargador dual con puerto USB tipo C para carga rápida de dispositivos",
     category: "Celular"
   },
   {
     id: 7,
-    name: "Soporte para Celular en Auto",
-    price: 8990,
-    image: "/images/tecnologia/celular/soporteparacelularenauto/uSYfGZq6STSGL8Ek24w3DA==.jpg",
-    images: ["/images/tecnologia/celular/soporteparacelularenauto/uSYfGZq6STSGL8Ek24w3DA==.jpg"],
-    description: "Soporte magnético para celular en automóvil, instalación fácil y segura",
-    category: "Celular"
-  },
-  {
-    id: 8,
-    name: "Soporte Perezoso para Celular",
-    price: 6990,
-    image: "/images/tecnologia/celular/soporteperezosopaeacelular/qdR3vkS2zLJq+8VR3KkDQA==.jpg",
-    images: ["/images/tecnologia/celular/soporteperezosopaeacelular/qdR3vkS2zLJq+8VR3KkDQA==.jpg"],
-    description: "Soporte flexible para celular, perfecto para ver videos desde la cama o sofá",
+    name: "Cargador iPhone + Cable",
+    price: 15990,
+    image: "/images/tecnologia/celular/cargadoriphone+cable/C9qVyXDkwWRMaBh3PIW9rg==.jpg",
+    images: ["/images/tecnologia/celular/cargadoriphone+cable/C9qVyXDkwWRMaBh3PIW9rg==.jpg"],
+    description: "Cargador original para iPhone con cable Lightning incluido",
     category: "Celular"
   }
 ];
@@ -152,16 +144,10 @@ export default function TecnologiaPage() {
           <div className="grid" style={{ marginBottom: '60px' }}>
             {TECNOLOGIA_PRODUCTS.map((product) => (
               <div key={product.id} className="card">
-                <img 
-                  src={product.image} 
-                  alt={product.name}
-                  style={{
-                    width: '100%',
-                    height: '200px',
-                    objectFit: 'contain',
-                    background: '#f8fafc',
-                    padding: '12px'
-                  }}
+                <ProductCarousel 
+                  images={product.images} 
+                  productName={product.name}
+                  className="card-carousel"
                 />
                 <div className="card body" style={{ padding: '16px' }}>
                   <h3 style={{ 

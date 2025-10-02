@@ -417,3 +417,22 @@ html, body {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(212, 165, 116, 0.4);
 }
+
+/* ===================================
+   ESTILOS PARA CARRUSEL EN TARJETAS
+   =================================== */
+.card .card-carousel {
+  height: 220px;
+  min-height: 220px;
+}
+
+.card .card-carousel > div:first-child {
+  height: 100%;
+}
+
+.card .card-carousel img {
+  height: 100%;
+  object-fit: contain;
+  background: #f8fafc;
+  padding: 12px;
+}

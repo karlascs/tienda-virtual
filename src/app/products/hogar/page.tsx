@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Header from "@/components/Header";
+import ProductCarousel from "@/components/ProductCarousel";
 import ProductModal from "@/components/ProductModal";
 import { useCart } from "@/context/CartContext";
 import { HOGAR_PRODUCTS, Product } from "@/data/products";
@@ -53,16 +54,10 @@ export default function HogarPage() {
           <div className="grid" style={{ marginBottom: '60px' }}>
             {HOGAR_PRODUCTS.map((product) => (
               <div key={product.id} className="card">
-                <img 
-                  src={product.images[0]} 
-                  alt={product.name}
-                  style={{
-                    width: '100%',
-                    height: '200px',
-                    objectFit: 'contain',
-                    background: '#f8fafc',
-                    padding: '12px'
-                  }}
+                <ProductCarousel 
+                  images={product.images} 
+                  productName={product.name}
+                  className="card-carousel"
                 />
                 <div className="card body" style={{ padding: '16px' }}>
                   <h3 style={{ 
