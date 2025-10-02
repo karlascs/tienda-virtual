@@ -238,8 +238,43 @@ export default function HerramientasPage() {
           {/* Grid de productos */}
           <div className="grid" style={{ marginBottom: '60px' }}>
             {HERRAMIENTAS_PRODUCTS.map((product) => {
-              // Agregar propiedad images dinámicamente para compatibilidad
-              const productWithImages = { ...product, images: [product.image] };
+              // Mapeo de imágenes adicionales para productos con múltiples fotos
+              const imageMap: Record<number, string[]> = {
+                1: [
+                  "/images/herramientas/car/cableAuxiliares/0WNyc+Si42f13LcBw7Uw8A==.jpg",
+                  "/images/herramientas/car/cableAuxiliares/3n8jzajci1GGFRG8R83Bgg==.jpg",
+                  "/images/herramientas/car/cableAuxiliares/mesBj59LDacXe9BCEB01NA==.jpg"
+                ],
+                2: [
+                  "/images/herramientas/car/compresordeaireportatil/6uxYH0xUbI5Ia7hYcbirA==.jpg",
+                  "/images/herramientas/car/compresordeaireportatil/7BZb8hjr3ve8Gg4WmUrCg==.jpg",
+                  "/images/herramientas/car/compresordeaireportatil/Kt38gEfohS2vK+Girs4ftA==.jpg"
+                ],
+                3: [
+                  "/images/herramientas/car/espejoretrovisorcon camara/Puvs6DbFSFmAOHTx3srljQ==.jpg",
+                  "/images/herramientas/car/espejoretrovisorcon camara/mCO5zItdIwBzCz5uukKeA==.jpg",
+                  "/images/herramientas/car/espejoretrovisorcon camara/rZUpLYy0SRxT5eSdu6WXA==.jpg",
+                  "/images/herramientas/car/espejoretrovisorcon camara/SZhUJkAPWGX9ufaN9D2HOA==.jpg"
+                ],
+                6: [
+                  "/images/herramientas/iluminacion/focoledcorriente100w/9C9rrsRtNG1kyKwEQAQmMg==.jpg",
+                  "/images/herramientas/iluminacion/focoledcorriente100w/EiOKxqzOB54MLgcYkk4Hog==.jpg",
+                  "/images/herramientas/iluminacion/focoledcorriente100w/xNFqnNL9fuFKET8tVxx1Lw==.jpg"
+                ],
+                7: [
+                  "/images/herramientas/iluminacion/focosolar260w/AzFQZIjc2Lb0Axc+sCfFw==.jpg",
+                  "/images/herramientas/iluminacion/focosolar260w/hQkiu7yLkcdqxtRTBaCuzQ==.jpg",
+                  "/images/herramientas/iluminacion/focosolar260w/Rzgomwvl0W8PanEOViBlLA==.jpg",
+                  "/images/herramientas/iluminacion/focosolar260w/S9Ox0R3F2Zl8uIffzEnE2Q==.jpg",
+                  "/images/herramientas/iluminacion/focosolar260w/wT7ZmKqIU8HEsmYFInjEAg==.jpg",
+                  "/images/herramientas/iluminacion/focosolar260w/yMZeHSe0jmMeTfIOcV0cXQ==.jpg"
+                ]
+              };
+              
+              // Usar el mapeo de imágenes o imagen única
+              const images = imageMap[product.id] || [product.image];
+              const productWithImages = { ...product, images };
+              
               return (
               <div key={product.id} className="card">
                 <ProductCarousel 

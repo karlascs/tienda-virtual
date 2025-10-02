@@ -118,8 +118,40 @@ export default function CuidadoPersonalPage() {
           {/* Grid de productos */}
           <div className="grid" style={{ marginBottom: '60px' }}>
             {CUIDADO_PERSONAL_PRODUCTS.map((product) => {
-              // Agregar propiedad images dinámicamente para compatibilidad
-              const productWithImages = { ...product, images: [product.image] };
+              // Mapeo de imágenes adicionales para productos con múltiples fotos
+              const imageMap: Record<number, string[]> = {
+                1: [
+                  "/images/cuidadopersonal/maquinaafeitar/maquinadeafeitarhairclipper/D7ZIiz5Y6d+aS7k2eSaPUA==.jpg",
+                  "/images/cuidadopersonal/maquinaafeitar/maquinadeafeitarhairclipper/e3ZijEor0YkoWs5JZXMXXA==.jpg",
+                  "/images/cuidadopersonal/maquinaafeitar/maquinadeafeitarhairclipper/n7J9bMqXxmeTHp45v5dFQ==.jpg",
+                  "/images/cuidadopersonal/maquinaafeitar/maquinadeafeitarhairclipper/SEe70y9t1wsdoOZr7MXfzA==.jpg",
+                  "/images/cuidadopersonal/maquinaafeitar/maquinadeafeitarhairclipper/zX0jzmqXa6myFvtL2Lh91A==.jpg"
+                ],
+                3: [
+                  "/images/cuidadopersonal/maquinaafeitar/maquinadeafeitarpulidoradebarbarecargable/3rpc0+Ae9pL6tZjZRPoCw==.jpg",
+                  "/images/cuidadopersonal/maquinaafeitar/maquinadeafeitarpulidoradebarbarecargable/qtPew3l7+2rOsS0fSYdCw==.jpg",
+                  "/images/cuidadopersonal/maquinaafeitar/maquinadeafeitarpulidoradebarbarecargable/TvMfRbDSemiW4s4OZF2i5A==.jpg"
+                ],
+                4: [
+                  "/images/cuidadopersonal/relajación/humidificadordeaireambientadordeastronauta/3oVdO08plBbOfX86GWw38w==.jpg",
+                  "/images/cuidadopersonal/relajación/humidificadordeaireambientadordeastronauta/EfvNk9khaADuQFTagkTM2A==.jpg",
+                  "/images/cuidadopersonal/relajación/humidificadordeaireambientadordeastronauta/K2er3cqRyrD20Gp4YVYXcA==.jpg",
+                  "/images/cuidadopersonal/relajación/humidificadordeaireambientadordeastronauta/oNGrkclPWIMOadlkG8rURA==.jpg",
+                  "/images/cuidadopersonal/relajación/humidificadordeaireambientadordeastronauta/z3v3RbXFk5j3kvOYogB6Cg==.jpg"
+                ],
+                5: [
+                  "/images/cuidadopersonal/relajación/masajeadormuscular/fdfee1S1HlUDwKwr5SJyxA==.jpg",
+                  "/images/cuidadopersonal/relajación/masajeadormuscular/hpj7jntPsI16KQUqdhaTUw==.jpg",
+                  "/images/cuidadopersonal/relajación/masajeadormuscular/k8n9kG+yI5mnFnCRgx4YQ==.jpg",
+                  "/images/cuidadopersonal/relajación/masajeadormuscular/Kpwq0A3r+yaBphF1+uxjpQ==.jpg",
+                  "/images/cuidadopersonal/relajación/masajeadormuscular/vS8TQgxsSwqgVMYMfJNREA==.jpg"
+                ]
+              };
+              
+              // Usar el mapeo de imágenes o imagen única
+              const images = imageMap[product.id] || [product.image];
+              const productWithImages = { ...product, images };
+              
               return (
               <div key={product.id} className="card">
                 <ProductCarousel 
