@@ -1,14 +1,27 @@
 'use client';
 
+import { useState } from "react";
 import Header from "@/components/Header";
+import ProductModal from "@/components/ProductModal";
+import { useCart } from "@/context/CartContext";
 
 /**
  * Productos de Herramientas - IZA & CAS
  * 
  * Categoría dedicada a herramientas para el hogar y bricolaje
  * Incluye: herramientas eléctricas, manuales, accesorios
- * Con animaciones suaves y experiencia de usuario moderna
+ * Con funcionalidad completa de carrito y modal
  */
+
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  images: string[];
+  description: string;
+  category: string;
+}
 
 // Datos reales de productos de herramientas con imágenes subidas
 const HERRAMIENTAS_PRODUCTS = [
@@ -178,6 +191,19 @@ const HERRAMIENTAS_PRODUCTS = [
 ];
 
 export default function HerramientasPage() {
+  const { addToCart } = useCart();
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleViewDetails = (product: Product) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+
+  const handleAddToCart = (product: Product) => {
+    addToCart(product);
+  };
+
   return (
     <>
       <Header />
@@ -210,7 +236,10 @@ export default function HerramientasPage() {
 
           {/* Grid de productos */}
           <div className="grid" style={{ marginBottom: '60px' }}>
-            {HERRAMIENTAS_PRODUCTS.map((product) => (
+            {HERRAMIENTAS_PRODUCTS.map((product) => {
+              // Agregar propiedad images dinámicamente para compatibilidad
+              const productWithImages = { ...product, images: [product.image] };
+              return (
               <div key={product.id} className="card">
                 <img 
                   src={product.image} 
@@ -256,7 +285,7 @@ export default function HerramientasPage() {
                   }}>
                     <button 
                       className="addToCartBtn"
-                      onClick={() => console.log('Añadir al carrito:', product.name)}
+                      onClick={() => handleAddToCart(productWithImages)}
                       style={{
                         flex: '1',
                         background: 'linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%)',
@@ -275,7 +304,7 @@ export default function HerramientasPage() {
                     </button>
                     <button 
                       className="viewDetailsBtn"
-                      onClick={() => console.log('Ver detalles:', product.name)}
+                      onClick={() => handleViewDetails(productWithImages)}
                       style={{
                         background: 'transparent',
                         color: 'var(--brand)',
@@ -294,10 +323,19 @@ export default function HerramientasPage() {
                   </div>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </main>
+      
+      {/* Modal para ver detalles del producto */}
+      <ProductModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        product={selectedProduct}
+        onAddToCart={handleAddToCart}
+      />
       
       <footer 
         className="container" 

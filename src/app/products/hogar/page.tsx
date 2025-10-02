@@ -2,161 +2,79 @@
 
 import { useState } from "react";
 import Header from "@/components/Header";
-import AnimatedSection from "@/components/AnimatedSection";
-import AnimatedFooter from "@/components/AnimatedFooter";
-import ProductCarousel from "@/components/ProductCarousel";
 import ProductModal from "@/components/ProductModal";
 import { useCart } from "@/context/CartContext";
 import { HOGAR_PRODUCTS, Product } from "@/data/products";
-import styles from '@/styles/hogar.module.css';
-
-/**
- * Productos de Hogar - IZA & CAS
- * 
- * Categoría dedicada a electrodomésticos y artículos para el hogar
- * Incluye: electrodomésticos de cocina, limpieza, organización
- * Con animaciones suaves y experiencia de usuario moderna
- */
-
-// Función para agrupar productos por categoría
-function groupProductsByCategory(products: Product[]) {
-  return products.reduce((groups, product) => {
-    const category = product.category;
-    if (!groups[category]) {
-      groups[category] = [];
-    }
-    groups[category].push(product);
-    return groups;
-  }, {} as Record<string, Product[]>);
-}
-
-// Iconos para las categorías
-const categoryIcons: Record<string, string> = {
-  "Cocina": "🍳",
-  "Electrodomésticos": "⚡",
-  "Ropa de Cama": "🛏️",
-  "Alfombras": "🟫"
-};
 
 export default function HogarPage() {
   const { addToCart } = useCart();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const productsByCategory = groupProductsByCategory(HOGAR_PRODUCTS);
 
-  // Función para manejar "Ver detalles"
   const handleViewDetails = (product: Product) => {
     setSelectedProduct(product);
     setIsModalOpen(true);
   };
 
-  // Función para manejar "Añadir al carrito"
   const handleAddToCart = (product: Product) => {
     addToCart(product);
   };
-
-  // Función para manejar "Añadir al carrito" desde el modal
-  const handleAddToCartFromModal = (product: Product) => {
-    addToCart(product);
-  };
-
   return (
-    <>
+    <div>
       <Header />
-      
-      <main className={styles.hogarMain}>
-        {/* Overlay con efectos */}
-        <div className={styles.hogarOverlay} />
-        
-        <div className={styles.hogarContainer}>
-          {/* Título de la categoría */}
-          <div className={styles.categoryTitle}>
-            <h1 className={styles.title}>
-              🏠 Productos para el Hogar
-            </h1>
-            <p className={styles.subtitle}>
-              Encuentra todo lo que necesitas para tu hogar: electrodomésticos, 
-              artículos de cocina, ropa de cama y más
-            </p>
-          </div>
-
-          {/* Productos organizados por categoría */}
-          {Object.entries(productsByCategory).map(([category, products]) => (
-            <AnimatedSection 
-              key={category}
-              animation="fade-in-up"
-              threshold={0.3}
-              className={styles.categorySection}
-            >
-              <div className={styles.categoryHeader}>
-                <h2 className={styles.categoryName}>
-                  {categoryIcons[category]} {category}
-                </h2>
-                <div className={styles.categoryLine}></div>
+      <main className="container mx-auto px-4 py-8">
+        <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">
+          🏠 Productos para el Hogar
+        </h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {HOGAR_PRODUCTS.map((product) => (
+            <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+              <img
+                src={product.images[0]}
+                alt={product.name}
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-4">
+                <h3 className="text-lg font-semibold mb-2 text-gray-800">
+                  {product.name}
+                </h3>
+                <p className="text-gray-600 text-sm mb-3">
+                  {product.description}
+                </p>
+                <div className="text-xl font-bold text-blue-600 mb-3">
+                  ${product.price.toLocaleString('es-CL')}
+                </div>
+                <div className="flex gap-2">
+                  <button 
+                    className="flex-1 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
+                    onClick={() => handleViewDetails(product)}
+                  >
+                    Ver detalles
+                  </button>
+                  <button 
+                    className="flex-1 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-colors"
+                    onClick={() => handleAddToCart(product)}
+                  >
+                    Añadir al carrito
+                  </button>
+                </div>
               </div>
-              
-              {/* Grid de productos */}
-              <div className={styles.productsGrid}>
-                {products.map((product) => (
-                  <div key={product.id} className={styles.productCard}>
-                    <ProductCarousel 
-                      images={product.images}
-                      productName={product.name}
-                      className={styles.imageContainer}
-                    />
-                    <div className={styles.productInfo}>
-                      <h3 className={styles.productName}>
-                        {product.name}
-                      </h3>
-                      <p className={styles.productDescription}>
-                        {product.description}
-                      </p>
-                      <div className={styles.productPrice}>
-                        ${product.price.toLocaleString('es-CL')}
-                      </div>
-                      <div className={styles.productActions}>
-                        <button 
-                          className={styles.detailsBtn}
-                          onClick={() => handleViewDetails(product)}
-                        >
-                          Ver detalles
-                        </button>
-                        <button 
-                          className={styles.addToCartBtn}
-                          onClick={() => handleAddToCart(product)}
-                        >
-                          Añadir al carrito
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </AnimatedSection>
+            </div>
           ))}
         </div>
       </main>
-
+      
       {/* Modal para ver detalles del producto */}
       <ProductModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         product={selectedProduct}
-        onAddToCart={handleAddToCartFromModal}
+        onAddToCart={handleAddToCart}
       />
-
-      {/* Footer */}
-      <AnimatedFooter 
-        animation="fade-in-up" 
-        threshold={0.8}
-        className="container"
-        style={{
-          opacity: 0.7, 
-          padding: "24px 24px 48px"
-        }}
-      >
-        © 2025 IZA & CAS — hecho por karla cuevas
-      </AnimatedFooter>
-    </>
+      
+      <footer className="bg-gray-800 text-white text-center py-8 mt-16">
+        <p>© 2025 IZA & CAS — hecho por karla cuevas</p>
+      </footer>
+    </div>
   );
 }

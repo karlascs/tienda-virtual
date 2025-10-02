@@ -1,23 +1,37 @@
 'use client';
 
+import { useState } from "react";
 import Header from "@/components/Header";
+import ProductModal from "@/components/ProductModal";
+import { useCart } from "@/context/CartContext";
 
 /**
  * Productos de Tecnología - IZA & CAS
  * 
  * Categoría dedicada a tecnología y electrónicos
- * Incluye: computadoras, smartphones, tablets, accesorios
- * Con animaciones suaves y experiencia de usuario moderna
+ * Incluye: audífonos, cámaras, accesorios celular
+ * Con funcionalidad completa de carrito y modal
  */
 
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  images: string[];
+  description: string;
+  category: string;
+}
+
 // Datos reales de productos de tecnología con imágenes subidas
-const TECNOLOGIA_PRODUCTS = [
+const TECNOLOGIA_PRODUCTS: Product[] = [
   // === CATEGORÍA AUDÍFONOS ===
   {
     id: 1,
     name: "Audífonos Inalámbricos IRM",
     price: 24990,
     image: "/images/tecnologia/audifonos/audifonosinalambricosirm/jXmOW83qKBBaXHrhzcq7Zw==.jpg",
+    images: ["/images/tecnologia/audifonos/audifonosinalambricosirm/jXmOW83qKBBaXHrhzcq7Zw==.jpg"],
     description: "Audífonos inalámbricos IRM con cancelación de ruido y excelente calidad de sonido",
     category: "Audífonos"
   },
@@ -28,6 +42,7 @@ const TECNOLOGIA_PRODUCTS = [
     name: "Cámara de Seguridad 360° Tipo Ampolleta",
     price: 35990,
     image: "/images/tecnologia/camaras/camaradeseguridad360°tipoampolleta/J1AhCK8dbjhy+nHwWgFfA==.jpg",
+    images: ["/images/tecnologia/camaras/camaradeseguridad360°tipoampolleta/J1AhCK8dbjhy+nHwWgFfA==.jpg"],
     description: "Cámara de seguridad con rotación 360°, fácil instalación tipo ampolleta",
     category: "Cámaras"
   },
@@ -36,6 +51,7 @@ const TECNOLOGIA_PRODUCTS = [
     name: "Cámara de Seguridad Exteriores 360° IP66",
     price: 49990,
     image: "/images/tecnologia/camaras/camaradeseguridadexteriores360°ip66/IyGF+Wh1RSRZPSeKnsDztw==.jpg",
+    images: ["/images/tecnologia/camaras/camaradeseguridadexteriores360°ip66/IyGF+Wh1RSRZPSeKnsDztw==.jpg"],
     description: "Cámara resistente al agua IP66 para exteriores con visión 360°",
     category: "Cámaras"
   },
@@ -43,47 +59,65 @@ const TECNOLOGIA_PRODUCTS = [
     id: 4,
     name: "Mini Cámara Espía HD",
     price: 19990,
-    image: "/images/tecnologia/camaras/minicamarapiahd/I4w7ZNf27PNKQWFCgXXLCg==.jpg",
-    description: "Mini cámara discreta con grabación HD, perfecta para seguridad personal",
+    image: "/images/tecnologia/camaras/minicamaraespiahd/jWfGGdhNYLEy0LGz4qC61A==.jpg",
+    images: ["/images/tecnologia/camaras/minicamaraespiahd/jWfGGdhNYLEy0LGz4qC61A==.jpg"],
+    description: "Cámara espía discreta de alta definición, ideal para seguridad personal",
     category: "Cámaras"
   },
 
   // === CATEGORÍA CELULAR ===
   {
     id: 5,
-    name: "Cable USB Tipo C para Celular",
-    price: 4990,
-    image: "/images/tecnologia/celular/cableusbtipocparacelurar/D2MQz8GnMZp0qgQUh9H4rA==.jpg",
-    description: "Cable USB-C de carga rápida, compatible con la mayoría de smartphones modernos",
+    name: "Cargador Inalámbrico Magnético",
+    price: 14990,
+    image: "/images/tecnologia/celular/cargadorinalambricomagnetico/bNP2HpBLDo8VlCCTqhZ77w==.jpg",
+    images: ["/images/tecnologia/celular/cargadorinalambricomagnetico/bNP2HpBLDo8VlCCTqhZ77w==.jpg"],
+    description: "Cargador inalámbrico con tecnología magnética, compatible con múltiples dispositivos",
     category: "Celular"
   },
   {
     id: 6,
-    name: "Cargador Dual USB Tipo C + Cable",
-    price: 12990,
-    image: "/images/tecnologia/celular/cargadordualusbtipoc+cable/NS4pd30MkTNPoI0wZAYWw==.jpg",
-    description: "Cargador de pared dual con puerto USB-C y cable incluido",
+    name: "Lámpara de Escritorio con Cargador Inalámbrico",
+    price: 24990,
+    image: "/images/tecnologia/celular/lamparadeescritorioconcargadorinalambrico/RtWyJTZRR0Ar6jGkRMV0QA==.jpg",
+    images: ["/images/tecnologia/celular/lamparadeescritorioconcargadorinalambrico/RtWyJTZRR0Ar6jGkRMV0QA==.jpg"],
+    description: "Lámpara LED multifuncional con cargador inalámbrico integrado para dispositivos móviles",
     category: "Celular"
   },
   {
     id: 7,
-    name: "Cargador Dual USB Tipo C",
-    price: 9990,
-    image: "/images/tecnologia/celular/cargadordualusbtipoc/wPkBUpS3C5Jl2s607N1tQ==.jpg",
-    description: "Cargador dual USB-C para cargar dos dispositivos simultáneamente",
+    name: "Soporte para Celular en Auto",
+    price: 8990,
+    image: "/images/tecnologia/celular/soporteparacelularenauto/uSYfGZq6STSGL8Ek24w3DA==.jpg",
+    images: ["/images/tecnologia/celular/soporteparacelularenauto/uSYfGZq6STSGL8Ek24w3DA==.jpg"],
+    description: "Soporte magnético para celular en automóvil, instalación fácil y segura",
     category: "Celular"
   },
   {
     id: 8,
-    name: "Cargador iPhone + Cable",
-    price: 14990,
-    image: "/images/tecnologia/celular/cargadoriphone+cable/C9qVyXDkwWRMaBh3PIW9rg==.jpg",
-    description: "Cargador oficial Lightning para iPhone con cable incluido",
+    name: "Soporte Perezoso para Celular",
+    price: 6990,
+    image: "/images/tecnologia/celular/soporteperezosopaeacelular/qdR3vkS2zLJq+8VR3KkDQA==.jpg",
+    images: ["/images/tecnologia/celular/soporteperezosopaeacelular/qdR3vkS2zLJq+8VR3KkDQA==.jpg"],
+    description: "Soporte flexible para celular, perfecto para ver videos desde la cama o sofá",
     category: "Celular"
   }
 ];
 
 export default function TecnologiaPage() {
+  const { addToCart } = useCart();
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleViewDetails = (product: Product) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+
+  const handleAddToCart = (product: Product) => {
+    addToCart(product);
+  };
+
   return (
     <>
       <Header />
@@ -102,7 +136,7 @@ export default function TecnologiaPage() {
               justifyContent: 'center',
               gap: '12px'
             }}>
-              💻 Tecnología & Electrónicos
+              📱 Tecnología & Electrónicos
             </h1>
             <p style={{ 
               color: 'var(--text-secondary)', 
@@ -110,7 +144,7 @@ export default function TecnologiaPage() {
               maxWidth: '600px',
               margin: '0 auto'
             }}>
-              Los últimos avances en tecnología para tu vida digital
+              Tecnología moderna para tu día a día
             </p>
           </div>
 
@@ -162,7 +196,7 @@ export default function TecnologiaPage() {
                   }}>
                     <button 
                       className="addToCartBtn"
-                      onClick={() => console.log('Añadir al carrito:', product.name)}
+                      onClick={() => handleAddToCart(product)}
                       style={{
                         flex: '1',
                         background: 'linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%)',
@@ -181,7 +215,7 @@ export default function TecnologiaPage() {
                     </button>
                     <button 
                       className="viewDetailsBtn"
-                      onClick={() => console.log('Ver detalles:', product.name)}
+                      onClick={() => handleViewDetails(product)}
                       style={{
                         background: 'transparent',
                         color: 'var(--brand)',
@@ -204,6 +238,14 @@ export default function TecnologiaPage() {
           </div>
         </div>
       </main>
+      
+      {/* Modal para ver detalles del producto */}
+      <ProductModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        product={selectedProduct}
+        onAddToCart={handleAddToCart}
+      />
       
       <footer 
         className="container" 
