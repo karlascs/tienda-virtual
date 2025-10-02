@@ -138,13 +138,109 @@ export const HOGAR_PRODUCTS: Product[] = HOGAR_PRODUCTS_DATA.map(product => ({
 // ===== PRODUCTOS DESTACADOS =====
 // Selección curada de productos para mostrar en la página principal
 export const FEATURED_PRODUCTS: Product[] = [
-  // Obtener productos específicos por ID de diferentes categorías
+  // === HOGAR (2 productos) ===
   HOGAR_PRODUCTS.find(p => p.id === 1)!, // Cafetera Italiana 9 Tazas
-  HOGAR_PRODUCTS.find(p => p.id === 5)!, // Batidora RAF MIXER
   HOGAR_PRODUCTS.find(p => p.id === 3)!, // Hornilla Ocean
-  HOGAR_PRODUCTS.find(p => p.id === 6)!, // Moledor de Café
-  HOGAR_PRODUCTS.find(p => p.id === 2)!, // Cafetera Italiana 6 Tazas
-  HOGAR_PRODUCTS.find(p => p.id === 4)!, // Hornilla Reververo 1F
+  
+  // === ACTIVIDAD (2 productos) ===
+  {
+    id: 101,
+    name: "Binoculares 30x60 Prismáticos",
+    price: 9990,
+    image: "/images/actividad/camping/binocular30X60prismaticos/DeD5uvaTWXye0rT0XomGqQ==.jpg",
+    images: ["/images/actividad/camping/binocular30X60prismaticos/DeD5uvaTWXye0rT0XomGqQ==.jpg"],
+    description: "Binoculares profesionales con zoom 30x60 para observación de naturaleza",
+    category: "Actividad"
+  },
+  {
+    id: 102,
+    name: "Hamaca 200x100cm",
+    price: 7990,
+    image: "/images/actividad/camping/hamaca200X100cm/5x5ySvyXdMCgMnncDNboA==.jpg",
+    images: ["/images/actividad/camping/hamaca200X100cm/5x5ySvyXdMCgMnncDNboA==.jpg"],
+    description: "Hamaca resistente y cómoda para relajarse al aire libre",
+    category: "Actividad"
+  },
+  
+  // === TECNOLOGÍA (2 productos) ===
+  {
+    id: 201,
+    name: "Audífonos Inalámbricos IRM",
+    price: 24990,
+    image: "/images/tecnologia/audifonos/audifonosinalambricosirm/jXmOW83qKBBaXHrhzcq7Zw==.jpg",
+    images: ["/images/tecnologia/audifonos/audifonosinalambricosirm/jXmOW83qKBBaXHrhzcq7Zw==.jpg"],
+    description: "Audífonos inalámbricos con cancelación de ruido y excelente calidad",
+    category: "Tecnología"
+  },
+  {
+    id: 202,
+    name: "Cámara de Seguridad 360° Ampolleta",
+    price: 19990,
+    image: "/images/tecnologia/camaras/camaradeseguridad360°tipoampolleta/cEFBWiCJt9NR7ruJKFX4Jg==.jpg",
+    images: ["/images/tecnologia/camaras/camaradeseguridad360°tipoampolleta/cEFBWiCJt9NR7ruJKFX4Jg==.jpg"],
+    description: "Cámara de seguridad WiFi tipo ampolleta con visión 360°",
+    category: "Tecnología"
+  },
+  
+  // === HERRAMIENTAS (2 productos) ===
+  {
+    id: 301,
+    name: "Foco Solar 260W",
+    price: 21990,
+    image: "/images/herramientas/iluminacion/focosolar260w/AzFQZIjc2Lb0Axc+sCfFw==.jpg",
+    images: ["/images/herramientas/iluminacion/focosolar260w/AzFQZIjc2Lb0Axc+sCfFw==.jpg"],
+    description: "Foco solar de alta potencia con panel integrado para exteriores",
+    category: "Herramientas"
+  },
+  {
+    id: 302,
+    name: "Compresor de Aire Portátil",
+    price: 14990,
+    image: "/images/herramientas/car/compresordeaireportatil/RKfbUuFMQRacYZV3K6QmBg==.jpg",
+    images: ["/images/herramientas/car/compresordeaireportatil/RKfbUuFMQRacYZV3K6QmBg==.jpg"],
+    description: "Compresor portátil para inflar neumáticos y objetos inflables",
+    category: "Herramientas"
+  },
+  
+  // === JUGUETES (2 productos) ===
+  {
+    id: 401,
+    name: "Carpa de Castillo Infantil",
+    price: 12990,
+    image: "/images/juguetes/carpas/carpadecastilloinfantil/9OY2PNp1LAMvXlx0yBIceQ==.jpg",
+    images: ["/images/juguetes/carpas/carpadecastilloinfantil/9OY2PNp1LAMvXlx0yBIceQ==.jpg"],
+    description: "Carpa de juegos para niños con diseño de castillo medieval",
+    category: "Juguetes"
+  },
+  {
+    id: 402,
+    name: "Balón de Fútbol Air Power",
+    price: 6990,
+    image: "/images/juguetes/juegos/balondefutbollairpower/CCCoe523QU66+hsy944EkA==.jpg",
+    images: ["/images/juguetes/juegos/balondefutbollairpower/CCCoe523QU66+hsy944EkA==.jpg"],
+    description: "Balón de fútbol flotante con tecnología Air Power para jugar en casa",
+    category: "Juguetes"
+  },
+  
+  // === CUIDADO PERSONAL (2 productos) ===
+  {
+    id: 501,
+    name: "Máquina de Afeitar Multifuncional",
+    price: 15990,
+    image: "/images/cuidadopersonal/maquinaafeitar/maquinadeafeitarmultifuncional/b3o3V8FSay3NQ9Bua8tQSw==.jpg",
+    images: ["/images/cuidadopersonal/maquinaafeitar/maquinadeafeitarmultifuncional/b3o3V8FSay3NQ9Bua8tQSw==.jpg"],
+    description: "Máquina de afeitar eléctrica con múltiples accesorios",
+    category: "Cuidado Personal"
+  },
+  {
+    id: 502,
+    name: "Humidificador Ultrasónico",
+    price: 8990,
+    image: "/images/cuidadopersonal/relajación/humidificadorultrasonico/Ww7p4bkBPNVbM5qFuglzOg==.jpg",
+    images: ["/images/cuidadopersonal/relajación/humidificadorultrasonico/Ww7p4bkBPNVbM5qFuglzOg==.jpg"],
+    description: "Humidificador con aromaterapia para crear ambiente relajante",
+    category: "Cuidado Personal"
+  }
 ];
 
 // ===== UTILIDADES =====
