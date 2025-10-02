@@ -1,9 +1,6 @@
 'use client';
 
 import Header from "@/components/Header";
-import AnimatedSection from "@/components/AnimatedSection";
-import AnimatedFooter from "@/components/AnimatedFooter";
-import { useScrollAnimationList } from "@/hooks/useScrollAnimation";
 
 /**
  * Productos de Juguetes - IZA & CAS

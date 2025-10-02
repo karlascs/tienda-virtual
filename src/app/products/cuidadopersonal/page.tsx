@@ -1,9 +1,7 @@
 'use client';
 
 import Header from "@/components/Header";
-import AnimatedSection from "@/components/AnimatedSection";
 import AnimatedFooter from "@/components/AnimatedFooter";
-import { useScrollAnimationList } from "@/hooks/useScrollAnimation";
 
 /**
  * Productos de Cuidado Personal - IZA & CAS
@@ -92,16 +90,15 @@ export default function CuidadoPersonalPage() {
           </div>
 
           {/* Grid de productos con animaciones */}
-          <AnimatedSection>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: '30px',
-              padding: '20px 0',
-              maxWidth: '1200px',
-              margin: '0 auto'
-            }}>
-              {CUIDADO_PERSONAL_PRODUCTS.map((product, index) => (
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '30px',
+            padding: '20px 0',
+            maxWidth: '1200px',
+            margin: '0 auto'
+          }}>
+            {CUIDADO_PERSONAL_PRODUCTS.map((product) => (
                 <div
                   key={product.id}
                   style={{
@@ -228,7 +225,7 @@ export default function CuidadoPersonalPage() {
                 </div>
               ))}
             </div>
-          </AnimatedSection>
+          </div>
         </div>
       </main>
 
