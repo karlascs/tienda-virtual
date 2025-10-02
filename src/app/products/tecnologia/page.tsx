@@ -13,49 +13,76 @@ import { useScrollAnimationList } from "@/hooks/useScrollAnimation";
  * Con animaciones suaves y experiencia de usuario moderna
  */
 
-// Datos de productos de tecnología (estáticos para MVP)
+// Datos reales de productos de tecnología con imágenes subidas
 const TECNOLOGIA_PRODUCTS = [
+  // === CATEGORÍA AUDÍFONOS ===
   {
     id: 1,
-    name: "Laptop Gaming MSI",
-    price: 1299990,
-    image: "/images/tecnologia/laptop-gaming.jpg",
-    description: "Laptop gaming de alto rendimiento con procesador Intel i7 y RTX 4060"
+    name: "Audífonos Inalámbricos IRM",
+    price: 24990,
+    image: "/images/tecnologia/audifonos/audifonosinalambricosirm/jXmOW83qKBBaXHrhzcq7Zw==.jpg",
+    description: "Audífonos inalámbricos IRM con cancelación de ruido y excelente calidad de sonido",
+    category: "Audífonos"
   },
+
+  // === CATEGORÍA CÁMARAS ===
   {
     id: 2,
-    name: "iPhone 15 Pro",
-    price: 999990,
-    image: "/images/tecnologia/iphone-15-pro.jpg",
-    description: "iPhone 15 Pro con chip A17 Pro y cámaras profesionales"
+    name: "Cámara de Seguridad 360° Tipo Ampolleta",
+    price: 35990,
+    image: "/images/tecnologia/camaras/camaradeseguridad360°tipoampolleta/J1AhCK8dbjhy+nHwWgFfA==.jpg",
+    description: "Cámara de seguridad con rotación 360°, fácil instalación tipo ampolleta",
+    category: "Cámaras"
   },
   {
     id: 3,
-    name: "MacBook Air M2",
-    price: 899990,
-    image: "/images/tecnologia/macbook-air.jpg",
-    description: "MacBook Air con chip M2, ultraligero y potente para trabajo profesional"
+    name: "Cámara de Seguridad Exteriores 360° IP66",
+    price: 49990,
+    image: "/images/tecnologia/camaras/camaradeseguridadexteriores360°ip66/IyGF+Wh1RSRZPSeKnsDztw==.jpg",
+    description: "Cámara resistente al agua IP66 para exteriores con visión 360°",
+    category: "Cámaras"
   },
   {
     id: 4,
-    name: "Samsung Galaxy S24",
-    price: 799990,
-    image: "/images/tecnologia/galaxy-s24.jpg",
-    description: "Samsung Galaxy S24 con inteligencia artificial y cámaras avanzadas"
+    name: "Mini Cámara Espía HD",
+    price: 19990,
+    image: "/images/tecnologia/camaras/minicamarapiahd/I4w7ZNf27PNKQWFCgXXLCg==.jpg",
+    description: "Mini cámara discreta con grabación HD, perfecta para seguridad personal",
+    category: "Cámaras"
   },
+
+  // === CATEGORÍA CELULAR ===
   {
     id: 5,
-    name: "iPad Pro 12.9",
-    price: 749990,
-    image: "/images/tecnologia/ipad-pro.jpg",
-    description: "iPad Pro de 12.9 pulgadas con chip M2 y pantalla Liquid Retina XDR"
+    name: "Cable USB Tipo C para Celular",
+    price: 4990,
+    image: "/images/tecnologia/celular/cableusbtipocparacelurar/D2MQz8GnMZp0qgQUh9H4rA==.jpg",
+    description: "Cable USB-C de carga rápida, compatible con la mayoría de smartphones modernos",
+    category: "Celular"
   },
   {
     id: 6,
-    name: "AirPods Pro 2",
-    price: 199990,
-    image: "/images/tecnologia/airpods-pro.jpg",
-    description: "AirPods Pro de segunda generación con cancelación activa de ruido"
+    name: "Cargador Dual USB Tipo C + Cable",
+    price: 12990,
+    image: "/images/tecnologia/celular/cargadordualusbtipoc+cable/NS4pd30MkTNPoI0wZAYWw==.jpg",
+    description: "Cargador de pared dual con puerto USB-C y cable incluido",
+    category: "Celular"
+  },
+  {
+    id: 7,
+    name: "Cargador Dual USB Tipo C",
+    price: 9990,
+    image: "/images/tecnologia/celular/cargadordualusbtipoc/wPkBUpS3C5Jl2s607N1tQ==.jpg",
+    description: "Cargador dual USB-C para cargar dos dispositivos simultáneamente",
+    category: "Celular"
+  },
+  {
+    id: 8,
+    name: "Cargador iPhone + Cable",
+    price: 14990,
+    image: "/images/tecnologia/celular/cargadoriphone+cable/C9qVyXDkwWRMaBh3PIW9rg==.jpg",
+    description: "Cargador oficial Lightning para iPhone con cable incluido",
+    category: "Celular"
   }
 ];
 

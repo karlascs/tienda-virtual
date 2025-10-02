@@ -42,8 +42,17 @@ const CATEGORIES = [
     title: 'Tecnología ',
     subtitle: 'Los últimos avances tecnológicos',
     image: '/images/categorias/tecnologia.png',
-    count: 10,
+    count: 8,
     href: '/products/tecnologia'
+  },
+  {
+    id: 'cuidadopersonal',
+    name: 'Cuidado Personal',
+    title: 'Cuidado Personal',
+    subtitle: 'Productos para tu bienestar y cuidado',
+    image: '/images/categorias/cuidadopersonal.png',
+    count: 5,
+    href: '/products/cuidadopersonal'
   },
   {
     id: 'actividad',
@@ -51,7 +60,7 @@ const CATEGORIES = [
     title: 'Vida Activa',
     subtitle: 'Equipos para mantenerte en forma',
     image: '/images/categorias/actividad.png',
-    count: 6,
+    count: 15,
     href: '/products/actividad'
   }
 ];

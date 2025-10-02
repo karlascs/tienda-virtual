@@ -84,6 +84,7 @@ export default function Header() {
             <Link href="/products/herramientas" className="link" onClick={closeMenu}>Herramientas</Link>
             <Link href="/products/juguetes" className="link" onClick={closeMenu}>Juguetes</Link>
             <Link href="/products/tecnologia" className="link" onClick={closeMenu}>Tecnología</Link>
+            <Link href="/products/cuidadopersonal" className="link" onClick={closeMenu}>Cuidado Personal</Link>
             <Link href="/products/actividad" className="link" onClick={closeMenu}>Actividad</Link>
           </div>
           
@@ -100,6 +101,7 @@ export default function Header() {
           <Link href="/products/herramientas" className={styles.mobileLink} onClick={closeMenu}>Herramientas</Link>
           <Link href="/products/juguetes" className={styles.mobileLink} onClick={closeMenu}>Juguetes</Link>
           <Link href="/products/tecnologia" className={styles.mobileLink} onClick={closeMenu}>Tecnología</Link>
+          <Link href="/products/cuidadopersonal" className={styles.mobileLink} onClick={closeMenu}>Cuidado Personal</Link>
           <Link href="/products/actividad" className={styles.mobileLink} onClick={closeMenu}>Actividad</Link>
         </div>
       </div>
