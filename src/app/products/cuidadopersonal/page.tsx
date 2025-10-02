@@ -1,7 +1,6 @@
 'use client';
 
 import Header from "@/components/Header";
-import AnimatedFooter from "@/components/AnimatedFooter";
 
 /**
  * Productos de Cuidado Personal - IZA & CAS
@@ -70,175 +69,125 @@ export default function CuidadoPersonalPage() {
             <h1 style={{ 
               fontSize: '36px', 
               fontWeight: '700', 
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              marginBottom: '10px',
-              textShadow: '0 2px 4px rgba(0,0,0,0.1)'
+              color: 'var(--text-primary)', 
+              marginBottom: '12px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '12px'
             }}>
-              Cuidado Personal
+              🧴 Cuidado Personal & Bienestar
             </h1>
             <p style={{ 
-              fontSize: '18px', 
-              color: '#666',
+              color: 'var(--text-secondary)', 
+              fontSize: '18px',
               maxWidth: '600px',
-              margin: '0 auto',
-              lineHeight: '1.6'
+              margin: '0 auto'
             }}>
-              Descubre nuestra selección de productos para tu cuidado personal y bienestar
+              Productos para tu cuidado personal y bienestar diario
             </p>
           </div>
 
-          {/* Grid de productos con animaciones */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '30px',
-            padding: '20px 0',
-            maxWidth: '1200px',
-            margin: '0 auto'
-          }}>
+          {/* Grid de productos */}
+          <div className="grid" style={{ marginBottom: '60px' }}>
             {CUIDADO_PERSONAL_PRODUCTS.map((product) => (
-                <div
-                  key={product.id}
+              <div key={product.id} className="card">
+                <img 
+                  src={product.image} 
+                  alt={product.name}
                   style={{
-                    backgroundColor: 'white',
-                    borderRadius: '15px',
-                    overflow: 'hidden',
-                    boxShadow: '0 8px 25px rgba(0,0,0,0.1)',
-                    transition: 'all 0.3s ease',
-                    cursor: 'pointer',
-                    border: '1px solid #f0f0f0'
+                    width: '100%',
+                    height: '200px',
+                    objectFit: 'contain',
+                    background: '#f8fafc',
+                    padding: '12px'
                   }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-5px)';
-                    e.currentTarget.style.boxShadow = '0 15px 35px rgba(0,0,0,0.15)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.1)';
-                  }}
-                >
-                  {/* Imagen del producto */}
-                  <div style={{ position: 'relative', overflow: 'hidden' }}>
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      style={{
-                        width: '100%',
-                        height: '250px',
-                        objectFit: 'cover',
-                        transition: 'transform 0.3s ease'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = 'scale(1.05)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = 'scale(1)';
-                      }}
-                    />
-                    {/* Badge de categoría */}
-                    <div style={{
-                      position: 'absolute',
-                      top: '15px',
-                      right: '15px',
-                      backgroundColor: 'rgba(102, 126, 234, 0.9)',
-                      color: 'white',
-                      padding: '5px 12px',
-                      borderRadius: '20px',
-                      fontSize: '12px',
-                      fontWeight: '600',
-                      backdropFilter: 'blur(10px)'
-                    }}>
-                      {product.category}
-                    </div>
+                />
+                <div className="card body" style={{ padding: '16px' }}>
+                  <h3 style={{ 
+                    fontSize: '18px', 
+                    fontWeight: '600',
+                    marginBottom: '8px',
+                    color: 'var(--text-primary)'
+                  }}>
+                    {product.name}
+                  </h3>
+                  <p style={{ 
+                    fontSize: '14px',
+                    color: 'var(--text-secondary)',
+                    marginBottom: '12px',
+                    lineHeight: '1.4'
+                  }}>
+                    {product.description}
+                  </p>
+                  <div className="price" style={{ 
+                    fontSize: '20px',
+                    fontWeight: '700',
+                    color: 'var(--brand)'
+                  }}>
+                    ${product.price.toLocaleString('es-CL')}
                   </div>
-
-                  {/* Información del producto */}
-                  <div style={{ padding: '20px' }}>
-                    <h3 style={{
-                      fontSize: '18px',
-                      fontWeight: '600',
-                      marginBottom: '8px',
-                      color: '#333',
-                      lineHeight: '1.4'
-                    }}>
-                      {product.name}
-                    </h3>
-                    
-                    <p style={{
-                      fontSize: '14px',
-                      color: '#666',
-                      marginBottom: '15px',
-                      lineHeight: '1.5',
-                      display: '-webkit-box',
-                      WebkitLineClamp: 2,
-                      WebkitBoxOrient: 'vertical',
-                      overflow: 'hidden'
-                    }}>
-                      {product.description}
-                    </p>
-
-                    {/* Precio y botones */}
-                    <div style={{ 
-                      display: 'flex', 
-                      justifyContent: 'space-between', 
-                      alignItems: 'center',
-                      marginTop: '15px'
-                    }}>
-                      <span style={{
-                        fontSize: '20px',
-                        fontWeight: '700',
-                        color: '#667eea',
-                        textShadow: '0 1px 2px rgba(0,0,0,0.1)'
-                      }}>
-                        ${product.price.toLocaleString()}
-                      </span>
-                      
-                      <button style={{
-                        backgroundColor: '#667eea',
+                  <div className="productActions" style={{
+                    display: 'flex',
+                    gap: '12px',
+                    marginTop: '16px',
+                    paddingTop: '16px',
+                    borderTop: '1px solid var(--border-color)'
+                  }}>
+                    <button 
+                      className="addToCartBtn"
+                      onClick={() => console.log('Añadir al carrito:', product.name)}
+                      style={{
+                        flex: '1',
+                        background: 'linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%)',
                         color: 'white',
                         border: 'none',
-                        padding: '8px 16px',
+                        padding: '12px 16px',
                         borderRadius: '8px',
-                        fontSize: '14px',
                         fontWeight: '600',
+                        fontSize: '14px',
                         cursor: 'pointer',
                         transition: 'all 0.3s ease',
-                        boxShadow: '0 2px 8px rgba(102, 126, 234, 0.3)'
+                        boxShadow: '0 4px 12px rgba(45, 74, 74, 0.2)'
                       }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = '#5a67d8';
-                        e.currentTarget.style.transform = 'translateY(-1px)';
-                        e.currentTarget.style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.4)';
+                    >
+                      🛒 Añadir al carrito
+                    </button>
+                    <button 
+                      className="viewDetailsBtn"
+                      onClick={() => console.log('Ver detalles:', product.name)}
+                      style={{
+                        background: 'transparent',
+                        color: 'var(--brand)',
+                        border: '2px solid var(--brand)',
+                        padding: '12px 16px',
+                        borderRadius: '8px',
+                        fontWeight: '600',
+                        fontSize: '14px',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        whiteSpace: 'nowrap'
                       }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = '#667eea';
-                        e.currentTarget.style.transform = 'translateY(0)';
-                        e.currentTarget.style.boxShadow = '0 2px 8px rgba(102, 126, 234, 0.3)';
-                      }}
-                      >
-                        Ver más
-                      </button>
-                    </div>
+                    >
+                      Ver detalles
+                    </button>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
+          </div>
         </div>
       </main>
-
-      <AnimatedFooter 
-        animation="fade-in-up"
-        threshold={0.8}
-        className="container"
+      
+      <footer 
+        className="container" 
         style={{
           opacity: 0.7, 
           padding: "24px 24px 48px"
         }}
       >
         © 2025 IZA & CAS — hecho por karla cuevas
-      </AnimatedFooter>
+      </footer>
     </>
   );
 }
