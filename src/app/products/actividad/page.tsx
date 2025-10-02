@@ -23,7 +23,7 @@ const ACTIVIDAD_PRODUCTS = [
   {
     id: 1,
     name: "Binoculares 30x60 Prismáticos",
-    price: 24990,
+    price: 9990,
     image: "/images/actividad/camping/binocular30X60prismaticos/DeD5uvaTWXye0rT0XomGqQ==.jpg",
     description: "Binoculares profesionales con zoom 30x60 para observación de naturaleza y camping",
     category: "Camping"
@@ -31,7 +31,7 @@ const ACTIVIDAD_PRODUCTS = [
   {
     id: 2,
     name: "Colchón Inflable 1 Plaza",
-    price: 19990,
+    price: 12990,
     image: "/images/actividad/camping/colchonesinfables1plaza/1X4DW7Z+smvyexJBBR5I2w==.jpg",
     description: "Colchón inflable cómodo para una persona, ideal para camping y visitas",
     category: "Camping"
@@ -39,7 +39,7 @@ const ACTIVIDAD_PRODUCTS = [
   {
     id: 3,
     name: "Colchón Inflable 1.5 Plaza",
-    price: 24990,
+    price: 14990,
     image: "/images/actividad/camping/colchonesinflables1,5plaza/1X4DW7Z+smvyexJBBR5I2w==.jpg",
     description: "Colchón inflable matrimonial pequeño con bomba incluida",
     category: "Camping"
@@ -47,7 +47,7 @@ const ACTIVIDAD_PRODUCTS = [
   {
     id: 4,
     name: "Hamaca 200x100cm",
-    price: 16990,
+    price: 7990,
     image: "/images/actividad/camping/hamaca200X100cm/oS0UutmGBbe6RtpE01TZIg==.jpg",
     description: "Hamaca resistente de algodón con soporte metálico incluido",
     category: "Camping"
@@ -55,7 +55,7 @@ const ACTIVIDAD_PRODUCTS = [
   {
     id: 5,
     name: "Hamaca 160x75cm",
-    price: 12990,
+    price: 6990,
     image: "/images/actividad/camping/hamacas160X75/NpiTu1pG23ClC8IctLuL1w==.jpg",
     description: "Hamaca compacta perfecta para espacios pequeños y viajes",
     category: "Camping"
@@ -63,7 +63,7 @@ const ACTIVIDAD_PRODUCTS = [
   {
     id: 6,
     name: "Lona Impermeable 4x6m",
-    price: 29990,
+    price: 15990,
     image: "/images/actividad/camping/lonaimpermeablesmultiuso4X6m/EzYwQc9YP4gH4Pc9yTAxw==.jpg",
     description: "Lona resistente multiuso para camping, construcción y cobertura",
     category: "Camping"
@@ -71,7 +71,7 @@ const ACTIVIDAD_PRODUCTS = [
   {
     id: 7,
     name: "Lona Impermeable 3x6m",
-    price: 24990,
+    price: 12990,
     image: "/images/actividad/camping/lonasimpermeablesmultiuso3X6m/6VyN9lJAPymciSe8Pj9Nw==.jpg",
     description: "Lona impermeable versátil para múltiples usos exteriores",
     category: "Camping"
@@ -81,7 +81,7 @@ const ACTIVIDAD_PRODUCTS = [
   {
     id: 8,
     name: "Chaleco Deportivo para Correr",
-    price: 15990,
+    price: 7990,
     image: "/images/actividad/deporte/chalecodeportivoparacorrer/9xJn0ARIT5KPc0gchC3lQA==.jpg",
     description: "Chaleco reflectante con bolsillos para running y deportes nocturnos",
     category: "Deportes"
@@ -89,7 +89,7 @@ const ACTIVIDAD_PRODUCTS = [
   {
     id: 9,
     name: "Pesas de Arena para Tobillo 1kg",
-    price: 8990,
+    price: 9990,
     image: "/images/actividad/deporte/pesasdearenaparaeltobillo1k/VWeCfgHBrOgrSLBkIWrXtQ==.jpg",
     description: "Par de pesas ajustables de arena para ejercicios de resistencia",
     category: "Deportes"
@@ -99,7 +99,7 @@ const ACTIVIDAD_PRODUCTS = [
   {
     id: 10,
     name: "Alfombra de Agua para Niños",
-    price: 16990,
+    price: 7990,
     image: "/images/actividad/piscina/alfombradeaguaparaniños/N0QIqZ4K15BUiAVms9EDzg==.jpg",
     description: "Alfombra de agua inflable con juegos para diversión infantil",
     category: "Piscina"
@@ -107,7 +107,7 @@ const ACTIVIDAD_PRODUCTS = [
   {
     id: 11,
     name: "Deslizador Acuático Tobogán",
-    price: 39990,
+    price: 13990,
     image: "/images/actividad/piscina/deslizaderoacuaticotoboganalfombra/O3TUgztVA++oKZ01NNTNw==.jpg",
     description: "Tobogán de agua con alfombra deslizante para jardín y piscina",
     category: "Piscina"
@@ -115,7 +115,7 @@ const ACTIVIDAD_PRODUCTS = [
   {
     id: 12,
     name: "Piscina Inflable 2.62x1.75x0.51m",
-    price: 49990,
+    price: 22990,
     image: "/images/actividad/piscina/piscinainfable2,62X1,75X0,51/T8cBbYSZF1U42lTgTom4zA==.jpg",
     description: "Piscina inflable familiar con bomba incluida, ideal para patios",
     category: "Piscina"
@@ -125,7 +125,7 @@ const ACTIVIDAD_PRODUCTS = [
   {
     id: 13,
     name: "Balde para Playa",
-    price: 7990,
+    price: 4990,
     image: "/images/actividad/playa/baldeparaplaya/KSCZvvoTVpazMv6ZLbiJUA==.jpg",
     description: "Set de balde con accesorios para juegos de arena en la playa",
     category: "Playa"
@@ -133,7 +133,7 @@ const ACTIVIDAD_PRODUCTS = [
   {
     id: 14,
     name: "Carpa para Playa",
-    price: 34990,
+    price: 12990,
     image: "/images/actividad/playa/carpaparaplaya/3uZc2I9d15iuH9fW81ybiw==.jpg",
     description: "Carpa pop-up resistente al viento con protección UV50+",
     category: "Playa"
@@ -141,7 +141,7 @@ const ACTIVIDAD_PRODUCTS = [
   {
     id: 15,
     name: "Quitasol",
-    price: 18990,
+    price: 6990,
     image: "/images/actividad/playa/quitasol/RJtwHp8l2Sx+5rn1SV7eiA==.jpg",
     description: "Sombrilla de playa ajustable con base resistente al viento",
     category: "Playa"
