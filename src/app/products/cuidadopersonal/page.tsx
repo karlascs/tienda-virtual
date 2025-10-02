@@ -225,7 +225,6 @@ export default function CuidadoPersonalPage() {
                 </div>
               ))}
             </div>
-          </div>
         </div>
       </main>
 
