@@ -55,49 +55,56 @@ const JUGUETES_PRODUCTS = [
     name: "Balón de Fútbol Air Power",
     price: 16990,
     image: "/images/juguetes/juegos/balondefutbollairpower/CCCoe523QU66+hsy944EkA==.jpg",
-    description: "Balón de fútbol flotante con tecnología air power, se desliza suavemente sobre cualquier superficie"
+    description: "Balón de fútbol flotante con tecnología air power, se desliza suavemente sobre cualquier superficie",
+    category: "Juegos"
   },
   {
     id: 6,
     name: "Juguete de Conejo",
     price: 12990,
     image: "/images/juguetes/juegos/juguetedeconejo/m69auj4HYrBap3VgOqbzFw==.jpg",
-    description: "Adorable juguete de conejo suave y seguro para niños pequeños"
+    description: "Adorable juguete de conejo suave y seguro para niños pequeños",
+    category: "Juegos"
   },
   {
     id: 7,
     name: "Peluche Squish Hello Kitty",
     price: 8990,
     image: "/images/juguetes/juegos/peluchesquishhellokitty/jFtEB61tRbk4m2yWiFcJ2g==.jpg",
-    description: "Peluche suave de Hello Kitty con textura squish, perfecto para abrazar"
+    description: "Peluche suave de Hello Kitty con textura squish, perfecto para abrazar",
+    category: "Juegos"
   },
   {
     id: 8,
     name: "Proyector Astronauta Infantil",
     price: 39990,
     image: "/images/juguetes/juegos/proyectorastronautainfantil/Oi5EV9Yz0RwTxkXfdZOWA==.jpg",
-    description: "Proyector LED con forma de astronauta, crea un ambiente mágico en la habitación"
+    description: "Proyector LED con forma de astronauta, crea un ambiente mágico en la habitación",
+    category: "Juegos"
   },
   {
     id: 9,
     name: "Set de Cocina Kitchen",
     price: 45990,
     image: "/images/juguetes/juegos/setdecocinakitchen/maS7T17udnInDSgyIwZkOg==.jpg",
-    description: "Set de cocina completo con utensilios, perfecto para juegos de rol"
+    description: "Set de cocina completo con utensilios, perfecto para juegos de rol",
+    category: "Juegos"
   },
   {
     id: 10,
     name: "Set Tocador de Belleza para Niña",
     price: 35990,
     image: "/images/juguetes/juegos/settocadordebellezaparaniñadejuguete/GznbYQsPTThf9iOYkgQEeg==.jpg",
-    description: "Tocador de juguete con espejo y accesorios de belleza para niñas"
+    description: "Tocador de juguete con espejo y accesorios de belleza para niñas",
+    category: "Juegos"
   },
   {
     id: 11,
     name: "Tabla de Skate Patineta",
     price: 29990,
     image: "/images/juguetes/juegos/tabladeskatepatineta/PlN2ht5vQi3OreVv4FI8+g==.jpg",
-    description: "Patineta profesional para niños y adolescentes, diseño moderno y resistente"
+    description: "Patineta profesional para niños y adolescentes, diseño moderno y resistente",
+    category: "Juegos"
   },
 
   // === CATEGORÍA LIBRERÍA ===
@@ -106,28 +113,32 @@ const JUGUETES_PRODUCTS = [
     name: "Estuche Hello Kitty",
     price: 14990,
     image: "/images/juguetes/libreria/estuchehellokyte/18lRr4+0SYTdK1AUhA1aKg==.jpg",
-    description: "Estuche escolar de Hello Kitty con múltiples compartimentos"
+    description: "Estuche escolar de Hello Kitty con múltiples compartimentos",
+    category: "Librería"
   },
   {
     id: 13,
     name: "Maleta de Colores de Madera 180 Piezas",
     price: 49990,
     image: "/images/juguetes/libreria/maletadecoloresdemaderade180piezas/6vjBTfK7WoSSZke7QJy7w==.jpg",
-    description: "Set completo de arte con 180 piezas en maleta de madera, ideal para creatividad"
+    description: "Set completo de arte con 180 piezas en maleta de madera, ideal para creatividad",
+    category: "Librería"
   },
   {
     id: 14,
     name: "Maleta de Plumones 80 Piezas",
     price: 32990,
     image: "/images/juguetes/libreria/maletadeplumonesde80piezas/2xKvxI0PoB2FbTvN4+HPJA==.jpg",
-    description: "Set de 80 plumones y marcadores en maleta organizadora"
+    description: "Set de 80 plumones y marcadores en maleta organizadora",
+    category: "Librería"
   },
   {
     id: 15,
     name: "Mesa y Sillas Infantil",
     price: 39990,
     image: "/images/juguetes/libreria/mesaysillasinfantil/2NHTYN8GJnO9ChovZXBnGw==.jpg",
-    description: "Conjunto de mesa y sillas de madera para niños, ideal para estudiar y jugar"
+    description: "Conjunto de mesa y sillas de madera para niños, ideal para estudiar y jugar",
+    category: "Librería"
   }
 ];
 
