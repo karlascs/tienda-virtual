@@ -238,7 +238,7 @@ export default function ActividadPage() {
                   productName={product.name}
                   className="card-carousel"
                 />
-                <div className="card body" style={{ padding: '16px' }}>
+                <div className="body" style={{ padding: '16px' }}>
                   <h3 style={{ 
                     fontSize: '18px', 
                     fontWeight: '600',

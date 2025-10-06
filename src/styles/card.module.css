@@ -10,4 +10,18 @@
 .card {
   display: flex;
   flex-direction: column; /* Imagen arriba, contenido abajo */
+  height: 100%;           /* Usar toda la altura disponible */
+}
+
+/* Asegurar que las imágenes mantengan su aspecto */
+.card img {
+  flex-shrink: 0;         /* No permitir que la imagen se comprima */
+}
+
+/* El cuerpo de la tarjeta debe crecer para llenar el espacio */
+.card .body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
