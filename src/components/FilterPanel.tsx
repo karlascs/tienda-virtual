@@ -119,7 +119,7 @@ export default function FilterPanel({ products, isOpen, onClose }: FilterPanelPr
                   name="sortBy"
                   value="name"
                   checked={filters.sortBy === 'name'}
-                  onChange={(e) => setSortBy(e.target.value as any)}
+                  onChange={(e) => setSortBy(e.target.value as 'name' | 'price-asc' | 'price-desc' | 'category')}
                   className={styles.radioInput}
                 />
                 <span className={styles.radioCustom}></span>
@@ -132,7 +132,7 @@ export default function FilterPanel({ products, isOpen, onClose }: FilterPanelPr
                   name="sortBy"
                   value="price-asc"
                   checked={filters.sortBy === 'price-asc'}
-                  onChange={(e) => setSortBy(e.target.value as any)}
+                  onChange={(e) => setSortBy(e.target.value as 'name' | 'price-asc' | 'price-desc' | 'category')}
                   className={styles.radioInput}
                 />
                 <span className={styles.radioCustom}></span>
@@ -145,7 +145,7 @@ export default function FilterPanel({ products, isOpen, onClose }: FilterPanelPr
                   name="sortBy"
                   value="price-desc"
                   checked={filters.sortBy === 'price-desc'}
-                  onChange={(e) => setSortBy(e.target.value as any)}
+                  onChange={(e) => setSortBy(e.target.value as 'name' | 'price-asc' | 'price-desc' | 'category')}
                   className={styles.radioInput}
                 />
                 <span className={styles.radioCustom}></span>
@@ -158,7 +158,7 @@ export default function FilterPanel({ products, isOpen, onClose }: FilterPanelPr
                   name="sortBy"
                   value="category"
                   checked={filters.sortBy === 'category'}
-                  onChange={(e) => setSortBy(e.target.value as any)}
+                  onChange={(e) => setSortBy(e.target.value as 'name' | 'price-asc' | 'price-desc' | 'category')}
                   className={styles.radioInput}
                 />
                 <span className={styles.radioCustom}></span>

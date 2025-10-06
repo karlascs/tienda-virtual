@@ -154,7 +154,7 @@ export default function WishlistPage() {
                   </div>
                   
                   <ProductCarousel 
-                    images={product.images} 
+                    images={product.images || [product.image]} 
                     productName={product.name}
                     className="card-carousel"
                   />
@@ -333,6 +333,7 @@ export default function WishlistPage() {
             setIsModalOpen(false);
             setSelectedProduct(null);
           }}
+          onAddToCart={handleAddToCart}
         />
       )}
     </>

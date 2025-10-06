@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
   },
   // Asegurar que Next.js use el directorio src/
   pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
+  // Configuración actualizada para Next.js 15
+  serverExternalPackages: [],
 };
 
 export default nextConfig;

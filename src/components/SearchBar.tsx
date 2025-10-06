@@ -192,7 +192,7 @@ export default function SearchBar({
                 </svg>
               </div>
               <p className={styles.noResultsText}>
-                No se encontraron productos para "{searchTerm}"
+                No se encontraron productos para &quot;{searchTerm}&quot;
               </p>
               <p className={styles.noResultsSubtext}>
                 Intenta con otros términos de búsqueda

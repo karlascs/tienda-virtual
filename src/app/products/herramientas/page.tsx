@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import Header from "@/components/Header";
-import ProductCarousel from "@/components/ProductCarousel";
+import ProductCard from "@/components/ProductCard";
 import ProductModal from "@/components/ProductModal";
+import WishlistButton from "@/components/WishlistButton";
 import { useCart } from "@/context/CartContext";
+import { Product } from "@/data/products";
 
 /**
  * Productos de Herramientas - IZA & CAS
@@ -14,24 +16,15 @@ import { useCart } from "@/context/CartContext";
  * Con funcionalidad completa de carrito y modal
  */
 
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  images: string[];
-  description: string;
-  category: string;
-}
-
 // Datos reales de productos de herramientas con imágenes subidas
-const HERRAMIENTAS_PRODUCTS = [
+const HERRAMIENTAS_PRODUCTS: Product[] = [
   // === CATEGORÍA AUTOMOTRIZ ===
   {
     id: 1,
     name: "Cables Auxiliares para Auto",
     price: 7990,
     image: "/images/herramientas/car/cableAuxiliares/0WNyc+Si42f13LcBw7Uw8A==.jpg",
+    images: ["/images/herramientas/car/cableAuxiliares/0WNyc+Si42f13LcBw7Uw8A==.jpg"],
     description: "Cables auxiliares de alta calidad para arranque de vehículos",
     category: "Automotriz"
   },
@@ -40,6 +33,7 @@ const HERRAMIENTAS_PRODUCTS = [
     name: "Compresor de Aire Portátil",
     price: 16990,
     image: "/images/herramientas/car/compresordeaireportatil/6uxYH0xUbI5Ia7hYcbirA==.jpg",
+    images: ["/images/herramientas/car/compresordeaireportatil/6uxYH0xUbI5Ia7hYcbirA==.jpg"],
     description: "Compresor portátil para inflar neumáticos y equipos deportivos",
     category: "Automotriz"
   },
@@ -48,6 +42,7 @@ const HERRAMIENTAS_PRODUCTS = [
     name: "Espejo Retrovisor con Cámara",
     price: 17990,
     image: "/images/herramientas/car/espejoretrovisorcon camara/Puvs6DbFSFmAOHTx3srljQ==.jpg",
+    images: ["/images/herramientas/car/espejoretrovisorcon camara/Puvs6DbFSFmAOHTx3srljQ==.jpg"],
     description: "Espejo retrovisor inteligente con cámara de seguridad integrada",
     category: "Automotriz"
   },
@@ -56,6 +51,7 @@ const HERRAMIENTAS_PRODUCTS = [
     name: "Tabla Volante Multifuncional",
     price: 10990,
     image: "/images/herramientas/car/tabavolante/Iovi68LXRxpNSbZYaP1J1Q==.jpg",
+    images: ["/images/herramientas/car/tabavolante/Iovi68LXRxpNSbZYaP1J1Q==.jpg"],
     description: "Tabla para volante ajustable, ideal para comer o trabajar en el auto",
     category: "Automotriz"
   },
@@ -66,6 +62,7 @@ const HERRAMIENTAS_PRODUCTS = [
     name: "Foco LED AC 200W",
     price: 12990,
     image: "/images/herramientas/iluminacion/focoledacorriente200w/2TSThogXVzL0xN9w3e4OQ==.jpg",
+    images: ["/images/herramientas/iluminacion/focoledacorriente200w/2TSThogXVzL0xN9w3e4OQ==.jpg"],
     description: "Foco LED de alta potencia para iluminación exterior",
     category: "Iluminación"
   },
@@ -74,6 +71,7 @@ const HERRAMIENTAS_PRODUCTS = [
     name: "Foco LED AC 100W",
     price: 9990,
     image: "/images/herramientas/iluminacion/focoledcorriente100w/9C9rrsRtNG1kyKwEQAQmMg==.jpg",
+    images: ["/images/herramientas/iluminacion/focoledcorriente100w/9C9rrsRtNG1kyKwEQAQmMg==.jpg"],
     description: "Foco LED eficiente para uso doméstico e industrial",
     category: "Iluminación"
   },
@@ -82,6 +80,7 @@ const HERRAMIENTAS_PRODUCTS = [
     name: "Foco Solar 260W",
     price: 21990,
     image: "/images/herramientas/iluminacion/focosolar260w/AzFQZIjc2Lb0Axc+sCfFw==.jpg",
+    images: ["/images/herramientas/iluminacion/focosolar260w/AzFQZIjc2Lb0Axc+sCfFw==.jpg"],
     description: "Foco solar de alta potencia con panel integrado",
     category: "Iluminación"
   },
@@ -90,6 +89,7 @@ const HERRAMIENTAS_PRODUCTS = [
     name: "Foco Solar 50W con Panel",
     price: 14990,
     image: "/images/herramientas/iluminacion/focosolar50wconpanel/8mEb4UzQDQa8dXrQStOKA==.jpg",
+    images: ["/images/herramientas/iluminacion/focosolar50wconpanel/8mEb4UzQDQa8dXrQStOKA==.jpg"],
     description: "Foco solar con panel separado y control remoto",
     category: "Iluminación"
   },
@@ -98,6 +98,7 @@ const HERRAMIENTAS_PRODUCTS = [
     name: "Foco Solar con Panel 100W",
     price: 9990,
     image: "/images/herramientas/iluminacion/focosolarconpanel100w/6kohZNLgUWtytLE0OMoILw==.jpg",
+    images: ["/images/herramientas/iluminacion/focosolarconpanel100w/6kohZNLgUWtytLE0OMoILw==.jpg"],
     description: "Sistema de iluminación solar profesional 100W",
     category: "Iluminación"
   },
@@ -106,6 +107,7 @@ const HERRAMIENTAS_PRODUCTS = [
     name: "Foco Solar con Sensor",
     price: 9990,
     image: "/images/herramientas/iluminacion/focosolarconsensor/1RSAVCIjArog3zLC1C4w==.jpg",
+    images: ["/images/herramientas/iluminacion/focosolarconsensor/1RSAVCIjArog3zLC1C4w==.jpg"],
     description: "Foco solar automático con sensor de movimiento",
     category: "Iluminación"
   },
@@ -237,124 +239,22 @@ export default function HerramientasPage() {
 
           {/* Grid de productos */}
           <div className="grid" style={{ marginBottom: '60px' }}>
-            {HERRAMIENTAS_PRODUCTS.map((product) => {
-              // Mapeo de imágenes adicionales para productos con múltiples fotos
-              const imageMap: Record<number, string[]> = {
-                1: [
-                  "/images/herramientas/car/cableAuxiliares/0WNyc+Si42f13LcBw7Uw8A==.jpg",
-                  "/images/herramientas/car/cableAuxiliares/3n8jzajci1GGFRG8R83Bgg==.jpg",
-                  "/images/herramientas/car/cableAuxiliares/mesBj59LDacXe9BCEB01NA==.jpg"
-                ],
-                2: [
-                  "/images/herramientas/car/compresordeaireportatil/6uxYH0xUbI5Ia7hYcbirA==.jpg",
-                  "/images/herramientas/car/compresordeaireportatil/7BZb8hjr3ve8Gg4WmUrCg==.jpg",
-                  "/images/herramientas/car/compresordeaireportatil/Kt38gEfohS2vK+Girs4ftA==.jpg"
-                ],
-                3: [
-                  "/images/herramientas/car/espejoretrovisorcon camara/Puvs6DbFSFmAOHTx3srljQ==.jpg",
-                  "/images/herramientas/car/espejoretrovisorcon camara/mCO5zItdIwBzCz5uukKeA==.jpg",
-                  "/images/herramientas/car/espejoretrovisorcon camara/rZUpLYy0SRxT5eSdu6WXA==.jpg",
-                  "/images/herramientas/car/espejoretrovisorcon camara/SZhUJkAPWGX9ufaN9D2HOA==.jpg"
-                ],
-                6: [
-                  "/images/herramientas/iluminacion/focoledcorriente100w/9C9rrsRtNG1kyKwEQAQmMg==.jpg",
-                  "/images/herramientas/iluminacion/focoledcorriente100w/EiOKxqzOB54MLgcYkk4Hog==.jpg",
-                  "/images/herramientas/iluminacion/focoledcorriente100w/xNFqnNL9fuFKET8tVxx1Lw==.jpg"
-                ],
-                7: [
-                  "/images/herramientas/iluminacion/focosolar260w/AzFQZIjc2Lb0Axc+sCfFw==.jpg",
-                  "/images/herramientas/iluminacion/focosolar260w/hQkiu7yLkcdqxtRTBaCuzQ==.jpg",
-                  "/images/herramientas/iluminacion/focosolar260w/Rzgomwvl0W8PanEOViBlLA==.jpg",
-                  "/images/herramientas/iluminacion/focosolar260w/S9Ox0R3F2Zl8uIffzEnE2Q==.jpg",
-                  "/images/herramientas/iluminacion/focosolar260w/wT7ZmKqIU8HEsmYFInjEAg==.jpg",
-                  "/images/herramientas/iluminacion/focosolar260w/yMZeHSe0jmMeTfIOcV0cXQ==.jpg"
-                ]
-              };
-              
-              // Usar el mapeo de imágenes o imagen única
-              const images = imageMap[product.id] || [product.image];
-              const productWithImages = { ...product, images };
-              
-              return (
-              <div key={product.id} className="card">
-                <ProductCarousel 
-                  images={productWithImages.images} 
-                  productName={product.name}
-                  className="card-carousel"
+            {HERRAMIENTAS_PRODUCTS.map((product) => (
+              <div key={product.id} className="card" style={{ position: 'relative' }}>
+                <WishlistButton 
+                  product={product} 
+                  className="onCard" 
                 />
-                <div className="body" style={{ padding: '16px' }}>
-                  <h3 style={{ 
-                    fontSize: '18px', 
-                    fontWeight: '600',
-                    marginBottom: '8px',
-                    color: 'var(--text-primary)'
-                  }}>
-                    {product.name}
-                  </h3>
-                  <p style={{ 
-                    fontSize: '14px',
-                    color: 'var(--text-secondary)',
-                    marginBottom: '12px',
-                    lineHeight: '1.4'
-                  }}>
-                    {product.description}
-                  </p>
-                  <div className="price" style={{ 
-                    fontSize: '20px',
-                    fontWeight: '700',
-                    color: 'var(--brand)'
-                  }}>
-                    ${product.price.toLocaleString('es-CL')}
-                  </div>
-                  <div className="productActions" style={{
-                    display: 'flex',
-                    gap: '12px',
-                    marginTop: '16px',
-                    paddingTop: '16px',
-                    borderTop: '1px solid var(--border-color)'
-                  }}>
-                    <button 
-                      className="addToCartBtn"
-                      onClick={() => handleAddToCart(productWithImages)}
-                      style={{
-                        flex: '1',
-                        background: 'linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%)',
-                        color: 'white',
-                        border: 'none',
-                        padding: '12px 16px',
-                        borderRadius: '8px',
-                        fontWeight: '600',
-                        fontSize: '14px',
-                        cursor: 'pointer',
-                        transition: 'all 0.3s ease',
-                        boxShadow: '0 4px 12px rgba(45, 74, 74, 0.2)'
-                      }}
-                    >
-                      🛒 Añadir al carrito
-                    </button>
-                    <button 
-                      className="viewDetailsBtn"
-                      onClick={() => handleViewDetails(productWithImages)}
-                      style={{
-                        background: 'transparent',
-                        color: 'var(--brand)',
-                        border: '2px solid var(--brand)',
-                        padding: '12px 16px',
-                        borderRadius: '8px',
-                        fontWeight: '600',
-                        fontSize: '14px',
-                        cursor: 'pointer',
-                        transition: 'all 0.3s ease',
-                        whiteSpace: 'nowrap'
-                      }}
-                    >
-                      Ver detalles
-                    </button>
-                  </div>
-                </div>
+                
+                {/* Tarjeta de producto minimalista */}
+                <ProductCard
+                  name={product.name}
+                  price={product.price}
+                  image={product.image}
+                  onClick={() => handleViewDetails(product)}
+                />
               </div>
-              );
-            })}
+            ))}
           </div>
         </div>
       </main>

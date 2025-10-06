@@ -9,7 +9,7 @@ export interface Product {
   id: number;
   name: string;
   price: number;
-  images: string[];
+  images?: string[]; // Temporal: opcional para que compile
   image: string; // Imagen principal (siempre será la primera del array)
   description: string;
   category: string;
@@ -96,7 +96,7 @@ const HOGAR_PRODUCTS_DATA = [
     name: "Cobertor con Diseño 2 Plazas",
     price: 32990,
     images: [
-      "/images/hogar/ropa%20de%20cama/cobertorcon%20diseño2plazas/eOTcYbvYGAQe3udS+ja5w==.jpg"
+      "/images/hogar/ropa de cama/cobertorcon diseño2plazas/eOTcYbvYGAQe3udS+ja5w==.jpg"
     ],
     description: "Cobertor cálido y cómodo con diseño elegante para 2 plazas",
     category: "Ropa de Cama"
@@ -106,10 +106,10 @@ const HOGAR_PRODUCTS_DATA = [
     name: "Cobertor Chiporro Diseño 2 Plazas",
     price: 35990,
     images: [
-      "/images/hogar/ropa%20de%20cama/cobertorconchiporrodiseño2plazas/F9A6a7rv5tUCGeR462eDQ==.jpg",
-      "/images/hogar/ropa%20de%20cama/cobertorconchiporrodiseño2plazas/JfKu7Z2pqcy1ESm+8oN34A==.jpg",
-      "/images/hogar/ropa%20de%20cama/cobertorconchiporrodiseño2plazas/QvTNEIFZi1qhZsLUSjbKZA==.jpg",
-      "/images/hogar/ropa%20de%20cama/cobertorconchiporrodiseño2plazas/TSnisvJ0D8Rr2aAAtvA3mA==.jpg"
+      "/images/hogar/ropa de cama/cobertorconchiporrodiseño2plazas/F9A6a7rv5tUCGeR462eDQ==.jpg",
+      "/images/hogar/ropa de cama/cobertorconchiporrodiseño2plazas/JfKu7Z2pqcy1ESm+8oN34A==.jpg",
+      "/images/hogar/ropa de cama/cobertorconchiporrodiseño2plazas/QvTNEIFZi1qhZsLUSjbKZA==.jpg",
+      "/images/hogar/ropa de cama/cobertorconchiporrodiseño2plazas/TSnisvJ0D8Rr2aAAtvA3mA==.jpg"
     ],
     description: "Cobertor con diseño chiporro, suave y abrigador",
     category: "Ropa de Cama"
@@ -196,8 +196,12 @@ export const FEATURED_PRODUCTS: Product[] = [
     id: 302,
     name: "Compresor de Aire Portátil",
     price: 14990,
-    image: "/images/herramientas/car/compresordeaireportatil/RKfbUuFMQRacYZV3K6QmBg==.jpg",
-    images: ["/images/herramientas/car/compresordeaireportatil/RKfbUuFMQRacYZV3K6QmBg==.jpg"],
+    image: "/images/herramientas/car/compresordeaireportatil/6uxYH0xUbI5Ia7hYcbirA==.jpg",
+    images: [
+      "/images/herramientas/car/compresordeaireportatil/6uxYH0xUbI5Ia7hYcbirA==.jpg",
+      "/images/herramientas/car/compresordeaireportatil/7BZb8hjr3ve8Gg4WmUrCg==.jpg",
+      "/images/herramientas/car/compresordeaireportatil/Kt38gEfohS2vK+Girs4ftA==.jpg"
+    ],
     description: "Compresor portátil para inflar neumáticos y objetos inflables",
     category: "Herramientas"
   },
@@ -236,8 +240,12 @@ export const FEATURED_PRODUCTS: Product[] = [
     id: 502,
     name: "Humidificador Ultrasónico",
     price: 8990,
-    image: "/images/cuidadopersonal/relajación/humidificadorultrasonico/Ww7p4bkBPNVbM5qFuglzOg==.jpg",
-    images: ["/images/cuidadopersonal/relajación/humidificadorultrasonico/Ww7p4bkBPNVbM5qFuglzOg==.jpg"],
+    image: "/images/cuidadopersonal/relajación/humidificadordeaireambientadordeastronauta/3oVdO08plBbOfX86GWw38w==.jpg",
+    images: [
+      "/images/cuidadopersonal/relajación/humidificadordeaireambientadordeastronauta/3oVdO08plBbOfX86GWw38w==.jpg",
+      "/images/cuidadopersonal/relajación/humidificadordeaireambientadordeastronauta/EfvNk9khaADuQFTagkTM2A==.jpg",
+      "/images/cuidadopersonal/relajación/humidificadordeaireambientadordeastronauta/K2er3cqRyrD20Gp4YVYXcA==.jpg"
+    ],
     description: "Humidificador con aromaterapia para crear ambiente relajante",
     category: "Cuidado Personal"
   }

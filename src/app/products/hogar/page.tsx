@@ -2,23 +2,16 @@
 
 import { useState } from "react";
 import Header from "@/components/Header";
-import ProductCarousel from "@/components/ProductCarousel";
+import ProductCard from "@/components/ProductCard";
 import ProductModal from "@/components/ProductModal";
 import WishlistButton from "@/components/WishlistButton";
-import FilterPanel from "@/components/FilterPanel";
 import { useCart } from "@/context/CartContext";
-import { useFilters } from "@/context/FilterContext";
 import { HOGAR_PRODUCTS, Product } from "@/data/products";
 
 export default function HogarPage() {
   const { addToCart } = useCart();
-  const { applyFilters } = useFilters();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
-
-  // Aplicar filtros a los productos
-  const filteredProducts = applyFilters(HOGAR_PRODUCTS);
 
   const handleViewDetails = (product: Product) => {
     setSelectedProduct(product);
@@ -62,87 +55,18 @@ export default function HogarPage() {
           <div className="grid" style={{ marginBottom: '60px' }}>
             {HOGAR_PRODUCTS.map((product) => (
               <div key={product.id} className="card" style={{ position: 'relative' }}>
-                {/* Botón de wishlist */}
                 <WishlistButton 
                   product={product} 
                   className="onCard" 
                 />
                 
-                <ProductCarousel 
-                  images={product.images} 
-                  productName={product.name}
-                  className="card-carousel"
+                {/* Tarjeta de producto minimalista */}
+                <ProductCard
+                  name={product.name}
+                  price={product.price}
+                  image={product.image}
+                  onClick={() => handleViewDetails(product)}
                 />
-                <div className="body" style={{ padding: '16px' }}>
-                  <h3 style={{ 
-                    fontSize: '18px', 
-                    fontWeight: '600',
-                    marginBottom: '8px',
-                    color: 'var(--text-primary)'
-                  }}>
-                    {product.name}
-                  </h3>
-                  <p style={{ 
-                    fontSize: '14px',
-                    color: 'var(--text-secondary)',
-                    marginBottom: '12px',
-                    lineHeight: '1.4'
-                  }}>
-                    {product.description}
-                  </p>
-                  <div className="price" style={{ 
-                    fontSize: '20px',
-                    fontWeight: '700',
-                    color: 'var(--brand)'
-                  }}>
-                    ${product.price.toLocaleString('es-CL')}
-                  </div>
-                  <div className="productActions" style={{
-                    display: 'flex',
-                    gap: '12px',
-                    marginTop: '16px',
-                    paddingTop: '16px',
-                    borderTop: '1px solid var(--border-color)'
-                  }}>
-                    <button 
-                      className="addToCartBtn"
-                      onClick={() => handleAddToCart(product)}
-                      style={{
-                        flex: '1',
-                        background: 'linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%)',
-                        color: 'white',
-                        border: 'none',
-                        padding: '12px 16px',
-                        borderRadius: '8px',
-                        fontWeight: '600',
-                        fontSize: '14px',
-                        cursor: 'pointer',
-                        transition: 'all 0.3s ease',
-                        boxShadow: '0 4px 12px rgba(45, 74, 74, 0.2)'
-                      }}
-                    >
-                      🛒 Añadir al carrito
-                    </button>
-                    <button 
-                      className="viewDetailsBtn"
-                      onClick={() => handleViewDetails(product)}
-                      style={{
-                        background: 'transparent',
-                        color: 'var(--brand)',
-                        border: '2px solid var(--brand)',
-                        padding: '12px 16px',
-                        borderRadius: '8px',
-                        fontWeight: '600',
-                        fontSize: '14px',
-                        cursor: 'pointer',
-                        transition: 'all 0.3s ease',
-                        whiteSpace: 'nowrap'
-                      }}
-                    >
-                      Ver detalles
-                    </button>
-                  </div>
-                </div>
               </div>
             ))}
           </div>

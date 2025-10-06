@@ -2,28 +2,31 @@
    VARIABLES CSS - SISTEMA DE DISEÑO IZA&CAS
    =================================== */
 :root { 
-  --bg: #f7f5f3;           /* Fondo principal - beige muy claro */
+  --bg: #f5f2ed;           /* Fondo principal - beige cálido de la imagen */
   --card: #ffffff;         /* Fondo de tarjetas - blanco puro */
-  --text: #2d4a4a;         /* Texto principal - verde oscuro */
-  --muted: #6b7280;        /* Texto secundario - gris cálido */
-  --brand: #2d4a4a;        /* Color de marca - verde oscuro teal */
-  --brand-light: #4a6b6b; /* Color de marca claro */
-  --accent: #ebc49a;       /* Color de acento - beige dorado */
-  --border: #e8e4e0;       /* Bordes - beige claro */
-  --shadow: rgba(45, 74, 74, 0.1); /* Sombras con tinte verde */
+  --text: #2c4a43;         /* Texto principal - verde oscuro del logo */
+  --muted: #6b7069;        /* Texto secundario - gris verdoso */
+  --brand: #2c4a43;        /* Color de marca - verde oscuro IZA&CAS */
+  --brand-light: #4a6b5f;  /* Color de marca más claro */
+  --brand-dark: #1e3329;   /* Color de marca más oscuro */
+  --accent: #e8ddd0;       /* Color de acento - beige suave */
+  --accent-hover: #ddd0bf; /* Color de acento hover */
+  --border: #e0d5c7;       /* Bordes - beige medio */
+  --shadow: rgba(44, 74, 67, 0.12); /* Sombras con tinte verde IZA&CAS */
   
   /* Variables adicionales para categorías */
-  --background-secondary: #f1efed;  /* Fondo secundario beige */
+  --background-secondary: #f0eae0;  /* Fondo secundario beige cálido */
   --text-primary: var(--text);      /* Texto principal */
   --text-secondary: var(--muted);   /* Texto secundario */
   --primary-color: var(--brand);    /* Color primario */
   --border-color: var(--border);    /* Color de borde */
   --card-background: var(--card);   /* Fondo de tarjetas */
   
-  /* Nuevos colores para gradientes */
-  --gradient-start: #2d4a4a;        /* Verde oscuro */
-  --gradient-mid: #4a6b6b;          /* Verde medio */
-  --gradient-end: #d4a574;          /* Beige dorado */
+  /* Colores IZA&CAS para gradientes */
+  --gradient-start: #2c4a43;        /* Verde oscuro principal */
+  --gradient-mid: #4a6b5f;          /* Verde medio */
+  --gradient-end: #e8ddd0;          /* Beige cálido */
+  --gradient-soft: #f5f2ed;         /* Beige muy suave */
 }
 
 /* ===================================

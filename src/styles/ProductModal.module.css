@@ -1,12 +1,12 @@
-/* Modal de detalles del producto */
+/* Modal de detalles del producto - Versión E-commerce Profesional */
 .modalOverlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(4px);
+  background: rgba(44, 74, 67, 0.8);
+  backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,38 +18,39 @@
 .modalContent {
   background: white;
   border-radius: 16px;
-  max-width: 900px;
+  max-width: 1000px;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
   animation: slideIn 0.3s ease-out;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 60px rgba(44, 74, 67, 0.3);
 }
 
 .closeButton {
   position: absolute;
   top: 16px;
   right: 16px;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
+  width: 44px;
+  height: 44px;
+  font-size: 18px;
   cursor: pointer;
   z-index: 10001;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
-  color: var(--text-primary);
+  color: #2c4a43;
+  font-weight: bold;
 }
 
 .closeButton:hover {
   background: white;
   transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(44, 74, 67, 0.2);
 }
 
 .modalBody {
@@ -58,23 +59,112 @@
   gap: 0;
 }
 
+/* Sección de imágenes mejorada */
 .imageSection {
-  background: var(--background-secondary);
+  background: #f5f2ed;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mainImageContainer {
+  position: relative;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(44, 74, 67, 0.1);
+}
+
+.mainImage {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+/* Controles de navegación de imágenes */
+.imageNavButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(44, 74, 67, 0.8);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px;
-  min-height: 400px;
 }
 
-.productImage {
-  max-width: 100%;
-  max-height: 400px;
-  object-fit: contain;
+.imageNavButton:hover {
+  background: #2c4a43;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.prevButton {
+  left: 10px;
+}
+
+.nextButton {
+  right: 10px;
+}
+
+.imageCounter {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(44, 74, 67, 0.8);
+  color: white;
+  padding: 4px 12px;
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  font-size: 12px;
+  font-weight: 500;
 }
 
+/* Thumbnails */
+.thumbnailContainer {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 10px 0;
+}
+
+.thumbnail {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumbnail:hover {
+  border-color: #4a6b5f;
+  transform: scale(1.05);
+}
+
+.activeThumbnail {
+  border-color: #2c4a43;
+  box-shadow: 0 0 0 2px rgba(44, 74, 67, 0.2);
+}
+
+/* Sección de información */
 .infoSection {
   padding: 40px;
   display: flex;
@@ -83,157 +173,196 @@
 }
 
 .categoryTag {
-  background: var(--accent);
-  color: var(--brand);
-  padding: 6px 12px;
+  background: linear-gradient(135deg, #e8ddd0 0%, #f0eae0 100%);
+  color: #2c4a43;
+  padding: 8px 16px;
   border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   width: fit-content;
+  border: 1px solid rgba(232, 221, 208, 0.5);
 }
 
 .productTitle {
   font-size: 28px;
   font-weight: 700;
-  color: var(--text-primary);
-  margin: 0;
+  color: #2c4a43;
   line-height: 1.3;
+  margin: 0;
 }
 
 .productDescription {
-  color: var(--text-secondary);
+  color: #6b7069;
   font-size: 16px;
   line-height: 1.6;
   margin: 0;
+  background: rgba(245, 242, 237, 0.5);
+  padding: 16px;
+  border-radius: 8px;
+  border-left: 3px solid #4a6b5f;
 }
 
 .priceSection {
-  border-top: 2px solid var(--border-color);
-  border-bottom: 2px solid var(--border-color);
-  padding: 20px 0;
+  margin: 10px 0;
 }
 
 .price {
   font-size: 32px;
-  font-weight: 700;
-  color: var(--brand);
-  display: block;
+  font-weight: 800;
+  color: #2c4a43;
+  background: linear-gradient(135deg, #e8ddd0 0%, #f0eae0 100%);
+  padding: 12px 20px;
+  border-radius: 12px;
+  display: inline-block;
+  border: 2px solid rgba(232, 221, 208, 0.6);
+  box-shadow: 0 4px 12px rgba(44, 74, 67, 0.1);
 }
 
 .actionButtons {
   display: flex;
   gap: 12px;
-  flex-direction: column;
+  margin: 20px 0;
 }
 
 .addToCartBtn {
-  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
+  flex: 2;
+  background: linear-gradient(135deg, #4a6b5f 0%, #2c4a43 100%);
   color: white;
   border: none;
-  padding: 16px 24px;
   border-radius: 12px;
-  font-weight: 600;
+  padding: 16px 24px;
   font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 16px rgba(45, 74, 74, 0.3);
+  box-shadow: 0 4px 12px rgba(44, 74, 67, 0.2);
 }
 
 .addToCartBtn:hover {
-  background: linear-gradient(135deg, var(--brand-light) 0%, var(--accent) 100%);
   transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(45, 74, 74, 0.4);
+  box-shadow: 0 6px 20px rgba(44, 74, 67, 0.3);
+  background: linear-gradient(135deg, #2c4a43 0%, #1e3329 100%);
 }
 
 .continueShoppingBtn {
+  flex: 1;
   background: transparent;
-  color: var(--brand);
-  border: 2px solid var(--brand);
-  padding: 14px 24px;
+  color: #2c4a43;
+  border: 2px solid #e8ddd0;
   border-radius: 12px;
-  font-weight: 600;
+  padding: 16px 24px;
   font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .continueShoppingBtn:hover {
-  background: var(--brand);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(45, 74, 74, 0.2);
+  background: #e8ddd0;
+  transform: translateY(-1px);
 }
 
 .features {
-  background: var(--background-secondary);
+  background: rgba(255, 255, 255, 0.7);
   padding: 20px;
   border-radius: 12px;
-  margin-top: 20px;
+  border: 1px solid rgba(232, 221, 208, 0.5);
 }
 
 .features h3 {
+  color: #2c4a43;
+  margin: 0 0 12px 0;
   font-size: 18px;
   font-weight: 600;
-  color: var(--text-primary);
-  margin: 0 0 16px 0;
 }
 
 .features ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
 }
 
 .features li {
-  color: var(--text-secondary);
+  color: #6b7069;
   font-size: 14px;
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  font-weight: 500;
+}
+
+/* Nueva sección de información adicional */
+.additionalInfo {
+  margin-top: 20px;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.infoCard {
+  background: linear-gradient(135deg, #f5f2ed 0%, #e8ddd0 100%);
+  padding: 16px;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid rgba(232, 221, 208, 0.6);
+}
+
+.infoCard h4 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2c4a43;
+}
+
+.infoCard p {
+  margin: 0;
+  font-size: 12px;
+  color: #6b7069;
+  line-height: 1.4;
 }
 
 /* Animaciones */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: scale(0.9) translateY(20px);
+    transform: translateY(-20px) scale(0.95);
   }
   to {
     opacity: 1;
-    transform: scale(1) translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .modalContent {
-    margin: 10px;
-    max-height: 95vh;
+    margin: 0;
+    border-radius: 0;
+    max-height: 100vh;
+    width: 100%;
   }
   
   .modalBody {
     grid-template-columns: 1fr;
+    gap: 0;
   }
   
   .imageSection {
-    min-height: 250px;
     padding: 20px;
   }
   
-  .productImage {
-    max-height: 250px;
+  .mainImage {
+    height: 250px;
   }
   
   .infoSection {
@@ -245,16 +374,24 @@
   }
   
   .price {
-    font-size: 28px;
+    font-size: 24px;
+    padding: 10px 16px;
   }
   
   .actionButtons {
+    flex-direction: column;
+  }
+  
+  .features ul {
+    grid-template-columns: 1fr;
+  }
+  
+  .infoGrid {
+    grid-template-columns: 1fr;
     gap: 8px;
   }
   
-  .addToCartBtn,
-  .continueShoppingBtn {
-    padding: 12px 20px;
-    font-size: 14px;
+  .thumbnailContainer {
+    justify-content: center;
   }
 }

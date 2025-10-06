@@ -2,9 +2,11 @@
 
 import { useState } from 'react';
 import Header from '@/components/Header';
-import ProductCarousel from '@/components/ProductCarousel';
+import ProductCard from '@/components/ProductCard';
 import ProductModal from '@/components/ProductModal';
+import WishlistButton from '@/components/WishlistButton';
 import { useCart } from '@/context/CartContext';
+import { Product } from '@/data/products';
 
 /**
  * Productos de Actividad - IZA & CAS
@@ -13,16 +15,6 @@ import { useCart } from '@/context/CartContext';
  * Incluye: camping, piscina, playa, deportes
  * Con funcionalidad completa de carrito y modal
  */
-
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  images: string[];
-  description: string;
-  category: string;
-}
 
 // Datos reales de productos de actividad con imágenes subidas
 const ACTIVIDAD_PRODUCTS: Product[] = [
@@ -232,82 +224,17 @@ export default function ActividadPage() {
           {/* Grid de productos */}
           <div className="grid" style={{ marginBottom: '60px' }}>
             {ACTIVIDAD_PRODUCTS.map((product) => (
-              <div key={product.id} className="card">
-                <ProductCarousel 
-                  images={product.images} 
-                  productName={product.name}
-                  className="card-carousel"
+              <div key={product.id} className="card" style={{ position: 'relative' }}>
+                <WishlistButton 
+                  product={product} 
+                  className="onCard" 
                 />
-                <div className="body" style={{ padding: '16px' }}>
-                  <h3 style={{ 
-                    fontSize: '18px', 
-                    fontWeight: '600',
-                    marginBottom: '8px',
-                    color: 'var(--text-primary)'
-                  }}>
-                    {product.name}
-                  </h3>
-                  <p style={{ 
-                    fontSize: '14px',
-                    color: 'var(--text-secondary)',
-                    marginBottom: '12px',
-                    lineHeight: '1.4'
-                  }}>
-                    {product.description}
-                  </p>
-                  <div className="price" style={{ 
-                    fontSize: '20px',
-                    fontWeight: '700',
-                    color: 'var(--brand)'
-                  }}>
-                    ${product.price.toLocaleString('es-CL')}
-                  </div>
-                  <div className="productActions" style={{
-                    display: 'flex',
-                    gap: '12px',
-                    marginTop: '16px',
-                    paddingTop: '16px',
-                    borderTop: '1px solid var(--border-color)'
-                  }}>
-                    <button 
-                      className="addToCartBtn"
-                      onClick={() => handleAddToCart(product)}
-                      style={{
-                        flex: '1',
-                        background: 'linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%)',
-                        color: 'white',
-                        border: 'none',
-                        padding: '12px 16px',
-                        borderRadius: '8px',
-                        fontWeight: '600',
-                        fontSize: '14px',
-                        cursor: 'pointer',
-                        transition: 'all 0.3s ease',
-                        boxShadow: '0 4px 12px rgba(45, 74, 74, 0.2)'
-                      }}
-                    >
-                      🛒 Añadir al carrito
-                    </button>
-                    <button 
-                      className="viewDetailsBtn"
-                      onClick={() => handleViewDetails(product)}
-                      style={{
-                        background: 'transparent',
-                        color: 'var(--brand)',
-                        border: '2px solid var(--brand)',
-                        padding: '12px 16px',
-                        borderRadius: '8px',
-                        fontWeight: '600',
-                        fontSize: '14px',
-                        cursor: 'pointer',
-                        transition: 'all 0.3s ease',
-                        whiteSpace: 'nowrap'
-                      }}
-                    >
-                      Ver detalles
-                    </button>
-                  </div>
-                </div>
+                <ProductCard
+                  name={product.name}
+                  price={product.price}
+                  image={product.image}
+                  onClick={() => handleViewDetails(product)}
+                />
               </div>
             ))}
           </div>
