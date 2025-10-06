@@ -1,24 +1,34 @@
 # 🏠 IZA & CAS - Tienda Virtual E-commerce Completa
 
-> **Sistema completo de e-commerce funcional** con carrito de compras, modal de productos, carruseles de imágenes y funcionalidad completa de tienda online desarrollada con Next.js 15, TypeScript y CSS Modules.
+> **Sistema completo de e-commerce funcional** con carrito de compras, modal de productos, sistema de filtros avanzado y funcionalidad completa de tienda online desarrollada con Next.js 15, TypeScript y CSS Modules.
 
 ## 🚀 Demo en Vivo
 
-🔗 **[Ver Demo](https://github.com/karlascs/tienda-virtual)** | 📱 **Responsive Design** | � **E-commerce Funcional** | 🏠 **IZA & CAS**
+🔗 **[Ver Demo](https://github.com/karlascs/tienda-virtual)** | 📱 **Responsive Design** | 🛒 **E-commerce Funcional** | 🏠 **IZA & CAS**
 
 ## ✨ Características Principales
 
 ### 🛒 **E-commerce Funcional Completo**
 - **Carrito de compras** dinámico con React Context
-- **Modal de detalles** de productos interactivo
-- **Botones funcionales** en todas las categorías
+- **Modal de detalles** de productos interactivo con galería de imágenes
+- **Sistema de filtros** avanzado en todas las categorías
+- **Botones funcionales** en todas las categorías con ProductCard minimalista
 - **Contador dinámico** en header del carrito
 - **Notificaciones toast** al añadir productos
 - **Gestión completa** de cantidades y productos
 
-### 🎨 **Diseño y UX Profesional**
+### 🔍 **Sistema de Filtros Avanzado**
+- **FilterPanel** implementado en todas las 6 categorías
+- **Filtros por categoría** con selección múltiple
+- **Filtros por rango de precio** con sliders interactivos
+- **Ordenamiento** por precio, nombre y popularidad
+- **Contador dinámico** de productos encontrados
+- **Botón de acceso** prominente en cada categoría
+
+### 🎨 **Diseño Profesional IZA&CAS**
+- **Diseño minimalista** con colores de marca (#2c4a43, #e8ddd0)
+- **ProductCard unificado** en todas las categorías
 - **Banner IZA&CAS** promocional en página principal
-- **Carruseles de imágenes** con navegación avanzada
 - **Paleta de colores** IZA&CAS consistente
 - **Animaciones suaves** y efectos hover elegantes
 - **Responsive design** optimizado para móviles
@@ -26,12 +36,12 @@
 ### ⚡ **Tecnologías Avanzadas**
 - **Next.js 15** con App Router y Turbopack
 - **TypeScript** para type safety completo
-- **React Context API** para gestión de estado global
+- **React Context API** para gestión de estado global (Cart + Filters)
 - **CSS Modules** para estilos aislados y escalables
 - **Intersection Observer** para animaciones de scroll
 
 ### 🎯 **Funcionalidades Técnicas**
-- **40+ Componentes** reutilizables y documentados
+- **50+ Componentes** reutilizables y documentados
 - **HTML Semántico** para SEO y accesibilidad
 - **Error handling** en carga de imágenes
 - **Performance optimizado** con lazy loading
@@ -214,45 +224,60 @@ npm start
 ## 🧩 Arquitectura de Componentes
 
 ### 🏠 Header
-- Logo Casa Viva como elemento principal y focal
-- Sistema de navegación completo con 5 categorías
+- Logo IZA&CAS como elemento principal y focal
+- Sistema de navegación completo con 6 categorías
+- Barra de búsqueda prominente con SearchBar integrado
+- Dropdown de categorías con iconos representativos
+- Contador dinámico del carrito y wishlist
 - Navegación sticky con backdrop-filter moderno
-- Enlaces directos a páginas específicas de categorías
 - Responsive design optimizado para todos los dispositivos
 
-### 🗂️ Categories (Nuevo)
-- Componente dedicado para mostrar las 5 categorías principales
-- Cards interactivas con iconos representativos
-- Contador dinámico de productos por categoría
-- Enlaces directos a páginas específicas
-- Diseño responsive con CSS Grid avanzado
+### � FilterPanel (Nuevo)
+- **Componente modal** para filtrado avanzado de productos
+- **Filtros por categoría** con checkboxes múltiples
+- **Slider de precio** interactivo con valores dinámicos
+- **Ordenamiento** por precio, nombre y relevancia
+- **Botones de acción** (aplicar, limpiar, cerrar)
+- **Estado persistente** con FilterContext
+- **Responsive design** adaptado a móviles
 
-### 🛒 ProductCard
-- Props completamente tipadas con TypeScript
-- Formateo automático de precios chilenos (CLP)
-- Imágenes optimizadas con object-fit: contain
-- Diseño card moderno con efectos hover
-- Estructura semántica para SEO
+### 🛒 ProductCard (Renovado)
+- **Diseño minimalista** unificado para todas las categorías
+- **Props completamente tipadas** con TypeScript
+- **Formateo automático** de precios chilenos (CLP)
+- **Imágenes optimizadas** con manejo de errores
+- **Colores IZA&CAS** consistentes en toda la aplicación
+- **Efectos hover** profesionales y suaves
+- **Estructura semántica** para SEO
 
 ### 📊 ProductGrid  
-- Layout responsive con CSS Grid automático
-- Catálogo completo con productos reales
-- Auto-fit columns (220px mínimo)
-- Optimización de imágenes sin recortar
-- Manejo eficiente del estado de productos
+- **Layout responsive** con CSS Grid automático
+- **Catálogo completo** con productos reales organizados
+- **Auto-fit columns** (220px mínimo)
+- **Optimización de imágenes** sin recortar
+- **Manejo eficiente** del estado de productos filtrados
 
-### 🛍️ Páginas de Categorías (Nuevas)
-- 5 páginas dedicadas, una por categoría
-- Estructura consistente y reutilizable
-- Catálogos específicos con productos relevantes
-- Navegación breadcrumb implícita
-- Meta tags específicos para SEO
+### 🛍️ Páginas de Categorías (Actualizadas)
+- **6 páginas dedicadas** con FilterPanel integrado
+- **Estructura consistente** y reutilizable
+- **Botón de filtros** prominente con contador
+- **Catálogos específicos** con productos relevantes
+- **Navegación breadcrumb** implícita
+- **Meta tags específicos** para SEO
 
-### 🛒 Página de Carrito (Nueva)
-- Diseño profesional para estado vacío
-- Call-to-action para continuar comprando  
-- Preparado para funcionalidad futura
-- Componente Link optimizado de Next.js
+### � ProductModal (Mejorado)
+- **Galería de imágenes** con navegación avanzada
+- **Thumbnails interactivos** para múltiples vistas
+- **Detalles completos** del producto
+- **Botones de acción** (añadir al carrito, cerrar)
+- **Manejo de imágenes** opcionales con fallbacks
+- **Diseño responsive** para móviles y desktop
+
+### 🛒 Página de Carrito
+- **Diseño profesional** para estado vacío
+- **Call-to-action** para continuar comprando  
+- **Preparado** para funcionalidad futura
+- **Componente Link** optimizado de Next.js
 
 ## 🎯 Objetivos Cumplidos - Sistema Completo
 
@@ -265,9 +290,10 @@ npm start
 - ✅ **Branding**: Logo Casa Viva integrado con favicon y metadatos
 - ✅ **Tema Optimizado**: Diseño claro para máxima visibilidad y usabilidad
 
-### ✅ **Fase 2: Sistema de Navegación (Completada)**
-- ✅ **5 Categorías Principales**: Hogar, Herramientas, Juguetes, Tecnología, Actividad
-- ✅ **Páginas Individuales**: Una página dedicada por cada categoría
+### ✅ **Fase 2: Sistema de Navegación y Filtros (Completada)**
+- ✅ **6 Categorías Principales**: Hogar, Herramientas, Juguetes, Tecnología, Actividad, Cuidado Personal
+- ✅ **Páginas Individuales**: Una página dedicada por cada categoría con FilterPanel
+- ✅ **Sistema de Filtros**: FilterPanel implementado en todas las categorías
 - ✅ **Componente Categories**: Sistema visual de navegación por categorías
 - ✅ **Navegación Consistente**: Header sincronizado con sistema de categorías
 - ✅ **40+ Productos**: Catálogo completo distribuido en todas las categorías
@@ -326,12 +352,13 @@ npm start
 - `/` - Página de inicio con categorías destacadas
 - `/cart` - Carrito de compras (estado vacío profesional)
 
-### Páginas de Categorías
-- `/products/hogar` - 6 productos para el hogar
-- `/products/herramientas` - 8 herramientas profesionales  
-- `/products/juguetes` - 10 juguetes educativos
-- `/products/tecnologia` - 10 productos tecnológicos
-- `/products/actividad` - 6 equipos deportivos
+### Páginas de Categorías (Todas con FilterPanel)
+- `/products/hogar` - 6 productos para el hogar con filtros
+- `/products/herramientas` - 8 herramientas profesionales con filtros
+- `/products/juguetes` - 15 juguetes educativos con filtros
+- `/products/tecnologia` - 8 productos tecnológicos con filtros
+- `/products/actividad` - 9 equipos deportivos con filtros
+- `/products/cuidadopersonal` - 5 productos de cuidado personal con filtros
 
 ### Estructura de Imágenes
 ```
@@ -400,9 +427,10 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 
 ### 🏆 Logros del Proyecto IZA & CAS
 - ✅ **E-commerce Funcional** - Carrito, modal y funcionalidad completa
-- ✅ **Sistema de Carrusel** - Navegación avanzada de imágenes
+- ✅ **Sistema de Filtros** - FilterPanel en todas las 6 categorías
+- ✅ **Diseño Profesional** - ProductCard minimalista y colores IZA&CAS
 - ✅ **Banner Promocional** - IZA&CAS integrado con animaciones
-- ✅ **Gestión de Estado** - React Context API implementado
+- ✅ **Gestión de Estado** - React Context API implementado (Cart + Filters)
 - ✅ **UX/UI Profesional** - Animaciones y efectos elegantes
 - ✅ **Arquitectura Escalable** - Preparado para crecimiento futuro  
 - ✅ **Branding Consistente** - Paleta IZA&CAS en todo el sitio
@@ -412,46 +440,50 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 - ✅ **Documentación Técnica** - README completo y detallado
 
 ### 📊 Estadísticas del Proyecto
-- **35+ productos** distribuidos en 5 categorías
-- **15+ componentes** reutilizables y tipados
-- **8 páginas** con navegación completa y funcionalidad
+- **40+ productos** distribuidos en 6 categorías
+- **20+ componentes** reutilizables y tipados
+- **12 páginas** con navegación completa y funcionalidad
+- **Sistema de filtros** implementado en todas las categorías
 - **Carrito funcional** con gestión completa de estado
-- **Sistema de modal** con detalles de productos
-- **Carruseles avanzados** con múltiples imágenes
-- **Banner promocional** con animaciones
-- **Estructura organizada** de +70 archivos
+- **Sistema de modal** con detalles de productos y galería
+- **ProductCard minimalista** unificado en toda la aplicación
+- **Estructura organizada** de +80 archivos
 - **Responsive design** 100% funcional
 - **TypeScript** coverage completo
+- **Build exitoso** sin errores
 
-### 🆕 Nuevas Funcionalidades Implementadas (v2.0)
+### 🆕 Nuevas Funcionalidades Implementadas (v3.0 - Filtros)
 
-#### 🛒 **Sistema de E-commerce Completo**
+#### � **Sistema de Filtros Completo**
+- **FilterPanel**: Implementado en todas las 6 categorías
+- **FilterContext**: Gestión global del estado de filtros
+- **Filtros por categoría**: Selección múltiple con checkboxes
+- **Filtros por precio**: Slider de rango interactivo
+- **Ordenamiento**: Por precio, nombre y relevancia
+- **Contador dinámico**: Productos encontrados en tiempo real
+
+#### 🎨 **Diseño Profesional Unificado**
+- **ProductCard minimalista**: Componente único para todas las categorías
+- **Colores IZA&CAS**: Verde (#2c4a43) y beige (#e8ddd0) consistentes
+- **Botón de filtros**: "🔍 Filtros" prominente en cada categoría
+- **Modal responsive**: FilterPanel con diseño profesional
+- **Contador de productos**: Indicador visual de resultados
+
+#### 🛒 **E-commerce Mejorado**
 - **CartContext**: Gestión global del estado del carrito
-- **Botones funcionales**: "Añadir al carrito" en todas las categorías
-- **Contador dinámico**: Header actualiza automáticamente
-- **Página de carrito**: Gestión completa con +/- cantidades
-- **Notificaciones**: Toast animadas al añadir productos
-
-#### 📱 **Componentes Avanzados**
-- **ProductModal**: Modal interactivo con detalles completos
-- **ProductCarousel**: Carrusel con navegación por teclado y táctil
-- **Banner**: Componente promocional IZA&CAS responsive
-- **Hooks personalizados**: useScrollAnimation, useCarouselKeyboard
-
-#### 🎨 **Mejoras de Diseño**
-- **Paleta IZA&CAS**: Verde oscuro (#2d4a4a) y beige dorado (#d4a574)
-- **Animaciones suaves**: Scroll animations y efectos hover
-- **CSS Modules**: Estilos específicos por categoría
-- **Error handling**: Placeholders para imágenes faltantes
+- **ProductModal**: Modal con galería de imágenes múltiples
+- **WishlistButton**: Sistema de favoritos integrado
+- **Error handling**: Manejo robusto de imágenes opcionales
+- **Build optimizado**: Compilación exitosa sin errores
 
 #### ⚡ **Optimizaciones Técnicas**
-- **React Context API**: Estado global eficiente
-- **TypeScript**: Tipado completo en todos los componentes
-- **Performance**: Lazy loading y optimización de imágenes
-- **SEO mejorado**: Meta tags y estructura semántica
+- **Interface Product**: Propiedad images opcional para compatibilidad
+- **useFilters hook**: Hook personalizado para gestión de filtros
+- **CSS Modules**: Estilos específicos por componente
+- **TypeScript**: Tipado completo en todos los nuevos componentes
 
 ---
 
 ⭐ **¡IZA & CAS - Tu tienda de confianza para el hogar y más!** 🏠  
 🛍️ **E-commerce completo desarrollado con las últimas tecnologías** 💻  
-🎯 **v2.0 - Carrito funcional, modal de productos y carruseles avanzados** �
+🎯 **v3.0 - Sistema de filtros completo, diseño profesional y funcionalidad avanzada** 🔍

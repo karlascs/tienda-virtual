@@ -5,7 +5,9 @@ import Header from '@/components/Header';
 import ProductCard from '@/components/ProductCard';
 import ProductModal from '@/components/ProductModal';
 import WishlistButton from '@/components/WishlistButton';
+import FilterPanel from '@/components/FilterPanel';
 import { useCart } from '@/context/CartContext';
+import { useFilters } from '@/context/FilterContext';
 import { Product } from '@/data/products';
 
 /**
@@ -70,8 +72,13 @@ const CUIDADO_PERSONAL_PRODUCTS: Product[] = [
 
 export default function CuidadoPersonalPage() {
   const { addToCart } = useCart();
+  const { applyFilters } = useFilters();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
+
+  // Aplicar filtros a los productos
+  const filteredProducts = applyFilters(CUIDADO_PERSONAL_PRODUCTS);
 
   const handleViewDetails = (product: Product) => {
     setSelectedProduct(product);
@@ -110,11 +117,48 @@ export default function CuidadoPersonalPage() {
             }}>
               Productos para tu cuidado personal y bienestar diario
             </p>
+            
+            {/* Controles de filtros */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '16px',
+              flexWrap: 'wrap',
+              marginTop: '24px'
+            }}>
+              <span style={{
+                color: 'var(--text-secondary)',
+                fontSize: '14px'
+              }}>
+                {filteredProducts.length} producto{filteredProducts.length !== 1 ? 's' : ''} encontrado{filteredProducts.length !== 1 ? 's' : ''}
+              </span>
+              
+              <button
+                onClick={() => setShowFilters(true)}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '10px 16px',
+                  background: 'var(--brand)',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                🔍 Filtros
+              </button>
+            </div>
           </div>
 
           {/* Grid de productos */}
           <div className="grid" style={{ marginBottom: '60px' }}>
-            {CUIDADO_PERSONAL_PRODUCTS.map((product) => (
+            {filteredProducts.map((product) => (
               <div key={product.id} className="card" style={{ position: 'relative' }}>
                 <WishlistButton 
                   product={product} 
@@ -133,6 +177,13 @@ export default function CuidadoPersonalPage() {
           </div>
         </div>
       </main>
+      
+      {/* Panel de filtros */}
+      <FilterPanel
+        isOpen={showFilters}
+        onClose={() => setShowFilters(false)}
+        products={CUIDADO_PERSONAL_PRODUCTS}
+      />
       
       {/* Modal para ver detalles del producto */}
       <ProductModal
