@@ -262,3 +262,170 @@
     margin: 2px 0;
   }
 }
+
+/* ===================================
+   NUEVOS ESTILOS PARA FASE 6
+   =================================== */
+
+/* Wrapper de búsqueda */
+.searchWrapper {
+  flex: 1;
+  max-width: 500px;
+  margin: 0 24px;
+}
+
+/* Acciones del usuario (wishlist + carrito) */
+.userActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.actionButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.iconWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--brand);
+  color: white;
+  border-radius: 50%;
+  min-width: 18px;
+  height: 18px;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.actionText {
+  white-space: nowrap;
+}
+
+.wishlistButton:hover {
+  border-color: #ff6b6b;
+}
+
+.cartButton:hover {
+  border-color: var(--brand);
+}
+
+/* Menú móvil mejorado */
+.mobileSearchWrapper {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobileLinks {
+  padding: 16px 0;
+}
+
+.mobileActions {
+  padding: 16px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobileActionButton {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.mobileActionButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(4px);
+}
+
+/* Responsive mejorado */
+@media (max-width: 768px) {
+  .searchWrapper {
+    display: none; /* Ocultar búsqueda en mobile header */
+  }
+  
+  .userActions {
+    gap: 8px;
+  }
+  
+  .actionText {
+    display: none; /* Ocultar texto en móvil */
+  }
+  
+  .actionButton {
+    padding: 8px;
+    min-width: 40px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .userActions {
+    gap: 4px;
+  }
+  
+  .actionButton {
+    padding: 6px;
+    min-width: 36px;
+  }
+  
+  .badge {
+    min-width: 16px;
+    height: 16px;
+    font-size: 10px;
+    top: -6px;
+    right: -6px;
+  }
+}

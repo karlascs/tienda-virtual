@@ -1,0 +1,279 @@
+/* SearchBar.module.css - Estilos para el componente de búsqueda */
+
+.searchContainer {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+}
+
+.searchInputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--background-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.searchInputWrapper:hover {
+  border-color: var(--brand-light);
+  box-shadow: 0 2px 8px rgba(var(--brand-rgb), 0.1);
+}
+
+.searchInputWrapper.focused {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(var(--brand-rgb), 0.1);
+}
+
+.searchIcon {
+  padding: 12px 16px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.searchInputWrapper.focused .searchIcon {
+  color: var(--brand);
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 12px 8px;
+  font-size: 16px;
+  color: var(--text-primary);
+  font-family: inherit;
+}
+
+.searchInput::placeholder {
+  color: var(--text-secondary);
+}
+
+.clearButton {
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+  margin-right: 4px;
+}
+
+.clearButton:hover {
+  color: var(--text-primary);
+}
+
+.loadingSpinner {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--border-color);
+  border-top: 2px solid var(--brand);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Dropdown de resultados */
+.searchDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--background-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  margin-top: 8px;
+  overflow: hidden;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.resultsHeader {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--background-secondary);
+}
+
+.resultsCount {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.searchResults {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.searchResultItem {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.searchResultItem:hover {
+  background: var(--background-secondary);
+}
+
+.searchResultItem:last-child {
+  border-bottom: none;
+}
+
+.productImage {
+  width: 48px;
+  height: 48px;
+  margin-right: 12px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--background-secondary);
+  flex-shrink: 0;
+}
+
+.productImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.searchResultItem:hover .productImage img {
+  transform: scale(1.05);
+}
+
+.productInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.productName {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.productCategory {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 0 0 4px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.productPrice {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--brand);
+  margin: 0;
+}
+
+.moreResults {
+  padding: 12px 16px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 14px;
+  background: var(--background-secondary);
+  border-top: 1px solid var(--border-color);
+}
+
+/* Estado sin resultados */
+.noResults {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.noResultsIcon {
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.noResultsText {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+}
+
+.noResultsSubtext {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .searchContainer {
+    max-width: 100%;
+  }
+  
+  .searchInput {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  .searchDropdown {
+    margin-top: 4px;
+  }
+  
+  .searchResults {
+    max-height: 300px;
+  }
+  
+  .productImage {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  .productName {
+    font-size: 13px;
+  }
+  
+  .productCategory {
+    font-size: 11px;
+  }
+  
+  .productPrice {
+    font-size: 13px;
+  }
+}

@@ -1,10 +1,14 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import ProductCarousel from "@/components/ProductCarousel";
 import ProductModal from "@/components/ProductModal";
+import WishlistButton from "@/components/WishlistButton";
+import FilterPanel from "@/components/FilterPanel";
 import { useCart } from "@/context/CartContext";
+import { useFilters } from "@/context/FilterContext";
+import styles from "@/styles/tecnologia.module.css";
 
 /**
  * Productos de Tecnología - IZA & CAS
@@ -127,8 +131,13 @@ const TECNOLOGIA_PRODUCTS: Product[] = [
 
 export default function TecnologiaPage() {
   const { addToCart } = useCart();
+  const { applyFilters } = useFilters();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
+
+  // Aplicar filtros a los productos
+  const filteredProducts = applyFilters(TECNOLOGIA_PRODUCTS);
 
   const handleViewDetails = (product: Product) => {
     setSelectedProduct(product);
@@ -163,16 +172,61 @@ export default function TecnologiaPage() {
               color: 'var(--text-secondary)', 
               fontSize: '18px',
               maxWidth: '600px',
-              margin: '0 auto'
+              margin: '0 auto 24px auto'
             }}>
               Tecnología moderna para tu día a día
             </p>
+            
+            {/* Controles de filtros */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '16px',
+              flexWrap: 'wrap'
+            }}>
+              <span style={{
+                color: 'var(--text-secondary)',
+                fontSize: '14px'
+              }}>
+                {filteredProducts.length} producto{filteredProducts.length !== 1 ? 's' : ''} encontrado{filteredProducts.length !== 1 ? 's' : ''}
+              </span>
+              
+              <button
+                onClick={() => setShowFilters(true)}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '10px 16px',
+                  background: 'var(--brand)',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polygon points="22,3 2,3 10,12.46 10,19 14,21 14,12.46" />
+                </svg>
+                Filtros
+              </button>
+            </div>
           </div>
 
           {/* Grid de productos */}
           <div className="grid" style={{ marginBottom: '60px' }}>
-            {TECNOLOGIA_PRODUCTS.map((product) => (
-              <div key={product.id} className="card">
+            {filteredProducts.map((product) => (
+              <div key={product.id} className="card" style={{ position: 'relative' }}>
+                {/* Botón de wishlist */}
+                <WishlistButton 
+                  product={product} 
+                  className="onCard" 
+                />
+                
                 <ProductCarousel 
                   images={product.images} 
                   productName={product.name}
@@ -255,11 +309,23 @@ export default function TecnologiaPage() {
       </main>
       
       {/* Modal para ver detalles del producto */}
-      <ProductModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        product={selectedProduct}
-        onAddToCart={handleAddToCart}
+      {selectedProduct && (
+        <ProductModal
+          isOpen={isModalOpen}
+          onClose={() => {
+            setIsModalOpen(false);
+            setSelectedProduct(null);
+          }}
+          product={selectedProduct}
+          onAddToCart={handleAddToCart}
+        />
+      )}
+      
+      {/* Panel de filtros */}
+      <FilterPanel
+        isOpen={showFilters}
+        onClose={() => setShowFilters(false)}
+        products={TECNOLOGIA_PRODUCTS}
       />
       
       <footer 

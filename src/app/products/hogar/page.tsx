@@ -4,13 +4,21 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import ProductCarousel from "@/components/ProductCarousel";
 import ProductModal from "@/components/ProductModal";
+import WishlistButton from "@/components/WishlistButton";
+import FilterPanel from "@/components/FilterPanel";
 import { useCart } from "@/context/CartContext";
+import { useFilters } from "@/context/FilterContext";
 import { HOGAR_PRODUCTS, Product } from "@/data/products";
 
 export default function HogarPage() {
   const { addToCart } = useCart();
+  const { applyFilters } = useFilters();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  // Aplicar filtros a los productos
+  const filteredProducts = applyFilters(HOGAR_PRODUCTS);
 
   const handleViewDetails = (product: Product) => {
     setSelectedProduct(product);
@@ -53,7 +61,13 @@ export default function HogarPage() {
           {/* Grid de productos */}
           <div className="grid" style={{ marginBottom: '60px' }}>
             {HOGAR_PRODUCTS.map((product) => (
-              <div key={product.id} className="card">
+              <div key={product.id} className="card" style={{ position: 'relative' }}>
+                {/* Botón de wishlist */}
+                <WishlistButton 
+                  product={product} 
+                  className="onCard" 
+                />
+                
                 <ProductCarousel 
                   images={product.images} 
                   productName={product.name}
