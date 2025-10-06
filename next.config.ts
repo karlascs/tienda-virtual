@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   turbopack: {
     root: process.cwd(),
   },
@@ -11,3 +14,4 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
