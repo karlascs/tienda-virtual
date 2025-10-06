@@ -8,7 +8,7 @@ import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 import { useSearch } from "@/context/SearchContext";
 import SearchBar from "./SearchBar";
-import { FEATURED_PRODUCTS } from "@/data/products";
+import { FEATURED_PRODUCTS, Product } from "@/data/products";
 
 /**
  * Componente Header Mejorado
@@ -53,7 +53,7 @@ export default function Header() {
     setMenuOpen(false);
   };
 
-  const handleProductSelect = (product: any) => {
+  const handleProductSelect = (product: Product) => {
     // Redirigir a la página del producto (implementar más tarde)
     console.log('Producto seleccionado:', product);
     clearSearch();
@@ -180,3 +180,9 @@ export default function Header() {
     </header>
   );
 }
+
+
+
+
+
+

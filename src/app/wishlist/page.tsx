@@ -333,8 +333,10 @@ export default function WishlistPage() {
             setIsModalOpen(false);
             setSelectedProduct(null);
           }}
+          onAddToCart={handleAddToCart}
         />
       )}
     </>
   );
 }
+
