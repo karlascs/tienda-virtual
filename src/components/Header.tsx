@@ -24,12 +24,12 @@ import { FEATURED_PRODUCTS, Product } from "@/data/products";
 
 // Definir las categorías disponibles
 const CATEGORIES = [
-  { name: 'Hogar', href: '/products/hogar', icon: '🏠' },
-  { name: 'Tecnología', href: '/products/tecnologia', icon: '📱' },
-  { name: 'Juguetes', href: '/products/juguetes', icon: '🧸' },
-  { name: 'Herramientas', href: '/products/herramientas', icon: '🔧' },
-  { name: 'Cuidado Personal', href: '/products/cuidadopersonal', icon: '💅' },
-  { name: 'Actividad', href: '/products/actividad', icon: '⚽' },
+  { name: 'Hogar', href: '/products/hogar' },
+  { name: 'Tecnología', href: '/products/tecnologia' },
+  { name: 'Juguetes', href: '/products/juguetes' },
+  { name: 'Herramientas', href: '/products/herramientas' },
+  { name: 'Cuidado Personal', href: '/products/cuidadopersonal' },
+  { name: 'Actividad', href: '/products/actividad' },
 ];
 
 export default function Header() {
@@ -144,7 +144,6 @@ export default function Header() {
                     className={styles.dropdownItem}
                     onClick={closeCategories}
                   >
-                    <span className={styles.categoryIcon}>{category.icon}</span>
                     <span>{category.name}</span>
                   </Link>
                 ))}
@@ -225,7 +224,6 @@ export default function Header() {
                   className={styles.mobileCategoryItem}
                   onClick={closeMenu}
                 >
-                  <span className={styles.categoryIcon}>{category.icon}</span>
                   <span>{category.name}</span>
                 </Link>
               ))}
