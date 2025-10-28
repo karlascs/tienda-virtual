@@ -42,7 +42,7 @@ const banners: BannerData[] = [
     subtitle: "Descubre una amplia variedad de productos para el hogar a precios accesibles"
   },
   {
-    src: "/llego la navidad.png", // Tu banner navideño
+    src: "/LLEGO LA NAVIDAD.png", // Corregido: nombre exacto del archivo
     alt: "IZA & CAS - ¡Llegó la Navidad! Ofertas Especiales",
     title: "¡Llegó la Navidad!",
     subtitle: "Encuentra los mejores regalos y decoraciones para esta temporada navideña"
