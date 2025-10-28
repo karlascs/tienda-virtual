@@ -1,4 +1,5 @@
 import styles from "@/styles/card.module.css";
+import { useImageWithFallback } from "@/utils/imageUtils";
 
 /**
  * Tipo de propiedades para el componente ProductCard
@@ -17,6 +18,7 @@ type Props = {
  * - Solo muestra información esencial (imagen, nombre, precio)
  * - Diseño limpio y profesional
  * - Interacción completa se maneja en el modal de detalles
+ * - Manejo automático de imágenes con caracteres especiales
  * 
  * @param name - Nombre del producto
  * @param price - Precio en número (se formatea automáticamente)
@@ -24,6 +26,8 @@ type Props = {
  * @param onClick - Función que se ejecuta al hacer clic en la tarjeta
  */
 export default function ProductCard({ name, price, image, onClick }: Props) {
+  const imageProps = useImageWithFallback(image);
+
   return (
     <article 
       className={`${styles.card} card`}
@@ -39,13 +43,9 @@ export default function ProductCard({ name, price, image, onClick }: Props) {
       {/* Contenedor de imagen con overlay para hover */}
       <div className={styles.imageContainer}>
         <img 
-          src={image} 
+          {...imageProps}
           alt={name}
           className={styles.productImage}
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.src = '/images/placeholder.svg';
-          }}
         />
         <div className={styles.imageOverlay}>
           <span className={styles.viewDetailsText}>Ver Detalles</span>
