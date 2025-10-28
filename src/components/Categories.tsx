@@ -19,6 +19,15 @@ const CATEGORIES = [
     href: '/products/hogar'
   },
   {
+    id: 'electrohogar',
+    name: 'Electro Hogar',
+    title: 'Electro Hogar',
+    subtitle: 'Electrodomésticos de última tecnología',
+    image: '/images/categorias/electrohogar.png',
+    count: 10,
+    href: '/products/electrohogar'
+  },
+  {
     id: 'herramientas',
     name: 'Herramientas',
     title: 'Herramientas',

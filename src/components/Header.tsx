@@ -25,6 +25,7 @@ import { FEATURED_PRODUCTS, Product } from "@/data/products";
 // Definir las categorías disponibles
 const CATEGORIES = [
   { name: 'Hogar', href: '/products/hogar' },
+  { name: 'Electro Hogar', href: '/products/electrohogar' },
   { name: 'Tecnología', href: '/products/tecnologia' },
   { name: 'Juguetes', href: '/products/juguetes' },
   { name: 'Herramientas', href: '/products/herramientas' },

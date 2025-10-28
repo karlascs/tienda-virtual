@@ -247,16 +247,39 @@
     max-width: 100%;
   }
   
+  .searchInputWrapper {
+    border-radius: 10px;
+  }
+  
+  .searchIcon {
+    padding: 10px 12px;
+  }
+  
   .searchInput {
     font-size: 16px; /* Prevent zoom on iOS */
+    padding: 10px 6px;
+  }
+  
+  .clearButton {
+    padding: 8px 10px;
   }
   
   .searchDropdown {
     margin-top: 4px;
+    border-radius: 10px;
+    max-height: 350px;
+  }
+  
+  .resultsHeader {
+    padding: 10px 12px;
   }
   
   .searchResults {
-    max-height: 300px;
+    max-height: 280px;
+  }
+  
+  .searchResultItem {
+    padding: 10px 12px;
   }
   
   .productImage {
@@ -275,5 +298,98 @@
   
   .productPrice {
     font-size: 13px;
+  }
+  
+  .noResults {
+    padding: 24px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .searchInputWrapper {
+    border-radius: 8px;
+  }
+  
+  .searchIcon {
+    padding: 8px 10px;
+  }
+  
+  .searchInput {
+    padding: 8px 4px;
+  }
+  
+  .clearButton {
+    padding: 6px 8px;
+  }
+  
+  .searchDropdown {
+    border-radius: 8px;
+    max-height: 300px;
+  }
+  
+  .resultsHeader {
+    padding: 8px 10px;
+  }
+  
+  .resultsCount {
+    font-size: 12px;
+  }
+  
+  .searchResults {
+    max-height: 240px;
+  }
+  
+  .searchResultItem {
+    padding: 8px 10px;
+  }
+  
+  .productImage {
+    width: 36px;
+    height: 36px;
+    margin-right: 8px;
+  }
+  
+  .productName {
+    font-size: 12px;
+  }
+  
+  .productCategory {
+    font-size: 10px;
+  }
+  
+  .productPrice {
+    font-size: 12px;
+  }
+  
+  .noResults {
+    padding: 20px 10px;
+  }
+  
+  .noResultsText {
+    font-size: 14px;
+  }
+  
+  .noResultsSubtext {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .searchDropdown {
+    max-height: 250px;
+  }
+  
+  .searchResults {
+    max-height: 200px;
+  }
+  
+  .productImage {
+    width: 32px;
+    height: 32px;
+    margin-right: 6px;
+  }
+  
+  .searchResultItem {
+    padding: 6px 8px;
   }
 }

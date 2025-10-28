@@ -554,12 +554,18 @@
   }
   
   .socialLinks {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 6px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
   }
   
   .socialLinks a {
-    padding: 10px 6px;
+    padding: 12px 8px;
+    font-size: 0.75rem;
+    gap: 6px;
+  }
+  
+  .socialLinks a span {
+    display: inline;
     font-size: 0.7rem;
   }
   
@@ -576,6 +582,20 @@
   
   .title {
     font-size: 1.5rem;
+  }
+  
+  .whatsappButtons {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .whatsappButton {
+    padding: 12px 16px;
+    font-size: 0.85rem;
+  }
+  
+  .mapContainer iframe {
+    height: 180px;
   }
 }
 

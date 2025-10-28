@@ -565,16 +565,70 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.mobileLinks {
-  padding: 16px 0;
+.mobileCategoriesSection {
+  padding: 20px;
+}
+
+.mobileCategoriesTitle {
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+.mobileCategories {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.mobileCategoryItem {
+  display: block;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-align: center;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.mobileCategoryItem:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
 }
 
 .mobileActions {
-  padding: 16px 20px;
+  padding: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.mobileLoginButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.mobileLoginButton:hover {
+  background: linear-gradient(135deg, var(--brand-light) 0%, var(--accent) 100%);
+  transform: translateY(-2px);
 }
 
 .mobileActionButton {
@@ -639,31 +693,52 @@
 /* Responsive para navegación horizontal */
 @media (max-width: 768px) {
   .mainNav {
-    flex-direction: column;
-    gap: 20px;
-    padding: 16px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
     margin: 8px;
   }
 
-  .navigationLinks {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
-    padding: 12px;
-    background: rgba(255, 255, 255, 0.8);
+  .searchSection {
+    display: none; /* Ocultar búsqueda en header móvil */
   }
 
-  .searchSection {
-    flex: none;
-    width: 100%;
-    max-width: none;
-    margin: 0;
+  .categoriesDropdown {
+    display: none; /* Ocultar dropdown en móvil */
+  }
+
+  .loginButton {
+    display: none; /* Ocultar botón login en móvil */
   }
 
   .userActions {
-    justify-content: center;
+    gap: 8px;
+    background: transparent;
+    padding: 0;
+  }
+
+  .actionText {
+    display: none; /* Ocultar texto en móvil */
+  }
+
+  .actionButton {
+    padding: 8px;
+    min-width: 40px;
     background: rgba(255, 255, 255, 0.9);
-    padding: 12px 16px;
+    backdrop-filter: blur(10px);
+  }
+
+  /* Mostrar el menú hamburguesa */
+  .hamburger {
+    display: flex;
+    order: 3;
+  }
+
+  /* Mostrar menú móvil */
+  .mobileMenu {
+    display: flex;
   }
 }
 

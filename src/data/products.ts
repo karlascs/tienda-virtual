@@ -142,6 +142,37 @@ export const FEATURED_PRODUCTS: Product[] = [
   HOGAR_PRODUCTS.find(p => p.id === 1)!, // Cafetera Italiana 9 Tazas
   HOGAR_PRODUCTS.find(p => p.id === 3)!, // Hornilla Ocean
   
+  // === ELECTRO HOGAR (2 productos) ===
+  {
+    id: 300,
+    name: "Extractor de Jugo 350ml",
+    price: 24990,
+    image: "/images/electro hogar/extratordejugo350ml/9aJRQs3Ph4LYCaXEq6K4AA==.jpg",
+    images: [
+      "/images/electro hogar/extratordejugo350ml/9aJRQs3Ph4LYCaXEq6K4AA==.jpg",
+      "/images/electro hogar/extratordejugo350ml/s99tocAwMQRG+51qUCP98Q==.jpg",
+      "/images/electro hogar/extratordejugo350ml/WeCvon0hv1wQeITYTZVjA==.jpg",
+      "/images/electro hogar/extratordejugo350ml/xfssgrCksblq+4LEZ1NerA==.jpg"
+    ],
+    description: "Extractor de jugo compacto de 350ml, perfecto para preparar jugos frescos y naturales. Fácil de usar y limpiar.",
+    category: "Electrodomésticos Pequeños"
+  },
+  {
+    id: 306,
+    name: "Parrilla Plancha Multifuncional",
+    price: 39990,
+    image: "/images/electro hogar/parrilas electricas/parrillaplanchamultifuncional/0hLdrUTGvPCzgKQUzZQ5ew==.jpg",
+    images: [
+      "/images/electro hogar/parrilas electricas/parrillaplanchamultifuncional/0hLdrUTGvPCzgKQUzZQ5ew==.jpg",
+      "/images/electro hogar/parrilas electricas/parrillaplanchamultifuncional/5gUTiEhUyCmIMNruV026xQ==.jpg",
+      "/images/electro hogar/parrilas electricas/parrillaplanchamultifuncional/GQoDuaRymprFkCAj5Ux3zQ==.jpg",
+      "/images/electro hogar/parrilas electricas/parrillaplanchamultifuncional/JueaKaOyG3UwL3XAsXxRnQ==.jpg",
+      "/images/electro hogar/parrilas electricas/parrillaplanchamultifuncional/yIDgk6edH90q4xi75dQD9A==.jpg"
+    ],
+    description: "Parrilla plancha multifuncional con superficie antiadherente. Ideal para asar, planchar y cocinar múltiples alimentos.",
+    category: "Parrillas"
+  },
+  
   // === ACTIVIDAD (2 productos) ===
   {
     id: 101,
