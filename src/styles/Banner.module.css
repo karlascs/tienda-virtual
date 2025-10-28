@@ -1,7 +1,7 @@
-/* Banner Principal IZA&CAS - Versión Final */
+/* Banner Carrusel IZA&CAS - Versión Final */
 .bannerSection {
   width: 100%;
-  padding: 20px 0;
+  padding: 40px 0 20px 0;
   margin: 0;
   background: linear-gradient(135deg, 
     rgba(247, 245, 243, 0.3) 0%, 
@@ -38,98 +38,108 @@
   box-shadow: 0 12px 40px rgba(45, 74, 74, 0.25);
 }
 
+/* Slide del banner */
+.bannerSlide {
+  position: relative;
+  width: 100%;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.bannerSlide.transitioning {
+  opacity: 0.7;
+}
+
 .bannerImage {
   width: 100%;
-  height: auto;
+  height: 400px;
   display: block;
-  max-height: 400px;
   object-fit: cover;
+  object-position: center;
   transition: transform 0.3s ease;
+  background: #f8f9fa;
 }
 
-.bannerWrapper:hover .bannerImage {
-  transform: scale(1.02);
-}
-
-/* Efectos adicionales */
-.bannerWrapper::before {
-  content: '';
+/* Botones de navegación */
+.navButton {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    45deg,
-    transparent 0%,
-    rgba(212, 165, 116, 0.05) 25%,
-    transparent 50%,
-    rgba(45, 74, 74, 0.05) 75%,
-    transparent 100%
-  );
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(45, 74, 74, 0.8);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  backdrop-filter: blur(4px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-.bannerWrapper:hover::before {
-  opacity: 1;
+.navButton:hover {
+  background: rgba(45, 74, 74, 0.95);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 4px 16px rgba(45, 74, 74, 0.4);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .bannerSection {
-    padding: 16px 0;
-  }
-  
-  .bannerContainer {
-    padding: 0 16px;
-  }
-  
-  .bannerWrapper {
-    border-radius: 16px;
-  }
-  
-  .bannerImage {
-    max-height: 250px;
-  }
-  
-  .bannerWrapper:hover {
-    transform: translateY(-2px);
-  }
+.navButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: translateY(-50%);
 }
 
-@media (max-width: 480px) {
-  .bannerSection {
-    padding: 12px 0;
-  }
-  
-  .bannerContainer {
-    padding: 0 12px;
-  }
-  
-  .bannerWrapper {
-    border-radius: 12px;
-  }
-  
-  .bannerImage {
-    max-height: 200px;
-  }
-  
-  .bannerWrapper:hover {
-    transform: none;
-  }
-  
-  .bannerWrapper:hover .bannerImage {
-    transform: scale(1.01);
-  }
+.prevButton {
+  left: 20px;
 }
 
-.bannerWrapper:hover .bannerImage {
-  transform: scale(1.02);
+.nextButton {
+  right: 20px;
 }
 
+/* Indicadores */
+.indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 10;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.indicator:hover {
+  border-color: rgba(255, 255, 255, 0.9);
+  transform: scale(1.2);
+}
+
+.indicator.active {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 0 3px rgba(45, 74, 74, 0.3);
+}
+
+.indicator:disabled {
+  cursor: not-allowed;
+}
+
+/* Overlay con contenido - DESHABILITADO */
+/*
 .bannerOverlay {
   position: absolute;
   top: 0;
@@ -163,6 +173,8 @@
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  margin: 0 20px;
 }
 
 .bannerTitle {
@@ -183,66 +195,7 @@
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
   color: rgba(255, 255, 255, 0.9);
 }
-
-/* Responsive Design */
-@media (max-width: 1200px) {
-  .bannerContainer {
-    padding: 0 16px;
-  }
-}
-
-@media (max-width: 768px) {
-  .bannerSection {
-    padding: 0;
-  }
-  
-  .bannerContainer {
-    padding: 0 12px;
-  }
-  
-  .bannerWrapper {
-    border-radius: 16px;
-  }
-  
-  .bannerContent {
-    padding: 20px 24px;
-  }
-  
-  .bannerTitle {
-    font-size: 24px;
-  }
-  
-  .bannerSubtitle {
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 480px) {
-  .bannerSection {
-    padding: 0;
-  }
-  
-  .bannerContainer {
-    padding: 0 8px;
-  }
-  
-  .bannerWrapper {
-    border-radius: 12px;
-  }
-  
-  .bannerContent {
-    padding: 16px 20px;
-  }
-  
-  .bannerTitle {
-    font-size: 20px;
-    margin-bottom: 8px;
-  }
-  
-  .bannerSubtitle {
-    font-size: 13px;
-  }
-}
+*/
 
 /* Efectos adicionales */
 .bannerWrapper::before {
@@ -255,13 +208,13 @@
   background: linear-gradient(
     45deg,
     transparent 0%,
-    rgba(212, 165, 116, 0.1) 25%,
+    rgba(212, 165, 116, 0.05) 25%,
     transparent 50%,
-    rgba(45, 74, 74, 0.1) 75%,
+    rgba(45, 74, 74, 0.05) 75%,
     transparent 100%
   );
   opacity: 0;
-  transition: opacity 0.6s ease;
+  transition: opacity 0.4s ease;
   pointer-events: none;
   z-index: 1;
 }
@@ -284,4 +237,135 @@
 
 .bannerSection.visible .bannerWrapper {
   animation: bannerLoad 1s ease-out 0.2s both;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .bannerContainer {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bannerSection {
+    padding: 32px 0 16px 0;
+  }
+  
+  .bannerContainer {
+    padding: 0 16px;
+  }
+  
+  .bannerWrapper {
+    border-radius: 16px;
+  }
+  
+  .bannerImage {
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .bannerWrapper:hover {
+    transform: translateY(-2px);
+  }
+  
+  .bannerContent {
+    padding: 20px 24px;
+    margin: 0 16px;
+  }
+  
+  .bannerTitle {
+    font-size: 24px;
+  }
+  
+  .bannerSubtitle {
+    font-size: 14px;
+  }
+  
+  .navButton {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .prevButton {
+    left: 12px;
+  }
+  
+  .nextButton {
+    right: 12px;
+  }
+  
+  .indicators {
+    bottom: 16px;
+    gap: 8px;
+  }
+  
+  .indicator {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bannerSection {
+    padding: 28px 0 12px 0;
+  }
+  
+  .bannerContainer {
+    padding: 0 12px;
+  }
+  
+  .bannerWrapper {
+    border-radius: 12px;
+  }
+  
+  .bannerImage {
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .bannerWrapper:hover {
+    transform: none;
+  }
+  
+  .bannerWrapper:hover .bannerImage {
+    transform: scale(1.01);
+  }
+  
+  .bannerContent {
+    padding: 16px 20px;
+    margin: 0 12px;
+  }
+  
+  .bannerTitle {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  
+  .bannerSubtitle {
+    font-size: 13px;
+  }
+  
+  .navButton {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .prevButton {
+    left: 8px;
+  }
+  
+  .nextButton {
+    right: 8px;
+  }
+  
+  .indicators {
+    bottom: 12px;
+  }
+  
+  .indicator {
+    width: 8px;
+    height: 8px;
+  }
 }
