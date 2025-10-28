@@ -10,7 +10,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  background: var(--background-secondary);
+  background: #f5f2ed;
   border: 2px solid var(--border-color);
   border-radius: 12px;
   padding: 0;

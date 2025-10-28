@@ -1,31 +1,408 @@
 /* ===================================
-   ESTILOS DEL HEADER
+   HEADER SIMPLE Y LIMPIO
    =================================== */
 
-/* Header principal con posicionamiento sticky */
+/* Header principal */
 .header {
   position: sticky;
   top: 0;
-  background: linear-gradient(135deg, 
-    rgba(44, 74, 67, 0.85) 0%, 
-    rgba(74, 107, 95, 0.80) 50%, 
-    rgba(232, 221, 208, 0.85) 100%); /* Colores IZA&CAS */
-  backdrop-filter: blur(20px);             /* Efecto de desenfoque más intenso */
-  border-bottom: 1px solid rgba(44, 74, 67, 0.15); /* Border más sutil */
-  box-shadow: 0 2px 20px rgba(44, 74, 67, 0.1);   /* Sombra más suave */
-  transition: all 0.3s ease; /* Transición suave para cambios */
-  z-index: 1000; /* Asegurar que esté por encima del contenido */
+  background: linear-gradient(135deg, #2c4a43 0%, #1a2f2a 100%);
+  color: white;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Estado del header cuando se hace scroll */
-.header.scrolled {
-  background: linear-gradient(135deg, 
-    rgba(44, 74, 67, 0.60) 0%, 
-    rgba(74, 107, 95, 0.55) 50%, 
-    rgba(232, 221, 208, 0.60) 100%); /* Más transparente al hacer scroll */
-  backdrop-filter: blur(25px);
-  border-bottom: 1px solid rgba(44, 74, 67, 0.1);
-  box-shadow: 0 1px 15px rgba(44, 74, 67, 0.08);
+.headerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Navegación principal */
+.mainNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 16px 0;
+  min-height: 80px;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Logo y botón de menú juntos */
+.mainNav > .logo,
+.mainNav > .menuButton {
+  flex-shrink: 0;
+}
+
+/* Sección de búsqueda */
+.searchSection {
+  flex: 1;
+  max-width: 500px;
+  margin: 0 20px;
+}
+
+/* Botones de usuario - ahora directos en mainNav */
+.mainNav > .loginButton,
+.mainNav > .favoriteButton,
+.mainNav > .cartButton {
+  flex-shrink: 0;
+}
+
+/* Botón Menú ya incluido en los estilos base */
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 8px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  flex-shrink: 0;
+}
+
+.logo:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* Botones base - ESTILO MINIMALISTA INTEGRADO CON ACCESIBILIDAD */
+.loginButton,
+.favoriteButton,
+.cartButton,
+.menuButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  min-width: 56px;
+  min-height: 56px;
+  background: rgba(44, 74, 67, 0.1);
+  color: #2c4a43;
+  border: 2px solid rgba(44, 74, 67, 0.2);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: inherit;
+  white-space: nowrap;
+  transform: translateY(0);
+}
+
+/* Efectos hover con color verde del cliente para accesibilidad */
+.loginButton:hover,
+.favoriteButton:hover,
+.cartButton:hover,
+.menuButton:hover {
+  background: #2c4a43;
+  color: white;
+  border-color: #2c4a43;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(44, 74, 67, 0.3);
+}
+
+/* Efectos active (al hacer clic) */
+.loginButton:active,
+.favoriteButton:active,
+.cartButton:active,
+.menuButton:active {
+  background: rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+}
+
+/* Efectos focus para accesibilidad */
+.loginButton:focus,
+.favoriteButton:focus,
+.cartButton:focus,
+.menuButton:focus {
+  outline: 2px solid #333;
+  outline-offset: 2px;
+}
+
+/* Texto de botones */
+.buttonText {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Badge para contador - estilo minimalista mejorado para accesibilidad */
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ff4757;
+  color: white;
+  border-radius: 50%;
+  min-width: 22px;
+  height: 22px;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ===================================
+   MENÚ DESPLEGABLE
+   =================================== */
+
+/* Menú desplegable */
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 160px;
+  width: 320px;
+  background: white;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 8px 32px rgba(44, 74, 67, 0.15);
+  transform: translateY(-10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1001;
+  border: 1px solid #e0e0e0;
+}
+
+.dropdownMenu.open {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.menuHeader {
+  padding: 16px 20px;
+  border-bottom: 1px solid #e0e0e0;
+  background: #f8f9fa;
+}
+
+.menuHeader h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c4a43;
+}
+
+.menuContent {
+  padding: 8px 0;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.menuItem:hover {
+  background: #f8f9fa;
+  color: #2c4a43;
+  transform: translateX(4px);
+}
+
+.menuItem:last-child {
+  border-bottom: none;
+}
+
+/* 
+.categoryIcon {
+  font-size: 18px;
+  width: 24px;
+  text-align: center;
+}
+*/
+
+.categoryName {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 500;
+  color: inherit;
+}
+
+.arrowIcon {
+  color: #999;
+  transition: transform 0.3s ease;
+}
+
+.menuItem:hover .arrowIcon {
+  transform: translateX(4px);
+  color: #2c4a43;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+
+/* Tablet - mantener uniformidad */
+@media (max-width: 768px) {
+  .mainNav {
+    gap: 16px;
+    padding: 12px 0;
+    min-height: 60px;
+  }
+  
+  .searchSection {
+    margin: 0 16px;
+    max-width: 300px;
+  }
+  
+  .userActions {
+    gap: 8px;
+    flex-shrink: 0;
+    min-width: 140px;
+    justify-content: flex-end;
+  }
+  
+  .buttonText,
+  .menuText {
+    display: none; /* Ocultar texto en tablet */
+  }
+  
+  /* Botones uniformes en tablet - mantener accesibilidad */
+  .loginButton,
+  .favoriteButton,
+  .cartButton,
+  .menuButton {
+    padding: 10px;
+    min-width: 52px;
+    min-height: 52px;
+    border-radius: 10px;
+    gap: 0;
+    justify-content: center;
+  }
+  
+  /* Menú desplegable en tablet */
+  .dropdownMenu {
+    width: 280px;
+    left: 100px;
+  }
+}
+
+/* Móvil - botones uniformes pequeños */
+@media (max-width: 480px) {
+  .headerContainer {
+    padding: 0 12px;
+  }
+  
+  .mainNav {
+    gap: 12px;
+    padding: 10px 0;
+    min-height: 56px;
+  }
+  
+  .logo img {
+    width: 40px;
+    height: 34px;
+  }
+  
+  .searchSection {
+    margin: 0 8px;
+    max-width: 200px;
+  }
+  
+  .userActions {
+    gap: 6px;
+    min-width: 120px;
+    justify-content: flex-end;
+  }
+  
+  /* Botones uniformes en móvil - accesibilidad mejorada */
+  .loginButton,
+  .favoriteButton,
+  .cartButton,
+  .menuButton {
+    padding: 8px;
+    min-width: 48px;
+    min-height: 48px;
+    border-radius: 8px;
+    gap: 0;
+    justify-content: center;
+  }
+  
+  .badge {
+    min-width: 20px;
+    height: 20px;
+    font-size: 12px;
+    top: -6px;
+    right: -6px;
+    border: 2px solid white;
+  }
+  
+  /* Menú desplegable en móvil */
+  .dropdownMenu {
+    width: 100%;
+    left: 0;
+    right: 0;
+  }
+}
+
+/* Móvil muy pequeño - botones uniformes extra pequeños */
+@media (max-width: 360px) {
+  .searchSection {
+    max-width: 150px;
+  }
+  
+  .userActions {
+    gap: 6px;
+  }
+  
+  /* Botones uniformes en pantallas muy pequeñas */
+  .loginButton,
+  .favoriteButton,
+  .cartButton {
+    padding: 8px;
+    min-width: 40px;
+    min-height: 40px;
+    border-radius: 6px;
+    gap: 0;
+    justify-content: center;
+  }
+  
+  .badge {
+    min-width: 16px;
+    height: 16px;
+    font-size: 10px;
+    top: -3px;
+    right: -3px;
+  }
 }
 
 /* Contenedor flex del header */
@@ -350,7 +727,8 @@
   transform: translateY(-1px);
 }
 
-/* Acciones del usuario (wishlist + carrito + login) */
+/* Acciones del usuario (wishlist + carrito + login) - YA NO SE USA */
+/*
 .userActions {
   display: flex;
   align-items: center;
@@ -361,6 +739,7 @@
   backdrop-filter: blur(8px);
   box-shadow: 0 4px 12px rgba(44, 74, 67, 0.1);
 }
+*/
 
 .actionButton {
   display: flex;
@@ -388,28 +767,30 @@
   color: white;
 }
 
+/* 
 .loginButton {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 10px 20px;
-  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
-  color: white;
+  padding: 12px 20px;
+  background: transparent;
+  color: #666;
   border: none;
   border-radius: 8px;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
   min-height: 40px;
-  box-shadow: 0 2px 8px rgba(45, 74, 74, 0.3);
   font-size: 14px;
 }
 
 .loginButton:hover {
-  background: linear-gradient(135deg, var(--brand-light) 0%, var(--accent) 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(45, 74, 74, 0.4);
+  color: #4a90e2;
+  background-color: rgba(74, 144, 226, 0.1);
+  transform: translateY(-1px);
 }
+*/
 
 .actionButton:hover {
   background: rgba(255, 255, 255, 0.2);
@@ -550,10 +931,12 @@
   transform: translateX(4px);
 }
 
+/*
 .categoryIcon {
   font-size: 16px;
   margin-right: 8px;
 }
+*/
 
 .rotated {
   transform: rotate(180deg);
