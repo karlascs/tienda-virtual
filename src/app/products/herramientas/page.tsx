@@ -292,9 +292,11 @@ export default function HerramientasPage() {
                 
                 {/* Tarjeta de producto minimalista */}
                 <ProductCard
+                  id={product.id}
                   name={product.name}
                   price={product.price}
                   image={product.image}
+                  category="herramientas"
                   onClick={() => handleViewDetails(product)}
                 />
               </div>

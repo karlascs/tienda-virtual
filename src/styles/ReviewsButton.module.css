@@ -1,0 +1,268 @@
+/* Estilos para el componente ReviewsButton */
+
+.reviewsButton {
+  background: none;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  text-align: left;
+  width: 100%;
+}
+
+.reviewsButton:hover {
+  border-color: #007bff;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.reviewsButton:active {
+  transform: translateY(0);
+}
+
+/* Variante por defecto */
+.default {
+  padding: 12px 16px;
+  background: #f8f9fa;
+}
+
+.default:hover {
+  background: #e9ecef;
+}
+
+.defaultContent {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.textContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ratingRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rating {
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.reviewText {
+  font-size: 12px;
+  color: #666;
+}
+
+.noRatingText {
+  font-size: 13px;
+  color: #495057;
+  font-weight: 500;
+}
+
+/* Variante compacta */
+.compact {
+  padding: 8px 12px;
+  background: white;
+  border-radius: 6px;
+}
+
+.compact:hover {
+  background: #f8f9fa;
+}
+
+.compactContent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.compact .icon {
+  font-size: 16px;
+}
+
+.compact .rating {
+  font-weight: 600;
+  color: #007bff;
+}
+
+.compact .reviewText {
+  color: #666;
+  font-size: 12px;
+}
+
+/* Variante mínima */
+.minimal {
+  padding: 4px 8px;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+}
+
+.minimal:hover {
+  background: #f8f9fa;
+  border-color: transparent;
+  box-shadow: none;
+  transform: none;
+}
+
+.minimalContent {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.minimal .reviewCount {
+  color: #666;
+  font-size: 11px;
+}
+
+.noReviewsText {
+  color: #999;
+  font-size: 11px;
+  font-style: italic;
+}
+
+/* Estados especiales */
+.reviewsButton:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+.reviewsButton:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .default {
+    padding: 10px 14px;
+  }
+  
+  .defaultContent {
+    gap: 10px;
+  }
+  
+  .icon {
+    font-size: 16px;
+  }
+  
+  .compact {
+    padding: 6px 10px;
+  }
+  
+  .compactContent {
+    gap: 6px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .default {
+    padding: 8px 12px;
+  }
+  
+  .textContent {
+    gap: 2px;
+  }
+  
+  .reviewText,
+  .compact .reviewText {
+    font-size: 11px;
+  }
+  
+  .noRatingText {
+    font-size: 12px;
+  }
+}
+
+/* Variaciones de color para diferentes contextos */
+.reviewsButton.primary {
+  border-color: #007bff;
+  background: rgba(0, 123, 255, 0.05);
+}
+
+.reviewsButton.primary:hover {
+  background: rgba(0, 123, 255, 0.1);
+  border-color: #0056b3;
+}
+
+.reviewsButton.success {
+  border-color: #28a745;
+  background: rgba(40, 167, 69, 0.05);
+}
+
+.reviewsButton.success:hover {
+  background: rgba(40, 167, 69, 0.1);
+  border-color: #1e7e34;
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .reviewsButton {
+    transition: none;
+  }
+  
+  .reviewsButton:hover {
+    transform: none;
+  }
+  
+  .reviewsButton:active {
+    transform: none;
+  }
+}
+
+/* Modo oscuro */
+@media (prefers-color-scheme: dark) {
+  .reviewsButton {
+    border-color: #444;
+    color: #e0e0e0;
+  }
+  
+  .default {
+    background: #2a2a2a;
+  }
+  
+  .default:hover {
+    background: #333;
+    border-color: #666;
+  }
+  
+  .compact {
+    background: #1a1a1a;
+  }
+  
+  .compact:hover {
+    background: #2a2a2a;
+  }
+  
+  .rating {
+    color: #e0e0e0;
+  }
+  
+  .reviewText {
+    color: #aaa;
+  }
+  
+  .noRatingText {
+    color: #ccc;
+  }
+  
+  .compact .rating {
+    color: #4dabf7;
+  }
+}

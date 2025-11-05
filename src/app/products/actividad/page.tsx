@@ -274,9 +274,11 @@ export default function ActividadPage() {
                   className="onCard" 
                 />
                 <ProductCard
+                  id={product.id}
                   name={product.name}
                   price={product.price}
                   image={product.image}
+                  category={product.category}
                   onClick={() => handleViewDetails(product)}
                 />
               </div>

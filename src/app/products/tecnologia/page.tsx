@@ -236,9 +236,11 @@ export default function TecnologiaPage() {
                 
                 {/* Tarjeta de producto minimalista */}
                 <ProductCard
+                  id={product.id}
                   name={product.name}
                   price={product.price}
                   image={product.image}
+                  category={product.category}
                   onClick={() => handleViewDetails(product)}
                 />
               </div>

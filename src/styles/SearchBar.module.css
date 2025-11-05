@@ -393,3 +393,286 @@
     padding: 6px 8px;
   }
 }
+
+/* ===== NUEVAS FUNCIONALIDADES AVANZADAS ===== */
+
+/* Secciones de sugerencias */
+.suggestionsSection {
+  padding: 16px 0;
+}
+
+.sectionHeader {
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--background-secondary);
+}
+
+.sectionTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Búsquedas populares */
+.popularSearches {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.popularSearchItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border: none;
+  background: var(--background-primary);
+  color: var(--text-secondary);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  font-size: 14px;
+  border: 1px solid var(--border-color);
+}
+
+.popularSearchItem:hover {
+  background: var(--background-secondary);
+  color: var(--brand);
+  border-color: var(--brand-light);
+}
+
+/* Sugerencias de categorías */
+.categorySuggestions {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.categoryItem {
+  background: var(--background-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.categoryHeader {
+  padding: 10px 12px;
+  background: var(--background-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.categoryIcon {
+  font-size: 16px;
+}
+
+.categoryName {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.categorySearches {
+  padding: 8px 12px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.categorySearchItem {
+  padding: 4px 8px;
+  background: var(--brand-light);
+  color: var(--brand);
+  border: none;
+  border-radius: 12px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.categorySearchItem:hover {
+  background: var(--brand);
+  color: white;
+}
+
+/* Autocompletado */
+.autocompleteSection {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.autocompleteSuggestions {
+  padding: 8px 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.autocompleteItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  font-size: 14px;
+  width: 100%;
+}
+
+.autocompleteItem:hover,
+.autocompleteItem.selected {
+  background: var(--background-secondary);
+  color: var(--brand);
+}
+
+.highlightMatch {
+  background: linear-gradient(135deg, var(--brand-light) 0%, var(--brand) 100%);
+  color: white;
+  padding: 1px 3px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+/* Resultados mejorados */
+.searchResultItem.selected {
+  background: var(--background-secondary);
+  border-left: 3px solid var(--brand);
+}
+
+.productActions {
+  padding: 0 8px;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+}
+
+.searchResultItem:hover .productActions,
+.searchResultItem.selected .productActions {
+  color: var(--brand);
+}
+
+/* Estado sin resultados mejorado */
+.alternativeSuggestions {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+}
+
+.suggestionLabel {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.alternativeItems {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.alternativeItem {
+  padding: 6px 12px;
+  background: var(--brand-light);
+  color: var(--brand);
+  border: none;
+  border-radius: 16px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.alternativeItem:hover {
+  background: var(--brand);
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* Responsive para nuevas funcionalidades */
+@media (max-width: 768px) {
+  .suggestionsSection {
+    padding: 12px 0;
+  }
+  
+  .sectionHeader {
+    padding: 6px 12px;
+  }
+  
+  .sectionTitle {
+    font-size: 12px;
+  }
+  
+  .popularSearches,
+  .categorySuggestions {
+    padding: 8px 12px;
+  }
+  
+  .popularSearchItem {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+  
+  .categoryHeader {
+    padding: 8px 10px;
+  }
+  
+  .categoryName {
+    font-size: 13px;
+  }
+  
+  .categorySearches {
+    padding: 6px 10px;
+  }
+  
+  .autocompleteItem {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  
+  .alternativeItems {
+    gap: 6px;
+  }
+  
+  .alternativeItem {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .categorySuggestions {
+    gap: 8px;
+  }
+  
+  .categoryIcon {
+    font-size: 14px;
+  }
+  
+  .categoryName {
+    font-size: 12px;
+  }
+  
+  .categorySearchItem {
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+  
+  .popularSearchItem {
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+  
+  .autocompleteItem {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}

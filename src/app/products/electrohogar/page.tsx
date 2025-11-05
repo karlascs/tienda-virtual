@@ -309,9 +309,11 @@ export default function ElectroHogarPage() {
                 </div>
 
                 <ProductCard
+                  id={product.id}
                   name={product.name}
                   price={product.price}
                   image={product.image}
+                  category="electrohogar"
                   onClick={() => handleViewDetails(product)}
                 />
               </div>

@@ -291,6 +291,10 @@ export function getProductsByCategory(category: string): Product[] {
   return HOGAR_PRODUCTS.filter(product => product.category === category);
 }
 
+export function getAllProducts(): Product[] {
+  return HOGAR_PRODUCTS;
+}
+
 export function formatPrice(price: number): string {
   return new Intl.NumberFormat('es-CL', {
     style: 'currency',

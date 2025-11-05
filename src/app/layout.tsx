@@ -3,6 +3,10 @@ import { CartProvider } from "@/context/CartContext";
 import { WishlistProvider } from "@/context/WishlistContext";
 import { SearchProvider } from "@/context/SearchContext";
 import { FilterProvider } from "@/context/FilterContext";
+import { CompareProvider } from "@/context/CompareContext";
+import { ReviewsProvider } from "@/context/ReviewsContext";
+import { RecommendationsProvider } from "@/context/RecommendationsContext";
+import { BrowsingHistoryProvider } from "@/context/BrowsingHistoryContext";
 
 /**
  * Metadata de la aplicación
@@ -19,7 +23,7 @@ export const metadata = {
 };
 
 /**
- * Layout Principal de la Aplicación - Fase 6 Mejorado
+ * Layout Principal de la Aplicación - Fase 8 Completa
  * 
  * Este componente envuelve todas las páginas de la aplicación.
  * Configura la estructura HTML base y todos los providers de contexto.
@@ -29,6 +33,10 @@ export const metadata = {
  * - WishlistProvider: Sistema de lista de deseos persistente
  * - SearchProvider: Búsqueda en tiempo real
  * - FilterProvider: Filtros avanzados por categoría y precio
+ * - CompareProvider: Sistema de comparación de productos
+ * - ReviewsProvider: Sistema de reseñas y calificaciones
+ * - RecommendationsProvider: Motor de recomendaciones inteligente
+ * - BrowsingHistoryProvider: Historial de navegación y productos vistos
  * 
  * @param children - Componentes hijos que se renderizarán dentro del layout
  */
@@ -47,7 +55,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <FilterProvider>
             <CartProvider>
               <WishlistProvider>
-                {children}
+                <CompareProvider>
+                  <ReviewsProvider>
+                    <RecommendationsProvider>
+                      <BrowsingHistoryProvider>
+                        {children}
+                      </BrowsingHistoryProvider>
+                    </RecommendationsProvider>
+                  </ReviewsProvider>
+                </CompareProvider>
               </WishlistProvider>
             </CartProvider>
           </FilterProvider>

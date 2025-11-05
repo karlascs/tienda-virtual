@@ -1,0 +1,343 @@
+/* Estilos para el componente RecommendationsWidget */
+
+.recommendationsWidget {
+  margin: 32px 0;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.refreshButton {
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.refreshButton:hover {
+  background: #f8f9fa;
+  border-color: #007bff;
+  transform: translateY(-1px);
+}
+
+.refreshButton:active {
+  transform: translateY(0);
+}
+
+/* Grid de recomendaciones */
+.recommendationsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 24px;
+}
+
+.productWrapper {
+  position: relative;
+}
+
+/* Estados de carga */
+.loadingGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 24px;
+}
+
+.loadingSkeleton {
+  background: #f8f9fa;
+  border-radius: 8px;
+  overflow: hidden;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeletonImage {
+  height: 200px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeletonText {
+  height: 16px;
+  margin: 12px 16px 8px 16px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+.skeletonPrice {
+  height: 14px;
+  margin: 8px 16px 16px 16px;
+  width: 60%;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Estado vacío */
+.emptyState {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.emptyIcon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.7;
+}
+
+.emptyText {
+  margin: 0 0 20px 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Footer personalizado */
+.personalizedFooter {
+  padding: 16px 24px;
+  background: #f8f9fa;
+  border-top: 1px solid #e0e0e0;
+}
+
+.footerText {
+  margin: 0;
+  font-size: 13px;
+  color: #666;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .recommendationsGrid,
+  .loadingGrid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .recommendationsWidget {
+    margin: 24px 0;
+    border-radius: 8px;
+  }
+  
+  .header {
+    padding: 16px 20px;
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  
+  .title {
+    font-size: 18px;
+    text-align: center;
+  }
+  
+  .refreshButton {
+    align-self: center;
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+  
+  .recommendationsGrid,
+  .loadingGrid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    padding: 20px;
+    gap: 16px;
+  }
+  
+  .emptyState {
+    padding: 40px 20px;
+  }
+  
+  .emptyIcon {
+    font-size: 40px;
+  }
+  
+  .emptyText {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .recommendationsWidget {
+    margin: 16px 0;
+    border-radius: 6px;
+  }
+  
+  .header {
+    padding: 12px 16px;
+  }
+  
+  .title {
+    font-size: 16px;
+  }
+  
+  .recommendationsGrid,
+  .loadingGrid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    padding: 16px;
+    gap: 12px;
+  }
+  
+  .skeletonImage {
+    height: 120px;
+  }
+  
+  .personalizedFooter {
+    padding: 12px 16px;
+  }
+  
+  .footerText {
+    font-size: 11px;
+  }
+}
+
+/* Variantes de estilo */
+.recommendationsWidget.compact .header {
+  padding: 16px 20px;
+}
+
+.recommendationsWidget.compact .title {
+  font-size: 18px;
+}
+
+.recommendationsWidget.compact .recommendationsGrid {
+  padding: 20px;
+  gap: 16px;
+}
+
+.recommendationsWidget.minimal {
+  background: transparent;
+  box-shadow: none;
+}
+
+.recommendationsWidget.minimal .header {
+  background: transparent;
+  border-bottom: 2px solid #e0e0e0;
+  padding: 12px 0;
+}
+
+.recommendationsWidget.minimal .recommendationsGrid {
+  padding: 20px 0;
+}
+
+/* Efectos especiales */
+.productWrapper:hover {
+  transform: translateY(-2px);
+  transition: transform 0.2s ease;
+}
+
+.recommendationsWidget:hover .refreshButton {
+  border-color: #007bff;
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .loadingSkeleton,
+  .refreshButton,
+  .productWrapper {
+    animation: none;
+    transition: none;
+  }
+  
+  .productWrapper:hover {
+    transform: none;
+  }
+  
+  .refreshButton:hover {
+    transform: none;
+  }
+}
+
+/* Modo oscuro */
+@media (prefers-color-scheme: dark) {
+  .recommendationsWidget {
+    background: #1a1a1a;
+    color: #e0e0e0;
+  }
+  
+  .header {
+    background: linear-gradient(135deg, #2a2a2a, #333);
+    border-bottom-color: #444;
+  }
+  
+  .title {
+    color: #e0e0e0;
+  }
+  
+  .refreshButton {
+    border-color: #444;
+    color: #ccc;
+  }
+  
+  .refreshButton:hover {
+    background: #2a2a2a;
+    border-color: #4dabf7;
+  }
+  
+  .loadingSkeleton {
+    background: #2a2a2a;
+  }
+  
+  .skeletonImage,
+  .skeletonText,
+  .skeletonPrice {
+    background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+    background-size: 200% 100%;
+  }
+  
+  .emptyState {
+    color: #aaa;
+  }
+  
+  .personalizedFooter {
+    background: #2a2a2a;
+    border-top-color: #444;
+  }
+  
+  .footerText {
+    color: #aaa;
+  }
+}

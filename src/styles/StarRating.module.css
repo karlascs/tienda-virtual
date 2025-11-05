@@ -1,0 +1,158 @@
+/* Estilos para el componente StarRating */
+
+.starRating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1;
+  font-family: inherit;
+}
+
+.star:disabled {
+  cursor: default;
+}
+
+/* Tamaños */
+.small .star {
+  font-size: 14px;
+}
+
+.medium .star {
+  font-size: 18px;
+}
+
+.large .star {
+  font-size: 24px;
+}
+
+/* Estados de las estrellas */
+.star.full {
+  color: #ffd700;
+  text-shadow: 0 0 3px rgba(255, 215, 0, 0.3);
+}
+
+.star.empty {
+  color: #ddd;
+}
+
+.star.half {
+  position: relative;
+  color: #ddd;
+}
+
+.halfStar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  overflow: hidden;
+  color: #ffd700;
+  text-shadow: 0 0 3px rgba(255, 215, 0, 0.3);
+}
+
+/* Efectos interactivos */
+.star.interactive:hover {
+  transform: scale(1.1);
+}
+
+.star.interactive:active {
+  transform: scale(0.95);
+}
+
+.star.interactive:hover.full,
+.star.interactive:hover.half {
+  color: #ffed4e;
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+.star.interactive:hover.empty {
+  color: #ffd700;
+  text-shadow: 0 0 3px rgba(255, 215, 0, 0.3);
+}
+
+/* Texto del rating */
+.ratingText {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  color: #666;
+}
+
+.ratingValue {
+  font-weight: 600;
+  color: #333;
+}
+
+.reviewCount {
+  color: #888;
+  font-size: 13px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .starRating {
+    gap: 4px;
+  }
+  
+  .stars {
+    gap: 1px;
+  }
+  
+  .small .star {
+    font-size: 12px;
+  }
+  
+  .medium .star {
+    font-size: 16px;
+  }
+  
+  .large .star {
+    font-size: 20px;
+  }
+  
+  .ratingText {
+    font-size: 12px;
+  }
+}
+
+/* Animaciones */
+@keyframes starPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.star.interactive:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.star.interactive:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .star {
+    transition: none;
+  }
+  
+  .star.interactive:hover {
+    transform: none;
+  }
+}

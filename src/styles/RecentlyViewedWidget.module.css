@@ -1,0 +1,421 @@
+/* Estilos para el componente RecentlyViewedWidget */
+
+.recentlyViewedWidget {
+  margin: 32px 0;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, #f1f8ff, #e3f2fd);
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.titleSection {
+  flex: 1;
+}
+
+.title {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stats {
+  display: flex;
+  gap: 8px;
+  font-size: 13px;
+  color: #666;
+}
+
+.count {
+  font-weight: 500;
+  color: #007bff;
+}
+
+.sessionInfo {
+  color: #888;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.expandButton,
+.clearButton {
+  padding: 6px 12px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.expandButton:hover {
+  background: #f8f9fa;
+  border-color: #007bff;
+}
+
+.clearButton:hover {
+  background: #fff5f5;
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+/* Grid de productos */
+.productsContainer {
+  position: relative;
+}
+
+.productsGrid {
+  display: grid;
+  gap: 20px;
+  padding: 24px;
+}
+
+/* Orientaciones */
+.horizontal .productsGrid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.vertical .productsGrid {
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.productWrapper {
+  position: relative;
+  animation: slideInUp 0.4s ease-out both;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.viewedIndicator {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+}
+
+.recentBadge {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+  font-size: 10px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(40, 167, 69, 0.3);
+}
+
+/* Indicador de más productos */
+.moreIndicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(255, 255, 255, 0.95));
+  padding: 40px 24px 24px 24px;
+  text-align: center;
+}
+
+.moreText {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.viewAllButton {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.viewAllButton:hover {
+  background: linear-gradient(135deg, #0056b3, #004085);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Footer */
+.footer {
+  padding: 16px 24px;
+  background: #f8f9fa;
+  border-top: 1px solid #e0e0e0;
+}
+
+.sessionDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #666;
+}
+
+.sessionTime,
+.totalViewed {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Estado vacío */
+.empty {
+  border: 2px dashed #ddd;
+  background: #f9f9f9;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.emptyIcon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.7;
+}
+
+.emptyTitle {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  color: #495057;
+}
+
+.emptyText {
+  margin: 0;
+  font-size: 14px;
+  color: #6c757d;
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .horizontal .productsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .recentlyViewedWidget {
+    margin: 24px 0;
+    border-radius: 8px;
+  }
+  
+  .header {
+    padding: 16px 20px;
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  
+  .title {
+    font-size: 18px;
+  }
+  
+  .controls {
+    justify-content: center;
+    gap: 12px;
+  }
+  
+  .horizontal .productsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    padding: 20px;
+    gap: 16px;
+  }
+  
+  .sessionDetails {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+  
+  .moreIndicator {
+    padding: 30px 20px 20px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 12px 16px;
+  }
+  
+  .title {
+    font-size: 16px;
+  }
+  
+  .horizontal .productsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    padding: 16px;
+    gap: 12px;
+  }
+  
+  .controls {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .expandButton,
+  .clearButton {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .emptyState {
+    padding: 40px 16px;
+  }
+  
+  .emptyIcon {
+    font-size: 36px;
+  }
+  
+  .emptyTitle {
+    font-size: 16px;
+  }
+}
+
+/* Animaciones adicionales */
+.productWrapper:hover {
+  transform: translateY(-2px);
+  transition: transform 0.2s ease;
+}
+
+.productWrapper:hover .recentBadge {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+/* Variantes de orientación */
+.vertical .productWrapper {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.vertical .viewedIndicator {
+  top: 12px;
+  right: 12px;
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .productWrapper {
+    animation: none;
+  }
+  
+  .productWrapper:hover,
+  .viewAllButton:hover {
+    transform: none;
+  }
+  
+  .productWrapper:hover .recentBadge {
+    transform: none;
+  }
+}
+
+/* Modo oscuro */
+@media (prefers-color-scheme: dark) {
+  .recentlyViewedWidget {
+    background: #1a1a1a;
+    border-color: #333;
+    color: #e0e0e0;
+  }
+  
+  .header {
+    background: linear-gradient(135deg, #2a2a2a, #333);
+    border-bottom-color: #444;
+  }
+  
+  .title {
+    color: #e0e0e0;
+  }
+  
+  .stats {
+    color: #aaa;
+  }
+  
+  .count {
+    color: #4dabf7;
+  }
+  
+  .expandButton,
+  .clearButton {
+    background: #2a2a2a;
+    border-color: #444;
+    color: #ccc;
+  }
+  
+  .expandButton:hover {
+    background: #333;
+    border-color: #4dabf7;
+  }
+  
+  .clearButton:hover {
+    background: #2a1a1a;
+    border-color: #dc3545;
+    color: #dc3545;
+  }
+  
+  .footer {
+    background: #2a2a2a;
+    border-top-color: #444;
+  }
+  
+  .sessionDetails {
+    color: #aaa;
+  }
+  
+  .empty {
+    background: #2a2a2a;
+    border-color: #444;
+  }
+  
+  .emptyTitle {
+    color: #ccc;
+  }
+  
+  .emptyText {
+    color: #aaa;
+  }
+  
+  .moreIndicator {
+    background: linear-gradient(transparent, rgba(26, 26, 26, 0.95));
+  }
+  
+  .moreText {
+    color: #aaa;
+  }
+}
