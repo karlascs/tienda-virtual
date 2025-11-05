@@ -1,14 +1,22 @@
 # 🏠 IZA & CAS - Tienda Virtual E-commerce Completa
 
-> **Sistema completo de e-commerce funcional** con carrito de compras, modal de productos, sistema de filtros avanzado, **diseño 100% responsivo** y nueva categoría **Electro Hogar** desarrollada con Next.js 15, TypeScript y CSS Modules optimizados para todos los dispositivos.
+> **Sistema completo de e-commerce funcional** con funcionalidades interactivas avanzadas, carrito de compras, modal de productos, sistema de filtros avanzado, **diseño 100% responsivo**, recomendaciones inteligentes, sistema de reviews, comparador de productos, lista de deseos persistente y nueva categoría **Electro Hogar** desarrollada con Next.js 15, TypeScript y CSS Modules optimizados para todos los dispositivos.
 
 ## 🚀 Demo en Vivo
 
-🔗 **[Ver Demo](https://github.com/karlascs/tienda-virtual)** | 📱 **Responsive Design** | 🛒 **E-commerce Funcional** | 🏠 **IZA & CAS** | ⚡ **Electro Hogar**
+🔗 **[Ver Demo](https://github.com/karlascs/tienda-virtual)** | 📱 **Responsive Design** | 🛒 **E-commerce Funcional** | 🏠 **IZA & CAS** | ⚡ **Electro Hogar** | 🧠 **IA Recomendaciones**
 
 ## ✨ Características Principales
 
-### 📱 **Diseño 100% Responsivo (NUEVO)**
+### 🚀 **Funcionalidad Interactiva Avanzada (NUEVO - Fase 8)**
+- **🤍 Wishlist Persistente**: Sistema completo de lista de deseos con Context API y LocalStorage
+- **🔍 Búsqueda Avanzada**: Autocompletado inteligente con sugerencias por categorías y navegación por teclado
+- **⚖️ Comparador de Productos**: Sistema de comparación lado a lado con widget flotante y modal interactivo
+- **⭐ Sistema de Reviews y Ratings**: Calificaciones con estrellas, comentarios, filtros y validaciones completas
+- **🧠 Motor de Recomendaciones**: Algoritmos inteligentes basados en comportamiento del usuario y preferencias
+- **📱 Historial de Navegación**: Tracking automático de productos visitados con persistencia en LocalStorage
+
+### 📱 **Diseño 100% Responsivo (IMPLEMENTADO)**
 - **Mobile-first design** optimizado para smartphones y tablets
 - **Breakpoints inteligentes**: 360px, 480px, 768px, 992px, 1200px+
 - **Header adaptativo** con menú hamburguesa en móviles
@@ -19,7 +27,7 @@
 - **Footer adaptativo** con redes sociales reorganizadas
 - **Tipografías fluidas** con clamp() para escalado perfecto
 
-### ⚡ **Nueva Categoría: Electro Hogar (NUEVO)**
+### ⚡ **Nueva Categoría: Electro Hogar (IMPLEMENTADO)**
 - **10 productos electrodomésticos** organizados por subcategorías
 - **Hervidores eléctricos** - RAF metálico y termo de 2L
 - **Extractores de jugo** - 350ml compacto y eficiente
@@ -59,17 +67,26 @@
 ### ⚡ **Tecnologías Avanzadas**
 - **Next.js 15** con App Router y Turbopack
 - **TypeScript** para type safety completo
-- **React Context API** para gestión de estado global (Cart + Filters)
+- **React Context API** para gestión de estado global (8 contexts integrados)
+- **CSS Modules** con sistema de variables CSS avanzado
+- **Hooks personalizados** para funcionalidad específica (animaciones, teclado)
+- **LocalStorage** para persistencia de datos del usuario
+- **Algoritmos inteligentes** para recomendaciones y análisis de comportamiento
 - **CSS Modules** para estilos aislados y escalables
 - **CSS Grid + Flexbox** para layouts responsivos
+- **LocalStorage** para persistencia de datos del usuario
 - **Intersection Observer** para animaciones de scroll
+- **Algoritmos de recomendación** con tracking inteligente
 
 ### 🎯 **Funcionalidades Técnicas**
-- **60+ Componentes** reutilizables y documentados
+- **85+ Componentes** reutilizables y documentados
+- **8 Context Providers** para gestión de estado avanzada
 - **HTML Semántico** para SEO y accesibilidad
 - **Error handling** en carga de imágenes
 - **Performance optimizado** con lazy loading
 - **Estructura escalable** y mantenible
+- **Sistema de tracking** de comportamiento del usuario
+- **Algoritmos inteligentes** para recomendaciones personalizadas
 
 ## 📁 Estructura del Proyecto
 
@@ -115,6 +132,8 @@ tienda-next/
 │   ├── 📁 app/                  # App Router de Next.js
 │   │   ├── 📁 cart/             # 🆕 Página del carrito
 │   │   │   └── page.tsx         # Carrito con estado vacío profesional
+│   │   ├── 📁 wishlist/         # 🆕 Página de lista de deseos
+│   │   │   └── page.tsx         # Gestión completa de favoritos
 │   │   ├── 📁 products/         # 🆕 Sistema de categorías
 │   │   │   ├── ⚡ electrohogar/ # 🆕 10 productos electrodomésticos
 │   │   │   │   └── page.tsx
@@ -131,34 +150,56 @@ tienda-next/
 │   │   │   └── 💆 cuidadopersonal/ # 5 productos de cuidado
 │   │   │       └── page.tsx
 │   │   ├── globals.css          # Sistema de variables CSS expandido
-│   │   ├── layout.tsx           # Layout principal con metadatos
-│   │   └── page.tsx             # Página de inicio con categorías
-│   ├── 📁 components/           # Componentes reutilizables
+│   │   ├── layout.tsx           # Layout principal con 8 providers
+│   │   └── page.tsx             # Página de inicio con widgets inteligentes
+│   ├── 📁 components/           # Componentes reutilizables (25+ componentes)
 │   │   ├── Categories.tsx       # 🆕 Componente de categorías
 │   │   ├── Categories.module.css # 🆕 Estilos del sistema de categorías
 │   │   ├── Header.tsx           # Header con navegación completa
-│   │   ├── ProductCard.tsx      # Tarjeta de producto tipada
+│   │   ├── ProductCard.tsx      # Tarjeta con integración avanzada (ratings, wishlist, compare)
 │   │   ├── ProductGrid.tsx      # Grid responsivo de productos
 │   │   ├── ProductModal.tsx     # Modal de detalles responsivo
 │   │   ├── FilterPanel.tsx      # Panel de filtros avanzado
-│   │   ├── SearchBar.tsx        # Barra de búsqueda responsiva
+│   │   ├── SearchBar.tsx        # Búsqueda con autocompletado inteligente
+│   │   ├── StarRating.tsx       # 🆕 Sistema de calificación con estrellas
+│   │   ├── ReviewForm.tsx       # 🆕 Formulario de reseñas con validación
+│   │   ├── ReviewsList.tsx      # 🆕 Lista de reseñas con filtros
+│   │   ├── ReviewsModal.tsx     # 🆕 Modal de reseñas con pestañas
+│   │   ├── ReviewsButton.tsx    # 🆕 Botón para abrir sistema de reseñas
+│   │   ├── RecommendationsWidget.tsx # 🆕 Widget de recomendaciones inteligentes
+│   │   ├── RecentlyViewedWidget.tsx # 🆕 Historial de productos visitados
+│   │   ├── CompareModal.tsx     # 🆕 Modal de comparación lado a lado
+│   │   ├── CompareFloating.tsx  # 🆕 Widget flotante de comparación
 │   │   └── Footer.tsx           # Footer adaptativo
-│   ├── 📁 context/              # React Context APIs
+│   ├── 📁 context/              # React Context APIs (8 contexts)
 │   │   ├── CartContext.tsx      # Gestión del carrito
 │   │   ├── FilterContext.tsx    # Gestión de filtros
 │   │   ├── SearchContext.tsx    # Gestión de búsqueda
-│   │   └── WishlistContext.tsx  # Lista de deseos
+│   │   ├── WishlistContext.tsx  # Lista de deseos persistente
+│   │   ├── ReviewsContext.tsx   # 🆕 Sistema de reseñas y calificaciones
+│   │   ├── RecommendationsContext.tsx # 🆕 Motor de recomendaciones inteligente
+│   │   ├── CompareContext.tsx   # 🆕 Sistema de comparación de productos
+│   │   └── BrowsingHistoryContext.tsx # 🆕 Historial de navegación con tracking
 │   ├── 📁 data/                 # Datos y productos
-│   │   └── products.ts          # Base de datos de productos
+│   │   └── products.ts          # Base de datos de productos expandida
 │   ├── 📁 hooks/                # Hooks personalizados
 │   │   ├── useScrollAnimation.ts # Animaciones de scroll
 │   │   └── useCarouselKeyboard.ts # Navegación por teclado
-│   ├── 📁 styles/               # CSS Modules
+│   ├── 📁 styles/               # CSS Modules (20+ archivos de estilos)
 │   │   ├── header.module.css    # Header responsivo
 │   │   ├── Footer.module.css    # Footer adaptativo
 │   │   ├── ProductModal.module.css # Modal responsivo
-│   │   ├── SearchBar.module.css # Búsqueda móvil
-│   │   ├── card.module.css      # ProductCard responsivo
+│   │   ├── SearchBar.module.css # Búsqueda móvil con autocompletado
+│   │   ├── card.module.css      # ProductCard con integración avanzada
+│   │   ├── StarRating.module.css # 🆕 Estilos para sistema de estrellas
+│   │   ├── ReviewForm.module.css # 🆕 Formulario de reseñas
+│   │   ├── ReviewsList.module.css # 🆕 Lista de reseñas
+│   │   ├── ReviewsModal.module.css # 🆕 Modal de reseñas
+│   │   ├── ReviewsButton.module.css # 🆕 Botón de reseñas
+│   │   ├── RecommendationsWidget.module.css # 🆕 Widget de recomendaciones
+│   │   ├── RecentlyViewedWidget.module.css # 🆕 Historial de productos
+│   │   ├── CompareModal.module.css # 🆕 Modal de comparación
+│   │   ├── CompareFloating.module.css # 🆕 Widget flotante
 │   │   ├── responsive.module.css # 🆕 Sistema responsivo global
 │   │   └── electrohogar.module.css # 🆕 Estilos Electro Hogar
 │   └── 📁 utils/                # Utilidades
@@ -614,23 +655,38 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 - ✅ **Performance Optimizado** - Next.js 15 con Turbopack
 - ✅ **Código Limpio** - TypeScript, CSS Modules y best practices
 
-### 📊 Estadísticas del Proyecto v4.0
-- **50+ productos** distribuidos en 7 categorías
-- **30+ componentes** reutilizables y responsivos
-- **15 páginas** con navegación completa y funcionalidad móvil
-- **Sistema de filtros** implementado en todas las categorías
+### 📊 Estadísticas del Proyecto v5.0 - Fase 8: Funcionalidad Interactiva Avanzada
+- **65+ productos** distribuidos en 7 categorías completas
+- **25+ componentes** React reutilizables y especializados
+- **20+ archivos CSS** con CSS Modules y sistema de variables
+- **8 Context APIs** para gestión avanzada de estado global
+- **13 rutas** dinámicas con navegación completa
+- **Sistema de reseñas** con calificaciones persistentes
+- **Motor de recomendaciones** con algoritmos inteligentes
+- **Historial de navegación** con tracking automático
+- **Comparador de productos** con especificaciones lado a lado
+- **Búsqueda avanzada** con autocompletado inteligente
+- **Lista de deseos** persistente con localStorage
 - **Carrito funcional** con gestión completa de estado
-- **Sistema de modal** responsivo con detalles de productos
-- **ProductCard minimalista** unificado y adaptable
-- **Estructura organizada** de +100 archivos
+- **Sistema de filtros** implementado en todas las categorías
+- **Modal responsivo** con detalles y galería de productos
+- **Estructura organizada** de +150 archivos
 - **Responsive design** 100% funcional en todos los dispositivos
-- **TypeScript** coverage completo
-- **Build exitoso** sin errores
-- **Mobile-optimized** con performance superior a 95 puntos
+- **TypeScript** coverage completo con interfaces avanzadas
+- **Build exitoso** sin errores con optimizaciones
+- **Performance superior** con Next.js 15 y Turbopack
 
-### 🆕 Nuevas Funcionalidades Implementadas (v4.0 - Responsive + Electro Hogar)
+### 🆕 Nuevas Funcionalidades Implementadas
 
-#### 📱 **Sistema Responsivo Completo**
+#### ✨ **Fase 8: Funcionalidad Interactiva Avanzada (NUEVO)**
+- **🌟 Sistema de Reseñas Completo**: Calificaciones con estrellas, reseñas textuales, estadísticas de distribución
+- **🤖 Motor de Recomendaciones**: Algoritmos inteligentes basados en comportamiento, productos similares, trending
+- **📚 Historial de Navegación**: Tracking automático, gestión de sesiones, productos recientes con límite temporal
+- **⚖️ Comparador de Productos**: Comparación lado a lado hasta 4 productos, especificaciones detalladas
+- **🔍 Búsqueda Avanzada**: Autocompletado inteligente, sugerencias contextuales, filtros dinámicos
+- **💖 Lista de Deseos Mejorada**: Persistencia avanzada, integración con recomendaciones, gestión completa
+
+#### 📱 **Sistema Responsivo Completo (v4.0)**
 - **CSS Grid adaptativo**: Auto-fit con minmax() para todas las pantallas
 - **Breakpoints inteligentes**: 6 rangos optimizados de dispositivos
 - **Header responsivo**: Menú hamburguesa funcional en móviles
@@ -658,15 +714,56 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 - **Scroll behavior**: Suave y optimizado
 - **Backdrop filters**: Efectos modernos en modales y dropdowns
 
-#### ⚡ **Optimizaciones Técnicas v4.0**
-- **responsive.module.css**: Sistema CSS responsivo centralizado
-- **useScrollAnimation mejorado**: Optimizado para móviles
-- **Error handling**: Manejo robusto de imágenes en diferentes resoluciones
+#### ⚡ **Optimizaciones Técnicas Avanzadas (v5.0)**
+- **8 Context APIs**: CartContext, FilterContext, SearchContext, WishlistContext, ReviewsContext, RecommendationsContext, CompareContext, BrowsingHistoryContext
+- **Algoritmos inteligentes**: Motor de recomendaciones con scoring avanzado
+- **localStorage optimizado**: Gestión eficiente de datos persistentes con compresión
+- **Hooks especializados**: useScrollAnimation, useCarouselKeyboard optimizados para performance
+- **TypeScript interfaces**: Tipado completo para todas las nuevas funcionalidades
+- **Error handling**: Manejo robusto con fallbacks y validaciones
+- **Performance monitoring**: Tracking de interacciones del usuario para analytics
+- **Memory management**: Optimización de componentes con lazy loading y memoización
 - **Performance**: Lazy loading y optimización de imágenes responsivas
 - **Build optimizado**: Compilación exitosa con todas las mejoras
 
 ---
 
+## 🏆 Resumen de Funcionalidades por Fase
+
+### 📋 **Fase 1-3: Fundación y Arquitectura**
+- ✅ Next.js 15 con TypeScript y CSS Modules
+- ✅ Estructura de proyecto escalable y organizada
+- ✅ Sistema de componentes reutilizables
+- ✅ Diseño responsivo mobile-first
+
+### 📋 **Fase 4-6: E-commerce Core**
+- ✅ Carrito de compras funcional con React Context
+- ✅ 7 categorías con 65+ productos reales
+- ✅ Sistema de filtros avanzado por precio y categoría
+- ✅ Modal de detalles con galería de imágenes
+- ✅ Búsqueda básica con resultados en tiempo real
+
+### 📋 **Fase 7: Optimización y UX**
+- ✅ Sistema responsivo completo con 6 breakpoints
+- ✅ Animaciones suaves y efectos hover elegantes
+- ✅ Performance optimizada con lazy loading
+- ✅ Branding IZA&CAS consistente en todo el sitio
+
+### 🌟 **Fase 8: Funcionalidad Interactiva Avanzada (ACTUAL)**
+- ✅ **Sistema de Reseñas y Calificaciones**: 5 estrellas, reseñas textuales, estadísticas
+- ✅ **Motor de Recomendaciones Inteligente**: Algoritmos basados en comportamiento
+- ✅ **Historial de Navegación**: Tracking automático con gestión de sesiones
+- ✅ **Comparador de Productos**: Comparación lado a lado hasta 4 productos
+- ✅ **Búsqueda Avanzada**: Autocompletado inteligente con sugerencias
+- ✅ **Lista de Deseos Mejorada**: Persistencia avanzada con localStorage
+
+### 🎯 **Próximas Fases Sugeridas**
+- 🔄 **Fase 9**: Autenticación de usuarios y perfiles
+- 🔄 **Fase 10**: Checkout y procesamiento de pagos
+- 🔄 **Fase 11**: Panel de administración y gestión de inventario
+- 🔄 **Fase 12**: Analytics y reportes de ventas
+
+---
 ⭐ **¡IZA & CAS - Tu tienda de confianza para el hogar y más!** 🏠  
 🛍️ **E-commerce completo 100% responsivo desarrollado con las últimas tecnologías** 💻  
 🎯 **v4.0 - Diseño responsivo completo, nueva categoría Electro Hogar y funcionalidad móvil avanzada** 📱⚡
