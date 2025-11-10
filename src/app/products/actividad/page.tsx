@@ -4,190 +4,30 @@ import { useState } from 'react';
 import Header from '@/components/Header';
 import ProductCard from '@/components/ProductCard';
 import ProductModal from '@/components/ProductModal';
-import WishlistButton from '@/components/WishlistButton';
 import FilterPanel from '@/components/FilterPanel';
 import { useCart } from '@/context/CartContext';
 import { useFilters } from '@/context/FilterContext';
-import { Product } from '@/data/products';
+import { useProducts, Product } from '@/hooks/useProducts';
+import styles from '@/styles/actividad.module.css';
 
 /**
  * Productos de Actividad - IZA & CAS
  * 
- * Categoría dedicada a deportes, fitness y actividades al aire libre
- * Incluye: camping, piscina, playa, deportes
- * Con funcionalidad completa de carrito y modal
+ * Categoría dedicada a deportes y actividades al aire libre
+ * Con animaciones suaves y experiencia de usuario moderna
+ * Integrado con la API para obtener datos dinámicos
  */
-
-// Datos reales de productos de actividad con imágenes subidas
-const ACTIVIDAD_PRODUCTS: Product[] = [
-  // === CATEGORÍA CAMPING ===
-  {
-    id: 1,
-    name: "Binoculares 30x60 Prismáticos",
-    price: 9990,
-    image: "/images/actividad/camping/binocular30X60prismaticos/DeD5uvaTWXye0rT0XomGqQ==.jpg",
-    images: [
-      "/images/actividad/camping/binocular30X60prismaticos/DeD5uvaTWXye0rT0XomGqQ==.jpg",
-      "/images/actividad/camping/binocular30X60prismaticos/k9y4+nAPEtE0muZXaq8oNQ==.jpg",
-      "/images/actividad/camping/binocular30X60prismaticos/MCL5vAUYall0XfIBDeNbw==.jpg"
-    ],
-    description: "Binoculares profesionales con zoom 30x60 para observación de naturaleza y camping",
-    category: "Camping"
-  },
-  {
-    id: 2,
-    name: "Colchón Inflable 1 Plaza",
-    price: 12990,
-    image: "/images/actividad/camping/colchonesinfables1plaza/1X4DW7Z+smvyexJBBR5I2w==.jpg",
-    images: ["/images/actividad/camping/colchonesinfables1plaza/1X4DW7Z+smvyexJBBR5I2w==.jpg"],
-    description: "Colchón inflable cómodo para una persona, ideal para camping y visitas",
-    category: "Camping"
-  },
-  {
-    id: 3,
-    name: "Hamaca 200x100cm",
-    price: 7990,
-    image: "/images/actividad/camping/hamaca200X100cm/5x5ySvyXdMCgMnncDNboA==.jpg",
-    images: [
-      "/images/actividad/camping/hamaca200X100cm/5x5ySvyXdMCgMnncDNboA==.jpg",
-      "/images/actividad/camping/hamaca200X100cm/ijsQlCHMhp5UvQsYlcIBFw==.jpg",
-      "/images/actividad/camping/hamaca200X100cm/oS0UutmGBbe6RtpE01TZIg==.jpg"
-    ],
-    description: "Hamaca resistente para camping y descanso al aire libre",
-    category: "Camping"
-  },
-  {
-    id: 4,
-    name: "Lona Impermeable Multiuso 4x6m",
-    price: 14990,
-    image: "/images/actividad/camping/lonaimpermeablesmultiuso4X6m/EzYwQc9YP4gH4Pc9yTAxw==.jpg",
-    images: [
-      "/images/actividad/camping/lonaimpermeablesmultiuso4X6m/EzYwQc9YP4gH4Pc9yTAxw==.jpg",
-      "/images/actividad/camping/lonaimpermeablesmultiuso4X6m/tKa13NmESpEKfw4IPyaDw==.jpg"
-    ],
-    description: "Lona impermeable de uso múltiple, perfecta para camping y protección",
-    category: "Camping"
-  },
-
-  // === CATEGORÍA DEPORTES ===
-  {
-    id: 5,
-    name: "Chaleco Deportivo para Correr",
-    price: 8990,
-    image: "/images/actividad/deporte/chalecodeportivoparacorrer/9xJn0ARIT5KPc0gchC3lQA==.jpg",
-    images: [
-      "/images/actividad/deporte/chalecodeportivoparacorrer/9xJn0ARIT5KPc0gchC3lQA==.jpg",
-      "/images/actividad/deporte/chalecodeportivoparacorrer/k0FPDJNfSxks8C4GmEFptA==.jpg",
-      "/images/actividad/deporte/chalecodeportivoparacorrer/KpsvkqKI6v5yk9DcLl6sQ==.jpg",
-      "/images/actividad/deporte/chalecodeportivoparacorrer/rB4kGRQ4Pz1D7zS23f+xhg==.jpg",
-      "/images/actividad/deporte/chalecodeportivoparacorrer/xW82e8+omkul5xXmRjsTYg==.jpg"
-    ],
-    description: "Chaleco deportivo transpirable para running y ejercicio",
-    category: "Deportes"
-  },
-  {
-    id: 6,
-    name: "Pesas de Arena para Tobillo 1kg",
-    price: 6990,
-    image: "/images/actividad/deporte/pesasdearenaparaeltobillo1k/+nxIaXr7Upd+OJsLIq41hA==.jpg",
-    images: [
-      "/images/actividad/deporte/pesasdearenaparaeltobillo1k/+nxIaXr7Upd+OJsLIq41hA==.jpg",
-      "/images/actividad/deporte/pesasdearenaparaeltobillo1k/nnebMzbQx6S0Hby6vjIWiQ==.jpg",
-      "/images/actividad/deporte/pesasdearenaparaeltobillo1k/ShKofEZvQ1pbY5VMmUl6ug==.jpg",
-      "/images/actividad/deporte/pesasdearenaparaeltobillo1k/VF7aKKsC+gdZycVGnlgCA==.jpg",
-      "/images/actividad/deporte/pesasdearenaparaeltobillo1k/VWeCfgHBrOgrSLBkIWrXtQ==.jpg"
-    ],
-    description: "Pesas ajustables de arena para entrenamiento de piernas",
-    category: "Deportes"
-  },
-
-  // === CATEGORÍA PISCINA ===
-  {
-    id: 7,
-    name: "Alfombra de Agua para Niños",
-    price: 8990,
-    image: "/images/actividad/piscina/alfombradeaguaparaniños/9qIpzMkV2X50QN6ICtOfqw==.jpg",
-    images: [
-      "/images/actividad/piscina/alfombradeaguaparaniños/9qIpzMkV2X50QN6ICtOfqw==.jpg",
-      "/images/actividad/piscina/alfombradeaguaparaniños/CNf6zPNbQyKccFYBvTnadg==.jpg",
-      "/images/actividad/piscina/alfombradeaguaparaniños/N0QIqZ4K15BUiAVms9EDzg==.jpg"
-    ],
-    description: "Alfombra de agua inflable para diversión de niños en verano",
-    category: "Piscina"
-  },
-  {
-    id: 8,
-    name: "Deslizadero Acuático Tobogán",
-    price: 15990,
-    image: "/images/actividad/piscina/deslizaderoacuaticotoboganalfombra/i2VyW5OEQD29GTSUIf1eQ==.jpg",
-    images: [
-      "/images/actividad/piscina/deslizaderoacuaticotoboganalfombra/i2VyW5OEQD29GTSUIf1eQ==.jpg",
-      "/images/actividad/piscina/deslizaderoacuaticotoboganalfombra/O3TUgztVA++oKZ01NNTNw==.jpg",
-      "/images/actividad/piscina/deslizaderoacuaticotoboganalfombra/YIjKOdvJG8VjIkZg9DgHVw==.jpg"
-    ],
-    description: "Tobogán acuático inflable para diversión en piscina y jardín",
-    category: "Piscina"
-  },
-  {
-    id: 9,
-    name: "Piscina Inflable 2.62x1.75x0.51m",
-    price: 19990,
-    image: "/images/actividad/piscina/piscinainfable2,62X1,75X0,51/9XjN7Un9YTYuJB6BZEzJZw==.jpg",
-    images: [
-      "/images/actividad/piscina/piscinainfable2,62X1,75X0,51/9XjN7Un9YTYuJB6BZEzJZw==.jpg",
-      "/images/actividad/piscina/piscinainfable2,62X1,75X0,51/F+kLoEBBQp6wFYBWT8Sy9A==.jpg",
-      "/images/actividad/piscina/piscinainfable2,62X1,75X0,51/T8cBbYSZF1U42lTgTom4zA==.jpg"
-    ],
-    description: "Piscina inflable familiar de gran tamaño para diversión en el jardín",
-    category: "Piscina"
-  },
-  
-  // === CATEGORÍA PLAYA ===
-  {
-    id: 10,
-    name: "Balde de Playa",
-    price: 3990,
-    image: "/images/actividad/playa/baldeparaplaya/5xXXiRCdV9mpv0YAxtL+hQ==.jpg",
-    images: [
-      "/images/actividad/playa/baldeparaplaya/5xXXiRCdV9mpv0YAxtL+hQ==.jpg",
-      "/images/actividad/playa/baldeparaplaya/KSCZvvoTVpazMv6ZLbiJUA==.jpg"
-    ],
-    description: "Set de balde y pala para juegos en la playa",
-    category: "Playa"
-  },
-  {
-    id: 11,
-    name: "Carpa para Playa",
-    price: 11990,
-    image: "/images/actividad/playa/carpaparaplaya/3uZc2I9d15iuH9fW81ybiw==.jpg",
-    images: [
-      "/images/actividad/playa/carpaparaplaya/3uZc2I9d15iuH9fW81ybiw==.jpg",
-      "/images/actividad/playa/carpaparaplaya/6NN8TE7mtb56ibEtLY3+w==.jpg",
-      "/images/actividad/playa/carpaparaplaya/lt6QN72GHjIFUzz4rsYuA==.jpg"
-    ],
-    description: "Carpa portátil con protección UV para días de playa",
-    category: "Playa"
-  },
-  {
-    id: 12,
-    name: "Quitasol de Playa",
-    price: 8990,
-    image: "/images/actividad/playa/quitasol/RJtwHp8l2Sx+5rn1SV7eiA==.jpg",
-    images: ["/images/actividad/playa/quitasol/RJtwHp8l2Sx+5rn1SV7eiA==.jpg"],
-    description: "Quitasol portátil con protección UV para la playa",
-    category: "Playa"
-  }
-];
 
 export default function ActividadPage() {
   const { addToCart } = useCart();
   const { applyFilters } = useFilters();
+  const { products: actividadProducts, loading, error } = useProducts('actividad');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
 
   // Aplicar filtros a los productos
-  const filteredProducts = applyFilters(ACTIVIDAD_PRODUCTS);
+  const filteredProducts = applyFilters(actividadProducts);
 
   const handleViewDetails = (product: Product) => {
     setSelectedProduct(product);
@@ -216,7 +56,7 @@ export default function ActividadPage() {
               justifyContent: 'center',
               gap: '12px'
             }}>
-              🏃‍♂️ Actividad & Deportes
+                Deportes & Actividad
             </h1>
             <p style={{ 
               color: 'var(--text-secondary)', 
@@ -224,66 +64,84 @@ export default function ActividadPage() {
               maxWidth: '600px',
               margin: '0 auto'
             }}>
-              Productos para deportes y actividades al aire libre
+              Equipamiento para deportes y actividades al aire libre
             </p>
             
+            {/* Estados de carga y error */}
+            {loading && (
+              <div style={{ textAlign: 'center', padding: '40px' }}>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '18px' }}>
+                  Cargando productos...
+                </p>
+              </div>
+            )}
+            
+            {error && (
+              <div style={{ textAlign: 'center', padding: '40px' }}>
+                <p style={{ color: 'var(--error)', fontSize: '18px' }}>
+                  Error al cargar productos: {error}
+                </p>
+              </div>
+            )}
+            
             {/* Controles de filtros */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '16px',
-              flexWrap: 'wrap',
-              marginTop: '24px'
-            }}>
-              <span style={{
-                color: 'var(--text-secondary)',
-                fontSize: '14px'
+            {!loading && !error && (
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '16px',
+                flexWrap: 'wrap',
+                marginTop: '24px'
               }}>
-                {filteredProducts.length} producto{filteredProducts.length !== 1 ? 's' : ''} encontrado{filteredProducts.length !== 1 ? 's' : ''}
-              </span>
+                <span style={{
+                  color: 'var(--text-secondary)',
+                  fontSize: '14px'
+                }}>
+                  {filteredProducts.length} producto{filteredProducts.length !== 1 ? 's' : ''} encontrado{filteredProducts.length !== 1 ? 's' : ''}
+                </span>
               
-              <button
-                onClick={() => setShowFilters(true)}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '10px 16px',
-                  background: 'var(--brand)',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '8px',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease'
-                }}
-              >
-                🔍 Filtros
-              </button>
-            </div>
+                <button
+                  onClick={() => setShowFilters(true)}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    padding: '10px 16px',
+                    background: 'var(--brand)',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '8px',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  🔍 Filtros
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Grid de productos */}
-          <div className="grid" style={{ marginBottom: '60px' }}>
-            {filteredProducts.map((product) => (
-              <div key={product.id} className="card" style={{ position: 'relative' }}>
-                <WishlistButton 
-                  product={product} 
-                  className="onCard" 
-                />
-                <ProductCard
-                  id={product.id}
-                  name={product.name}
-                  price={product.price}
-                  image={product.image}
-                  category={product.category}
-                  onClick={() => handleViewDetails(product)}
-                />
-              </div>
-            ))}
-          </div>
+          {!loading && !error && (
+            <div className={styles.productsGrid} style={{ marginBottom: '60px' }}>
+              {filteredProducts.map((product) => (
+                <div key={product.id} className={styles.productCard} style={{ position: 'relative' }}>
+                  <ProductCard
+                    id={product.id}
+                    name={product.name}
+                    price={product.price}
+                    image={product.image}
+                    images={product.images}
+                    category="actividad"
+                    onClick={() => handleViewDetails(product)}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </main>
       
@@ -291,7 +149,7 @@ export default function ActividadPage() {
       <FilterPanel
         isOpen={showFilters}
         onClose={() => setShowFilters(false)}
-        products={ACTIVIDAD_PRODUCTS}
+        products={actividadProducts}
       />
       
       {/* Modal para ver detalles del producto */}
@@ -301,16 +159,6 @@ export default function ActividadPage() {
         product={selectedProduct}
         onAddToCart={handleAddToCart}
       />
-      
-      <footer 
-        className="container" 
-        style={{
-          opacity: 0.7, 
-          padding: "24px 24px 48px"
-        }}
-      >
-        © 2025 IZA & CAS — hecho por karla cuevas
-      </footer>
     </>
   );
 }

@@ -1,0 +1,112 @@
+/* Sección de Productos Destacados */
+.featuredSection {
+  padding: 32px 0;
+  background: transparent;
+  position: relative;
+  overflow: visible;
+}
+
+.featuredSection::before {
+  display: none;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  text-align: left;
+  margin-bottom: 24px;
+  text-shadow: none;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: white;
+  font-size: 18px;
+}
+
+/* Carrusel horizontal de productos */
+.carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  padding: 10px 0 20px 0;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+}
+
+/* Estilos para la barra de scroll */
+.carousel::-webkit-scrollbar {
+  height: 8px;
+}
+
+.carousel::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.carousel::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Wrapper de cada producto */
+.productWrapper {
+  flex-shrink: 0;
+  width: 280px;
+  scroll-snap-align: start;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .featuredSection {
+    padding: 32px 0;
+  }
+
+  .title {
+    font-size: 26px;
+    margin-bottom: 24px;
+  }
+
+  .productWrapper {
+    width: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .featuredSection {
+    padding: 24px 0;
+  }
+
+  .title {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .carousel {
+    gap: 16px;
+  }
+
+  .productWrapper {
+    width: 200px;
+  }
+}
+
+
+

@@ -90,7 +90,7 @@ export default function CompareModal() {
                   <div className={styles.productCard}>
                     <button
                       className={styles.removeBtn}
-                      onClick={() => removeFromCompare(product.id)}
+                      onClick={() => removeFromCompare(typeof product.id === 'string' ? parseInt(product.id) : product.id)}
                       aria-label={`Remover ${product.name} de comparación`}
                     >
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

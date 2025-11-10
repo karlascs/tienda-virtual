@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSession, signOut } from "next-auth/react";
 import styles from "@/styles/header.module.css";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
@@ -21,10 +22,12 @@ const MENU_CATEGORIES = [
 ];
 
 export default function Header() {
+  const { data: session, status } = useSession();
   const { state } = useCart();
   const { wishlist } = useWishlist();
   const { clearSearch } = useSearch();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   const handleProductSelect = (product: Product) => {
     console.log('Producto seleccionado:', product);
@@ -33,11 +36,42 @@ export default function Header() {
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+    setUserMenuOpen(false);
   };
 
   const closeMenu = () => {
     setMenuOpen(false);
   };
+
+  const toggleUserMenu = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setUserMenuOpen(!userMenuOpen);
+    setMenuOpen(false);
+  };
+
+  const closeUserMenu = () => {
+    setUserMenuOpen(false);
+  };
+
+  const handleLogout = async () => {
+    await signOut({ redirect: true, callbackUrl: '/' });
+  };
+
+  // Cerrar menús al hacer clic fuera
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest(`.${styles.userMenuContainer}`)) {
+        closeUserMenu();
+      }
+      if (!target.closest(`.${styles.dropdownMenu}`) && !target.closest(`.${styles.menuButton}`)) {
+        closeMenu();
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, []);
 
   return (
     <header className={styles.header}>
@@ -78,13 +112,90 @@ export default function Header() {
             />
           </div>
           
-          {/* Iniciar Sesión - Icono de usuario más claro */}
-          <button className={styles.loginButton} title="Iniciar Sesión">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-          </button>
+          {/* Usuario / Login */}
+          {status === 'loading' ? (
+            <div className={styles.loginButton} title="Cargando...">
+              <div className={styles.spinner}></div>
+            </div>
+          ) : session?.user ? (
+            <div className={styles.userMenuContainer}>
+              <button 
+                className={styles.userButton} 
+                onClick={toggleUserMenu}
+                title={`Cuenta de ${session.user.name}`}
+              >
+                {session.user.image ? (
+                  <Image 
+                    src={session.user.image} 
+                    alt={session.user.name || 'Usuario'}
+                    width={32}
+                    height={32}
+                    className={styles.avatar}
+                  />
+                ) : (
+                  <div className={styles.avatarPlaceholder}>
+                    {session.user.name?.charAt(0).toUpperCase()}
+                  </div>
+                )}
+              </button>
+              
+              {userMenuOpen && (
+                <div className={styles.userDropdown} onClick={(e) => e.stopPropagation()}>
+                  <div className={styles.userInfo}>
+                    <p className={styles.userName}>{session.user.name}</p>
+                    <p className={styles.userEmail}>{session.user.email}</p>
+                    {session.user.role === 'ADMIN' && (
+                      <span className={styles.adminBadge}>Administrador</span>
+                    )}
+                  </div>
+                  <div className={styles.userMenuDivider}></div>
+                  {session.user.role === 'ADMIN' && (
+                    <Link href="/admin" className={styles.userMenuItem} onClick={closeUserMenu}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                      </svg>
+                      Panel de Admin
+                    </Link>
+                  )}
+                  <Link href="/orders" className={styles.userMenuItem} onClick={closeUserMenu}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                    </svg>
+                    Mis Órdenes
+                  </Link>
+                  <Link href="/profile" className={styles.userMenuItem} onClick={closeUserMenu}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    Mi Perfil
+                  </Link>
+                  <div className={styles.userMenuDivider}></div>
+                  <button 
+                    onClick={handleLogout} 
+                    className={`${styles.userMenuItem} ${styles.logoutButton}`}
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                      <polyline points="16 17 21 12 16 7"></polyline>
+                      <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    Cerrar Sesión
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link href="/login" className={styles.loginButton} title="Iniciar Sesión">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </Link>
+          )}
           
           {/* Favoritos - Icono de corazón más claro */}
           <Link href="/wishlist" className={styles.favoriteButton} title="Lista de Favoritos">

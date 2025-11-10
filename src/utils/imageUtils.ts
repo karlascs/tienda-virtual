@@ -15,24 +15,21 @@
 export function encodeImageUrl(imageUrl: string): string {
   if (!imageUrl) return '/images/placeholder.svg';
   
-  // Dividir la URL en partes para codificar solo el nombre del archivo
+  // Dividir la URL en partes
   const parts = imageUrl.split('/');
   
-  // Codificar cada parte que pueda tener caracteres especiales
+  // Codificar cada parte excepto la primera (vacía) y 'images'
   const encodedParts = parts.map((part, index) => {
-    // No codificar las primeras partes que son rutas básicas
-    if (index < 2 || part === 'images') {
+    // No codificar la parte vacía inicial, 'images', o las dos primeras barras
+    if (part === '' || part === 'images' || index === 0) {
       return part;
     }
     
-    // Codificar caracteres especiales comunes
-    return part
-      .replace(/\+/g, '%2B')  // + -> %2B
-      .replace(/=/g, '%3D')   // = -> %3D
-      .replace(/\s/g, '%20')  // espacio -> %20
-      .replace(/#/g, '%23')   // # -> %23
-      .replace(/&/g, '%26')   // & -> %26
-      .replace(/\?/g, '%3F'); // ? -> %3F
+    // Usar encodeURIComponent para cada parte del path
+    // Esto codifica °, +, espacios, etc. correctamente
+    return encodeURIComponent(part)
+      .replace(/%2B/g, '+')  // Mantener + sin codificar (válido en URLs de archivos)
+      .replace(/%3D/g, '='); // Mantener = sin codificar (válido en nombres de archivo)
   });
   
   return encodedParts.join('/');

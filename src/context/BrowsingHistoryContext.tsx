@@ -131,7 +131,7 @@ export function BrowsingHistoryProvider({ children }: { children: ReactNode }) {
         id: productId,
         timestamp: now,
         sessionId: currentSession.sessionId,
-        category: product.category,
+        category: product.category || '',
         price: product.price
       };
 

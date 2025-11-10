@@ -1,19 +1,13 @@
 /**
  * Base de datos centralizada de productos - IZA & CAS
  * 
- * Este archivo contiene todos los productos organizados por categorías.
- * Cualquier cambio aquí se reflejará automáticamente en toda la aplicación.
+ * Este archivo contiene productos legacy.
+ * Para nuevos desarrollos, usar el hook useProducts de @/hooks/useProducts
  */
 
-export interface Product {
-  id: number;
-  name: string;
-  price: number;
-  images?: string[]; // Temporal: opcional para que compile
-  image: string; // Imagen principal (siempre será la primera del array)
-  description: string;
-  category: string;
-}
+// Importar y exportar el tipo unificado de Product
+import type { Product, Category } from '@/types/product';
+export type { Product, Category };
 
 // ===== PRODUCTOS DE HOGAR =====
 const HOGAR_PRODUCTS_DATA = [

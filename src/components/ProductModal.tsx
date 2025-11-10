@@ -67,7 +67,7 @@ export default function ProductModal({ product, isOpen, onClose, onAddToCart }: 
             {/* Imagen principal */}
             <div className={styles.mainImageContainer}>
               <img 
-                src={encodeImageUrl(images[currentImageIndex] || product.image)}
+                src={encodeImageUrl(images[currentImageIndex] || product.image || '')}
                 alt={`${product.name} - imagen ${currentImageIndex + 1}`}
                 className={styles.mainImage}
                 onError={(e) => {
@@ -114,7 +114,7 @@ export default function ProductModal({ product, isOpen, onClose, onAddToCart }: 
                     onClick={() => selectImage(index)}
                   >
                     <img 
-                      src={encodeImageUrl(image)}
+                      src={encodeImageUrl(image || '')}
                       alt={`Vista ${index + 1}`}
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;

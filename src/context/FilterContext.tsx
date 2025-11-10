@@ -72,9 +72,12 @@ export function FilterProvider({ children }: FilterProviderProps) {
 
     // Filtrar por categorías
     if (filters.categories.length > 0) {
-      filteredProducts = filteredProducts.filter(product =>
-        filters.categories.includes(product.category)
-      );
+      filteredProducts = filteredProducts.filter(product => {
+        const categoryName = typeof product.category === 'object' && product.category !== null
+          ? (product.category as any).name || product.category
+          : product.category;
+        return filters.categories.includes(categoryName);
+      });
     }
 
     // Filtrar por rango de precios
@@ -95,7 +98,15 @@ export function FilterProvider({ children }: FilterProviderProps) {
         filteredProducts.sort((a, b) => b.price - a.price);
         break;
       case 'category':
-        filteredProducts.sort((a, b) => a.category.localeCompare(b.category, 'es'));
+        filteredProducts.sort((a, b) => {
+          const catA = typeof a.category === 'object' && a.category !== null
+            ? String((a.category as any).name || a.category)
+            : String(a.category);
+          const catB = typeof b.category === 'object' && b.category !== null
+            ? String((b.category as any).name || b.category)
+            : String(b.category);
+          return catA.localeCompare(catB, 'es');
+        });
         break;
     }
 
@@ -104,8 +115,18 @@ export function FilterProvider({ children }: FilterProviderProps) {
 
   // Función para obtener categorías únicas
   const getAvailableCategories = (products: Product[]): string[] => {
-    const categories = [...new Set(products.map(product => product.category))];
-    return categories.sort((a, b) => a.localeCompare(b, 'es'));
+    const categories = [...new Set(products.map(product => {
+      // Si category es un objeto, extraer el nombre; si es string, usarlo directamente
+      if (typeof product.category === 'object' && product.category !== null) {
+        return (product.category as any).name || product.category;
+      }
+      return product.category;
+    }))];
+    return categories.sort((a, b) => {
+      const strA = String(a);
+      const strB = String(b);
+      return strA.localeCompare(strB, 'es');
+    });
   };
 
   // Función para obtener el rango de precios

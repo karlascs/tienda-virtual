@@ -1,0 +1,468 @@
+// IZA&CAS E-commerce Database Schema
+// Fase 9: Backend completo con Prisma y PostgreSQL
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Modelo de Banners (Carousel de página principal)
+model Banner {
+  id          String   @id @default(cuid())
+  title       String
+  subtitle    String?
+  imageUrl    String
+  link        String?
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("banners")
+  @@index([order])
+  @@index([isActive])
+}
+
+// Modelo de Categorías
+model Category {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  slug        String    @unique
+  description String?
+  image       String?
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("categories")
+}
+
+// Modelo de Productos
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  sku         String   @unique // Código único del producto
+  description String?  @db.Text
+  price       Float
+  originalPrice Float?
+  discount    Int?     @default(0)
+  brand       String?
+  model       String?
+  features    String[] @default([])
+  images      String[] @default([])
+  stock       Int      @default(0)
+  isActive    Boolean  @default(true)
+  isFeatured  Boolean  @default(false)
+  
+  // Relaciones
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  
+  // Reseñas y ratings
+  reviews     Review[]
+  averageRating Float   @default(0)
+  totalReviews  Int     @default(0)
+  
+  // Carrito y wishlist
+  cartItems   CartItem[]
+  wishlistItems WishlistItem[]
+  orderItems  OrderItem[]
+  
+  // Inventario
+  inventoryMovements InventoryMovement[]
+  
+  // Metadata
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("products")
+  @@index([categoryId])
+  @@index([slug])
+  @@index([sku])
+  @@index([price])
+  @@index([averageRating])
+}
+
+// Enum para roles de usuario
+enum UserRole {
+  USER
+  ADMIN
+}
+
+// Modelo de Usuarios
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String
+  avatar        String?
+  phone         String?
+  
+  // Autenticación y Seguridad
+  hashedPassword String
+  role          UserRole  @default(USER)
+  emailVerified Boolean   @default(false)
+  resetToken    String?   @unique
+  resetTokenExpiry DateTime?
+  
+  // Dirección
+  address   String?
+  city      String?
+  zipCode   String?
+  
+  // Relaciones
+  reviews   Review[]
+  cart      Cart?
+  wishlist  Wishlist?
+  orders    Order[]
+  sessions  Session[]
+  accounts  Account[]
+  
+  // Metadata
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+  @@index([email])
+  @@index([role])
+}
+
+// Modelo de Cuentas (OAuth providers como Google)
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+// Modelo de Sesiones (para autenticación)
+model Session {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@map("sessions")
+  @@index([token])
+  @@index([userId])
+}
+
+// Modelo de Carrito
+model Cart {
+  id        String     @id @default(cuid())
+  userId    String     @unique
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items     CartItem[]
+  total     Float      @default(0)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@map("carts")
+}
+
+// Items del carrito
+model CartItem {
+  id        String  @id @default(cuid())
+  cartId    String
+  cart      Cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  quantity  Int     @default(1)
+  price     Float
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("cart_items")
+  @@unique([cartId, productId])
+  @@index([cartId])
+  @@index([productId])
+}
+
+// Modelo de Lista de Deseos
+model Wishlist {
+  id        String         @id @default(cuid())
+  userId    String         @unique
+  user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items     WishlistItem[]
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+
+  @@map("wishlists")
+}
+
+// Items de la lista de deseos
+model WishlistItem {
+  id         String   @id @default(cuid())
+  wishlistId String
+  wishlist   Wishlist @relation(fields: [wishlistId], references: [id], onDelete: Cascade)
+  productId  String
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+
+  @@map("wishlist_items")
+  @@unique([wishlistId, productId])
+  @@index([wishlistId])
+  @@index([productId])
+}
+
+// Modelo de Reseñas
+model Review {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  
+  // Contenido de la reseña
+  rating    Int      // 1-5 estrellas
+  title     String?
+  comment   String
+  
+  // Metadata
+  helpful   Int      @default(0)
+  verified  Boolean  @default(false) // Compra verificada
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("reviews")
+  @@unique([userId, productId]) // Un usuario solo puede hacer una reseña por producto
+  @@index([productId])
+  @@index([rating])
+  @@index([createdAt])
+}
+
+// Modelo de Órdenes
+model Order {
+  id            String      @id @default(cuid())
+  userId        String
+  user          User        @relation(fields: [userId], references: [id])
+  
+  // Detalles de la orden
+  orderNumber   String      @unique
+  status        OrderStatus @default(PENDING)
+  total         Float
+  subtotal      Float
+  tax           Float       @default(0)
+  shipping      Float       @default(0)
+  
+  // Información de envío
+  shippingName    String
+  shippingEmail   String
+  shippingPhone   String?
+  shippingAddress String
+  shippingCity    String
+  shippingZip     String
+  
+  // Información de pago
+  paymentMethod   String?
+  paymentStatus   PaymentStatus @default(PENDING)
+  paymentId       String?
+  
+  // Items de la orden
+  items         OrderItem[]
+  
+  // Metadata
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@map("orders")
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+// Items de la orden
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  
+  // Detalles del item al momento de la compra
+  name      String
+  price     Float
+  quantity  Int
+  total     Float
+
+  @@map("order_items")
+  @@index([orderId])
+  @@index([productId])
+}
+
+// Enums
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+// Modelo para Analytics y Tracking (opcional)
+model ProductView {
+  id        String   @id @default(cuid())
+  productId String
+  userId    String?
+  ip        String?
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  @@map("product_views")
+  @@index([productId])
+  @@index([userId])
+  @@index([createdAt])
+}
+
+// Modelo de Movimientos de Inventario
+model InventoryMovement {
+  id          String            @id @default(cuid())
+  productId   String
+  product     Product           @relation(fields: [productId], references: [id], onDelete: Cascade)
+  
+  // Tipo de movimiento
+  type        InventoryMovementType
+  
+  // Cantidad (positiva para entradas, negativa para salidas)
+  quantity    Int
+  
+  // Stock antes y después del movimiento
+  previousStock Int
+  newStock      Int
+  
+  // Detalles del movimiento
+  reason      String?
+  reference   String?  // Puede ser ID de orden, número de factura, etc.
+  notes       String?
+  
+  // Usuario que realizó el movimiento
+  performedBy String?
+  
+  // Metadata
+  createdAt   DateTime @default(now())
+
+  @@map("inventory_movements")
+  @@index([productId])
+  @@index([type])
+  @@index([createdAt])
+}
+
+// Tipos de movimientos de inventario
+enum InventoryMovementType {
+  PURCHASE      // Compra a proveedor
+  SALE          // Venta a cliente
+  RETURN        // Devolución de cliente
+  ADJUSTMENT    // Ajuste manual
+  DAMAGE        // Producto dañado
+  LOSS          // Pérdida
+  TRANSFER      // Transferencia entre almacenes
+  INITIAL       // Stock inicial
+}
+
+// Modelo de Ventas (Online y Físicas)
+model Sale {
+  id            String      @id @default(cuid())
+  saleNumber    String      @unique
+  
+  // Tipo y canal de venta
+  type          SaleType    @default(ONLINE)
+  status        SaleStatus  @default(COMPLETED)
+  
+  // Información del cliente
+  customerName  String?
+  customerEmail String?
+  customerPhone String?
+  customerRut   String?
+  
+  // Montos
+  subtotal      Float
+  discount      Float       @default(0)
+  tax           Float       @default(0)
+  shipping      Float       @default(0)
+  total         Float
+  
+  // Pago
+  paymentMethod String
+  paymentStatus PaymentStatus @default(PAID)
+  
+  // Items de la venta
+  items         SaleItem[]
+  
+  // Usuario que registró la venta (para ventas físicas)
+  registeredBy  String?
+  
+  // Notas y observaciones
+  notes         String?
+  
+  // Metadata
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@map("sales")
+  @@index([type])
+  @@index([status])
+  @@index([createdAt])
+  @@index([saleNumber])
+}
+
+// Items de la venta
+model SaleItem {
+  id        String  @id @default(cuid())
+  saleId    String
+  sale      Sale    @relation(fields: [saleId], references: [id], onDelete: Cascade)
+  productId String
+  
+  // Información del producto al momento de la venta
+  productName   String
+  productSku    String?
+  price         Float
+  quantity      Int
+  discount      Float   @default(0)
+  subtotal      Float
+  
+  @@map("sale_items")
+  @@index([saleId])
+  @@index([productId])
+}
+
+// Tipos de venta
+enum SaleType {
+  ONLINE        // Venta por la página web
+  PHYSICAL      // Venta en local físico
+}
+
+// Estados de venta
+enum SaleStatus {
+  COMPLETED     // Venta completada
+  PENDING       // Pendiente de pago
+  CANCELLED     // Cancelada
+  REFUNDED      // Reembolsada
+}

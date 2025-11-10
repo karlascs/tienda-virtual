@@ -20,14 +20,15 @@ export default function WishlistButton({
 }: WishlistButtonProps) {
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   
-  const inWishlist = isInWishlist(product.id);
+  const numericId = typeof product.id === 'string' ? parseInt(product.id) : product.id;
+  const inWishlist = isInWishlist(numericId);
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     
     if (inWishlist) {
-      removeFromWishlist(product.id);
+      removeFromWishlist(numericId);
     } else {
       addToWishlist(product);
     }

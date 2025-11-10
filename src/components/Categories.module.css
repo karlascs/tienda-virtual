@@ -1,32 +1,14 @@
 /* Componente de Categorías - IZA & CAS */
 .categories {
   padding: 32px 0;
-  background: linear-gradient(135deg, 
-    var(--gradient-start) 0%, 
-    var(--gradient-mid) 25%, 
-    var(--gradient-end) 50%, 
-    var(--gradient-mid) 75%, 
-    var(--gradient-start) 100%);
-  background-size: 300% 300%;
-  animation: izaCasGradient 12s ease-in-out infinite;
+  background: transparent;
   position: relative;
-  border-bottom: 1px solid var(--border-color);
-  box-shadow: 0 8px 32px rgba(45, 74, 74, 0.12);
+  border-bottom: none;
+  box-shadow: none;
 }
 
 .categories::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 25% 75%, rgba(45, 74, 74, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 75% 25%, rgba(248, 213, 175, 0.4) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(247, 245, 243, 0.2) 0%, transparent 70%);
-  pointer-events: none;
-  animation: izaCasBreath 10s ease-in-out infinite;
+  display: none;
 }
 
 @keyframes izaCasGradient {
@@ -59,47 +41,83 @@
 }
 
 .title {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 700;
-  color: white;
+  color: #2d2d2d;
   margin-bottom: 24px;
-  text-align: center;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  text-align: left;
+  padding-left: 20px;
+  text-shadow: none;
   position: relative;
   z-index: 2;
+  letter-spacing: 0.5px;
 }
 
-/* Grid de categorías */
+/* Carrusel horizontal de categorías */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
   gap: 20px;
   max-width: 1200px;
   margin: 0 auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  padding: 10px 20px;
+  -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+  scroll-snap-type: x mandatory; /* Snap al hacer scroll */
+}
+
+/* Estilos para la barra de scroll */
+.grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.grid::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  margin: 0 20px;
+}
+
+.grid::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.grid::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
 }
 
 /* Banner de categoría */
 .banner {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center; /* Centrar el contenido horizontalmente */
-  height: 250px; /* Altura fija para uniformidad */
-  min-height: 250px; /* Altura mínima garantizada */
-  max-height: 250px; /* Altura máxima para evitar diferencias */
+  justify-content: center;
+  width: 280px; /* Ancho fijo para todos los contenedores */
+  min-width: 280px; /* Ancho mínimo garantizado */
+  flex-shrink: 0; /* Evitar que se compriman */
+  height: 300px; /* Altura fija para uniformidad */
+  min-height: 300px; /* Altura mínima garantizada */
+  max-height: 300px; /* Altura máxima para evitar diferencias */
   padding: 30px;
   border-radius: 16px;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: opacity 0.2s ease;
   text-decoration: none;
   color: white;
   position: relative;
-  overflow: hidden;
+  overflow: visible; /* Cambiado para que el texto no se corte */
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  scroll-snap-align: start; /* Alinear al hacer scroll */
 }
 
 .banner:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  opacity: 0.9;
+}
+
+.banner:active {
+  opacity: 0.8;
 }
 
 .banner:focus {
@@ -107,45 +125,42 @@
   outline-offset: 3px;
 }
 
-/* Efecto de brillo en hover */
-.banner::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.6s ease;
-  z-index: 1;
-}
-
-.banner:hover::before {
-  left: 100%;
-}
-
 /* Contenido del banner */
 .content {
   z-index: 2;
   position: relative;
-  text-align: center; /* Centrar todo el texto y botón */
-  width: 100%; /* Ocupar todo el ancho disponible */
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px; /* Espaciado entre elementos */
 }
 
-.title {
-  font-size: 28px;
+.categoryTitle {
+  font-size: 22px;
   font-weight: 700;
   color: white;
-  margin: 0 0 8px 0;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin: 0;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+  white-space: normal; /* Permitir múltiples líneas */
+  word-wrap: break-word; /* Romper palabras largas si es necesario */
+  overflow-wrap: break-word;
+  line-height: 1.3; /* Mejor espaciado entre líneas */
+  max-width: 100%; /* Ocupar todo el ancho disponible */
+  letter-spacing: 0.5px;
 }
 
 .subtitle {
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0 0 20px 0;
-  font-weight: 400;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  font-weight: 500;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  white-space: normal; /* Permitir múltiples líneas */
+  word-wrap: break-word;
+  line-height: 1.4;
+  max-width: 100%;
 }
 
 .button {
@@ -158,17 +173,16 @@
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.8px;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: none; /* Sin transiciones */
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
   z-index: 3;
   position: relative;
+  pointer-events: none; /* Evitar que el botón interfiera con el clic del banner */
 }
 
 .banner:hover .button {
   background: var(--accent-gold);
   color: var(--primary-dark);
-  transform: scale(1.08) translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 /* Responsive Design */
@@ -184,18 +198,20 @@
   
   .grid {
     gap: 16px;
-    grid-template-columns: 1fr;
+    padding: 10px 16px;
   }
   
   .banner {
-    height: 200px; /* Altura uniforme en móvil */
-    min-height: 200px;
-    max-height: 200px;
+    width: 240px; /* Ancho fijo más pequeño en tablets */
+    min-width: 240px;
+    height: 280px; /* Altura uniforme en tablet */
+    min-height: 280px;
+    max-height: 280px;
     padding: 20px;
   }
   
-  .content .title {
-    font-size: 22px;
+  .content .categoryTitle {
+    font-size: 19px;
   }
   
   .subtitle {
@@ -210,14 +226,16 @@
 
 @media (max-width: 480px) {
   .banner {
-    height: 180px; /* Altura uniforme en móviles pequeños */
-    min-height: 180px;
-    max-height: 180px;
+    width: 200px; /* Ancho fijo para móviles pequeños */
+    min-width: 200px;
+    height: 260px; /* Altura uniforme en móviles pequeños */
+    min-height: 260px;
+    max-height: 260px;
     padding: 16px;
   }
   
-  .content .title {
-    font-size: 20px;
+  .content .categoryTitle {
+    font-size: 17px;
   }
   
   .subtitle {
@@ -229,3 +247,5 @@
     font-size: 11px;
   }
 }
+
+

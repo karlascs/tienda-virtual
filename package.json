@@ -6,22 +6,46 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:seed": "tsx prisma/seeders/seed.ts",
+    "db:seed-real": "tsx prisma/seeders/seed-real-products.ts",
+    "db:seed-all": "tsx prisma/seeders/seed-all-products.ts",
+    "db:seed-direct": "tsx prisma/seeders/seed-direct.ts",
+    "db:seed-electrohogar": "tsx prisma/seeders/seed-electrohogar.ts",
+    "db:seed-herramientas": "tsx prisma/seeders/seed-herramientas.ts",
+    "db:seed-tecnologia": "tsx prisma/seeders/seed-tecnologia.ts",
+    "db:seed-actividad": "tsx prisma/seeders/seed-actividad.ts",
+    "db:seed-cuidadopersonal": "tsx prisma/seeders/seed-cuidadopersonal.ts",
+    "db:seed-hogar": "tsx prisma/seeders/seed-hogar.ts",
+    "db:studio": "prisma studio",
+    "db:reset": "prisma migrate reset",
+    "db:setup": "npm run db:generate && npm run db:migrate && npm run db:seed-real"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.11.1",
+    "@prisma/client": "^6.19.0",
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^17.2.3",
+    "next": "15.5.2",
+    "next-auth": "^5.0.0-beta.30",
+    "prisma": "^6.19.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.5.2"
+    "zod": "^4.1.12"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.5.2",
-    "@eslint/eslintrc": "^3"
+    "tailwindcss": "^4",
+    "tsx": "^4.20.6",
+    "typescript": "^5"
   }
 }

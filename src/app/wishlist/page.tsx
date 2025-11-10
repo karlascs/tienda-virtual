@@ -154,7 +154,7 @@ export default function WishlistPage() {
                   </div>
                   
                   <ProductCarousel 
-                    images={product.images || [product.image]} 
+                    images={product.images || (product.image ? [product.image] : [])} 
                     productName={product.name}
                     className="card-carousel"
                   />

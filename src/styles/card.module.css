@@ -1,14 +1,15 @@
-/* ===================================
-   ESTILOS PROFESIONALES DE TARJETA DE PRODUCTO
-   =================================== */
+/* Estilos Profesionales de Tarjeta de Producto - Estilo Marketplace */
+
+/* Estilos Profesionales de Tarjeta de Producto - Estilo Marketplace */
 
 .card {
   display: flex;
   flex-direction: column;
-  background: white;
+  background: transparent;
+  backdrop-filter: none;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(44, 74, 67, 0.08);
-  border: 1px solid rgba(232, 221, 208, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(240, 240, 240, 0.3);
   transition: all 0.3s ease;
   cursor: pointer;
   overflow: hidden;
@@ -18,48 +19,49 @@
 
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(44, 74, 67, 0.15);
-  border-color: rgba(74, 107, 95, 0.4);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-color: rgba(224, 224, 224, 0.4);
+  background: transparent;
 }
 
 .card:focus {
-  outline: 2px solid #4a6b5f;
+  outline: 2px solid #d4a574;
   outline-offset: 2px;
 }
 
-/* Contenedor de imagen con overlay */
 .imageContainer {
   position: relative;
   width: 100%;
   aspect-ratio: 1;
   overflow: hidden;
+  background: transparent;
 }
 
 .productImage {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 12px;
 }
 
 .card:hover .productImage {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
-/* Overlay que aparece en hover */
 .imageOverlay {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(44, 74, 67, 0.8) 0%, rgba(74, 107, 95, 0.6) 100%);
+  background: rgba(255, 255, 255, 0.95);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.25s ease;
 }
 
 .card:hover .imageOverlay {
@@ -67,254 +69,259 @@
 }
 
 .viewDetailsText {
-  color: white;
+  color: #d4a574;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 8px 16px;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(5px);
+  letter-spacing: 0.8px;
+  background: #ffffff;
+  padding: 10px 24px;
+  border-radius: 4px;
+  border: 2px solid #d4a574;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Información del producto */
 .productInfo {
-  padding: 16px;
+  padding: 16px 16px 12px 16px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   flex-grow: 1;
   justify-content: space-between;
+  background: transparent;
+}
+
+.productBrand {
+  font-size: 11px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 4px 0;
 }
 
 .productName {
-  font-size: 16px;
-  font-weight: 600;
-  color: #2c4a43;
-  margin: 0;
+  font-size: 13px;
+  font-weight: 400;
+  color: #333;
+  margin: 0 0 8px 0;
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  min-height: 2.8em;
+  min-height: 2.6em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .productRating {
-  margin: 4px 0;
+  margin: 0 0 8px 0;
   display: flex;
   align-items: center;
-  gap: 8px;
-}
-
-.productRating .starRating {
   gap: 4px;
 }
 
-.productRating .ratingText {
+.ratingStars {
+  display: flex;
+  gap: 2px;
+  color: #fbbf24;
+  font-size: 12px;
+}
+
+.ratingValue {
   font-size: 12px;
   color: #666;
+  font-weight: 500;
+}
+
+.priceContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
 }
 
 .productPrice {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
-  color: #2c4a43;
+  color: #111827;
   margin: 0;
-  background: linear-gradient(135deg, #e8ddd0 0%, #f0eae0 100%);
-  padding: 8px 12px;
-  border-radius: 8px;
-  text-align: center;
-  border: 1px solid rgba(232, 221, 208, 0.5);
+  text-align: left;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Botón de Wishlist */
+.oldPrice {
+  font-size: 13px;
+  color: #999;
+  text-decoration: line-through;
+  font-weight: 400;
+}
+
+.discountBadge {
+  display: inline-block;
+  background: #ff0000;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 6px;
+}
+
 .wishlistBtn {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 40px;
-  height: 40px;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   border: none;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   color: #6b7280;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   z-index: 2;
 }
 
 .wishlistBtn:hover {
-  background: rgba(255, 255, 255, 1);
-  color: #d4a574;
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: #ffffff;
+  color: #ef4444;
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 .wishlistBtn.inWishlist {
-  background: linear-gradient(135deg, #d4a574 0%, #2c4a43 100%);
-  color: white;
+  background: #ffffff;
+  color: #ef4444;
 }
 
-.wishlistBtn.inWishlist:hover {
-  background: linear-gradient(135deg, #2c4a43 0%, #d4a574 100%);
-  transform: scale(1.1);
-}
-
-/* Botón de Comparar */
 .compareBtn {
   position: absolute;
-  top: 12px;
-  left: 12px;
-  width: 36px;
-  height: 36px;
+  top: 8px;
+  left: 8px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   border: none;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   color: #6b7280;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   z-index: 2;
 }
 
 .compareBtn:hover {
-  background: rgba(255, 255, 255, 1);
+  background: #ffffff;
   color: #2563eb;
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 .compareBtn.inCompare {
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-  color: white;
+  background: #ffffff;
+  color: #2563eb;
 }
 
-.compareBtn.inCompare:hover {
-  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
-  transform: scale(1.1);
-}
-
-/* Botón de Agregar al Carrito */
 .addToCartBtn {
   width: 100%;
-  padding: 12px 16px;
+  padding: 10px 16px;
   border: none;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #2c4a43 0%, #4a6b5f 100%);
+  border-radius: 6px;
+  background: #d4a574;
   color: white;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 12px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  transition: all 0.3s ease;
+  gap: 6px;
+  transition: all 0.2s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .addToCartBtn:hover:not(:disabled) {
-  background: linear-gradient(135deg, #4a6b5f 0%, #2c4a43 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(44, 74, 67, 0.3);
+  background: #1a2e28;
+  border-color: #1a2e28;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(212, 165, 116, 0.2);
 }
 
 .addToCartBtn:disabled {
-  opacity: 0.7;
+  opacity: 0.6;
   cursor: not-allowed;
   transform: none;
 }
 
 .addToCartBtn.adding {
-  background: linear-gradient(135deg, #d4a574 0%, #e8ddd0 100%);
-  color: #2c4a43;
+  background: #e8c9a8;
+  border-color: #e8c9a8;
 }
 
-/* Animación de loading */
 .loadingIcon {
   animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .card {
-    border-radius: 8px;
-  }
-  
-  .productInfo {
-    padding: 12px;
-    gap: 10px;
-  }
-  
-  .productName {
-    font-size: 14px;
-  }
-  
-  .productPrice {
-    font-size: 16px;
-    padding: 6px 10px;
-  }
-  
-  .viewDetailsText {
-    font-size: 12px;
-    padding: 6px 12px;
-  }
-  
-  .wishlistBtn {
-    width: 36px;
-    height: 36px;
-    top: 8px;
-    right: 8px;
-  }
-  
-  .wishlistBtn svg {
-    width: 18px;
-    height: 18px;
-  }
-  
-  .compareBtn {
-    width: 32px;
-    height: 32px;
-    top: 8px;
-    left: 8px;
-  }
-  
-  .compareBtn svg {
-    width: 16px;
-    height: 16px;
-  }
-  
-  .addToCartBtn {
-    padding: 10px 12px;
-    font-size: 12px;
-    gap: 6px;
-  }
-  
-  .addToCartBtn svg {
-    width: 14px;
-    height: 14px;
-  }
+.newBadge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #111827;
+  color: white;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 8px;
+  border-radius: 3px;
+  z-index: 3;
 }
+
+.discountTag {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #ff0000;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 3px;
+  z-index: 3;
+}
+
+@media (max-width: 768px) {
+  .card { border-radius: 8px; }
+  .productInfo { padding: 12px; gap: 6px; }
+  .productBrand { font-size: 10px; }
+  .productName { font-size: 12px; min-height: 2.4em; }
+  .productPrice { font-size: 18px; }
+  .oldPrice { font-size: 12px; }
+  .discountBadge { font-size: 9px; padding: 2px 5px; }
+  .viewDetailsText { font-size: 11px; padding: 8px 20px; }
+  .wishlistBtn { width: 28px; height: 28px; top: 6px; right: 6px; }
+  .compareBtn { width: 28px; height: 28px; top: 6px; left: 6px; }
+  .addToCartBtn { padding: 9px 12px; font-size: 11px; gap: 4px; }
+  .newBadge { font-size: 8px; padding: 3px 6px; top: 8px; left: 8px; }
+  .discountTag { font-size: 10px; padding: 3px 6px; top: 8px; right: 8px; }
+}
+
+
+

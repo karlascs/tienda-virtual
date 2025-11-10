@@ -1,0 +1,384 @@
+/* ===================================
+   PÁGINA DE CUIDADO PERSONAL - IZA & CAS
+   =================================== */
+
+/* Fondo principal con gradiente animado */
+.cuidadoPersonalMain {
+  background: linear-gradient(135deg, 
+    var(--gradient-start) 0%, 
+    var(--gradient-mid) 25%, 
+    var(--gradient-end) 50%, 
+    var(--gradient-mid) 75%, 
+    var(--gradient-start) 100%);
+  background-size: 300% 300%;
+  animation: izaCasGradient 12s ease-in-out infinite;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Overlay de efectos */
+.cuidadoPersonalOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 25% 75%, rgba(232, 201, 168, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 75% 25%, rgba(212, 165, 116, 0.4) 0%, transparent 50%),
+              radial-gradient(circle at 50% 50%, rgba(247, 245, 243, 0.2) 0%, transparent 70%);
+  pointer-events: none;
+  animation: izaCasBreath 10s ease-in-out infinite;
+}
+
+/* Container principal */
+.cuidadoPersonalContainer {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+}
+
+/* Títulos de subcategorías */
+.categoryTitle {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 12px;
+}
+
+.categoryCount {
+  font-size: 16px;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+/* Grid de productos */
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+/* Card de producto */
+.productCard {
+  background: transparent;
+  backdrop-filter: none;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(240, 240, 240, 0.3);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.productCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  background: transparent;
+}
+
+/* Carrusel de imágenes */
+.imageCarousel {
+  position: relative;
+  height: 280px;
+  background: #f8fafc;
+  overflow: hidden;
+}
+
+.carouselImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 16px;
+  transition: opacity 0.3s ease;
+}
+
+/* Botones de navegación del carrusel */
+.carouselBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  z-index: 2;
+  transition: all 0.2s ease;
+}
+
+.carouselBtn:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carouselBtnPrev {
+  left: 12px;
+}
+
+.carouselBtnNext {
+  right: 12px;
+}
+
+/* Indicadores del carrusel */
+.carouselIndicators {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 2;
+}
+
+.indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.indicator.active {
+  background: var(--brand);
+}
+
+/* Contador de imágenes */
+.imageCounter {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Información del producto */
+.productInfo {
+  padding: 20px;
+}
+
+.productName {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.productDescription {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.productFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.productPrice {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--brand);
+}
+
+.productCategory {
+  background: var(--background-secondary);
+  color: var(--text-secondary);
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Animaciones para aparición progresiva */
+.fadeInUp {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUpAnimation 0.6s ease forwards;
+}
+
+@keyframes fadeInUpAnimation {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Delays para animaciones escalonadas */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+.delay-6 { animation-delay: 0.6s; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .productsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .categoryTitle {
+    font-size: 24px;
+  }
+  
+  .productCard {
+    margin: 0 12px;
+  }
+}
+
+/* Clases adicionales necesarias */
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.subcategorySection {
+  margin-bottom: 60px;
+}
+
+.subcategoryTitle {
+  font-size: 28px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 12px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.productCount {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  background: transparent;
+  overflow: hidden;
+}
+
+.productImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 16px;
+}
+
+.productFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--brand);
+}
+
+.categoryTag {
+  background: var(--background-secondary);
+  color: var(--text-secondary);
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Botones de acción del producto */
+.productActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+}
+
+.addToCartBtn {
+  flex: 1;
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(232, 201, 168, 0.2);
+}
+
+.addToCartBtn:hover {
+  background: linear-gradient(135deg, var(--brand-light) 0%, var(--accent) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(232, 201, 168, 0.3);
+}
+
+.addToCartBtn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(232, 201, 168, 0.3);
+}
+
+.viewDetailsBtn {
+  background: transparent;
+  color: var(--brand);
+  border: 2px solid var(--brand);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.viewDetailsBtn:hover {
+  background: var(--brand);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(232, 201, 168, 0.2);
+}

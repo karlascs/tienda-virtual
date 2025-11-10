@@ -179,3 +179,5 @@ next-env.d.ts
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 >>>>>>> d31ba69987472d1b020bad64930a06669208a0c2
+
+/src/generated/prisma

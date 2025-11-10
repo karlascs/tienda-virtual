@@ -7,6 +7,7 @@ import { CompareProvider } from "@/context/CompareContext";
 import { ReviewsProvider } from "@/context/ReviewsContext";
 import { RecommendationsProvider } from "@/context/RecommendationsContext";
 import { BrowsingHistoryProvider } from "@/context/BrowsingHistoryContext";
+import { AuthProvider } from "@/components/AuthProvider";
 
 /**
  * Metadata de la aplicación
@@ -51,23 +52,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       </head>
       <body>
-        <SearchProvider>
-          <FilterProvider>
-            <CartProvider>
-              <WishlistProvider>
-                <CompareProvider>
-                  <ReviewsProvider>
-                    <RecommendationsProvider>
-                      <BrowsingHistoryProvider>
-                        {children}
-                      </BrowsingHistoryProvider>
-                    </RecommendationsProvider>
-                  </ReviewsProvider>
-                </CompareProvider>
-              </WishlistProvider>
-            </CartProvider>
-          </FilterProvider>
-        </SearchProvider>
+        <AuthProvider>
+          <SearchProvider>
+            <FilterProvider>
+              <CartProvider>
+                <WishlistProvider>
+                  <CompareProvider>
+                    <ReviewsProvider>
+                      <RecommendationsProvider>
+                        <BrowsingHistoryProvider>
+                          {children}
+                        </BrowsingHistoryProvider>
+                      </RecommendationsProvider>
+                    </ReviewsProvider>
+                  </CompareProvider>
+                </WishlistProvider>
+              </CartProvider>
+            </FilterProvider>
+          </SearchProvider>
+        </AuthProvider>
       </body>
     </html>
   );

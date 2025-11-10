@@ -22,6 +22,7 @@ interface Props extends Omit<Product, 'description' | 'features'> {
  * 
  * Tarjeta individual de producto con funcionalidades completas:
  * - Información esencial (imagen, nombre, precio)
+ * - Badge "NUEVO" para productos recientes
  * - Botón de wishlist/favoritos con estado persistente
  * - Botón de agregar al carrito con animación
  * - Diseño responsivo y accesible
@@ -30,8 +31,8 @@ interface Props extends Omit<Product, 'description' | 'features'> {
  * @param product - Todos los datos del producto (id, name, price, image, category)
  * @param onClick - Función que se ejecuta al hacer clic en la tarjeta
  */
-export default function ProductCard({ id, name, price, image, category, onClick }: Props) {
-  const imageProps = useImageWithFallback(image);
+export default function ProductCard({ id, name, price, image, images, category, onClick, createdAt }: Props) {
+  const imageProps = useImageWithFallback(image || '');
   const { addToCart } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
   const { toggleCompare, isInCompare } = useCompare();
@@ -40,19 +41,40 @@ export default function ProductCard({ id, name, price, image, category, onClick 
   const { addToHistory } = useBrowsingHistory();
   const [isAddingToCart, setIsAddingToCart] = useState(false);
 
-  const product: Product = { id, name, price, image, category, description: '' };
-  const inWishlist = isInWishlist(id);
-  const inCompare = isInCompare(id);
-  const averageRating = getAverageRating(id);
-  const productRating = getProductRating(id);
+  // Crear producto con images por defecto
+  const product: Product = { 
+    id, 
+    name, 
+    price, 
+    image, 
+    images: images || (image ? [image] : []), 
+    category, 
+    description: '' 
+  };
+  
+  // Convertir id a number para funciones que esperan number
+  const numericId = typeof id === 'string' ? parseInt(id) : id;
+  
+  const inWishlist = isInWishlist(numericId);
+  const inCompare = isInCompare(numericId);
+  const averageRating = getAverageRating(numericId);
+  const productRating = getProductRating(numericId);
+
+  // Determinar si el producto es nuevo (creado en los últimos 30 días)
+  const isNew = createdAt ? (() => {
+    const creationDate = new Date(createdAt);
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+    return creationDate > thirtyDaysAgo;
+  })() : false;
 
   // Manejar clic en la tarjeta (ver detalles)
   const handleCardClick = () => {
     // Registrar en historial de navegación
-    addToHistory(id);
+    addToHistory(numericId);
     
     // Registrar en motor de recomendaciones
-    trackProductView(id, category, price);
+    trackProductView(numericId, category || '', price);
     
     // Ejecutar función onClick personalizada si existe
     if (onClick) {
@@ -95,6 +117,13 @@ export default function ProductCard({ id, name, price, image, category, onClick 
     >
       {/* Contenedor de imagen con overlay para hover */}
       <div className={styles.imageContainer}>
+        {/* Badge "NUEVO" */}
+        {isNew && (
+          <div className={styles.newBadge}>
+            NUEVO
+          </div>
+        )}
+
         <img 
           {...imageProps}
           alt={name}

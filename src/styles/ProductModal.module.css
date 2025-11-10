@@ -5,7 +5,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(44, 74, 67, 0.8);
+  background: rgba(212, 165, 116, 0.8);
   backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
@@ -24,7 +24,7 @@
   overflow-y: auto;
   position: relative;
   animation: slideIn 0.3s ease-out;
-  box-shadow: 0 20px 60px rgba(44, 74, 67, 0.3);
+  box-shadow: 0 20px 60px rgba(212, 165, 116, 0.3);
 }
 
 .closeButton {
@@ -43,14 +43,14 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
-  color: #2c4a43;
+  color: #d4a574;
   font-weight: bold;
 }
 
 .closeButton:hover {
   background: white;
   transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(44, 74, 67, 0.2);
+  box-shadow: 0 4px 12px rgba(212, 165, 116, 0.2);
 }
 
 .modalBody {
@@ -73,7 +73,7 @@
   background: white;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(44, 74, 67, 0.1);
+  box-shadow: 0 8px 24px rgba(212, 165, 116, 0.1);
 }
 
 .mainImage {
@@ -89,7 +89,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(44, 74, 67, 0.8);
+  background: rgba(212, 165, 116, 0.8);
   color: white;
   border: none;
   border-radius: 50%;
@@ -104,7 +104,7 @@
 }
 
 .imageNavButton:hover {
-  background: #2c4a43;
+  background: #d4a574;
   transform: translateY(-50%) scale(1.1);
 }
 
@@ -120,7 +120,7 @@
   position: absolute;
   bottom: 10px;
   right: 10px;
-  background: rgba(44, 74, 67, 0.8);
+  background: rgba(212, 165, 116, 0.8);
   color: white;
   padding: 4px 12px;
   border-radius: 12px;
@@ -155,13 +155,13 @@
 }
 
 .thumbnail:hover {
-  border-color: #4a6b5f;
+  border-color: #e8c9a8;
   transform: scale(1.05);
 }
 
 .activeThumbnail {
-  border-color: #2c4a43;
-  box-shadow: 0 0 0 2px rgba(44, 74, 67, 0.2);
+  border-color: #d4a574;
+  box-shadow: 0 0 0 2px rgba(212, 165, 116, 0.2);
 }
 
 /* Sección de información */
@@ -174,7 +174,7 @@
 
 .categoryTag {
   background: linear-gradient(135deg, #e8ddd0 0%, #f0eae0 100%);
-  color: #2c4a43;
+  color: #d4a574;
   padding: 8px 16px;
   border-radius: 20px;
   font-size: 12px;
@@ -188,7 +188,7 @@
 .productTitle {
   font-size: 28px;
   font-weight: 700;
-  color: #2c4a43;
+  color: #d4a574;
   line-height: 1.3;
   margin: 0;
 }
@@ -201,7 +201,7 @@
   background: rgba(245, 242, 237, 0.5);
   padding: 16px;
   border-radius: 8px;
-  border-left: 3px solid #4a6b5f;
+  border-left: 3px solid #e8c9a8;
 }
 
 .priceSection {
@@ -211,13 +211,13 @@
 .price {
   font-size: 32px;
   font-weight: 800;
-  color: #2c4a43;
+  color: #d4a574;
   background: linear-gradient(135deg, #e8ddd0 0%, #f0eae0 100%);
   padding: 12px 20px;
   border-radius: 12px;
   display: inline-block;
   border: 2px solid rgba(232, 221, 208, 0.6);
-  box-shadow: 0 4px 12px rgba(44, 74, 67, 0.1);
+  box-shadow: 0 4px 12px rgba(212, 165, 116, 0.1);
 }
 
 .actionButtons {
@@ -228,7 +228,7 @@
 
 .addToCartBtn {
   flex: 2;
-  background: linear-gradient(135deg, #4a6b5f 0%, #2c4a43 100%);
+  background: linear-gradient(135deg, #e8c9a8 0%, #d4a574 100%);
   color: white;
   border: none;
   border-radius: 12px;
@@ -237,19 +237,19 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(44, 74, 67, 0.2);
+  box-shadow: 0 4px 12px rgba(212, 165, 116, 0.2);
 }
 
 .addToCartBtn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(44, 74, 67, 0.3);
-  background: linear-gradient(135deg, #2c4a43 0%, #1e3329 100%);
+  box-shadow: 0 6px 20px rgba(212, 165, 116, 0.3);
+  background: linear-gradient(135deg, #d4a574 0%, #c89960 100%);
 }
 
 .continueShoppingBtn {
   flex: 1;
   background: transparent;
-  color: #2c4a43;
+  color: #d4a574;
   border: 2px solid #e8ddd0;
   border-radius: 12px;
   padding: 16px 24px;
@@ -272,7 +272,7 @@
 }
 
 .features h3 {
-  color: #2c4a43;
+  color: #d4a574;
   margin: 0 0 12px 0;
   font-size: 18px;
   font-weight: 600;
@@ -316,7 +316,7 @@
   margin: 0 0 8px 0;
   font-size: 14px;
   font-weight: 600;
-  color: #2c4a43;
+  color: #d4a574;
 }
 
 .infoCard p {
@@ -507,3 +507,5 @@
     padding: 3px 8px;
   }
 }
+
+

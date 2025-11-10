@@ -31,7 +31,7 @@ export default function CompareFloating() {
           <div key={product.id} className={styles.compareItem}>
             <button
               className={styles.removeBtn}
-              onClick={() => removeFromCompare(product.id)}
+              onClick={() => removeFromCompare(typeof product.id === 'string' ? parseInt(product.id) : product.id)}
               aria-label={`Remover ${product.name} de comparación`}
             >
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

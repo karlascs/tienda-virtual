@@ -53,31 +53,36 @@
 
 .productsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
   margin-bottom: 40px;
 }
 
 .productCard {
-  background: white;
-  border-radius: 16px;
+  background: transparent;
+  backdrop-filter: none;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(240, 240, 240, 0.3);
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .productCard:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  background: transparent;
 }
 
 .imageContainer {
-  height: 280px;
-  background: #f8fafc;
   position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  background: transparent;
   overflow: hidden;
-  border-radius: 12px 12px 0 0;
 }
 
 .productImage {
@@ -184,3 +189,5 @@
     margin: 0 12px;
   }
 }
+
+

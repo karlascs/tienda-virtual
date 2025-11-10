@@ -1,16 +1,140 @@
-/* Banner Carrusel IZA&CAS - Versión Final */
+/* Banner Carrusel IZA&CAS - Versión Ultra Moderna ✨ */
+
+/* Banner Section con efecto de resplandor */
 .bannerSection {
   width: 100%;
-  padding: 40px 0 20px 0;
+  padding: 56px 0 40px 0;
   margin: 0;
   background: linear-gradient(135deg, 
-    rgba(247, 245, 243, 0.3) 0%, 
-    rgba(212, 165, 116, 0.1) 50%, 
-    rgba(45, 74, 74, 0.1) 100%
+    rgba(247, 245, 243, 0.5) 0%, 
+    rgba(212, 165, 116, 0.15) 50%, 
+    rgba(232, 201, 168, 0.1) 100%
   );
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease-out;
+  position: relative;
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+/* Contenedor de partículas brillantes */
+.sparklesBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Partículas brillantes individuales */
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(
+    circle,
+    rgba(212, 165, 116, 0.8) 0%,
+    rgba(212, 165, 116, 0.4) 40%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  animation: sparkleFloat linear infinite, sparkleGlow 2s ease-in-out infinite alternate;
+  box-shadow: 
+    0 0 10px rgba(212, 165, 116, 0.6),
+    0 0 20px rgba(212, 165, 116, 0.4),
+    0 0 30px rgba(212, 165, 116, 0.2);
+}
+
+@keyframes sparkleFloat {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes sparkleGlow {
+  0% {
+    filter: brightness(1) blur(1px);
+    transform: scale(1);
+  }
+  50% {
+    filter: brightness(1.5) blur(2px);
+    transform: scale(1.5);
+  }
+  100% {
+    filter: brightness(1) blur(1px);
+    transform: scale(1);
+  }
+}
+
+/* Efecto de resplandor sutil en el fondo */
+.bannerSection::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 120%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(212, 165, 116, 0.2) 0%,
+    rgba(212, 165, 116, 0.1) 30%,
+    transparent 70%
+  );
+  pointer-events: none;
+  animation: pulse 8s ease-in-out infinite;
+  z-index: 0;
+}
+
+/* Añadir un segundo resplandor para más profundidad */
+.bannerSection::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(212, 165, 116, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(232, 201, 168, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+  animation: shimmerMove 15s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 0.6; 
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% { 
+    opacity: 1; 
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+}
+
+@keyframes shimmerMove {
+  0%, 100% {
+    background-position: 0% 50%;
+    opacity: 0.5;
+  }
+  50% {
+    background-position: 100% 50%;
+    opacity: 0.8;
+  }
 }
 
 .bannerSection.visible {
@@ -19,185 +143,30 @@
 }
 
 .bannerContainer {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
 }
 
+/* Banner Wrapper con glassmorphism y efectos 3D */
 .bannerWrapper {
   position: relative;
-  border-radius: 20px;
+  border-radius: 32px;
   overflow: hidden;
-  background: white;
-  box-shadow: 0 8px 32px rgba(45, 74, 74, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.bannerWrapper:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(45, 74, 74, 0.25);
-}
-
-/* Slide del banner */
-.bannerSlide {
-  position: relative;
-  width: 100%;
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
-
-.bannerSlide.transitioning {
-  opacity: 0.7;
-}
-
-.bannerImage {
-  width: 100%;
-  height: 400px;
-  display: block;
-  object-fit: cover;
-  object-position: center;
-  transition: transform 0.3s ease;
-  background: #f8f9fa;
-}
-
-/* Botones de navegación */
-.navButton {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(45, 74, 74, 0.8);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 10;
-  backdrop-filter: blur(4px);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-}
-
-.navButton:hover {
-  background: rgba(45, 74, 74, 0.95);
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 4px 16px rgba(45, 74, 74, 0.4);
-}
-
-.navButton:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: translateY(-50%);
-}
-
-.prevButton {
-  left: 20px;
-}
-
-.nextButton {
-  right: 20px;
-}
-
-/* Indicadores */
-.indicators {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 12px;
-  z-index: 10;
-}
-
-.indicator {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.7);
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(4px);
-}
-
-.indicator:hover {
-  border-color: rgba(255, 255, 255, 0.9);
-  transform: scale(1.2);
-}
-
-.indicator.active {
   background: rgba(255, 255, 255, 0.9);
-  border-color: rgba(255, 255, 255, 1);
-  box-shadow: 0 0 0 3px rgba(45, 74, 74, 0.3);
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 20px 60px rgba(232, 201, 168, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.3) inset,
+    0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
-.indicator:disabled {
-  cursor: not-allowed;
-}
-
-/* Overlay con contenido - DESHABILITADO */
-/*
-.bannerOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(45, 74, 74, 0.1) 0%,
-    rgba(212, 165, 116, 0.1) 50%,
-    rgba(247, 245, 243, 0.1) 100%
-  );
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: all 0.4s ease;
-}
-
-.bannerWrapper:hover .bannerOverlay {
-  opacity: 1;
-}
-
-.bannerContent {
-  text-align: center;
-  color: white;
-  z-index: 2;
-  background: rgba(45, 74, 74, 0.9);
-  padding: 24px 32px;
-  border-radius: 16px;
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  max-width: 500px;
-  margin: 0 20px;
-}
-
-.bannerTitle {
-  font-size: 28px;
-  font-weight: 700;
-  margin: 0 0 12px 0;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  background: linear-gradient(135deg, #ffffff 0%, #d4a574 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.bannerSubtitle {
-  font-size: 16px;
-  font-weight: 500;
-  margin: 0;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-  color: rgba(255, 255, 255, 0.9);
-}
-*/
-
-/* Efectos adicionales */
+/* Overlay de gradiente brillante */
 .bannerWrapper::before {
   content: '';
   position: absolute;
@@ -206,49 +175,311 @@
   right: 0;
   bottom: 0;
   background: linear-gradient(
-    45deg,
-    transparent 0%,
-    rgba(212, 165, 116, 0.05) 25%,
-    transparent 50%,
-    rgba(45, 74, 74, 0.05) 75%,
-    transparent 100%
+    135deg,
+    rgba(212, 165, 116, 0.2) 0%,
+    rgba(232, 201, 168, 0.1) 50%,
+    rgba(212, 165, 116, 0.3) 100%
   );
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.5s ease;
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
+  mix-blend-mode: overlay;
+}
+
+.bannerWrapper:hover {
+  transform: translateY(-12px) rotateX(2deg);
+  box-shadow: 
+    0 30px 90px rgba(232, 201, 168, 0.3),
+    0 0 0 1px rgba(212, 165, 116, 0.4) inset,
+    0 0 60px rgba(212, 165, 116, 0.25),
+    0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .bannerWrapper:hover::before {
   opacity: 1;
 }
 
-/* Animación de carga */
-@keyframes bannerLoad {
-  0% {
-    opacity: 0;
-    transform: translateY(50px) scale(0.95);
+/* Loading state mejorado */
+.bannerLoading {
+  padding: 120px 20px;
+  text-align: center;
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  font-weight: 500;
+  animation: fadeInOut 1.5s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* Link wrapper */
+.bannerLink {
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Slide del banner con animación suave */
+.bannerSlide {
+  position: relative;
+  width: 100%;
+  opacity: 1;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bannerSlide.transitioning {
+  opacity: 0.85;
+}
+
+/* Imagen con efectos de zoom y brillo */
+.bannerImage {
+  width: 100%;
+  height: 480px;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), 
+              filter 0.5s ease;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  filter: brightness(1) contrast(1.05) saturate(1.1);
+}
+
+.bannerWrapper:hover .bannerImage {
+  transform: scale(1.1);
+  filter: brightness(1.1) contrast(1.1) saturate(1.15);
+}
+
+/* Contenido del banner con glassmorphism mejorado */
+.bannerContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 48px 56px;
+  background: linear-gradient(
+    to top,
+    rgba(232, 201, 168, 0.98) 0%,
+    rgba(232, 201, 168, 0.92) 40%,
+    rgba(232, 201, 168, 0.7) 70%,
+    transparent 100%
+  );
+  color: white;
+  backdrop-filter: blur(16px) saturate(1.5);
+  margin: 0 28px 28px 28px;
+  border-radius: 28px;
+  transform: translateY(12px);
+  opacity: 0.95;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(212, 165, 116, 0.25);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.bannerWrapper:hover .bannerContent {
+  transform: translateY(0);
+  opacity: 1;
+  border-color: rgba(212, 165, 116, 0.5);
+  box-shadow: 
+    0 12px 48px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.2) inset,
+    0 0 30px rgba(212, 165, 116, 0.2);
+}
+
+/* Título con efecto de brillo y gradiente */
+.bannerTitle {
+  font-size: 52px;
+  font-weight: 900;
+  margin-bottom: 18px;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #f0e6d2 50%,
+    #d4a574 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 
+    0 0 40px rgba(212, 165, 116, 0.4),
+    0 2px 8px rgba(0, 0, 0, 0.3);
+  animation: shimmer 4s ease-in-out infinite;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+@keyframes shimmer {
+  0%, 100% { 
+    filter: brightness(1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+  50% { 
+    filter: brightness(1.25) drop-shadow(0 0 20px rgba(212, 165, 116, 0.4));
   }
 }
 
-.bannerSection.visible .bannerWrapper {
-  animation: bannerLoad 1s ease-out 0.2s both;
+.bannerSubtitle {
+  font-size: 22px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.98);
+  text-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(212, 165, 116, 0.2);
+  line-height: 1.6;
+  max-width: 750px;
+  letter-spacing: 0.4px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Botones de navegación modernos con efectos */
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  color: #2d4a4a;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 4px 20px rgba(232, 201, 168, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  opacity: 0;
+  animation: fadeInButton 0.5s ease forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeInButton {
+  to { opacity: 1; }
+}
+
+.navButton:hover {
+  background: linear-gradient(135deg, #d4a574 0%, #c89960 100%);
+  color: white;
+  transform: translateY(-50%) scale(1.15);
+  box-shadow: 
+    0 6px 30px rgba(212, 165, 116, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.8) inset,
+    0 0 20px rgba(212, 165, 116, 0.3);
+}
+
+.navButton:active {
+  transform: translateY(-50%) scale(1.05);
+}
+
+.navButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: translateY(-50%) scale(0.95);
+}
+
+.prevButton {
+  left: 24px;
+}
+
+.nextButton {
+  right: 24px;
+}
+
+/* Indicadores mejorados con animación */
+.indicators {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 10;
+  padding: 12px 20px;
+  background: rgba(232, 201, 168, 0.4);
+  backdrop-filter: blur(12px);
+  border-radius: 50px;
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.indicator::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #d4a574 0%, #ffffff 100%);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.indicator:hover {
+  border-color: rgba(212, 165, 116, 0.9);
+  transform: scale(1.2);
+}
+
+.indicator.active {
+  border-color: #d4a574;
+  box-shadow: 
+    0 0 12px rgba(212, 165, 116, 0.6),
+    0 0 0 4px rgba(212, 165, 116, 0.2);
+  transform: scale(1.15);
+}
+
+.indicator.active::before {
+  transform: scale(1);
 }
 
 /* Responsive Design */
-@media (max-width: 1200px) {
-  .bannerContainer {
-    padding: 0 16px;
+@media (max-width: 1024px) {
+  .bannerWrapper {
+    border-radius: 24px;
+  }
+  
+  .bannerImage {
+    height: 400px;
+  }
+  
+  .bannerTitle {
+    font-size: 42px;
+  }
+  
+  .bannerSubtitle {
+    font-size: 18px;
+  }
+  
+  .navButton {
+    width: 48px;
+    height: 48px;
   }
 }
 
 @media (max-width: 768px) {
   .bannerSection {
-    padding: 32px 0 16px 0;
+    padding: 36px 0 24px 0;
   }
   
   .bannerContainer {
@@ -256,26 +487,73 @@
   }
   
   .bannerWrapper {
+    border-radius: 20px;
+  }
+  
+  .bannerImage {
+    height: 320px;
+  }
+  
+  .bannerContent {
+    padding: 32px 28px;
+    margin: 0 20px 20px 20px;
+    border-radius: 20px;
+  }
+  
+  .bannerTitle {
+    font-size: 32px;
+  }
+  
+  .bannerSubtitle {
+    font-size: 16px;
+  }
+  
+  .navButton {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .prevButton {
+    left: 16px;
+  }
+  
+  .nextButton {
+    right: 16px;
+  }
+  
+  .indicators {
+    bottom: 20px;
+    gap: 10px;
+  }
+  
+  .indicator {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bannerSection {
+    padding: 28px 0 16px 0;
+  }
+  
+  .bannerWrapper {
     border-radius: 16px;
   }
   
   .bannerImage {
-    height: 300px;
-    object-fit: cover;
-    object-position: center;
-  }
-  
-  .bannerWrapper:hover {
-    transform: translateY(-2px);
+    height: 260px;
   }
   
   .bannerContent {
-    padding: 20px 24px;
-    margin: 0 16px;
+    padding: 24px 20px;
+    margin: 0 16px 16px 16px;
+    border-radius: 16px;
   }
   
   .bannerTitle {
-    font-size: 24px;
+    font-size: 26px;
+    margin-bottom: 12px;
   }
   
   .bannerSubtitle {
@@ -298,74 +576,15 @@
   .indicators {
     bottom: 16px;
     gap: 8px;
-  }
-  
-  .indicator {
-    width: 10px;
-    height: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .bannerSection {
-    padding: 28px 0 12px 0;
-  }
-  
-  .bannerContainer {
-    padding: 0 12px;
-  }
-  
-  .bannerWrapper {
-    border-radius: 12px;
-  }
-  
-  .bannerImage {
-    height: 250px;
-    object-fit: cover;
-    object-position: center;
-  }
-  
-  .bannerWrapper:hover {
-    transform: none;
-  }
-  
-  .bannerWrapper:hover .bannerImage {
-    transform: scale(1.01);
-  }
-  
-  .bannerContent {
-    padding: 16px 20px;
-    margin: 0 12px;
-  }
-  
-  .bannerTitle {
-    font-size: 20px;
-    margin-bottom: 8px;
-  }
-  
-  .bannerSubtitle {
-    font-size: 13px;
-  }
-  
-  .navButton {
-    width: 36px;
-    height: 36px;
-  }
-  
-  .prevButton {
-    left: 8px;
-  }
-  
-  .nextButton {
-    right: 8px;
-  }
-  
-  .indicators {
-    bottom: 12px;
+    padding: 8px 16px;
   }
   
   .indicator {
     width: 8px;
     height: 8px;
+    border-width: 1.5px;
   }
 }
+
+
+

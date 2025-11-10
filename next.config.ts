@@ -11,6 +11,8 @@ const nextConfig: NextConfig = {
   pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
   // Configuración actualizada para Next.js 15
   serverExternalPackages: [],
+  // Configuración para Docker (standalone output)
+  output: 'standalone',
 };
 
 export default nextConfig;

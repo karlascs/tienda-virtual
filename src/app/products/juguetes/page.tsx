@@ -4,11 +4,11 @@ import { useState } from 'react';
 import Header from '@/components/Header';
 import ProductCard from '@/components/ProductCard';
 import ProductModal from '@/components/ProductModal';
-import WishlistButton from '@/components/WishlistButton';
 import FilterPanel from '@/components/FilterPanel';
 import { useCart } from '@/context/CartContext';
 import { useFilters } from '@/context/FilterContext';
-import { Product } from '@/data/products';
+import { useProducts, Product } from '@/hooks/useProducts';
+import styles from '@/styles/juguetes.module.css';
 
 /**
  * Productos de Juguetes - IZA & CAS
@@ -16,214 +16,19 @@ import { Product } from '@/data/products';
  * Categoría dedicada a juguetes y entretenimiento infantil
  * Incluye: juguetes educativos, electrónicos, creativos
  * Con animaciones suaves y experiencia de usuario moderna
+ * Ahora integrado con la API para obtener datos dinámicos
  */
-
-// Datos reales de productos de juguetes con imágenes subidas
-const JUGUETES_PRODUCTS: Product[] = [
-  // === CATEGORÍA CARPAS ===
-  {
-    id: 1,
-    name: "Carpa Casita de Princesa",
-    price: 13990,
-    image: "/images/juguetes/carpas/carpacasitadeprincesa/Lhhy21XKrkVC65vB32M2A==.jpg",
-    images: [
-      "/images/juguetes/carpas/carpacasitadeprincesa/Lhhy21XKrkVC65vB32M2A==.jpg",
-      "/images/juguetes/carpas/carpacasitadeprincesa/u2iQ9YPR48hRApbF2jakHQ==.jpg",
-      "/images/juguetes/carpas/carpacasitadeprincesa/ziYL69zCRtGjaok3ens60g==.jpg"
-    ],
-    description: "Carpa infantil rosa con diseño de castillo de princesa, perfecta para juegos imaginativos",
-    category: "Carpas"
-  },
-  {
-    id: 2,
-    name: "Carpa de Castillo Infantil",
-    price: 9990,
-    image: "/images/juguetes/carpas/carpadecastilloinfantil/9OY2PNp1LAMvXlx0yBIceQ==.jpg",
-    images: [
-      "/images/juguetes/carpas/carpadecastilloinfantil/9OY2PNp1LAMvXlx0yBIceQ==.jpg",
-      "/images/juguetes/carpas/carpadecastilloinfantil/FIn12o6i1gaPKuO+ir78GQ==.jpg",
-      "/images/juguetes/carpas/carpadecastilloinfantil/hObt9WlKpFmp4gWUzD6WoA==.jpg",
-      "/images/juguetes/carpas/carpadecastilloinfantil/RhKj87FQw798PyY33Yo5TQ==.jpg",
-      "/images/juguetes/carpas/carpadecastilloinfantil/zAYeqC3ZEiSC3rfUjsGTjg==.jpg"
-    ],
-    description: "Carpa de castillo medieval con torres, ideal para aventuras imaginarias",
-    category: "Carpas"
-  },
-  {
-    id: 3,
-    name: "Carpa Túnel",
-    price: 15990,
-    image: "/images/juguetes/carpas/carpatull/5akH6Dp3dL2d1M7an3cdw==.jpg",
-    images: [
-      "/images/juguetes/carpas/carpatull/5akH6Dp3dL2d1M7an3cdw==.jpg",
-      "/images/juguetes/carpas/carpatull/lLTBj4tHvNc1IUlCYVSX7g==.jpg",
-      "/images/juguetes/carpas/carpatull/tPNXM4NQv3ivQ9TFi9Gkg==.jpg"
-    ],
-    description: "Carpa túnel colorida para gatear y explorar, estimula el desarrollo motor",
-    category: "Carpas"
-  },
-  {
-    id: 4,
-    name: "Carpa Túnel y Piscina",
-    price: 14990,
-    image: "/images/juguetes/carpas/carpatunelypiscina/2YkhYBannBV+S8VKicaftg==.jpg",
-    images: [
-      "/images/juguetes/carpas/carpatunelypiscina/2YkhYBannBV+S8VKicaftg==.jpg",
-      "/images/juguetes/carpas/carpatunelypiscina/JeEFgPLwV7KuQP5rqeeCsQ==.jpg",
-      "/images/juguetes/carpas/carpatunelypiscina/lj6ApDeY1ZaFhh+9LC5mlg==.jpg",
-      "/images/juguetes/carpas/carpatunelypiscina/RvSaKd51opXMRN0DRDptvA==.jpg"
-    ],
-    description: "Set completo con carpa túnel y piscina de pelotas incluida",
-    category: "Carpas"
-  },
-
-  // === CATEGORÍA JUEGOS ===
-  {
-    id: 5,
-    name: "Balón de Fútbol Air Power",
-    price: 4990,
-    image: "/images/juguetes/juegos/balondefutbollairpower/CCCoe523QU66+hsy944EkA==.jpg",
-    images: [
-      "/images/juguetes/juegos/balondefutbollairpower/CCCoe523QU66+hsy944EkA==.jpg",
-      "/images/juguetes/juegos/balondefutbollairpower/La805Apadcwjxd4+iWZKvA==.jpg",
-      "/images/juguetes/juegos/balondefutbollairpower/zZr2cEVFeQpyCfqcfa9L0A==.jpg"
-    ],
-    description: "Balón de fútbol flotante con tecnología air power, se desliza suavemente sobre cualquier superficie",
-    category: "Juegos"
-  },
-  {
-    id: 6,
-    name: "Juguete de Conejo",
-    price: 10990,
-    image: "/images/juguetes/juegos/juguetedeconejo/m69auj4HYrBap3VgOqbzFw==.jpg",
-    images: ["/images/juguetes/juegos/juguetedeconejo/m69auj4HYrBap3VgOqbzFw==.jpg"],
-    description: "Adorable juguete de conejo suave y seguro para niños pequeños",
-    category: "Juegos"
-  },
-  {
-    id: 7,
-    name: "Peluche Squish Hello Kitty",
-    price: 8990,
-    image: "/images/juguetes/juegos/peluchesquishhellokitty/jFtEB61tRbk4m2yWiFcJ2g==.jpg",
-    images: ["/images/juguetes/juegos/peluchesquishhellokitty/jFtEB61tRbk4m2yWiFcJ2g==.jpg"],
-    description: "Peluche suave de Hello Kitty con textura squish, perfecto para abrazar",
-    category: "Juegos"
-  },
-  {
-    id: 8,
-    name: "Proyector Astronauta Infantil",
-    price: 14990,
-    image: "/images/juguetes/juegos/proyectorastronautainfantil/Oi5EV9Yz0RwTxkXfdZOWA==.jpg",
-    images: [
-      "/images/juguetes/juegos/proyectorastronautainfantil/Oi5EV9Yz0RwTxkXfdZOWA==.jpg",
-      "/images/juguetes/juegos/proyectorastronautainfantil/fQufiBJlm0IJsOKDxK97zg==.jpg",
-      "/images/juguetes/juegos/proyectorastronautainfantil/PfFpTZvFgKektD7iuuMplQ==.jpg",
-      "/images/juguetes/juegos/proyectorastronautainfantil/Q28HQiNBZDCb8srFs4OAVg==.jpg",
-      "/images/juguetes/juegos/proyectorastronautainfantil/QQfeaw00fLT+mmK7gkSTw==.jpg",
-      "/images/juguetes/juegos/proyectorastronautainfantil/rlhCuhe9xP+qzVZ43Uwow==.jpg",
-      "/images/juguetes/juegos/proyectorastronautainfantil/s6fL7J38gM9KxzRYb32g==.jpg"
-    ],
-    description: "Proyector LED con forma de astronauta, crea un ambiente mágico en la habitación",
-    category: "Juegos"
-  },
-  {
-    id: 9,
-    name: "Set de Cocina Kitchen",
-    price: 13990,
-    image: "/images/juguetes/juegos/setdecocinakitchen/maS7T17udnInDSgyIwZkOg==.jpg",
-    images: ["/images/juguetes/juegos/setdecocinakitchen/maS7T17udnInDSgyIwZkOg==.jpg"],
-    description: "Set de cocina completo con utensilios, perfecto para juegos de rol",
-    category: "Juegos"
-  },
-  {
-    id: 10,
-    name: "Set Tocador de Belleza para Niña",
-    price: 12990,
-    image: "/images/juguetes/juegos/settocadordebellezaparaniñadejuguete/GznbYQsPTThf9iOYkgQEeg==.jpg",
-    images: [
-      "/images/juguetes/juegos/settocadordebellezaparaniñadejuguete/GznbYQsPTThf9iOYkgQEeg==.jpg",
-      "/images/juguetes/juegos/settocadordebellezaparaniñadejuguete/uv05jG6c3ujnU0h5qaDEg==.jpg"
-    ],
-    description: "Tocador de juguete con espejo y accesorios de belleza para niñas",
-    category: "Juegos"
-  },
-  {
-    id: 11,
-    name: "Tabla de Skate Patineta",
-    price: 13990,
-    image: "/images/juguetes/juegos/tabladeskatepatineta/PlN2ht5vQi3OreVv4FI8+g==.jpg",
-    images: [
-      "/images/juguetes/juegos/tabladeskatepatineta/PlN2ht5vQi3OreVv4FI8+g==.jpg",
-      "/images/juguetes/juegos/tabladeskatepatineta/g8cya8q+XUi0fSkvDVFEBg==.jpg"
-    ],
-    description: "Patineta profesional para niños y adolescentes, diseño moderno y resistente",
-    category: "Juegos"
-  },
-
-  // === CATEGORÍA LIBRERÍA ===
-  {
-    id: 12,
-    name: "Estuche Hello Kitty",
-    price: 5000,
-    image: "/images/juguetes/libreria/estuchehellokyte/18lRr4+0SYTdK1AUhA1aKg==.jpg",
-    images: [
-      "/images/juguetes/libreria/estuchehellokyte/18lRr4+0SYTdK1AUhA1aKg==.jpg",
-      "/images/juguetes/libreria/estuchehellokyte/9h+wpLVnZR6M2pHXcpWcFg==.jpg",
-      "/images/juguetes/libreria/estuchehellokyte/arykM3QdiH1fbw6fiyN18w==.jpg",
-      "/images/juguetes/libreria/estuchehellokyte/efkaTx4U5IPdaaYBOVQACw==.jpg",
-      "/images/juguetes/libreria/estuchehellokyte/Id7oN58ecAvcSg11JHAE0A==.jpg"
-    ],
-    description: "Estuche escolar de Hello Kitty con múltiples compartimentos",
-    category: "Librería"
-  },
-  {
-    id: 13,
-    name: "Maleta de Colores de Madera 180 Piezas",
-    price: 10990,
-    image: "/images/juguetes/libreria/maletadecoloresdemaderade180piezas/6vjBTfK7WoSSZke7QJy7w==.jpg",
-    images: ["/images/juguetes/libreria/maletadecoloresdemaderade180piezas/6vjBTfK7WoSSZke7QJy7w==.jpg"],
-    description: "Set completo de arte con 180 piezas en maleta de madera, ideal para creatividad",
-    category: "Librería"
-  },
-  {
-    id: 14,
-    name: "Maleta de Plumones 80 Piezas",
-    price: 8990,
-    image: "/images/juguetes/libreria/maletadeplumonesde80piezas/2xKvxI0PoB2FbTvN4+HPJA==.jpg",
-    images: [
-      "/images/juguetes/libreria/maletadeplumonesde80piezas/2xKvxI0PoB2FbTvN4+HPJA==.jpg",
-      "/images/juguetes/libreria/maletadeplumonesde80piezas/FrmlZskO43aFTgHJvLEWyQ==.jpg",
-      "/images/juguetes/libreria/maletadeplumonesde80piezas/lhQsIHb6FdMN5rJ6CRScA==.jpg",
-      "/images/juguetes/libreria/maletadeplumonesde80piezas/ZKfGt27D2RvafXAxMPUiiw==.jpg"
-    ],
-    description: "Set de 80 plumones y marcadores en maleta organizadora",
-    category: "Librería"
-  },
-  {
-    id: 15,
-    name: "Mesa y Sillas Infantil",
-    price: 29990,
-    image: "/images/juguetes/libreria/mesaysillasinfantil/2NHTYN8GJnO9ChovZXBnGw==.jpg",
-    images: [
-      "/images/juguetes/libreria/mesaysillasinfantil/2NHTYN8GJnO9ChovZXBnGw==.jpg",
-      "/images/juguetes/libreria/mesaysillasinfantil/61uiOuFtKOWZ0ortZ7Ro0A==.jpg",
-      "/images/juguetes/libreria/mesaysillasinfantil/vw3W8hxNSGNgnuWsvCWJhg==.jpg",
-      "/images/juguetes/libreria/mesaysillasinfantil/zqQKbyHwfDQi1Hmre8SqHQ==.jpg"
-    ],
-    description: "Conjunto de mesa y sillas de madera para niños, ideal para estudiar y jugar",
-    category: "Librería"
-  }
-];
 
 export default function JuguetesPage() {
   const { addToCart } = useCart();
   const { applyFilters } = useFilters();
+  const { products: juguetesProducts, loading, error } = useProducts('juguetes');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
 
   // Aplicar filtros a los productos
-  const filteredProducts = applyFilters(JUGUETES_PRODUCTS);
+  const filteredProducts = applyFilters(juguetesProducts);
 
   const handleViewDetails = (product: Product) => {
     setSelectedProduct(product);
@@ -252,7 +57,7 @@ export default function JuguetesPage() {
               justifyContent: 'center',
               gap: '12px'
             }}>
-              🧸 Juguetes & Diversión
+                Juguetes & Diversión
             </h1>
             <p style={{ 
               color: 'var(--text-secondary)', 
@@ -263,63 +68,81 @@ export default function JuguetesPage() {
               Juguetes educativos y de entretenimiento para todas las edades
             </p>
             
+            {/* Estados de carga y error */}
+            {loading && (
+              <div style={{ textAlign: 'center', padding: '40px' }}>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '18px' }}>
+                  Cargando productos...
+                </p>
+              </div>
+            )}
+            
+            {error && (
+              <div style={{ textAlign: 'center', padding: '40px' }}>
+                <p style={{ color: 'var(--error)', fontSize: '18px' }}>
+                  Error al cargar productos: {error}
+                </p>
+              </div>
+            )}
+            
             {/* Controles de filtros */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '16px',
-              flexWrap: 'wrap',
-              marginTop: '24px'
-            }}>
-              <span style={{
-                color: 'var(--text-secondary)',
-                fontSize: '14px'
+            {!loading && !error && (
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '16px',
+                flexWrap: 'wrap',
+                marginTop: '24px'
               }}>
-                {filteredProducts.length} producto{filteredProducts.length !== 1 ? 's' : ''} encontrado{filteredProducts.length !== 1 ? 's' : ''}
-              </span>
+                <span style={{
+                  color: 'var(--text-secondary)',
+                  fontSize: '14px'
+                }}>
+                  {filteredProducts.length} producto{filteredProducts.length !== 1 ? 's' : ''} encontrado{filteredProducts.length !== 1 ? 's' : ''}
+                </span>
               
-              <button
-                onClick={() => setShowFilters(true)}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '10px 16px',
-                  background: 'var(--brand)',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '8px',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease'
-                }}
-              >
-                🔍 Filtros
-              </button>
-            </div>
+                <button
+                  onClick={() => setShowFilters(true)}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    padding: '10px 16px',
+                    background: 'var(--brand)',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '8px',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  🔍 Filtros
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Grid de productos */}
-          <div className="grid" style={{ marginBottom: '60px' }}>
-            {filteredProducts.map((product) => (
-              <div key={product.id} className="card" style={{ position: 'relative' }}>
-                <WishlistButton 
-                  product={product} 
-                  className="onCard" 
-                />
-                <ProductCard
-                  id={product.id}
-                  name={product.name}
-                  price={product.price}
-                  image={product.image}
-                  category="juguetes"
-                  onClick={() => handleViewDetails(product)}
-                />
-              </div>
-            ))}
-          </div>
+          {!loading && !error && (
+            <div className={styles.productsGrid} style={{ marginBottom: '60px' }}>
+              {filteredProducts.map((product) => (
+                <div key={product.id} className={styles.productCard} style={{ position: 'relative' }}>
+                  <ProductCard
+                    id={product.id}
+                    name={product.name}
+                    price={product.price}
+                    image={product.image}
+                    images={product.images}
+                    category="juguetes"
+                    onClick={() => handleViewDetails(product)}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </main>
       
@@ -327,7 +150,7 @@ export default function JuguetesPage() {
       <FilterPanel
         isOpen={showFilters}
         onClose={() => setShowFilters(false)}
-        products={JUGUETES_PRODUCTS}
+        products={juguetesProducts}
       />
       
       {/* Modal para ver detalles del producto */}
@@ -337,16 +160,6 @@ export default function JuguetesPage() {
         product={selectedProduct}
         onAddToCart={handleAddToCart}
       />
-      
-      <footer 
-        className="container" 
-        style={{
-          opacity: 0.7, 
-          padding: "24px 24px 48px"
-        }}
-      >
-        © 2025 IZA & CAS — hecho por karla cuevas
-      </footer>
     </>
   );
 }

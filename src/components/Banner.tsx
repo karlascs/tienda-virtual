@@ -1,29 +1,33 @@
 'use client';
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import styles from "@/styles/Banner.module.css";
 
 /**
- * Componente Banner Carrusel IZA&CAS
+ * Componente Banner Carrusel IZA&CAS - Dinámico desde Base de Datos
  * 
- * Carrusel de banners promocionales que se alternan automáticamente
- * entre el header y las categorías de productos.
+ * Carrusel de banners promocionales que se cargan desde la API
+ * y se alternan automáticamente entre el header y las categorías de productos.
  * 
  * Características:
- * - Múltiples banners con transición automática
+ * - Banners dinámicos desde base de datos
+ * - Los administradores pueden agregar/editar banners desde el panel admin
+ * - Transición automática entre banners
  * - Indicadores de navegación
  * - Imagen optimizada y responsive
  * - Animación de entrada suave con scroll
- * - Efectos hover elegantes
- * - Colores consistentes con la marca IZA&CAS
+ * - Enlaces opcionales en cada banner
  */
 
 interface BannerData {
-  src: string;
-  alt: string;
-  title?: string;
-  subtitle?: string;
+  id: string;
+  title: string;
+  subtitle: string | null;
+  imageUrl: string;
+  link: string | null;
+  order: number;
 }
 
 interface BannerProps {
@@ -33,22 +37,6 @@ interface BannerProps {
   interval?: number;
 }
 
-// Configuración de banners - Agrega aquí tu banner navideño
-const banners: BannerData[] = [
-  {
-    src: "/bannerIZAyCAS.png",
-    alt: "IZA & CAS - Banner promocional de la tienda",
-    title: "De Todo Para Tu Hogar",
-    subtitle: "Descubre una amplia variedad de productos para el hogar a precios accesibles"
-  },
-  {
-    src: "/LLEGO LA NAVIDAD.png", // Corregido: nombre exacto del archivo
-    alt: "IZA & CAS - ¡Llegó la Navidad! Ofertas Especiales",
-    title: "¡Llegó la Navidad!",
-    subtitle: "Encuentra los mejores regalos y decoraciones para esta temporada navideña"
-  }
-];
-
 export default function Banner({ 
   className = "", 
   style = {}, 
@@ -56,19 +44,56 @@ export default function Banner({
   interval = 5000 
 }: BannerProps) {
   const { elementRef, isVisible } = useScrollAnimation();
+  const [banners, setBanners] = useState<BannerData[]>([]);
+  const [loading, setLoading] = useState(true);
   const [currentBanner, setCurrentBanner] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
+  // Cargar banners desde la API
+  useEffect(() => {
+    fetch('/api/banners')
+      .then(res => res.json())
+      .then(data => {
+        if (data.success && data.data.length > 0) {
+          setBanners(data.data);
+        } else {
+          // Fallback: banner por defecto si no hay banners en la BD
+          setBanners([{
+            id: 'default',
+            title: 'De Todo Para Tu Hogar',
+            subtitle: 'Descubre una amplia variedad de productos a precios accesibles',
+            imageUrl: '/bannerIZAyCAS.png',
+            link: null,
+            order: 0
+          }]);
+        }
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error loading banners:', error);
+        // Fallback: banner por defecto en caso de error
+        setBanners([{
+          id: 'default',
+          title: 'De Todo Para Tu Hogar',
+          subtitle: 'Descubre una amplia variedad de productos a precios accesibles',
+          imageUrl: '/bannerIZAyCAS.png',
+          link: null,
+          order: 0
+        }]);
+        setLoading(false);
+      });
+  }, []);
+
   // Auto-slide functionality
   useEffect(() => {
-    if (!autoSlide || banners.length <= 1) return;
+    if (!autoSlide || banners.length <= 1 || loading) return;
 
     const timer = setInterval(() => {
       nextBanner();
     }, interval);
 
     return () => clearInterval(timer);
-  }, [currentBanner, autoSlide, interval]);
+  }, [currentBanner, autoSlide, interval, banners.length, loading]);
 
   const nextBanner = () => {
     if (isTransitioning) return;
@@ -97,7 +122,39 @@ export default function Banner({
     }, 300);
   };
 
+  if (loading || banners.length === 0) {
+    return (
+      <section className={`${styles.bannerSection} ${className}`} style={style}>
+        <div className={styles.bannerContainer}>
+          <div className={styles.bannerLoading}>Cargando...</div>
+        </div>
+      </section>
+    );
+  }
+
   const current = banners[currentBanner];
+
+  const BannerContent = () => (
+    <div className={`${styles.bannerSlide} ${isTransitioning ? styles.transitioning : ''}`}>
+      <img
+        src={current.imageUrl}
+        alt={current.title}
+        className={styles.bannerImage}
+        loading="eager"
+        onError={(e) => {
+          console.error('Error cargando banner:', current.imageUrl);
+          const target = e.target as HTMLImageElement;
+          target.style.background = 'linear-gradient(135deg, #ebddceff 0%, #d6b28cff 100%)';
+          target.style.color = 'white';
+          target.style.height = '200px';
+          target.style.display = 'flex';
+          target.style.alignItems = 'center';
+          target.style.justifyContent = 'center';
+          target.alt = current.title;
+        }}
+      />
+    </div>
+  );
 
   return (
     <section 
@@ -105,30 +162,32 @@ export default function Banner({
       className={`${styles.bannerSection} ${isVisible ? styles.visible : ''} ${className}`}
       style={style}
     >
+      {/* Efecto de partículas brillantes de fondo */}
+      <div className={styles.sparklesBackground}>
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className={styles.sparkle}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${2 + Math.random() * 3}s`
+            }}
+          />
+        ))}
+      </div>
+
       <div className={styles.bannerContainer}>
         <div className={styles.bannerWrapper}>
-          <div className={`${styles.bannerSlide} ${isTransitioning ? styles.transitioning : ''}`}>
-            <img
-              src={current.src}
-              alt={current.alt}
-              className={styles.bannerImage}
-              loading="eager"
-              onError={(e) => {
-                console.error('Error cargando banner:', e);
-                const target = e.target as HTMLImageElement;
-                target.style.background = 'linear-gradient(135deg, #2d4a4a 0%, #d4a574 100%)';
-                target.style.color = 'white';
-                target.style.height = '200px';
-                target.style.display = 'flex';
-                target.style.alignItems = 'center';
-                target.style.justifyContent = 'center';
-                target.alt = current.title || 'IZA & CAS - Tu tienda de confianza';
-              }}
-              onLoad={() => {
-                console.log(`✅ Banner ${currentBanner + 1} cargado exitosamente`);
-              }}
-            />
-          </div>
+          {/* Si el banner tiene link, envolver en Link, sino solo mostrar la imagen */}
+          {current.link ? (
+            <Link href={current.link} className={styles.bannerLink}>
+              <BannerContent />
+            </Link>
+          ) : (
+            <BannerContent />
+          )}
 
           {/* Controles de navegación - solo mostrar si hay más de un banner */}
           {banners.length > 1 && (

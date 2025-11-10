@@ -390,7 +390,7 @@ export default function SearchBar({
                               )}
                             </h4>
                             <p className={styles.productCategory}>
-                              <span className={styles.categoryIcon}>{getCategoryIcon(product.category)}</span>
+                              <span className={styles.categoryIcon}>{getCategoryIcon(product.category || '')}</span>
                               {product.category}
                             </p>
                             <p className={styles.productPrice}>{formatPrice(product.price)}</p>

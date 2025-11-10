@@ -1,9 +1,8 @@
 import Header from "@/components/Header";
 import Banner from "@/components/Banner";
 import Categories from "@/components/Categories";
-import ProductGrid from "@/components/ProductGrid";
+import FeaturedProducts from "@/components/FeaturedProducts";
 import RecommendationsWidget from "@/components/RecommendationsWidget";
-import RecentlyViewedWidget from "@/components/RecentlyViewedWidget";
 import Footer from "@/components/Footer";
 import CompareModal from "@/components/CompareModal";
 import CompareFloating from "@/components/CompareFloating";
@@ -34,17 +33,11 @@ export default function Home() {
       {/* Categorías de productos con animación */}
       <Categories />
       
-      {/* Contenido principal de la página */}
+      {/* Productos destacados que rotan semanalmente */}
+      <FeaturedProducts />
+      
+      {/*Contenido principal de la página*/}
       <main>
-        <ProductGrid />
-        
-        {/* Widget de productos recientemente vistos */}
-        <RecentlyViewedWidget 
-          limit={5}
-          showClearButton={true}
-          orientation="horizontal"
-        />
-        
         {/* Recomendaciones personalizadas */}
         <RecommendationsWidget 
           type="personalized"
@@ -55,7 +48,7 @@ export default function Home() {
         {/* Productos populares */}
         <RecommendationsWidget 
           type="popular"
-          title="🔥 Los más populares"
+          title="Los más populares"
           limit={4}
           showRefresh={false}
         />

@@ -25,7 +25,7 @@
   height: 100vh;
   background: linear-gradient(135deg, #ffffff 0%, #f5f2ed 100%);
   backdrop-filter: blur(10px);
-  box-shadow: -4px 0 20px rgba(44, 74, 67, 0.15);
+  box-shadow: -4px 0 20px rgba(212, 165, 116, 0.15);
   border-left: 1px solid rgba(232, 221, 208, 0.5);
   z-index: 1000;
   transition: right 0.3s ease;
@@ -45,13 +45,13 @@
   border-bottom: 1px solid rgba(232, 221, 208, 0.6);
   background: linear-gradient(135deg, #e8ddd0 0%, #f0eae0 100%);
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(44, 74, 67, 0.1);
+  box-shadow: 0 2px 8px rgba(212, 165, 116, 0.1);
 }
 
 .filterTitle {
   font-size: 20px;
   font-weight: 700;
-  color: #2c4a43;
+  color: #d4a574;
   margin: 0;
   display: flex;
   align-items: center;
@@ -65,7 +65,7 @@
 }
 
 .resetButton {
-  background: linear-gradient(135deg, #4a6b5f 0%, #e8ddd0 100%);
+  background: linear-gradient(135deg, #e8c9a8 0%, #e8ddd0 100%);
   border: 1px solid rgba(232, 221, 208, 0.6);
   color: white;
   padding: 8px 16px;
@@ -74,19 +74,19 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 6px rgba(44, 74, 67, 0.15);
+  box-shadow: 0 2px 6px rgba(212, 165, 116, 0.15);
 }
 
 .resetButton:hover {
-  background: linear-gradient(135deg, #2c4a43 0%, #ddd0bf 100%);
+  background: linear-gradient(135deg, #d4a574 0%, #ddd0bf 100%);
   transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(44, 74, 67, 0.2);
+  box-shadow: 0 4px 10px rgba(212, 165, 116, 0.2);
 }
 
 .closeButton {
-  background: rgba(44, 74, 67, 0.1);
+  background: rgba(212, 165, 116, 0.1);
   border: none;
-  color: #2c4a43;
+  color: #d4a574;
   cursor: pointer;
   padding: 8px;
   border-radius: 8px;
@@ -100,7 +100,7 @@
 
 .closeButton:hover {
   color: white;
-  background: #2c4a43;
+  background: #d4a574;
   transform: scale(1.05);
 }
 
@@ -123,7 +123,7 @@
 .sectionTitle {
   font-size: 16px;
   font-weight: 600;
-  color: #2c4a43;
+  color: #d4a574;
   margin: 0 0 16px 0;
   display: flex;
   align-items: center;
@@ -131,11 +131,11 @@
   padding: 8px 12px;
   background: linear-gradient(135deg, rgba(232, 221, 208, 0.3) 0%, rgba(240, 234, 224, 0.3) 100%);
   border-radius: 8px;
-  border-left: 3px solid #4a6b5f;
+  border-left: 3px solid #e8c9a8;
 }
 
 .selectedCount {
-  color: #2c4a43;
+  color: #d4a574;
   font-size: 14px;
   font-weight: 600;
   background: rgba(232, 221, 208, 0.6);
@@ -161,13 +161,13 @@
   border-radius: 8px;
   border: 1px solid rgba(232, 221, 208, 0.4);
   transition: all 0.3s ease;
-  color: #2c4a43;
+  color: #d4a574;
   font-weight: 500;
 }
 
 .radioLabel:hover {
   background: rgba(232, 221, 208, 0.3);
-  border-color: #4a6b5f;
+  border-color: #e8c9a8;
   transform: translateX(4px);
 }
 
@@ -187,9 +187,9 @@
 }
 
 .radioInput:checked + .radioCustom {
-  border-color: #2c4a43;
-  background: linear-gradient(135deg, #4a6b5f 0%, #2c4a43 100%);
-  box-shadow: 0 2px 6px rgba(44, 74, 67, 0.2);
+  border-color: #d4a574;
+  background: linear-gradient(135deg, #e8c9a8 0%, #d4a574 100%);
+  box-shadow: 0 2px 6px rgba(212, 165, 116, 0.2);
 }
 
 .radioInput:checked + .radioCustom::after {
@@ -218,7 +218,7 @@
 .priceLabel {
   display: block;
   font-size: 14px;
-  color: #2c4a43;
+  color: #d4a574;
   margin-bottom: 6px;
   font-weight: 600;
 }
@@ -229,17 +229,17 @@
   border: 2px solid #e0d5c7;
   border-radius: 8px;
   background: white;
-  color: #2c4a43;
+  color: #d4a574;
   font-size: 14px;
   font-weight: 500;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(44, 74, 67, 0.05);
+  box-shadow: 0 2px 4px rgba(212, 165, 116, 0.05);
 }
 
 .priceInput:focus {
   outline: none;
-  border-color: #4a6b5f;
-  box-shadow: 0 0 0 3px rgba(74, 107, 95, 0.1), 0 4px 8px rgba(44, 74, 67, 0.1);
+  border-color: #e8c9a8;
+  box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1), 0 4px 8px rgba(212, 165, 116, 0.1);
   background: #fefefe;
 }
 
@@ -271,13 +271,13 @@
   border-radius: 8px;
   border: 1px solid rgba(232, 221, 208, 0.4);
   transition: all 0.3s ease;
-  color: #2c4a43;
+  color: #d4a574;
   font-weight: 500;
 }
 
 .checkboxLabel:hover {
   background: rgba(232, 221, 208, 0.3);
-  border-color: #4a6b5f;
+  border-color: #e8c9a8;
   transform: translateX(4px);
 }
 
@@ -299,10 +299,10 @@
 }
 
 .checkboxInput:checked + .checkboxCustom {
-  border-color: #2c4a43;
-  background: linear-gradient(135deg, #4a6b5f 0%, #2c4a43 100%);
+  border-color: #d4a574;
+  background: linear-gradient(135deg, #e8c9a8 0%, #d4a574 100%);
   color: white;
-  box-shadow: 0 2px 6px rgba(44, 74, 67, 0.2);
+  box-shadow: 0 2px 6px rgba(212, 165, 116, 0.2);
 }
 
 .checkboxCustom svg {
@@ -323,7 +323,7 @@
 
 .categoryCount {
   font-size: 12px;
-  color: #2c4a43;
+  color: #d4a574;
   background: rgba(232, 221, 208, 0.6);
   padding: 3px 8px;
   border-radius: 12px;
@@ -337,14 +337,14 @@
   border-top: 1px solid rgba(232, 221, 208, 0.6);
   background: linear-gradient(135deg, #e8ddd0 0%, #f0eae0 100%);
   flex-shrink: 0;
-  box-shadow: 0 -2px 8px rgba(44, 74, 67, 0.1);
+  box-shadow: 0 -2px 8px rgba(212, 165, 116, 0.1);
 }
 
 .activeFiltersInfo {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #2c4a43;
+  color: #d4a574;
   font-size: 14px;
   font-weight: 600;
   background: rgba(255, 255, 255, 0.7);
@@ -399,3 +399,5 @@
     margin-bottom: 24px;
   }
 }
+
+

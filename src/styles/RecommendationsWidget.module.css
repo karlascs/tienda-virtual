@@ -2,19 +2,19 @@
 
 .recommendationsWidget {
   margin: 32px 0;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: visible;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 24px;
-  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-  border-bottom: 1px solid #e0e0e0;
+  padding: 12px 20px;
+  background: transparent;
+  border-bottom: none;
 }
 
 .title {
@@ -28,9 +28,9 @@
 }
 
 .refreshButton {
-  background: none;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(221, 221, 221, 0.5);
+  border-radius: 8px;
   padding: 8px 12px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -41,7 +41,7 @@
 }
 
 .refreshButton:hover {
-  background: #f8f9fa;
+  background: rgba(255, 255, 255, 1);
   border-color: #007bff;
   transform: translateY(-1px);
 }
@@ -50,31 +50,124 @@
   transform: translateY(0);
 }
 
-/* Grid de recomendaciones */
+/* Grid de recomendaciones - Carrusel horizontal */
 .recommendationsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: flex;
   gap: 20px;
-  padding: 24px;
+  padding: 16px 20px;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+}
+
+/* Estilos para la barra de scroll */
+.recommendationsGrid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.recommendationsGrid::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  margin: 0 20px;
+}
+
+.recommendationsGrid::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.recommendationsGrid::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .productWrapper {
   position: relative;
+  width: 220px;
+  min-width: 220px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
 }
 
-/* Estados de carga */
+/* Estilos compactos para las tarjetas de productos dentro del widget */
+.productWrapper :global(.card) {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.productWrapper :global(.card):hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.productWrapper :global(.imageContainer) {
+  aspect-ratio: 1;
+  max-height: 220px;
+}
+
+.productWrapper :global(.productInfo) {
+  padding: 12px;
+  gap: 8px;
+}
+
+.productWrapper :global(.productName) {
+  font-size: 14px;
+  min-height: 2.4em;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+}
+
+.productWrapper :global(.productPrice) {
+  font-size: 16px;
+  padding: 6px 10px;
+  font-weight: 600;
+}
+
+.productWrapper :global(.addToCartBtn) {
+  padding: 10px 12px;
+  font-size: 13px;
+  gap: 6px;
+  border-radius: 6px;
+}
+
+.productWrapper :global(.wishlistBtn) {
+  width: 36px;
+  height: 36px;
+  top: 10px;
+  right: 10px;
+}
+
+.productWrapper :global(.compareBtn) {
+  width: 32px;
+  height: 32px;
+  top: 10px;
+  left: 10px;
+}
+
+/* Estados de carga - Carrusel horizontal */
 .loadingGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: flex;
   gap: 20px;
-  padding: 24px;
+  padding: 16px 20px;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
 }
 
 .loadingSkeleton {
   background: #f8f9fa;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
   animation: pulse 1.5s ease-in-out infinite;
+  width: 220px;
+  min-width: 220px;
+  flex-shrink: 0;
 }
 
 .skeletonImage {
@@ -134,9 +227,9 @@
 
 /* Footer personalizado */
 .personalizedFooter {
-  padding: 16px 24px;
-  background: #f8f9fa;
-  border-top: 1px solid #e0e0e0;
+  padding: 12px 20px;
+  background: transparent;
+  border-top: none;
 }
 
 .footerText {
@@ -151,8 +244,14 @@
 @media (max-width: 1200px) {
   .recommendationsGrid,
   .loadingGrid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 16px;
+    padding: 16px;
+  }
+  
+  .productWrapper,
+  .loadingSkeleton {
+    width: 200px;
+    min-width: 200px;
   }
 }
 
@@ -182,9 +281,14 @@
   
   .recommendationsGrid,
   .loadingGrid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    padding: 20px;
-    gap: 16px;
+    gap: 12px;
+    padding: 16px;
+  }
+  
+  .productWrapper,
+  .loadingSkeleton {
+    width: 180px;
+    min-width: 180px;
   }
   
   .emptyState {
@@ -216,9 +320,14 @@
   
   .recommendationsGrid,
   .loadingGrid {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    padding: 16px;
     gap: 12px;
+    padding: 12px;
+  }
+  
+  .productWrapper,
+  .loadingSkeleton {
+    width: 160px;
+    min-width: 160px;
   }
   
   .skeletonImage {
@@ -341,3 +450,5 @@
     color: #aaa;
   }
 }
+
+

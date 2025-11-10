@@ -57,7 +57,7 @@
 .heroSection {
   padding: 60px 0;
   text-align: center;
-  background: linear-gradient(135deg, #2c4a43 0%, #1a2f2a 100%);
+  background: linear-gradient(135deg, #d4a574 0%, #f5e6d3 100%);
   color: white;
 }
 
@@ -286,3 +286,5 @@
     max-height: none !important;
   }
 }
+
+

@@ -6,10 +6,11 @@
 .header {
   position: sticky;
   top: 0;
-  background: linear-gradient(135deg, #2c4a43 0%, #1a2f2a 100%);
-  color: white;
+  background: linear-gradient(135deg, #f5f0ec 0%, #f3eae4 100%);
+  color: rgb(143, 21, 21);
   z-index: 1000;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: visible;
 }
 
 .headerContainer {
@@ -18,6 +19,7 @@
   padding: 0 24px;
   width: 100%;
   box-sizing: border-box;
+  overflow: visible;
 }
 
 /* Navegación principal */
@@ -29,7 +31,7 @@
   padding: 16px 0;
   min-height: 80px;
   width: 100%;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* Logo y botón de menú juntos */
@@ -48,7 +50,8 @@
 /* Botones de usuario - ahora directos en mainNav */
 .mainNav > .loginButton,
 .mainNav > .favoriteButton,
-.mainNav > .cartButton {
+.mainNav > .cartButton,
+.mainNav > .userMenuContainer {
   flex-shrink: 0;
 }
 
@@ -85,9 +88,9 @@
   padding: 12px;
   min-width: 56px;
   min-height: 56px;
-  background: rgba(44, 74, 67, 0.1);
-  color: #2c4a43;
-  border: 2px solid rgba(44, 74, 67, 0.2);
+  background: rgba(212, 165, 116, 0.1);
+  color: #0a0a0a;
+  border: 2px solid rgba(224, 159, 89, 0.2);
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -104,11 +107,11 @@
 .favoriteButton:hover,
 .cartButton:hover,
 .menuButton:hover {
-  background: #2c4a43;
+  background: #f8ca98;
   color: white;
-  border-color: #2c4a43;
+  border-color: #2b1804;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(44, 74, 67, 0.3);
+  box-shadow: 0 4px 12px rgba(231, 175, 114, 0.3);
 }
 
 /* Efectos active (al hacer clic) */
@@ -178,7 +181,7 @@
   width: 320px;
   background: white;
   border-radius: 0 0 12px 12px;
-  box-shadow: 0 8px 32px rgba(44, 74, 67, 0.15);
+  box-shadow: 0 8px 32px rgba(212, 165, 116, 0.15);
   transform: translateY(-10px);
   opacity: 0;
   visibility: hidden;
@@ -203,7 +206,7 @@
   margin: 0;
   font-size: 16px;
   font-weight: 600;
-  color: #2c4a43;
+  color: #d4a574;
 }
 
 .menuContent {
@@ -223,7 +226,7 @@
 
 .menuItem:hover {
   background: #f8f9fa;
-  color: #2c4a43;
+  color: #d4a574;
   transform: translateX(4px);
 }
 
@@ -253,7 +256,7 @@
 
 .menuItem:hover .arrowIcon {
   transform: translateX(4px);
-  color: #2c4a43;
+  color: #d4a574;
 }
 
 /* Overlay */
@@ -424,13 +427,13 @@
   border-radius: 12px;        /* Esquinas redondeadas */
   transition: transform 0.2s ease; /* Animación suave */
   background: rgba(206, 219, 212, 0.95); /* Fondo beige claro para contraste */
-  box-shadow: 0 3px 12px rgba(45, 74, 74, 0.2);  /* Sombra con tinte verde IZA&CAS */
+  box-shadow: 0 3px 12px rgba(232, 201, 168, 0.2);  /* Sombra con tinte verde IZA&CAS */
   border: 1px solid rgba(212, 165, 116, 0.3); /* Border con beige dorado */
 }
 
 .brand:hover {
   transform: scale(1.05); /* Efecto hover: crecer ligeramente */
-  box-shadow: 0 4px 16px rgba(45, 74, 74, 0.3); /* Sombra más intensa en hover */
+  box-shadow: 0 4px 16px rgba(232, 201, 168, 0.3); /* Sombra más intensa en hover */
   background: rgba(212, 165, 116, 0.1); /* Fondo con toque dorado en hover */
 }
 
@@ -438,7 +441,7 @@
 .logo {
   border-radius: 12px;    /* Esquinas redondeadas */
   object-fit: contain;    /* Mantener proporción del logo */
-  filter: drop-shadow(0 1px 3px rgba(45, 74, 74, 0.2)); /* Sombra sutil con verde de marca */
+  filter: drop-shadow(0 1px 3px rgba(232, 201, 168, 0.2)); /* Sombra sutil con verde de marca */
 }
 
 /* Contenedor de enlaces de navegación */
@@ -471,13 +474,13 @@
   border-radius: 20px;
   font-weight: 600;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(45, 74, 74, 0.3);
+  box-shadow: 0 2px 8px rgba(232, 201, 168, 0.3);
 }
 
 .cartLink:hover {
   background: linear-gradient(135deg, var(--brand-light) 0%, var(--accent) 100%);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(45, 74, 74, 0.4);
+  box-shadow: 0 4px 12px rgba(232, 201, 168, 0.4);
 }
 
 /* Botón hamburguesa - solo visible en móviles */
@@ -524,8 +527,8 @@
     rgba(74, 107, 107, 0.90) 50%, 
     rgba(240, 226, 189, 0.95) 100%);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(45, 74, 74, 0.15);
-  box-shadow: 0 4px 20px rgba(45, 74, 74, 0.2);
+  border-bottom: 1px solid rgba(232, 201, 168, 0.15);
+  box-shadow: 0 4px 20px rgba(232, 201, 168, 0.2);
   padding: 20px;
   flex-direction: column;
   gap: 15px;
@@ -655,7 +658,7 @@
   backdrop-filter: blur(10px);
   border-radius: 16px;
   margin: 8px 16px;
-  box-shadow: 0 4px 20px rgba(44, 74, 67, 0.15);
+  box-shadow: 0 4px 20px rgba(212, 165, 116, 0.15);
   border: 1px solid rgba(232, 221, 208, 0.3);
 }
 
@@ -669,14 +672,14 @@
   border-radius: 16px;
   transition: all 0.3s ease;
   background: linear-gradient(135deg, var(--brand-light) 0%, var(--accent) 100%);
-  box-shadow: 0 4px 16px rgba(44, 74, 67, 0.2);
+  box-shadow: 0 4px 16px rgba(212, 165, 116, 0.2);
   border: 1px solid rgba(232, 221, 208, 0.4);
   flex-shrink: 0;
 }
 
 .logo:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 6px 24px rgba(44, 74, 67, 0.3);
+  box-shadow: 0 6px 24px rgba(212, 165, 116, 0.3);
   background: linear-gradient(135deg, var(--brand) 0%, var(--accent-hover) 100%);
 }
 
@@ -718,7 +721,7 @@
   background: linear-gradient(135deg, var(--brand-light) 0%, var(--accent) 100%);
   color: white;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(44, 74, 67, 0.2);
+  box-shadow: 0 4px 12px rgba(212, 165, 116, 0.2);
   border-color: rgba(232, 221, 208, 0.3);
 }
 
@@ -737,7 +740,7 @@
   background: rgba(255, 255, 255, 0.7);
   border-radius: 16px;
   backdrop-filter: blur(8px);
-  box-shadow: 0 4px 12px rgba(44, 74, 67, 0.1);
+  box-shadow: 0 4px 12px rgba(212, 165, 116, 0.1);
 }
 */
 
@@ -755,7 +758,7 @@
   font-size: 14px;
   font-weight: 500;
   min-height: 44px;
-  box-shadow: 0 4px 16px rgba(44, 74, 67, 0.2);
+  box-shadow: 0 4px 16px rgba(212, 165, 116, 0.2);
   border: 1px solid rgba(232, 221, 208, 0.4);
   cursor: pointer;
 }
@@ -763,7 +766,7 @@
 .actionButton:hover {
   background: linear-gradient(135deg, var(--brand) 0%, var(--accent-hover) 100%);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(44, 74, 67, 0.3);
+  box-shadow: 0 6px 20px rgba(212, 165, 116, 0.3);
   color: white;
 }
 
@@ -859,19 +862,19 @@
   cursor: pointer;
   transition: all 0.3s ease;
   min-height: 40px;
-  box-shadow: 0 2px 8px rgba(45, 74, 74, 0.3);
+  box-shadow: 0 2px 8px rgba(232, 201, 168, 0.3);
   font-size: 14px;
 }
 
 .categoriesButton:hover {
   background: linear-gradient(135deg, var(--brand-light) 0%, var(--accent) 100%);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(45, 74, 74, 0.4);
+  box-shadow: 0 4px 12px rgba(232, 201, 168, 0.4);
 }
 
 .categoriesButton.open {
   background: linear-gradient(135deg, var(--brand-light) 0%, var(--accent) 100%);
-  box-shadow: 0 4px 12px rgba(45, 74, 74, 0.4);
+  box-shadow: 0 4px 12px rgba(232, 201, 168, 0.4);
 }
 
 .dropdownArrow {
@@ -1147,3 +1150,220 @@
     font-size: 13px;
   }
 }
+
+/* ===================================
+   MENÚ DE USUARIO AUTENTICADO
+   =================================== */
+
+.userMenuContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  z-index: 9999;
+}
+
+.userButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  min-height: 48px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.userButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.05);
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+}
+
+.avatarPlaceholder {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.userDropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  min-width: 280px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(232, 201, 168, 0.3), 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(212, 165, 116, 0.5);
+  padding: 8px 0;
+  z-index: 99999;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.userInfo {
+  padding: 16px 20px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.userName {
+  font-weight: 700;
+  font-size: 16px;
+  color: #1a202c;
+  margin: 0 0 4px 0;
+}
+
+.userEmail {
+  font-size: 13px;
+  color: #718096;
+  margin: 0 0 8px 0;
+  word-break: break-all;
+}
+
+.adminBadge {
+  display: inline-block;
+  padding: 4px 10px;
+  background: linear-gradient(135deg, #2d4a4a 0%, #d4a574 100%);
+  color: white;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(232, 201, 168, 0.3);
+}
+
+.userMenuDivider {
+  height: 1px;
+  background: rgba(212, 165, 116, 0.3);
+  margin: 8px 0;
+}
+
+.userMenuItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  color: #2d4a4a;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.userMenuItem:hover {
+  background: rgba(247, 245, 243, 0.8);
+  color: #d4a574;
+}
+
+.userMenuItem svg {
+  flex-shrink: 0;
+}
+
+.logoutButton {
+  color: #e53e3e;
+}
+
+.logoutButton:hover {
+  background: #fff5f5;
+  color: #c53030;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive para menú de usuario */
+@media (max-width: 768px) {
+  .userButton {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .avatar,
+  .avatarPlaceholder {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  .userDropdown {
+    min-width: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .userButton {
+    min-width: 40px;
+    min-height: 40px;
+  }
+
+  .avatar,
+  .avatarPlaceholder {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+  }
+
+  .userDropdown {
+    min-width: 220px;
+    right: -12px;
+  }
+
+  .userName {
+    font-size: 14px;
+  }
+
+  .userEmail {
+    font-size: 12px;
+  }
+
+  .userMenuItem {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+}
+
+
+

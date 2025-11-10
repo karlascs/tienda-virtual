@@ -5,7 +5,7 @@ import ProductCard from "./ProductCard";
 import ProductModal from "./ProductModal";
 import { useScrollAnimation, useScrollAnimationList } from "@/hooks/useScrollAnimation";
 import { useCart } from "@/context/CartContext";
-import { FEATURED_PRODUCTS, Product } from "@/data/products";
+import { useFeaturedProducts, Product } from "@/hooks/useProducts";
 
 /**
  * Componente ProductGrid
@@ -30,11 +30,12 @@ import { FEATURED_PRODUCTS, Product } from "@/data/products";
  */
 export default function ProductGrid() {
   const { addToCart } = useCart();
+  const { products: featuredProducts, loading, error } = useFeaturedProducts();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   
   const { elementRef: titleRef, isVisible: titleVisible } = useScrollAnimation(0.3);
-  const { containerRef, visibleItems } = useScrollAnimationList(FEATURED_PRODUCTS.length, 0.2);
+  const { containerRef, visibleItems } = useScrollAnimationList(featuredProducts.length, 0.2);
 
   const handleViewDetails = (product: Product) => {
     setSelectedProduct(product);
@@ -57,28 +58,48 @@ export default function ProductGrid() {
             Productos Destacados
           </h2>
           
+          {/* Estados de carga y error */}
+          {loading && (
+            <div style={{ textAlign: 'center', padding: '40px' }}>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '18px' }}>
+                Cargando productos...
+              </p>
+            </div>
+          )}
+          
+          {error && (
+            <div style={{ textAlign: 'center', padding: '40px' }}>
+              <p style={{ color: 'var(--error)', fontSize: '18px' }}>
+                Error al cargar productos: {error}
+              </p>
+            </div>
+          )}
+          
           {/* Grid responsivo de productos con animaciones */}
-          <div 
-            ref={containerRef as React.RefObject<HTMLDivElement>}
-            className="grid"
-          >
-            {FEATURED_PRODUCTS.map((product, index) => (
-              <div
-                key={product.id}
-                data-index={index}
-                className={`fade-in-up fade-in-delay-${Math.min(index + 1, 6)} ${visibleItems[index] ? 'visible' : ''}`}
-              >
-                <ProductCard 
-                  id={product.id}
-                  name={product.name}
-                  price={product.price}
-                  image={product.image!}
-                  category={product.category}
-                  onClick={() => handleViewDetails(product)}
-                />
-              </div>
-            ))}
-          </div>
+          {!loading && !error && (
+            <div 
+              ref={containerRef as React.RefObject<HTMLDivElement>}
+              className="grid"
+            >
+              {featuredProducts.map((product, index) => (
+                <div
+                  key={product.id}
+                  data-index={index}
+                  className={`fade-in-up fade-in-delay-${Math.min(index + 1, 6)} ${visibleItems[index] ? 'visible' : ''}`}
+                >
+                  <ProductCard 
+                    id={product.id}
+                    name={product.name}
+                    price={product.price}
+                    image={product.image!}
+                    images={product.images}
+                    category={product.category}
+                    onClick={() => handleViewDetails(product)}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
       

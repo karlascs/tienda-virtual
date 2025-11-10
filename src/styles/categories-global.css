@@ -2,7 +2,7 @@
 
 :root {
   /* Paleta de colores profesional IZA&CAS */
-  --brand: #2c4a43;
+  --brand: #d4a574;
   --brand-light: #4a6b61; 
   --brand-dark: #1e332e;
   --accent: #e8ddd0;
@@ -13,8 +13,8 @@
   --background: #ffffff;
   --surface: #fafafa;
   --border: #e5e5e5;
-  --shadow: rgba(44, 74, 67, 0.1);
-  --shadow-hover: rgba(44, 74, 67, 0.15);
+  --shadow: rgba(212, 165, 116, 0.1);
+  --shadow-hover: rgba(212, 165, 116, 0.15);
 }
 
 /* Grid universal mejorado */
@@ -147,3 +147,5 @@
     font-size: 1.8rem;
   }
 }
+
+

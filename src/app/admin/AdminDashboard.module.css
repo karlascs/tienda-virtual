@@ -1,0 +1,293 @@
+/* Dashboard Admin - Colores IZA&CAS */
+.dashboard {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.1rem;
+  color: #2d4a4a;
+}
+
+.error {
+  color: #e74c3c;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #2d4a4a;
+  background: linear-gradient(135deg, #2d4a4a 0%, #d4a574 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Stats Grid - Colores IZA&CAS */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.statCard {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  box-shadow: 0 2px 8px rgba(232, 201, 168, 0.1);
+  border: 1px solid rgba(212, 165, 116, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(232, 201, 168, 0.2);
+  border-color: rgba(212, 165, 116, 0.5);
+}
+
+.statIcon {
+  font-size: 3rem;
+  opacity: 0.8;
+  filter: drop-shadow(2px 2px 4px rgba(232, 201, 168, 0.2));
+}
+
+.statContent {
+  flex: 1;
+}
+
+.statValue {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2d4a4a;
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 0.9rem;
+  color: #d4a574;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+/* Content Grid - Colores IZA&CAS */
+.contentGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.section {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(232, 201, 168, 0.1);
+  border: 1px solid rgba(247, 245, 243, 0.5);
+}
+
+.sectionTitle {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  color: #2d4a4a;
+  border-bottom: 2px solid rgba(212, 165, 116, 0.3);
+  padding-bottom: 0.75rem;
+}
+
+/* Órdenes recientes - Colores IZA&CAS */
+.ordersList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.orderCard {
+  border: 1px solid rgba(212, 165, 116, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.orderCard:hover {
+  background: rgba(247, 245, 243, 0.5);
+  border-color: #d4a574;
+}
+
+.orderHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.orderId {
+  font-family: monospace;
+  font-weight: bold;
+  color: #2d4a4a;
+}
+
+.orderStatus {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.orderStatus.pending { background: rgba(248, 213, 175, 0.3); color: #d4a574; }
+.orderStatus.processing { background: rgba(232, 201, 168, 0.2); color: #2d4a4a; }
+.orderStatus.shipped { background: rgba(212, 165, 116, 0.3); color: #d4a574; }
+.orderStatus.delivered { background: rgba(232, 201, 168, 0.1); color: #2d4a4a; }
+.orderStatus.cancelled { background: rgba(231, 76, 60, 0.1); color: #e74c3c; }
+
+.orderDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  color: #2d4a4a;
+}
+
+.orderTotal {
+  font-weight: bold;
+  color: #d4a574;
+  font-size: 1.1rem;
+}
+
+.orderDate {
+  font-size: 0.85rem;
+  color: rgba(232, 201, 168, 0.6);
+}
+
+/* Stock bajo - Colores IZA&CAS */
+.stockList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.stockCard {
+  border: 1px solid rgba(212, 165, 116, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.stockCard:hover {
+  background: rgba(248, 213, 175, 0.2);
+  border-color: #d4a574;
+}
+
+.stockInfo {
+  flex: 1;
+}
+
+.stockName {
+  font-weight: 600;
+  color: #2d4a4a;
+  margin-bottom: 0.25rem;
+}
+
+.stockCategory {
+  font-size: 0.85rem;
+  color: rgba(232, 201, 168, 0.7);
+}
+
+.stockBadge {
+  background: rgba(248, 213, 175, 0.3);
+  color: #d4a574;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.stockBadge.outOfStock {
+  background: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+}
+
+/* Top productos - Colores IZA&CAS */
+.topProductsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.topProductCard {
+  border: 1px solid rgba(212, 165, 116, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+}
+
+.topProductCard:hover {
+  background: rgba(247, 245, 243, 0.5);
+  border-color: #d4a574;
+}
+
+.topProductRank {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: linear-gradient(135deg, #2d4a4a 0%, #d4a574 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  min-width: 3rem;
+  text-align: center;
+}
+
+.topProductInfo {
+  flex: 1;
+}
+
+.topProductName {
+  font-weight: 600;
+  color: #2d4a4a;
+  margin-bottom: 0.25rem;
+}
+
+.topProductSales {
+  font-size: 0.9rem;
+  color: #d4a574;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 2rem;
+  color: rgba(232, 201, 168, 0.5);
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+}
+
+
+

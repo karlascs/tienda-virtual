@@ -99,22 +99,27 @@ export function RecommendationsProvider({ children }: { children: ReactNode }) {
     let score = 0;
     const reasons: string[] = [];
 
+    // Convertir id a number para comparaciones
+    const numericId = typeof product.id === 'string' ? parseInt(product.id) : product.id;
+    const numericCurrentId = currentProductId;
+
     // No recomendar el producto actual
-    if (currentProductId && product.id === currentProductId) {
-      return { productId: product.id, score: -1, reasons: [] };
+    if (currentProductId && numericId === numericCurrentId) {
+      return { productId: numericId, score: -1, reasons: [] };
     }
 
     // No recomendar productos ya vistos recientemente (últimos 5)
-    if (userBehavior.viewedProducts.slice(0, 5).includes(product.id)) {
+    if (userBehavior.viewedProducts.slice(0, 5).includes(numericId)) {
       score -= 0.3;
       reasons.push('Visto recientemente');
     }
 
     // Bonus por categoría preferida
-    const categoryWeight = userBehavior.categoryPreferences[product.category] || 0;
+    const productCategory = product.category || '';
+    const categoryWeight = userBehavior.categoryPreferences[productCategory] || 0;
     if (categoryWeight > 0) {
       score += Math.min(categoryWeight * 0.2, 1.0);
-      reasons.push(`Te gusta la categoría ${product.category}`);
+      reasons.push(`Te gusta la categoría ${productCategory}`);
     }
 
     // Bonus por rango de precio
@@ -151,7 +156,7 @@ export function RecommendationsProvider({ children }: { children: ReactNode }) {
     // Bonus aleatorio para diversidad
     score += Math.random() * 0.1;
 
-    return { productId: product.id, score, reasons };
+    return { productId: numericId, score, reasons };
   };
 
   // Obtener recomendaciones generales

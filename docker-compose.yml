@@ -1,0 +1,94 @@
+version: '3.8'
+
+services:
+  # ========================================
+  # BASE DE DATOS - PostgreSQL
+  # ========================================
+  database:
+    image: postgres:16-alpine
+    container_name: izacas-database
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: izacas
+      POSTGRES_PASSWORD: izacas2024
+      POSTGRES_DB: izacas
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - izacas-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U izacas"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ========================================
+  # APLICACIÓN - Next.js Full-Stack
+  # (Frontend + Backend API)
+  # ========================================
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: izacas-app
+    restart: unless-stopped
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      # Base de datos
+      DATABASE_URL: "postgresql://izacas:izacas2024@database:5432/izacas?schema=public"
+      
+      # Next.js
+      NODE_ENV: production
+      NEXT_PUBLIC_API_URL: http://localhost:3000
+      
+      # Otras configuraciones
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    volumes:
+      # Volumen para imágenes subidas (si agregas upload)
+      - ./public:/app/public
+    networks:
+      - izacas-network
+    command: >
+      sh -c "
+        npx prisma migrate deploy &&
+        npx prisma generate &&
+        node server.js
+      "
+
+  # ========================================
+  # PGADMIN - Herramienta de Administración (Opcional)
+  # ========================================
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: izacas-pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@izacas.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - "5050:80"
+    networks:
+      - izacas-network
+    depends_on:
+      - database
+
+# ========================================
+# VOLÚMENES PERSISTENTES
+# ========================================
+volumes:
+  postgres_data:
+    driver: local
+
+# ========================================
+# RED INTERNA
+# ========================================
+networks:
+  izacas-network:
+    driver: bridge

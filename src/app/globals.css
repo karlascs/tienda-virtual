@@ -1,32 +1,39 @@
 /* ===================================
-   VARIABLES CSS - SISTEMA DE DISEÑO IZA&CAS
+   VARIABLES CSS - SISTEMA DE DISEÑO IZA&CAS MODERNO ✨
    =================================== */
 :root { 
-  --bg: #f5f2ed;           /* Fondo principal - beige cálido de la imagen */
+  --bg: #f9f7f5;           /* Fondo principal - beige muy suave */
   --card: #ffffff;         /* Fondo de tarjetas - blanco puro */
-  --text: #2c4a43;         /* Texto principal - verde oscuro del logo */
-  --muted: #6b7069;        /* Texto secundario - gris verdoso */
-  --brand: #2c4a43;        /* Color de marca - verde oscuro IZA&CAS */
-  --brand-light: #4a6b5f;  /* Color de marca más claro */
-  --brand-dark: #1e3329;   /* Color de marca más oscuro */
-  --accent: #e8ddd0;       /* Color de acento - beige suave */
-  --accent-hover: #ddd0bf; /* Color de acento hover */
-  --border: #e0d5c7;       /* Bordes - beige medio */
-  --shadow: rgba(44, 74, 67, 0.12); /* Sombras con tinte verde IZA&CAS */
+  --text: #5a5a5a;         /* Texto principal - gris medio */
+  --muted: #8a8a8a;        /* Texto secundario - gris suave */
+  --brand: #e9d0b5;        /* Color de marca - dorado suave */
+  --brand-light: #e8c9a8;  /* Color de marca más claro */
+  --brand-dark: #e9c8a0;   /* Color de marca más oscuro */
+  --accent: #f8d5af;       /* Color de acento - melocotón pastel */
+  --accent-hover: #f0c89d; /* Color de acento hover */
+  --accent-light: #fef5ed; /* Acento muy suave */
+  --border: #e8e3dd;       /* Bordes - beige suave */
+  --shadow: rgba(0, 0, 0, 0.08); /* Sombras suaves */
+  --shadow-strong: rgba(0, 0, 0, 0.15); /* Sombras más fuertes */
   
   /* Variables adicionales para categorías */
-  --background-secondary: #f0eae0;  /* Fondo secundario beige cálido */
+  --background-secondary: #fef9f5;  /* Fondo secundario crema */
   --text-primary: var(--text);      /* Texto principal */
   --text-secondary: var(--muted);   /* Texto secundario */
   --primary-color: var(--brand);    /* Color primario */
   --border-color: var(--border);    /* Color de borde */
   --card-background: var(--card);   /* Fondo de tarjetas */
   
-  /* Colores IZA&CAS para gradientes */
-  --gradient-start: #2c4a43;        /* Verde oscuro principal */
-  --gradient-mid: #4a6b5f;          /* Verde medio */
-  --gradient-end: #e8ddd0;          /* Beige cálido */
-  --gradient-soft: #f5f2ed;         /* Beige muy suave */
+  /* Colores IZA&CAS para gradientes pasteles */
+  --gradient-start: #f8d5af;        /* Melocotón pastel */
+  --gradient-mid: #f5e6d3;          /* Crema suave */
+  --gradient-end: #e8c9a8;          /* Beige dorado suave */
+  --gradient-soft: #fefbf8;         /* Casi blanco cálido */
+  
+  /* Nuevos efectos glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-shadow: rgba(0, 0, 0, 0.1);
 }
 
 /* ===================================
@@ -178,17 +185,68 @@ html, body {
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Grid responsivo */
-  gap: 20px;                        /* Espacio entre elementos */
-  align-items: stretch;             /* Estirar elementos para que tengan la misma altura */
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  padding: 10px 20px;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  align-items: stretch;
+}
+
+/* Estilos para la barra de scroll del grid */
+.grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.grid::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  margin: 0 20px;
+}
+
+.grid::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.grid::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Hacer que los hijos del grid tengan ancho fijo */
+.grid > * {
+  width: 220px;
+  min-width: 220px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
 }
 
 /* Mejoras responsive para el grid */
 @media (max-width: 768px) {
   .grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
+    gap: 16px;
+    padding: 10px 16px;
+  }
+  
+  .grid > * {
+    width: 200px;
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    gap: 12px;
+    padding: 10px 12px;
+  }
+  
+  .grid > * {
+    width: 180px;
+    min-width: 180px;
   }
 }
 
@@ -274,7 +332,7 @@ html, body {
 
 .link:hover {
   opacity: 1;           /* Completamente opaco al hacer hover */
-  background: rgba(45, 74, 74, 0.2); /* Fondo verde sutil en hover */
+  background: rgba(232, 201, 168, 0.2); /* Fondo verde sutil en hover */
   color: rgba(255, 255, 255, 1); /* Blanco puro en hover */
   transform: translateY(-1px); /* Ligero efecto de elevación */
 }
@@ -423,13 +481,13 @@ html, body {
   letter-spacing: 0.5px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(45, 74, 74, 0.3);
+  box-shadow: 0 4px 12px rgba(232, 201, 168, 0.3);
 }
 
 .btn-primary:hover {
   background: linear-gradient(135deg, var(--brand-light) 0%, var(--accent) 100%);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(45, 74, 74, 0.4);
+  box-shadow: 0 6px 20px rgba(232, 201, 168, 0.4);
 }
 
 /* Botón secundario con acento dorado */
@@ -479,3 +537,6 @@ html, body {
   background: #f8fafc;
   padding: 12px;
 }
+
+
+
