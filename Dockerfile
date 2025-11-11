@@ -3,18 +3,20 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Copiar archivos de dependencias
+# Copiar archivos de dependencias y configuración
 COPY package*.json ./
+COPY tsconfig.json ./
+COPY next.config.ts ./
 COPY prisma ./prisma/
 
 # Instalar dependencias
 RUN npm ci
 
+# Generar Prisma Client (antes de copiar el resto)
+RUN npx prisma generate
+
 # Copiar el resto del código
 COPY . .
-
-# Generar Prisma Client
-RUN npx prisma generate
 
 # Construir la aplicación Next.js
 RUN npm run build
