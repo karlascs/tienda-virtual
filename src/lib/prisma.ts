@@ -10,12 +10,26 @@ const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined
 }
 
+// Obtener DATABASE_URL con fallback para build time
+const getDatabaseUrl = () => {
+  const url = process.env.DATABASE_URL
+  
+  // Durante el build, si no hay DATABASE_URL, usar un placeholder
+  // Railway configurará la variable real en runtime
+  if (!url) {
+    console.warn('⚠️ DATABASE_URL no definida, usando placeholder para build')
+    return 'postgresql://placeholder:placeholder@localhost:5432/placeholder'
+  }
+  
+  return url
+}
+
 // Crear instancia de Prisma con configuración optimizada
 export const prisma = globalForPrisma.prisma ?? new PrismaClient({
-  log: ['query', 'error', 'warn'],
+  log: process.env.NODE_ENV === 'production' ? ['error'] : ['query', 'error', 'warn'],
   datasources: {
     db: {
-      url: process.env.DATABASE_URL,
+      url: getDatabaseUrl(),
     },
   },
 })
