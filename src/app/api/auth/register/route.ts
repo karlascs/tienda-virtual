@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import { z } from "zod";
+import { checkRateLimit, RateLimitPresets, createRateLimitResponse } from "@/lib/rate-limit";
 
 // Esquema de validación
 const registerSchema = z.object({
@@ -18,6 +19,28 @@ const registerSchema = z.object({
 
 export async function POST(request: NextRequest) {
   try {
+    // 🔒 RATE LIMITING: 5 intentos por 15 minutos
+    const rateLimitCheck = checkRateLimit(
+      request,
+      RateLimitPresets.AUTH.limit,
+      RateLimitPresets.AUTH.windowMs
+    );
+
+    if (!rateLimitCheck.allowed) {
+      const retryAfter = Math.ceil((rateLimitCheck.resetTime - Date.now()) / 1000);
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Demasiados intentos de registro. Por favor espera 15 minutos.",
+        },
+        {
+          status: 429,
+          headers: {
+            ...createRateLimitResponse(0, rateLimitCheck.resetTime, retryAfter * 1000),
+          },
+        }
+      );
+    }
     const body = await request.json();
 
     // Validar datos de entrada

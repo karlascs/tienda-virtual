@@ -1,92 +1,81 @@
-# 🏠 IZA & CAS - Tienda Virtual E-commerce Completa
+# 🏠 IZA & CAS - E-commerce Completo con Sistema de Pagos
 
-> **Sistema completo de e-commerce funcional** con funcionalidades interactivas avanzadas, carrito de compras, modal de productos, sistema de filtros avanzado, **diseño 100% responsivo**, recomendaciones inteligentes, sistema de reviews, comparador de productos, lista de deseos persistente y nueva categoría **Electro Hogar** desarrollada con Next.js 15, TypeScript y CSS Modules optimizados para todos los dispositivos.
+> **E-commerce profesional full-stack** con Next.js 15, Prisma, PostgreSQL, autenticación, panel de administración, sistema de pagos Transbank Webpay Plus, integración con Chilexpress para envíos dinámicos, checkout para invitados, diseño 100% responsivo y listo para producción.
 
-## 🚀 Demo en Vivo
+## 🚀 Demo y Características
 
-🔗 **[Ver Demo](https://github.com/karlascs/tienda-virtual)** | 📱 **Responsive Design** | 🛒 **E-commerce Funcional** | 🏠 **IZA & CAS** | ⚡ **Electro Hogar** | 🧠 **IA Recomendaciones**
+🔗 **[Deploy en Producción]** | 📱 **Mobile Responsive** | 🛒 **Checkout Completo** | 💳 **Webpay Plus** | 🚚 **Chilexpress API**
 
-## ✨ Características Principales
+## ✨ Características Destacadas
 
-### 🚀 **Funcionalidad Interactiva Avanzada (NUEVO - Fase 8)**
-- **🤍 Wishlist Persistente**: Sistema completo de lista de deseos con Context API y LocalStorage
-- **🔍 Búsqueda Avanzada**: Autocompletado inteligente con sugerencias por categorías y navegación por teclado
-- **⚖️ Comparador de Productos**: Sistema de comparación lado a lado con widget flotante y modal interactivo
-- **⭐ Sistema de Reviews y Ratings**: Calificaciones con estrellas, comentarios, filtros y validaciones completas
-- **🧠 Motor de Recomendaciones**: Algoritmos inteligentes basados en comportamiento del usuario y preferencias
-- **📱 Historial de Navegación**: Tracking automático de productos visitados con persistencia en LocalStorage
+### 💳 **Sistema de Pagos Transbank Webpay Plus**
+- **Integración completa** con SDK oficial de Transbank
+- **Cálculo automático** de comisión (2.95% + IVA)
+- **Flujo completo**: crear transacción → redirigir → confirmar → success
+- **Entorno de integración** configurado (código: 597055555532)
+- **Panel admin** con desglose de precios transparente
 
-### 📱 **Diseño 100% Responsivo (IMPLEMENTADO)**
+### 🚚 **Integración Chilexpress**
+- **Cotización en tiempo real** de costos de envío
+- **API oficial** con autenticación y tracking
+- **Múltiples servicios**: Normal, Express, Prioritario
+- **Cálculo por ubicación** (región, comuna, ciudad)
+- **Fallback a $3,000** si API no disponible
+- **ShippingOptions component** con selección de opciones
+
+### 👤 **Checkout Invitado (Guest Checkout)**
+- **Sin registro requerido** para comprar
+- **Validación completa** de RUT chileno (Módulo 11)
+- **Google Maps autocomplete** para direcciones (opcional)
+- **Formulario optimizado** con validación en tiempo real
+- **Experiencia fluida** para conversión máxima
+### 📱 **Diseño 100% Responsivo**
 - **Mobile-first design** optimizado para smartphones y tablets
-- **Breakpoints inteligentes**: 360px, 480px, 768px, 992px, 1200px+
-- **Header adaptativo** con menú hamburguesa en móviles
-- **Grid dinámico** que se adapta automáticamente (4→3→2→1 columnas)
-- **ProductModal responsivo** con vista completa en móviles
+- **Panel de administración responsive** con sidebar deslizante
+- **Breakpoints inteligentes**: 480px, 768px, 1024px
+- **Mobile menu** con hamburger button y overlay backdrop
+- **Tablas con scroll horizontal** touch-friendly
+- **Modales full-screen** en móviles
 - **Touch-friendly interfaces** con áreas de toque optimizadas (44px+)
-- **SearchBar móvil** sin zoom automático en iOS
-- **Footer adaptativo** con redes sociales reorganizadas
-- **Tipografías fluidas** con clamp() para escalado perfecto
+- **Grid dinámico** que se adapta automáticamente (4→3→2→1 columnas)
 
-### ⚡ **Nueva Categoría: Electro Hogar (IMPLEMENTADO)**
-- **10 productos electrodomésticos** organizados por subcategorías
-- **Hervidores eléctricos** - RAF metálico y termo de 2L
-- **Extractores de jugo** - 350ml compacto y eficiente
-- **Hornos eléctricos** - RAF 7L para cocinar y hornear
-- **Parrillas eléctricas** - De mesa, plancha multifuncional
-- **Procesadoras de alimentos** - 2L, 3L y 5L con potencia industrial
-- **Galería completa** con 34+ imágenes organizadas
-- **Banner personalizado** para la categoría
-- **Integración completa** con filtros y carrito
-- **Productos destacados** incluidos en homepage
+### 🔐 **Autenticación y Seguridad**
+- **NextAuth.js v5** con credenciales y providers
+- **Roles de usuario**: USER, ADMIN con middleware
+- **Passwords hasheados** con bcrypt
+- **Rate limiting** en APIs críticas
+- **CSRF protection** en formularios
+- **Admin panel** protegido con validación de roles
 
-### 🛒 **E-commerce Funcional Completo**
-- **Carrito de compras** dinámico con React Context
-- **Modal de detalles** de productos interactivo con galería de imágenes
-- **Sistema de filtros** avanzado en todas las 7 categorías
-- **Botones funcionales** en todas las categorías con ProductCard minimalista
-- **Contador dinámico** en header del carrito
-- **Notificaciones toast** al añadir productos
-- **Gestión completa** de cantidades y productos
+### 📊 **Panel de Administración Completo**
+- **Dashboard** con estadísticas en tiempo real
+- **Gestión de productos** (CRUD completo)
+### 📊 **Panel de Administración Completo**
+- **Dashboard** con estadísticas en tiempo real
+- **Gestión de productos** (CRUD completo)
+- **Gestión de categorías** con contador de productos
+- **Gestión de banners** para homepage
+- **Control de inventario** con alertas de stock bajo
+- **Sistema de ventas** con registro manual y automático
+- **Estadísticas avanzadas** con gráficos y métricas
+- **Gestión de órdenes** con actualización de estados
+- **Panel responsive** optimizado para tablets y móviles
 
-### 🔍 **Sistema de Filtros Avanzado**
-- **FilterPanel** implementado en todas las 7 categorías
-- **Filtros por categoría** con selección múltiple
-- **Filtros por rango de precio** con sliders interactivos
-- **Ordenamiento** por precio, nombre y popularidad
-- **Contador dinámico** de productos encontrados
-- **Botón de acceso** prominente en cada categoría
+### 🗄️ **Base de Datos Completa**
+- **Prisma ORM** con PostgreSQL
+- **14 modelos** relacionados (User, Product, Order, Banner, etc.)
+- **Migraciones versionadas** con historial completo
+- **Seeders** para datos de prueba
+- **Relaciones complejas** con integridad referencial
+- **Índices optimizados** para queries rápidas
 
-### 🎨 **Diseño Profesional IZA&CAS**
-- **Diseño minimalista** con colores de marca (#2c4a43, #e8ddd0)
-- **ProductCard unificado** en todas las categorías
-- **Banner IZA&CAS** promocional en página principal
-- **Paleta de colores** IZA&CAS consistente
-- **Animaciones suaves** y efectos hover elegantes
-- **Responsive design** optimizado para móviles
+## 🛠️ Stack Tecnológico
 
-### ⚡ **Tecnologías Avanzadas**
-- **Next.js 15** con App Router y Turbopack
-- **TypeScript** para type safety completo
-- **React Context API** para gestión de estado global (8 contexts integrados)
-- **CSS Modules** con sistema de variables CSS avanzado
-- **Hooks personalizados** para funcionalidad específica (animaciones, teclado)
-- **LocalStorage** para persistencia de datos del usuario
-- **Algoritmos inteligentes** para recomendaciones y análisis de comportamiento
-- **CSS Modules** para estilos aislados y escalables
-- **CSS Grid + Flexbox** para layouts responsivos
-- **LocalStorage** para persistencia de datos del usuario
-- **Intersection Observer** para animaciones de scroll
-- **Algoritmos de recomendación** con tracking inteligente
-
-### 🎯 **Funcionalidades Técnicas**
-- **85+ Componentes** reutilizables y documentados
-- **8 Context Providers** para gestión de estado avanzada
-- **HTML Semántico** para SEO y accesibilidad
-- **Error handling** en carga de imágenes
-- **Performance optimizado** con lazy loading
-- **Estructura escalable** y mantenible
-- **Sistema de tracking** de comportamiento del usuario
-- **Algoritmos inteligentes** para recomendaciones personalizadas
+### Frontend
+- **Next.js 15.5.2** con App Router y Turbopack
+- **React 19** con Server Components
+- **TypeScript 5** para type safety
+- **CSS Modules** con variables CSS
 
 ## 📁 Estructura del Proyecto
 
@@ -295,56 +284,339 @@ Productos para tu bienestar y cuidado personal
 
 *Todos los productos cuentan con imágenes organizadas y precios competitivos en el mercado chileno.*
 
-## 🛠️ Tecnologías
+### Backend
+- **Prisma ORM 6.19.0** con PostgreSQL
+- **NextAuth.js v5** para autenticación
+- **bcryptjs** para hashing de passwords
+- **Zod** para validación de schemas
+- **Transbank SDK** (webpay-plus) para pagos
+- **Chilexpress API** para cotización de envíos
 
-- **Framework**: Next.js 15 con Turbopack
-- **Lenguaje**: TypeScript
-- **Estilos**: CSS Modules + CSS Variables
-- **Layout**: CSS Grid + Flexbox responsivo
-- **Imágenes**: Next.js Image optimización
-- **Responsive**: Mobile-first design
-- **Formatos**: WebP, AVIF, JPG (modernos y optimizados)
-- **Deployment**: Ready for Vercel
-- **Control de Versiones**: Git + GitHub
+### Integraciones
+- **Google Maps Places API** para autocomplete de direcciones
+- **Transbank Webpay Plus** (entorno integración)
+- **Chilexpress API** (sandbox/producción)
 
-## 🚀 Instalación y Desarrollo
+### Herramientas
+- **Docker** con docker-compose para despliegue
+- **Git** con commits semánticos
+- **ESLint** para linting de código
+- **TypeScript** para type checking
+
+## 🚀 Instalación y Configuración
+
+## 🚀 Instalación y Configuración
 
 ### Prerrequisitos
-- Node.js 18+ 
+- Node.js 18+
+- PostgreSQL 14+
 - npm o yarn
 - Git
 
-### Clonar el repositorio
+### 1. Clonar el repositorio
 ```bash
-git clone https://github.com/karlascs/tienda-virtual.git
+git clone https://github.com/karlascs/educacion-.git
 cd tienda-next
 ```
 
-### Instalar dependencias
+### 2. Instalar dependencias
 ```bash
 npm install
-# o
-yarn install
 ```
 
-### Ejecutar en desarrollo
+### 3. Configurar variables de entorno
+Crear archivo `.env` en la raíz del proyecto:
+
+```env
+# Database
+DATABASE_URL="postgresql://usuario:password@localhost:5432/izacas_ecommerce"
+
+# NextAuth
+AUTH_SECRET="tu-secret-key-super-seguro-cambiar-en-produccion"
+NEXTAUTH_URL="http://localhost:3000"
+
+# Transbank (Integración)
+TRANSBANK_COMMERCE_CODE="597055555532"
+TRANSBANK_API_KEY="579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C"
+TRANSBANK_ENVIRONMENT="integration"
+
+# Chilexpress API (opcional)
+CHILEXPRESS_API_KEY="tu-api-key-chilexpress"
+CHILEXPRESS_API_URL="https://testservices.wschilexpress.com"
+
+# Google Maps (opcional)
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY="tu-api-key-google-maps"
+
+# Store Config
+NEXT_PUBLIC_STORE_NAME="IZA&CAS"
+NEXT_PUBLIC_STORE_ADDRESS="Simón Bolívar 485, 2390030 Valparaíso, Chile"
+NEXT_PUBLIC_STORE_PHONE="+56912345678"
+NEXT_PUBLIC_STORE_EMAIL="contacto@izacas.cl"
+```
+
+### 4. Configurar base de datos
+```bash
+# Generar Prisma Client
+npx prisma generate
+
+# Ejecutar migraciones
+npx prisma migrate deploy
+
+# Poblar base de datos (opcional)
+npx prisma db seed
+```
+
+### 5. Crear usuario administrador
+```bash
+npm run create-admin
+# o manualmente:
+npx ts-node scripts/check-admin.ts
+```
+
+Credenciales por defecto:
+- Email: `admin@izacas.com`
+- Password: `Admin123!`
+
+### 6. Ejecutar en desarrollo
 ```bash
 npm run dev
-# o
-yarn dev
 ```
 
-Abrir [http://localhost:3000](http://localhost:3000) en el navegador.
+Abrir [http://localhost:3000](http://localhost:3000)
 
-### Build para producción
+### 7. Build para producción
 ```bash
 npm run build
 npm start
 ```
 
-## 📱 Sistema Responsivo Implementado
+## 🐳 Despliegue con Docker
 
-### 🎯 **Breakpoints Optimizados**
+## � Despliegue con Docker
+
+### Opción 1: Docker Compose (recomendado)
+```bash
+# Iniciar servicios (Next.js + PostgreSQL)
+docker-compose up -d
+
+# Ver logs
+docker-compose logs -f
+
+# Detener servicios
+docker-compose down
+```
+
+### Opción 2: Script automatizado
+```bash
+# Windows PowerShell
+.\start-docker.ps1
+
+# Linux/Mac
+./start-docker.sh
+```
+
+### Opción 3: Build manual
+```bash
+# Build imagen
+docker build -t izacas-ecommerce .
+
+# Ejecutar contenedor
+docker run -p 3000:3000 --env-file .env izacas-ecommerce
+```
+
+## 🌐 Despliegue en la Nube
+
+### Vercel (Recomendado - Frontend)
+1. Conectar repositorio en vercel.com
+2. Configurar variables de entorno
+3. Deploy automático con cada push
+
+```bash
+# O usar CLI
+npm i -g vercel
+vercel
+vercel --prod
+```
+
+### Railway (Backend + Database)
+1. Crear proyecto en railway.app
+2. Conectar GitHub repo
+3. Agregar PostgreSQL addon
+4. Configurar variables de entorno
+5. Deploy automático
+
+### Configuración de URLs en Producción
+Actualizar `.env`:
+```env
+NEXTAUTH_URL="https://tu-dominio.vercel.app"
+TRANSBANK_ENVIRONMENT="production" # Cambiar cuando esté listo
+```
+
+## 📚 Documentación Adicional
+
+- [Guía de Checkout Invitado](./CHECKOUT-INVITADO-RESUMEN.md)
+- [Configuración de Chilexpress](./CHILEXPRESS-SETUP.md)
+- [Acceso Público](./ACCESO-PUBLICO.md)
+- [Arquitectura Docker](./ARQUITECTURA-DOCKER.md)
+- [Autenticación y Seguridad](./AUTENTICACION-SEGURIDAD.md)
+- [Sistema de Banners](./BANNERS-ADMIN.md)
+- [Diseño Responsive](./RESPONSIVE-DESIGN.md)
+
+## 🧪 Testing
+
+### Testing Manual
+```bash
+# Iniciar servidor
+npm run dev
+
+# Probar endpoints
+curl http://localhost:3000/api/products
+curl http://localhost:3000/api/categories
+```
+
+### Testing Responsive
+- Chrome DevTools (F12 → Toggle Device Toolbar)
+- Dispositivos: iPhone SE, iPad, Desktop
+- Breakpoints: 480px, 768px, 1024px
+
+## 🎯 Funcionalidades Principales
+
+## 🎯 Funcionalidades Principales
+
+### Para Clientes
+- ✅ Navegación pública sin registro
+- ✅ Búsqueda y filtrado de productos
+- ✅ Carrito de compras persistente
+- ✅ Checkout invitado con validación RUT
+- ✅ Pago con Transbank Webpay Plus
+- ✅ Cotización automática de envíos Chilexpress
+- ✅ Seguimiento de órdenes
+- ✅ Lista de deseos (wishlist)
+
+### Para Administradores
+- ✅ Dashboard con estadísticas
+- ✅ Gestión completa de productos (CRUD)
+- ✅ Gestión de categorías
+- ✅ Control de inventario con alertas
+- ✅ Sistema de ventas (manual + automático)
+- ✅ Gestión de banners homepage
+- ✅ Vista de órdenes y cambio de estados
+- ✅ Estadísticas y reportes
+
+## 📊 Estadísticas del Proyecto
+
+- **46 páginas** generadas (28 estáticas + 18 dinámicas)
+- **14 modelos** de base de datos con Prisma
+- **40+ componentes** React reutilizables
+- **30+ rutas API** para backend
+- **Build exitoso** sin errores TypeScript
+- **First Load JS**: 135 kB (optimizado)
+- **Middleware**: 208 kB
+- **Responsive**: 100% funcional en todos los dispositivos
+
+## 🔒 Seguridad
+
+- ✅ Passwords hasheados con bcrypt
+- ✅ CSRF protection en formularios
+- ✅ Rate limiting en APIs
+- ✅ Validación de roles (middleware)
+- ✅ NextAuth.js v5 con JWT
+- ✅ Variables de entorno protegidas
+- ✅ Sanitización de inputs (Zod)
+
+## 🐛 Troubleshooting
+
+### Error: "Prisma Client no generado"
+```bash
+npx prisma generate
+```
+
+### Error: "No se puede conectar a la base de datos"
+```bash
+# Verificar PostgreSQL está corriendo
+# Verificar DATABASE_URL en .env
+npx prisma db push
+```
+
+### Error: "NEXTAUTH_SECRET no definido"
+```bash
+# Generar secret
+openssl rand -base64 32
+# Agregar a .env
+AUTH_SECRET="tu-secret-generado"
+```
+
+### Build falla con errores TypeScript
+```bash
+# Limpiar cache y rebuild
+rm -rf .next
+npm run build
+```
+
+## 🤝 Contribuir
+
+1. Fork el proyecto
+2. Crea una rama (`git checkout -b feature/nueva-funcionalidad`)
+3. Commit cambios (`git commit -m 'feat: agregar nueva funcionalidad'`)
+4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
+5. Abre un Pull Request
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT.
+
+## 👩‍💻 Autor
+
+**Karla Cuevas** - [@karlascs](https://github.com/karlascs)
+
+---
+
+## 🏆 Changelog
+
+### v6.0 - Sistema Completo de E-commerce (Actual)
+- ✅ **Transbank Webpay Plus** - Sistema de pagos completo
+- ✅ **Chilexpress API** - Cotización dinámica de envíos
+- ✅ **Guest Checkout** - Compra sin registro
+- ✅ **Panel Admin Responsive** - Mobile/tablet optimizado
+- ✅ **Next.js 15 Compatibility** - Async params fix
+- ✅ **Prisma Full Integration** - 14 modelos relacionados
+- ✅ **NextAuth.js v5** - Autenticación completa
+
+### v5.0 - Backend y Autenticación
+- ✅ Prisma ORM con PostgreSQL
+- ✅ Sistema de autenticación con roles
+- ✅ Panel de administración completo
+- ✅ Sistema de inventario y ventas
+- ✅ Gestión de órdenes y banners
+
+### v4.0 - Diseño Responsive
+- ✅ Mobile-first design
+- ✅ Panel admin responsive
+- ✅ 6 breakpoints optimizados
+- ✅ Touch-friendly interfaces
+
+### v3.0 - Funcionalidades Interactivas
+- ✅ Sistema de reviews y ratings
+- ✅ Motor de recomendaciones
+- ✅ Comparador de productos
+- ✅ Historial de navegación
+
+### v2.0 - E-commerce Core
+- ✅ Carrito de compras
+- ✅ Sistema de filtros
+- ✅ 7 categorías con 65+ productos
+- ✅ Modal de productos
+
+### v1.0 - Fundación
+- ✅ Next.js 15 + TypeScript
+- ✅ Estructura de proyecto
+- ✅ Sistema de componentes
+- ✅ Branding IZA&CAS
+
+---
+
+⭐ **IZA & CAS - E-commerce profesional con todo lo que necesitas** 🛒  
+💳 **Pagos seguros con Transbank** | 🚚 **Envíos con Chilexpress** | 📱 **100% Responsive**
 ```css
 /* Móvil pequeño */    hasta 360px
 /* Móvil estándar */   361px - 480px

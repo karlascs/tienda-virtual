@@ -10,9 +10,10 @@ import { prisma } from '@/lib/prisma'
 // PUT - Actualizar producto
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const body = await request.json()
 
     // Validar campos requeridos
@@ -33,7 +34,7 @@ export async function PUT(
     }
 
     const product = await prisma.product.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         name: body.name,
         slug: body.slug,
@@ -74,12 +75,13 @@ export async function PUT(
 // DELETE - Eliminar producto (soft delete)
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     // Soft delete - marcar como inactivo
     const product = await prisma.product.update({
-      where: { id: params.id },
+      where: { id },
       data: { isActive: false }
     })
 

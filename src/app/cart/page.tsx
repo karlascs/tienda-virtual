@@ -1,8 +1,15 @@
 'use client';
 
+import { useState } from 'react';
+import { useSession } from 'next-auth/react';
 import Header from "@/components/Header";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
+import CheckoutButton from "@/components/CheckoutButton";
+import SessionDebug from "@/components/SessionDebug";
+import GuestCheckoutForm, { CheckoutData } from "@/components/GuestCheckoutForm";
+import ShippingOptions from "@/components/ShippingOptions";
+import styles from './CartPage.module.css';
 
 /**
  * Página del Carrito de Compras
@@ -17,20 +24,27 @@ import { useCart } from "@/context/CartContext";
  */
 export default function CartPage() {
   const { state, updateQuantity, removeFromCart, clearCart } = useCart();
+  const { data: session } = useSession();
+  const [checkoutData, setCheckoutData] = useState<CheckoutData | null>(null);
+  const [shippingCost, setShippingCost] = useState<number>(3000);
+  const [selectedShipping, setSelectedShipping] = useState<any>(null);
+
+  const isDataComplete = checkoutData !== null;
+
+  const handleShippingSelected = (price: number, option: any) => {
+    setShippingCost(price);
+    setSelectedShipping(option);
+  };
 
   if (state.items.length === 0) {
     return (
       <>
         <Header />
+        <SessionDebug />
         
         <main>
-          <div className="container" style={{ textAlign: 'center', padding: '60px 24px' }}>
-            <h1 style={{ 
-              fontSize: '32px', 
-              fontWeight: '700', 
-              color: 'var(--text-primary)', 
-              marginBottom: '24px'
-            }}>
+          <div className={styles.emptyContainer}>
+            <h1 className={styles.title}>
               Carrito de Compras
             </h1>
             
@@ -50,26 +64,13 @@ export default function CartPage() {
               }}>
                 Tu carrito está vacío
               </h2>
-              <p style={{ 
-                color: 'var(--text-secondary)', 
-                marginBottom: '32px',
-                fontSize: '16px' 
-              }}>
+              <p className={styles.emptyMessage}>
                 ¡Agrega productos desde nuestras categorías!
               </p>
               
               <Link 
                 href="/products/hogar"
-                style={{
-                  background: 'linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%)',
-                  color: 'white',
-                  padding: '12px 24px',
-                  borderRadius: '8px',
-                  textDecoration: 'none',
-                  fontWeight: '600',
-                  display: 'inline-block',
-                  transition: 'all 0.3s ease'
-                }}
+                className={styles.backLink}
               >
                 Explorar Productos
               </Link>
@@ -83,46 +84,24 @@ export default function CartPage() {
   return (
     <>
       <Header />
+      <SessionDebug />
       
       <main>
-        <div className="container" style={{ padding: '40px 24px' }}>
-          <h1 style={{ 
-            fontSize: '32px', 
-            fontWeight: '700', 
-            color: 'var(--text-primary)', 
-            marginBottom: '32px' 
-          }}>
+        <div className={styles.container}>
+          <h1 className={styles.title}>
             Tu Carrito de Compras 🛒
           </h1>
           
-          <div style={{ display: 'grid', gap: '32px', gridTemplateColumns: '1fr 400px' }}>
+          <div className={styles.cartGrid}>
             {/* Lista de productos */}
-            <div>
+            <div className={styles.cartItems}>
               {state.items.map((item) => (
-                <div 
-                  key={item.id}
-                  style={{
-                    background: 'var(--card-background)',
-                    border: '1px solid var(--border-color)',
-                    borderRadius: '12px',
-                    padding: '24px',
-                    marginBottom: '16px',
-                    display: 'grid',
-                    gridTemplateColumns: '120px 1fr auto',
-                    gap: '20px',
-                    alignItems: 'center'
-                  }}
-                >
+                <div key={item.id} className={styles.cartItem}>
                   {/* Imagen del producto */}
                   <img 
                     src={item.image} 
                     alt={item.name}
-                    style={{
-                      width: '120px',
-                      height: '120px',
-                      objectFit: 'cover',
-                      borderRadius: '8px'
-                    }}
+                    className={styles.itemImage}
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.src = '/images/placeholder.svg';
@@ -130,15 +109,8 @@ export default function CartPage() {
                   />
                   
                   {/* Información del producto */}
-                  <div>
-                    <h3 style={{ 
-                      color: 'var(--text-primary)', 
-                      marginBottom: '8px',
-                      fontSize: '18px',
-                      fontWeight: '600'
-                    }}>
-                      {item.name}
-                    </h3>
+                  <div className={styles.itemInfo}>
+                    <h3 className={styles.itemName}>{item.name}</h3>
                     <p style={{ 
                       color: 'var(--text-secondary)', 
                       fontSize: '14px',
@@ -146,79 +118,44 @@ export default function CartPage() {
                     }}>
                       {item.description}
                     </p>
-                    <div style={{ 
-                      color: 'var(--brand)', 
-                      fontWeight: '700',
-                      fontSize: '16px' 
-                    }}>
+                    <div className={styles.itemPrice}>
                       ${item.price.toLocaleString('es-CL')} c/u
                     </div>
                   </div>
                   
                   {/* Controles de cantidad */}
-                  <div style={{ textAlign: 'center' }}>
-                    <div style={{ 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      gap: '12px',
-                      marginBottom: '12px' 
-                    }}>
+                  <div className={styles.itemActions}>
+                    <div className={styles.quantityControls}>
                       <button
-                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        style={{
-                          background: 'var(--brand)',
-                          color: 'white',
-                          border: 'none',
-                          borderRadius: '50%',
-                          width: '32px',
-                          height: '32px',
-                          cursor: 'pointer',
-                          fontSize: '18px',
-                          fontWeight: 'bold'
-                        }}
+                        onClick={() => updateQuantity(
+                          typeof item.id === 'number' ? item.id : parseInt(item.id), 
+                          item.quantity - 1
+                        )}
+                        className={styles.quantityButton}
                       >
                         −
                       </button>
                       
-                      <span style={{ 
-                        fontWeight: '600', 
-                        fontSize: '18px',
-                        minWidth: '40px',
-                        textAlign: 'center' 
-                      }}>
+                      <span className={styles.quantity}>
                         {item.quantity}
                       </span>
                       
                       <button
-                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        style={{
-                          background: 'var(--brand)',
-                          color: 'white',
-                          border: 'none',
-                          borderRadius: '50%',
-                          width: '32px',
-                          height: '32px',
-                          cursor: 'pointer',
-                          fontSize: '18px',
-                          fontWeight: 'bold'
-                        }}
+                        onClick={() => updateQuantity(
+                          typeof item.id === 'number' ? item.id : parseInt(item.id), 
+                          item.quantity + 1
+                        )}
+                        className={styles.quantityButton}
                       >
                         +
                       </button>
                     </div>
                     
                     <button
-                      onClick={() => removeFromCart(item.id)}
-                      style={{
-                        background: 'transparent',
-                        color: '#ef4444',
-                        border: '1px solid #ef4444',
-                        borderRadius: '6px',
-                        padding: '6px 12px',
-                        cursor: 'pointer',
-                        fontSize: '12px',
-                        fontWeight: '600'
-                      }}
+                      onClick={() => removeFromCart(
+                        typeof item.id === 'number' ? item.id : parseInt(item.id)
+                      )}
+                      className={styles.removeButton}
                     >
                       Eliminar
                     </button>
@@ -228,61 +165,57 @@ export default function CartPage() {
               
               <button
                 onClick={clearCart}
-                style={{
-                  background: 'transparent',
-                  color: 'var(--text-secondary)',
-                  border: '1px solid var(--border-color)',
-                  borderRadius: '8px',
-                  padding: '12px 24px',
-                  cursor: 'pointer',
-                  fontWeight: '600',
-                  marginTop: '16px'
-                }}
+                className={styles.clearButton}
               >
                 Vaciar Carrito
               </button>
             </div>
             
             {/* Resumen del pedido */}
-            <div style={{
-              background: 'var(--card-background)',
-              border: '1px solid var(--border-color)',
-              borderRadius: '12px',
-              padding: '24px',
-              height: 'fit-content',
-              position: 'sticky',
-              top: '120px'
-            }}>
-              <h3 style={{ 
-                color: 'var(--text-primary)', 
-                marginBottom: '20px',
-                fontSize: '20px',
-                fontWeight: '600'
-              }}>
+            <div className={styles.cartSummary}>
+              <h3 className={styles.summaryTitle}>
                 Resumen del Pedido
               </h3>
               
+              {/* Nuevo formulario de checkout con validación */}
+              <GuestCheckoutForm onDataComplete={setCheckoutData} />
+              
+              {/* Opciones de envío con Chilexpress */}
+              {checkoutData && (
+                <ShippingOptions
+                  commune={checkoutData.city}
+                  city={checkoutData.city}
+                  region={checkoutData.region}
+                  cartTotal={state.total}
+                  cartItems={state.items}
+                  onShippingSelected={handleShippingSelected}
+                />
+              )}
+              
               <div style={{ marginBottom: '16px' }}>
-                <div style={{ 
-                  display: 'flex', 
-                  justifyContent: 'space-between',
-                  marginBottom: '8px'
-                }}>
-                  <span style={{ color: 'var(--text-secondary)' }}>
+                <div className={styles.summaryItem}>
+                  <span className={styles.summaryLabel}>
                     Productos ({state.itemCount})
                   </span>
-                  <span style={{ color: 'var(--text-primary)', fontWeight: '600' }}>
+                  <span className={styles.summaryValue}>
                     ${state.total.toLocaleString('es-CL')}
                   </span>
                 </div>
                 
-                <div style={{ 
-                  display: 'flex', 
-                  justifyContent: 'space-between',
-                  marginBottom: '8px'
-                }}>
-                  <span style={{ color: 'var(--text-secondary)' }}>Envío</span>
-                  <span style={{ color: 'green', fontWeight: '600' }}>Gratis</span>
+                <div className={styles.summaryItem}>
+                  <span className={styles.summaryLabel}>Envío</span>
+                  <span className={styles.summaryValue}>
+                    ${shippingCost.toLocaleString('es-CL')}
+                  </span>
+                </div>
+                
+                <div className={styles.summaryItem}>
+                  <span className={styles.summaryLabel} style={{ fontSize: '13px' }}>
+                    Comisión Transbank (2.95%)
+                  </span>
+                  <span className={styles.summaryValue} style={{ fontSize: '13px' }}>
+                    ${Math.round((state.total + shippingCost) * 0.0295 * 1.19).toLocaleString('es-CL')}
+                  </span>
                 </div>
                 
                 <hr style={{ 
@@ -291,37 +224,39 @@ export default function CartPage() {
                   margin: '16px 0'
                 }} />
                 
-                <div style={{ 
-                  display: 'flex', 
-                  justifyContent: 'space-between',
-                  fontSize: '18px',
-                  fontWeight: '700'
-                }}>
-                  <span style={{ color: 'var(--text-primary)' }}>Total</span>
-                  <span style={{ color: 'var(--brand)' }}>
-                    ${state.total.toLocaleString('es-CL')}
+                <div className={styles.summaryTotal}>
+                  <span className={styles.totalLabel}>Total a Pagar</span>
+                  <span className={styles.totalValue}>
+                    ${Math.round(state.total + shippingCost + ((state.total + shippingCost) * 0.0295 * 1.19)).toLocaleString('es-CL')}
                   </span>
+                </div>
+                <div style={{ 
+                  fontSize: '11px', 
+                  color: 'var(--text-secondary)', 
+                  marginTop: '4px',
+                  textAlign: 'right'
+                }}>
+                  (IVA incluido en precios)
                 </div>
               </div>
               
-              <button
-                style={{
-                  background: 'linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%)',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '8px',
-                  padding: '16px 24px',
-                  width: '100%',
-                  fontWeight: '600',
-                  fontSize: '16px',
-                  cursor: 'pointer',
-                  marginBottom: '12px',
-                  transition: 'all 0.3s ease'
-                }}
-                onClick={() => alert('Funcionalidad de checkout próximamente')}
-              >
-                Proceder al Pago
-              </button>
+              <CheckoutButton
+                cartItems={state.items.map(item => ({
+                  productId: item.id, // Pasar directamente, CheckoutButton lo convierte
+                  quantity: item.quantity,
+                  price: item.price
+                }))}
+                shippingAddress={checkoutData ? {
+                  street: checkoutData.street,
+                  city: checkoutData.city,
+                  region: checkoutData.region
+                } : { street: '', city: '', region: '' }}
+                userName={checkoutData?.name}
+                userEmail={checkoutData?.email}
+                userPhone={checkoutData?.phone}
+                userRut={checkoutData?.rut}
+                disabled={!isDataComplete}
+              />
               
               <Link 
                 href="/products/hogar"

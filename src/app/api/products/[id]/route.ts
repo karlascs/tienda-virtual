@@ -9,15 +9,15 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 
 interface RouteParams {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 // GET /api/products/[id]
 export async function GET(request: NextRequest, { params }: RouteParams) {
   try {
-    const { id } = params
+    const { id } = await params
 
     // Intentar buscar por ID primero, luego por slug
     let product = await prisma.product.findUnique({
@@ -128,7 +128,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 // PUT /api/products/[id] (Actualizar producto - admin only)
 export async function PUT(request: NextRequest, { params }: RouteParams) {
   try {
-    const { id } = params
+    const { id } = await params
     const data = await request.json()
 
     // Verificar que el producto existe
@@ -203,7 +203,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
 // DELETE /api/products/[id] (Eliminar producto - admin only)
 export async function DELETE(request: NextRequest, { params }: RouteParams) {
   try {
-    const { id } = params
+    const { id } = await params
 
     // Verificar que el producto existe
     const existingProduct = await prisma.product.findUnique({

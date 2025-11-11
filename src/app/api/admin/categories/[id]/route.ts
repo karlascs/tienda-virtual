@@ -9,9 +9,10 @@ import { prisma } from '@/lib/prisma'
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const body = await request.json()
     const { name, slug, description, image } = body
 
@@ -26,7 +27,7 @@ export async function PUT(
     const existing = await prisma.category.findFirst({
       where: {
         slug,
-        NOT: { id: params.id }
+        NOT: { id }
       }
     })
 
@@ -38,7 +39,7 @@ export async function PUT(
     }
 
     const category = await prisma.category.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         name,
         slug,
@@ -67,12 +68,13 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     // Verificar si la categoría tiene productos
     const productsCount = await prisma.product.count({
-      where: { categoryId: params.id }
+      where: { categoryId: id }
     })
 
     if (productsCount > 0) {
@@ -83,7 +85,7 @@ export async function DELETE(
     }
 
     await prisma.category.delete({
-      where: { id: params.id }
+      where: { id }
     })
 
     return NextResponse.json({

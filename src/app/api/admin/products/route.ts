@@ -5,9 +5,31 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { checkRateLimit, RateLimitPresets, createRateLimitResponse } from '@/lib/rate-limit'
 
 export async function POST(request: NextRequest) {
   try {
+    // 🔒 RATE LIMITING: 20 peticiones por minuto
+    const rateLimitCheck = checkRateLimit(
+      request,
+      RateLimitPresets.WRITE_API.limit,
+      RateLimitPresets.WRITE_API.windowMs
+    );
+
+    if (!rateLimitCheck.allowed) {
+      const retryAfter = Math.ceil((rateLimitCheck.resetTime - Date.now()) / 1000);
+      return NextResponse.json(
+        { 
+          success: false, 
+          error: 'Demasiadas peticiones. Por favor espera un momento.' 
+        },
+        {
+          status: 429,
+          headers: createRateLimitResponse(0, rateLimitCheck.resetTime, retryAfter * 1000),
+        }
+      );
+    }
+
     const body = await request.json()
     const {
       name,

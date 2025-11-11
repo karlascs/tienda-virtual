@@ -9,9 +9,10 @@ import { prisma } from '@/lib/prisma'
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const body = await request.json()
     const { title, subtitle, imageUrl, link, order, isActive } = body
 
@@ -23,7 +24,7 @@ export async function PUT(
     }
 
     const banner = await prisma.banner.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         title,
         subtitle: subtitle || null,
@@ -49,11 +50,12 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     await prisma.banner.delete({
-      where: { id: params.id }
+      where: { id }
     })
 
     return NextResponse.json({

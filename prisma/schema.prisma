@@ -253,8 +253,8 @@ model Review {
 // Modelo de Órdenes
 model Order {
   id            String      @id @default(cuid())
-  userId        String
-  user          User        @relation(fields: [userId], references: [id])
+  userId        String?     // Opcional para compras como invitado
+  user          User?       @relation(fields: [userId], references: [id])
   
   // Detalles de la orden
   orderNumber   String      @unique
@@ -263,14 +263,20 @@ model Order {
   subtotal      Float
   tax           Float       @default(0)
   shipping      Float       @default(0)
+  transbankFee  Float       @default(0) // Comisión Transbank (2.95% + IVA)
   
-  // Información de envío
+  // Información de envío (obligatoria para todos)
   shippingName    String
   shippingEmail   String
-  shippingPhone   String?
+  shippingPhone   String
+  shippingRut     String?     // RUT chileno para facturación
   shippingAddress String
   shippingCity    String
-  shippingZip     String
+  shippingRegion  String      // Región de Chile
+  shippingZip     String?     // Código postal (opcional)
+  
+  // Guest checkout
+  isGuest       Boolean     @default(false)
   
   // Información de pago
   paymentMethod   String?

@@ -1,0 +1,198 @@
+.container {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0;
+}
+
+.guestToggle {
+  display: flex;
+  align-items: center;
+}
+
+.guestToggle label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #4a5568;
+}
+
+.guestToggle input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #667eea;
+  margin: 0 0 8px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4a5568;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hint {
+  font-size: 12px;
+  font-weight: 400;
+  color: #a0aec0;
+  font-style: italic;
+}
+
+.field input,
+.field select {
+  padding: 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.field input.error,
+.field select.error {
+  border-color: #fc8181;
+}
+
+.field input.error:focus,
+.field select.error:focus {
+  box-shadow: 0 0 0 3px rgba(252, 129, 129, 0.1);
+}
+
+.fieldGroup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.errorText {
+  font-size: 12px;
+  color: #fc8181;
+  font-weight: 500;
+}
+
+.infoBox {
+  background: linear-gradient(135deg, #e6f7ff 0%, #d9edff 100%);
+  border: 2px solid #91d5ff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 8px;
+}
+
+.infoBox p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #096dd9;
+}
+
+.infoBox strong {
+  font-weight: 600;
+  color: #0050b3;
+}
+
+/* Estilos para el autocomplete de Google */
+.pac-container {
+  border-radius: 8px;
+  margin-top: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e2e8f0;
+  font-family: inherit;
+}
+
+.pac-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  border-top: 1px solid #e2e8f0;
+}
+
+.pac-item:first-child {
+  border-top: none;
+}
+
+.pac-item:hover {
+  background: #f7fafc;
+}
+
+.pac-icon {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .fieldGroup {
+    grid-template-columns: 1fr;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .sectionTitle {
+    font-size: 15px;
+  }
+
+  .field input,
+  .field select {
+    padding: 10px;
+    font-size: 13px;
+  }
+}

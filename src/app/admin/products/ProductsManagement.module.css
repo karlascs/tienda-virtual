@@ -528,6 +528,112 @@
   cursor: not-allowed;
 }
 
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Price Breakdown Styles */
+.priceBreakdown {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e8f4f8 100%);
+  border: 2px solid #d4a574;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.priceBreakdown h3 {
+  margin: 0 0 1rem 0;
+  color: #2d4a4a;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.breakdownContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.breakdownRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.breakdownRow .label {
+  color: #546e7a;
+  font-size: 0.95rem;
+}
+
+.breakdownRow .value {
+  font-weight: 600;
+  color: #2d4a4a;
+  font-size: 1rem;
+}
+
+.breakdownDivider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4a574, transparent);
+  margin: 0.5rem 0;
+}
+
+.breakdownRow.total {
+  background: linear-gradient(135deg, #2d4a4a 0%, #d4a574 100%);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+}
+
+.breakdownRow.total .label,
+.breakdownRow.total .value {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.breakdownNote {
+  background: rgba(255, 193, 7, 0.1);
+  border-left: 3px solid #ffc107;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #856404;
+}
+
+/* Breakpoint para tablets */
+@media (max-width: 1024px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  .productsTable th,
+  .productsTable td {
+    padding: 0.875rem;
+  }
+
+  .modal {
+    width: 90%;
+  }
+}
+
+/* Breakpoint para móviles */
 @media (max-width: 768px) {
   .filters {
     flex-direction: column;
@@ -539,15 +645,42 @@
 
   .productsTable {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .productsTable table {
     min-width: 800px;
   }
+
+  .header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
+  }
+
+  .addBtn {
+    width: 100%;
+  }
+
+  .productImage {
+    width: 50px;
+    height: 50px;
+  }
+
+  .productsTable th,
+  .productsTable td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.85rem;
+  }
   
   .modal {
     width: 95%;
     max-height: 95vh;
+    margin: 1rem;
   }
   
   .formRow {
@@ -560,6 +693,75 @@
   
   .cancelBtn, .submitBtn {
     width: 100%;
+  }
+
+  .modalHeader h2 {
+    font-size: 1.25rem;
+  }
+
+  .imagesList {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+}
+
+/* Breakpoint para móviles pequeños */
+@media (max-width: 480px) {
+  .container {
+    padding: 0.75rem;
+  }
+
+  .header h1 {
+    font-size: 1.25rem;
+  }
+
+  .searchInput {
+    font-size: 0.875rem;
+  }
+
+  .stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .statCard h3 {
+    font-size: 0.875rem;
+  }
+
+  .statCard .value {
+    font-size: 1.5rem;
+  }
+
+  .productsTable th,
+  .productsTable td {
+    padding: 0.5rem 0.25rem;
+    font-size: 0.8rem;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .editBtn, .deleteBtn {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  .modal {
+    width: 100%;
+    max-height: 100vh;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .modalHeader h2 {
+    font-size: 1.1rem;
+  }
+
+  .closeBtn {
+    width: 30px;
+    height: 30px;
+    font-size: 1.25rem;
   }
 }
 

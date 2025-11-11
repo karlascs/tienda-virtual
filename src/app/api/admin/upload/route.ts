@@ -2,9 +2,28 @@ import { NextRequest, NextResponse } from 'next/server';
 import { writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
 import { auth } from '@/auth';
+import { checkRateLimit, RateLimitPresets, createRateLimitResponse } from '@/lib/rate-limit';
 
 export async function POST(request: NextRequest) {
   try {
+    // 🔒 RATE LIMITING: 5 uploads por 5 minutos
+    const rateLimitCheck = checkRateLimit(
+      request,
+      RateLimitPresets.UPLOAD.limit,
+      RateLimitPresets.UPLOAD.windowMs
+    );
+
+    if (!rateLimitCheck.allowed) {
+      const retryAfter = Math.ceil((rateLimitCheck.resetTime - Date.now()) / 1000);
+      return NextResponse.json(
+        { error: 'Demasiadas subidas de archivos. Espera 5 minutos.' },
+        {
+          status: 429,
+          headers: createRateLimitResponse(0, rateLimitCheck.resetTime, retryAfter * 1000),
+        }
+      );
+    }
+
     // Verificar autenticación
     const session = await auth();
     if (!session?.user || session.user.role !== 'ADMIN') {

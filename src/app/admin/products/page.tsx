@@ -407,16 +407,17 @@ export default function ProductsManagementPage() {
                 {/* Precio y Stock */}
                 <div className={styles.formRow}>
                   <div className={styles.formGroup}>
-                    <label htmlFor="price">Precio ($) *</label>
+                    <label htmlFor="price">Precio de Venta (IVA incluido) *</label>
                     <input
                       id="price"
                       type="number"
-                      step="0.01"
+                      step="1"
                       required
                       value={formData.price}
                       onChange={(e) => setFormData({...formData, price: e.target.value})}
-                      placeholder="99.99"
+                      placeholder="19900"
                     />
+                    <span className={styles.helpText}>💡 Este es el precio que ve el cliente</span>
                   </div>
                   
                   <div className={styles.formGroup}>
@@ -431,6 +432,59 @@ export default function ProductsManagementPage() {
                     />
                   </div>
                 </div>
+                
+                {/* Desglose de Precios */}
+                {formData.price && parseFloat(formData.price) > 0 && (
+                  <div className={styles.priceBreakdown}>
+                    <h3>💰 Desglose de Cobro al Cliente</h3>
+                    <div className={styles.breakdownContent}>
+                      <div className={styles.breakdownRow}>
+                        <span className={styles.label}>Valor Neto (sin IVA):</span>
+                        <span className={styles.value}>
+                          ${Math.round(parseFloat(formData.price) / 1.19).toLocaleString('es-CL')}
+                        </span>
+                      </div>
+                      <div className={styles.breakdownRow}>
+                        <span className={styles.label}>IVA (19%):</span>
+                        <span className={styles.value}>
+                          ${Math.round(parseFloat(formData.price) - (parseFloat(formData.price) / 1.19)).toLocaleString('es-CL')}
+                        </span>
+                      </div>
+                      <div className={styles.breakdownRow}>
+                        <span className={styles.label}>Precio Producto:</span>
+                        <span className={styles.value}>
+                          ${parseFloat(formData.price).toLocaleString('es-CL')}
+                        </span>
+                      </div>
+                      <div className={styles.breakdownDivider}></div>
+                      <div className={styles.breakdownRow}>
+                        <span className={styles.label}>Comisión Transbank (2.95%):</span>
+                        <span className={styles.value}>
+                          ${Math.round(parseFloat(formData.price) * 0.0295).toLocaleString('es-CL')}
+                        </span>
+                      </div>
+                      <div className={styles.breakdownRow}>
+                        <span className={styles.label}>IVA sobre comisión (19%):</span>
+                        <span className={styles.value}>
+                          ${Math.round(Math.round(parseFloat(formData.price) * 0.0295) * 0.19).toLocaleString('es-CL')}
+                        </span>
+                      </div>
+                      <div className={styles.breakdownDivider}></div>
+                      <div className={`${styles.breakdownRow} ${styles.total}`}>
+                        <span className={styles.label}>💳 TOTAL A COBRAR:</span>
+                        <span className={styles.value}>
+                          ${Math.round(
+                            parseFloat(formData.price) + 
+                            (parseFloat(formData.price) * 0.0295 * 1.19)
+                          ).toLocaleString('es-CL')}
+                        </span>
+                      </div>
+                      <div className={styles.breakdownNote}>
+                        ℹ️ Precio final del producto con comisión Transbank incluida (envío se calcula al momento de compra)
+                      </div>
+                    </div>
+                  </div>
+                )}
                 
                 {/* Categoría */}
                 <div className={styles.formGroup}>

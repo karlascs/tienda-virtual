@@ -44,7 +44,7 @@ export function SearchProvider({ children }: SearchProviderProps) {
       const descriptionMatch = product.description.toLowerCase().includes(searchTermLower);
       
       // Búsqueda en categoría
-      const categoryMatch = product.category.toLowerCase().includes(searchTermLower);
+      const categoryMatch = product.category?.toLowerCase().includes(searchTermLower) || false;
       
       // Búsqueda por precio (si el término es un número)
       const priceMatch = !isNaN(Number(searchTermLower)) && 
@@ -63,8 +63,8 @@ export function SearchProvider({ children }: SearchProviderProps) {
       if (!aNameMatch && bNameMatch) return 1;
       
       // Luego por categoría
-      const aCategoryMatch = a.category.toLowerCase().includes(searchTermLower);
-      const bCategoryMatch = b.category.toLowerCase().includes(searchTermLower);
+      const aCategoryMatch = a.category?.toLowerCase().includes(searchTermLower) || false;
+      const bCategoryMatch = b.category?.toLowerCase().includes(searchTermLower) || false;
       
       if (aCategoryMatch && !bCategoryMatch) return -1;
       if (!aCategoryMatch && bCategoryMatch) return 1;

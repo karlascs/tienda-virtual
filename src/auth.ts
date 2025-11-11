@@ -15,7 +15,7 @@ const credentialsSchema = z.object({
 declare module "next-auth" {
   interface User {
     role: UserRole;
-    emailVerified: Date | null;
+    emailVerified?: boolean | Date | null;
   }
   
   interface Session {
@@ -24,7 +24,7 @@ declare module "next-auth" {
       name: string;
       email: string;
       role: UserRole;
-      emailVerified: Date | null;
+      emailVerified?: boolean | Date | null;
       image?: string;
     };
   }
@@ -33,7 +33,7 @@ declare module "next-auth" {
 declare module "@auth/core/jwt" {
   interface JWT {
     role: UserRole;
-    emailVerified: Date | null;
+    emailVerified?: boolean | Date | null;
   }
 }
 
@@ -100,7 +100,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             name: user.name,
             email: user.email,
             role: user.role,
-            emailVerified: user.emailVerified ? new Date() : null,
+            emailVerified: user.emailVerified || false,
             image: user.avatar,
           };
         } catch (error) {
@@ -132,7 +132,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       if (token && session.user) {
         session.user.id = token.sub as string;
         session.user.role = token.role as UserRole;
-        session.user.emailVerified = token.emailVerified as Date | null;
+        // Convertir emailVerified a Date o null
+        session.user.emailVerified = token.emailVerified === true 
+          ? new Date() 
+          : token.emailVerified instanceof Date 
+            ? token.emailVerified 
+            : null;
       }
       return session;
     },

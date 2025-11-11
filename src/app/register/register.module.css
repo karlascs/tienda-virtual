@@ -106,6 +106,47 @@
   color: rgba(232, 201, 168, 0.4);
 }
 
+.passwordInput {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.passwordInput input {
+  width: 100%;
+  padding-right: 3rem;
+}
+
+.togglePassword {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(212, 165, 116, 0.6);
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+}
+
+.togglePassword:hover {
+  color: #d4a574;
+  background: rgba(212, 165, 116, 0.1);
+}
+
+.togglePassword:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(212, 165, 116, 0.2);
+}
+
+.togglePassword svg {
+  width: 20px;
+  height: 20px;
+}
+
 .submitButton {
   padding: 1rem;
   background: linear-gradient(135deg, #2d4a4a 0%, #d4a574 100%);

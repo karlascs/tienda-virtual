@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "orders" ADD COLUMN     "transbankFee" DOUBLE PRECISION NOT NULL DEFAULT 0;
