@@ -1,0 +1,167 @@
+/* Efectos Navideños */
+
+/* Contenedor de copos de nieve */
+.snowflakesContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* Copos de nieve individuales */
+.snowflake {
+  position: absolute;
+  top: -20px;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+  animation: fall linear infinite;
+  user-select: none;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-20px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+  }
+}
+
+/* Luces navideñas superiores */
+.christmasLights {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  pointer-events: none;
+  z-index: 9998;
+  overflow: hidden;
+}
+
+.lightsString {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  height: 100%;
+  padding: 10px 20px;
+}
+
+.light {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--color, #ff0000);
+  box-shadow: 
+    0 0 10px var(--color, #ff0000),
+    0 0 20px var(--color, #ff0000),
+    0 0 30px var(--color, #ff0000);
+  animation: blink 1.5s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  position: relative;
+}
+
+.light::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+}
+
+/* Brillo navideño de fondo */
+.christmasGlow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(255, 0, 0, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0, 255, 0, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.03) 0%, transparent 70%);
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Efectos adicionales para el banner principal */
+@keyframes christmasShimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Responsive - Reducir efectos en móviles */
+@media (max-width: 768px) {
+  .snowflake {
+    font-size: 12px !important;
+  }
+  
+  .light {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .christmasLights {
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .snowflake {
+    font-size: 10px !important;
+  }
+  
+  .light {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .christmasGlow {
+    opacity: 0.3;
+  }
+}
+
+/* Modo de bajo rendimiento para dispositivos lentos */
+@media (prefers-reduced-motion: reduce) {
+  .snowflake,
+  .light,
+  .christmasGlow {
+    animation: none;
+  }
+  
+  .christmasGlow {
+    opacity: 0.2;
+  }
+}

@@ -18,6 +18,28 @@
   top: 0;
   z-index: 1000;
   box-shadow: 4px 0 20px rgba(232, 201, 168, 0.2);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Estilos para la barra de scroll del sidebar */
+.sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.6);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(96, 96, 96, 0.8);
 }
 
 .sidebar.closed {

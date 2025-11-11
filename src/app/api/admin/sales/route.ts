@@ -172,7 +172,7 @@ export async function POST(request: NextRequest) {
     const total = subtotal - discount + tax + shipping;
 
     // Crear venta y actualizar inventario en una transacción
-    const sale = await prisma.$transaction(async (tx) => {
+    const sale = await prisma.$transaction(async (tx: any) => {
       // Crear la venta
       const newSale = await tx.sale.create({
         data: {

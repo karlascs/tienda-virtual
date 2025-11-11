@@ -1,0 +1,52 @@
+# ========================================
+# Dockerfile para FRONTEND
+# ========================================
+
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+# Copiar archivos de configuración
+COPY package*.json ./
+COPY tsconfig.json ./
+COPY next.config.ts ./
+COPY prisma ./prisma/
+
+# Instalar dependencias y generar Prisma Client
+RUN npm ci --production=false
+RUN npx prisma generate
+
+# Copiar código fuente
+COPY public ./public
+COPY src ./src
+
+# Build optimizado para frontend
+RUN npm run build
+
+# ========================================
+# Imagen de producción
+# ========================================
+FROM node:20-alpine AS runner
+
+WORKDIR /app
+
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV PORT=3000
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
+COPY --from=builder /app/prisma ./prisma
+
+RUN chown -R nextjs:nodejs /app
+
+USER nextjs
+
+EXPOSE 3000
+
+CMD ["node", "server.js"]

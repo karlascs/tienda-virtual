@@ -55,7 +55,7 @@ export async function GET(request: NextRequest) {
     ])
 
     // Calcular estadísticas si es para un producto específico
-    let stats = null
+    let stats: any = null
     if (productId) {
       const ratingStats = await prisma.review.groupBy({
         by: ['rating'],

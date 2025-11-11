@@ -73,19 +73,19 @@
 }
 
 .grid::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(200, 200, 200, 0.3);
   border-radius: 10px;
   margin: 0 20px;
 }
 
 .grid::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(128, 128, 128, 0.7);
   border-radius: 10px;
   transition: background 0.3s ease;
 }
 
 .grid::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(96, 96, 96, 0.9);
 }
 
 /* Banner de categoría */
@@ -103,17 +103,50 @@
   padding: 30px;
   border-radius: 16px;
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  transition: all 0.3s ease;
   text-decoration: none;
   color: white;
   position: relative;
   overflow: visible; /* Cambiado para que el texto no se corte */
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.15),
+    0 0 30px rgba(255, 215, 0, 0.2);
   scroll-snap-align: start; /* Alinear al hacer scroll */
+}
+
+/* Efecto de brillo navideño en banners */
+.banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 215, 0, 0.3) 50%,
+    transparent 70%
+  );
+  animation: christmasRotate 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes christmasRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .banner:hover {
   opacity: 0.9;
+  transform: translateY(-5px);
+  box-shadow: 
+    0 12px 35px rgba(0, 0, 0, 0.2),
+    0 0 40px rgba(255, 215, 0, 0.4);
 }
 
 .banner:active {

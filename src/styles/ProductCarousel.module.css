@@ -56,8 +56,8 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(232, 201, 168, 0.8);
-  color: white;
+  background: rgba(128, 128, 128, 0.8);
+  color: rgb(209, 11, 11);
   border: none;
   width: 40px;
   height: 40px;
@@ -73,7 +73,7 @@
   backdrop-filter: blur(4px);
   opacity: 0;
   pointer-events: none;
-  box-shadow: 0 2px 8px rgba(232, 201, 168, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .navButton.visible,
@@ -83,9 +83,11 @@
 }
 
 .navButton:hover {
-  background: var(--brand-light);
+  background: rgba(96, 96, 96, 0.9);
+  color: white;
+  border-color: transparent;
   transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 4px 12px rgba(232, 201, 168, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .prevButton {
@@ -119,14 +121,15 @@
   position: absolute;
   top: 12px;
   right: 12px;
-  background: rgba(232, 201, 168, 0.8);
+  background: rgba(45, 74, 74, 0.9);
   color: white;
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 13px;
   font-weight: 600;
   backdrop-filter: blur(4px);
-  box-shadow: 0 2px 8px rgba(232, 201, 168, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(212, 165, 116, 0.3);
 }
 
 /* Indicadores de puntos */

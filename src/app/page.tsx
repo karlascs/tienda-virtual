@@ -6,6 +6,7 @@ import RecommendationsWidget from "@/components/RecommendationsWidget";
 import Footer from "@/components/Footer";
 import CompareModal from "@/components/CompareModal";
 import CompareFloating from "@/components/CompareFloating";
+import ChristmasEffects from "@/components/ChristmasEffects";
 
 /**
  * Página Principal de la Tienda Virtual - Fase 8 Completa
@@ -18,12 +19,16 @@ import CompareFloating from "@/components/CompareFloating";
  * - Widget de productos recientemente vistos
  * - Recomendaciones personalizadas y populares
  * - Footer completo con información de contacto y enlaces
+ * - Efectos navideños especiales
  * 
  * Incluye sistema completo de navegación inteligente, recomendaciones y historial
  */
 export default function Home() {
   return (
     <>
+      {/* Efectos navideños */}
+      <ChristmasEffects />
+      
       {/* Header fijo con navegación */}
       <Header />
       

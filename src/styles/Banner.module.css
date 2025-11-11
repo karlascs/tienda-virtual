@@ -344,9 +344,9 @@
   height: 56px;
   border-radius: 50%;
   border: none;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(128, 128, 128, 0.85);
   backdrop-filter: blur(12px);
-  color: #2d4a4a;
+  color: white;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -354,8 +354,8 @@
   z-index: 10;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 
-    0 4px 20px rgba(232, 201, 168, 0.2),
-    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+    0 4px 20px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
   opacity: 0;
   animation: fadeInButton 0.5s ease forwards;
   animation-delay: 0.3s;
@@ -366,13 +366,12 @@
 }
 
 .navButton:hover {
-  background: linear-gradient(135deg, #d4a574 0%, #c89960 100%);
+  background: rgba(96, 96, 96, 0.95);
   color: white;
   transform: translateY(-50%) scale(1.15);
   box-shadow: 
-    0 6px 30px rgba(212, 165, 116, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.8) inset,
-    0 0 20px rgba(212, 165, 116, 0.3);
+    0 6px 30px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.2) inset;
 }
 
 .navButton:active {

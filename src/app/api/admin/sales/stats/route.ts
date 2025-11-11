@@ -113,24 +113,24 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({
       totalSales,
-      salesByType: salesByType.map(item => ({
+      salesByType: salesByType.map((item: any) => ({
         type: item.type,
         count: item._count,
         total: item._sum.total || 0,
       })),
-      salesByStatus: salesByStatus.map(item => ({
+      salesByStatus: salesByStatus.map((item: any) => ({
         status: item.status,
         count: item._count,
       })),
       totalRevenue: totalRevenue._sum.total || 0,
-      topProducts: topProducts.map(item => ({
+      topProducts: topProducts.map((item: any) => ({
         productId: item.productId,
         productName: item.productName,
         quantity: item._sum.quantity || 0,
         revenue: item._sum.subtotal || 0,
       })),
       salesByDay,
-      paymentMethods: paymentMethods.map(item => ({
+      paymentMethods: paymentMethods.map((item: any) => ({
         method: item.paymentMethod,
         count: item._count,
         total: item._sum.total || 0,

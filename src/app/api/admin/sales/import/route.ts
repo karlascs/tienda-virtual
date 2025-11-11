@@ -159,7 +159,7 @@ export async function POST(request: NextRequest) {
         }
 
         // Crear venta en transacción
-        await prisma.$transaction(async (tx) => {
+        await prisma.$transaction(async (tx: any) => {
           const newSale = await tx.sale.create({
             data: {
               saleNumber,

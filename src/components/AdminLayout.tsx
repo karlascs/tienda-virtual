@@ -50,6 +50,10 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     { href: '/admin/orders', label: 'Órdenes', icon: '🛒' }
   ]
 
+  const utilityItems = [
+    { href: '/', label: 'Volver a la Tienda', icon: '🏠', external: true }
+  ]
+
   return (
     <div className={styles.container}>
       {/* Botón hamburguesa para móviles */}

@@ -538,5 +538,87 @@ html, body {
   padding: 12px;
 }
 
+/* ===================================
+   EFECTOS NAVIDEÑOS GLOBALES ✨🎄
+   =================================== */
+
+/* Brillo dorado navideño en tarjetas */
+.card {
+  position: relative;
+  overflow: hidden;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 215, 0, 0.1) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  animation: sparkle 3s ease-in-out infinite;
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(10px, 10px) scale(1.1);
+    opacity: 0.3;
+  }
+}
+
+/* Efecto de destello en botones */
+button, .btn-primary, .btn-secondary {
+  position: relative;
+  overflow: hidden;
+}
+
+button::before, .btn-primary::before, .btn-secondary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+button:hover::before, .btn-primary:hover::before, .btn-secondary:hover::before {
+  left: 100%;
+}
+
+/* Sombras navideñas en elementos importantes */
+h1, h2, h3 {
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+/* Bordes brillantes para inputs */
+input:focus, textarea:focus, select:focus {
+  border-color: #ffd700;
+  box-shadow: 
+    0 0 0 3px rgba(255, 215, 0, 0.1),
+    0 0 20px rgba(255, 215, 0, 0.2);
+}
+
 
 

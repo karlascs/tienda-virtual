@@ -9,8 +9,40 @@
   background: linear-gradient(135deg, #f5f0ec 0%, #f3eae4 100%);
   color: rgb(143, 21, 21);
   z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 
+    0 2px 10px rgba(0, 0, 0, 0.1),
+    0 0 20px rgba(255, 215, 0, 0.1);
   overflow: visible;
+  position: relative;
+}
+
+/* Efecto de brillo navideño en el header */
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 215, 0, 0.1) 25%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 215, 0, 0.1) 75%,
+    transparent
+  );
+  animation: christmasShine 3s infinite;
+  pointer-events: none;
+}
+
+@keyframes christmasShine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 .headerContainer {

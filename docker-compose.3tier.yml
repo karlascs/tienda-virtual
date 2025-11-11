@@ -1,0 +1,139 @@
+services:
+  # ========================================
+  # 1. BASE DE DATOS - PostgreSQL (Separada)
+  # ========================================
+  database:
+    image: postgres:16-alpine
+    container_name: izacas-database
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: iza&cas
+    ports:
+      - "5434:5432"  # Evitar conflicto con PostgreSQL local
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    networks:
+      - izacas-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d 'iza&cas'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ========================================
+  # 2. BACKEND API - Next.js API Routes (Separado)
+  # ========================================
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: izacas-backend
+    restart: unless-stopped
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      # Conexión a base de datos
+      DATABASE_URL: "postgresql://postgres:admin123@database:5432/iza&cas?schema=public"
+      
+      # NextAuth
+      AUTH_SECRET: "ClLVfo1Ia7rOFAZQ+iCqlsy25PJdRJi+ArCbBc3TLBs="
+      NEXTAUTH_URL: "http://localhost:3001"
+      
+      # Transbank
+      TRANSBANK_COMMERCE_CODE: "597055555532"
+      TRANSBANK_API_KEY: "579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C"
+      TRANSBANK_ENVIRONMENT: "integration"
+      
+      # Node
+      NODE_ENV: production
+      PORT: 3001
+    ports:
+      - "3001:3001"  # Backend en puerto 3001
+    volumes:
+      - ./public:/app/public
+    networks:
+      - izacas-network
+    command: >
+      sh -c "
+        echo '🔧 Ejecutando migraciones de base de datos...' &&
+        npx prisma migrate deploy &&
+        npx prisma generate &&
+        echo '🚀 Iniciando Backend API...' &&
+        node server.js
+      "
+
+  # ========================================
+  # 3. FRONTEND - Next.js Client (Separado)
+  # ========================================
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: izacas-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      # Base de datos (necesario para API routes en frontend)
+      DATABASE_URL: "postgresql://postgres:admin123@database:5432/iza&cas"
+      
+      # NextAuth
+      NEXTAUTH_SECRET: "izacas-secret-key-production-2024"
+      NEXTAUTH_URL: "http://localhost:3000"
+      
+      # URL del backend
+      NEXT_PUBLIC_API_URL: "http://localhost:3001"
+      NEXT_PUBLIC_BACKEND_URL: "http://backend:3001"
+      
+      # Store info
+      NEXT_PUBLIC_STORE_NAME: "IZA&CAS"
+      NEXT_PUBLIC_STORE_ADDRESS: "Simón Bolívar 485, 2390030 Valparaíso, Chile"
+      NEXT_PUBLIC_STORE_PHONE: "+56912345678"
+      NEXT_PUBLIC_STORE_EMAIL: "contacto@izacas.cl"
+      
+      NODE_ENV: production
+      PORT: 3000
+    ports:
+      - "3000:3000"  # Frontend en puerto 3000
+    networks:
+      - izacas-network
+
+  # ========================================
+  # 4. PGADMIN - Administración de Base de Datos
+  # ========================================
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: izacas-pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@izacas.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - "5050:80"  # pgAdmin en puerto 5050
+    networks:
+      - izacas-network
+    depends_on:
+      - database
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+
+# ========================================
+# VOLÚMENES PERSISTENTES
+# ========================================
+volumes:
+  postgres_data:
+    driver: local
+  pgadmin_data:
+    driver: local
+
+# ========================================
+# RED INTERNA (para que se comuniquen entre sí)
+# ========================================
+networks:
+  izacas-network:
+    driver: bridge
