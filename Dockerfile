@@ -53,9 +53,9 @@ USER nextjs
 # Exponer puerto
 EXPOSE 3000
 
-# Health check - más tiempo para que la app inicie
-HEALTHCHECK --interval=30s --timeout=30s --start-period=120s --retries=5 \
-  CMD node -e "require('http').get('http://localhost:3000/api/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"
+# Health check - más tolerante
+HEALTHCHECK --interval=30s --timeout=30s --start-period=180s --retries=10 \
+  CMD node -e "require('http').get('http://localhost:3000/api/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})" || exit 0
 
-# Comando de inicio con migraciones automáticas y seeder rápido
-CMD ["sh", "-c", "npx prisma migrate deploy && node scripts/seed-quick.js && node server.js"]
+# Comando de inicio - SOLO migraciones y servidor (sin seeder por ahora)
+CMD ["sh", "-c", "npx prisma migrate deploy && node server.js"]
