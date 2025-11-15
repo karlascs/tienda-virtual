@@ -47,15 +47,15 @@ COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modul
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules/@prisma ./node_modules/@prisma
 COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 
+# Copiar script de inicio
+COPY --chown=nextjs:nodejs start.sh ./start.sh
+RUN chmod +x ./start.sh
+
 # Cambiar a usuario no-root
 USER nextjs
 
 # Exponer puerto
 EXPOSE 3000
 
-# Health check - más tolerante
-HEALTHCHECK --interval=30s --timeout=30s --start-period=180s --retries=10 \
-  CMD node -e "require('http').get('http://localhost:3000/api/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})" || exit 0
-
-# Comando de inicio - SOLO migraciones y servidor (sin seeder por ahora)
-CMD ["sh", "-c", "npx prisma migrate deploy && node server.js"]
+# Comando de inicio - Railway maneja el healthcheck automáticamente
+CMD ["./start.sh"]
