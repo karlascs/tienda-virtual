@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/auth';
+import { auth } from '@/auth';
 import { prisma } from '@/lib/prisma';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -13,7 +12,7 @@ import * as path from 'path';
 export async function POST(request: Request) {
   try {
     // Verificar autenticación y rol de admin
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     
     if (!session || session.user?.role !== 'ADMIN') {
       return NextResponse.json(
