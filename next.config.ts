@@ -13,6 +13,17 @@ const nextConfig: NextConfig = {
   serverExternalPackages: [],
   // Configuración para Docker (standalone output)
   output: 'standalone',
+  
+  // Configuración de imágenes para producción (Railway)
+  images: {
+    domains: ['localhost'],
+    unoptimized: true, // Necesario para Railway y static export
+  },
+  
+  // Optimizaciones para producción
+  experimental: {
+    optimizePackageImports: ['@/components', '@/lib'],
+  },
 };
 
 export default nextConfig;

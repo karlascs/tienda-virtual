@@ -99,6 +99,8 @@ services:
       PORT: 3000
     ports:
       - "3000:3000"  # Frontend en puerto 3000
+    volumes:
+      - ./public:/app/public
     networks:
       - izacas-network
 
