@@ -3,7 +3,9 @@ import Credentials from "next-auth/providers/credentials";
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import { z } from "zod";
-import type { UserRole } from "@prisma/client";
+
+// Definir tipo UserRole localmente (mismo que en Prisma schema)
+export type UserRole = 'USER' | 'ADMIN';
 
 // Validación de credenciales
 const credentialsSchema = z.object({
