@@ -48,8 +48,8 @@ export function useProducts(categorySlug?: string): UseProductsResult {
       
       const result = await response.json()
       
-      // La API devuelve { success, data }, extraer el array de data
-      const data = result.data || []
+      // El backend puede devolver array directo o { data: [...] }
+      const data = Array.isArray(result) ? result : (result.data || [])
       
       // Transformar productos: agregar image y convertir category a string
       const productsWithImage = data.map((product: any) => ({
@@ -156,8 +156,8 @@ export function useFeaturedProducts(): UseProductsResult {
       
       const result = await response.json()
       
-      // La API devuelve { success, data }, extraer el array de data
-      const data = result.data || []
+      // El backend puede devolver array directo o { data: [...] }
+      const data = Array.isArray(result) ? result : (result.data || [])
       
       // Transformar productos: agregar image y convertir category a string
       const productsWithImage = data.map((product: any) => ({
@@ -206,8 +206,8 @@ export function useCategories(): UseCategoriesResult {
       
       const result = await response.json()
       
-      // La API devuelve { success, data }, extraer el array de data
-      setCategories(result.data || [])
+      // El backend devuelve directamente el array
+      setCategories(Array.isArray(result) ? result : result.data || [])
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error desconocido')
       console.error('Error fetching categories:', err)
@@ -250,8 +250,8 @@ export function useSearchProducts(query: string): UseProductsResult {
       
       const result = await response.json()
       
-      // La API devuelve { success, data }, extraer el array de data
-      const data = result.data || []
+      // El backend puede devolver array directo o { data: [...] }
+      const data = Array.isArray(result) ? result : (result.data || [])
       
       // Transformar productos: agregar image y convertir category a string
       const productsWithImage = data.map((product: any) => ({
