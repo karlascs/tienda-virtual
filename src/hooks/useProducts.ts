@@ -4,7 +4,8 @@
  */
 
 import { useState, useEffect } from 'react'
-import type { Product, Category } from '@/types/product'
+import type { Product, Category } from '@/types'
+import { apiFetch } from '@/lib/api'
 
 // Re-exportar los tipos para facilitar imports
 export type { Product, Category } from '@/types/product'
@@ -40,7 +41,7 @@ export function useProducts(categorySlug?: string): UseProductsResult {
         ? `/api/products?category=${categorySlug}` 
         : '/api/products'
       
-      const response = await fetch(url)
+      const response = await apiFetch(url)
       
       if (!response.ok) {
         throw new Error('Error al cargar productos')
@@ -90,7 +91,7 @@ export function useProduct(idOrSlug: string): UseProductsResult & { product: Pro
       setLoading(true)
       setError(null)
       
-      const response = await fetch(`/api/products/${idOrSlug}`)
+      const response = await apiFetch(`/api/products/${idOrSlug}`)
       
       if (!response.ok) {
         throw new Error('Producto no encontrado')
@@ -148,7 +149,7 @@ export function useFeaturedProducts(): UseProductsResult {
       setLoading(true)
       setError(null)
       
-      const response = await fetch('/api/products?featured=true')
+      const response = await apiFetch('/api/products?featured=true')
       
       if (!response.ok) {
         throw new Error('Error al cargar productos destacados')
@@ -198,7 +199,7 @@ export function useCategories(): UseCategoriesResult {
       setLoading(true)
       setError(null)
       
-      const response = await fetch('/api/categories')
+      const response = await apiFetch('/api/categories')
       
       if (!response.ok) {
         throw new Error('Error al cargar categorías')
@@ -242,7 +243,7 @@ export function useSearchProducts(query: string): UseProductsResult {
       setLoading(true)
       setError(null)
       
-      const response = await fetch(`/api/products?search=${encodeURIComponent(query)}`)
+      const response = await apiFetch(`/api/products?search=${encodeURIComponent(query)}`)
       
       if (!response.ok) {
         throw new Error('Error en la búsqueda')
