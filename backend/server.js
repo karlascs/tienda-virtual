@@ -43,8 +43,7 @@ app.get('/api/products', async (req, res) => {
     const products = await prisma.product.findMany({
       where,
       include: {
-        category: true,
-        images: true
+        category: true
       }
     });
     
@@ -60,8 +59,7 @@ app.get('/api/products/:id', async (req, res) => {
     const product = await prisma.product.findUnique({
       where: { id: req.params.id },
       include: {
-        category: true,
-        images: true
+        category: true
       }
     });
     
@@ -127,7 +125,7 @@ app.get('/api/cart/:userId', async (req, res) => {
       include: {
         product: {
           include: {
-            images: true
+            category: true
           }
         }
       }
