@@ -47,14 +47,11 @@ COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modul
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules/@prisma ./node_modules/@prisma
 COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 
-# Copiar servidor personalizado
-COPY --chown=nextjs:nodejs server-custom.js ./server-custom.js
-
 # Cambiar a usuario no-root
 USER nextjs
 
 # Exponer puerto
 EXPOSE 3000
 
-# Comando de inicio simplificado
-CMD npx prisma migrate deploy && node server-custom.js
+# Comando de inicio
+CMD npx prisma migrate deploy && node server.js
