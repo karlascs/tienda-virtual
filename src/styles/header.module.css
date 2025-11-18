@@ -6,44 +6,15 @@
 .header {
   position: sticky;
   top: 0;
-  background: linear-gradient(135deg, #f5f0ec 0%, #f3eae4 100%);
-  color: rgb(143, 21, 21);
+  background: white;
+  color: #1a1a1a;
   z-index: 1000;
-  box-shadow: 
-    0 2px 10px rgba(0, 0, 0, 0.1),
-    0 0 20px rgba(255, 215, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid #e5e5e5;
   overflow: visible;
-  position: relative;
 }
 
-/* Efecto de brillo navideño en el header */
-.header::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 200%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 215, 0, 0.1) 25%,
-    rgba(255, 255, 255, 0.3) 50%,
-    rgba(255, 215, 0, 0.1) 75%,
-    transparent
-  );
-  animation: christmasShine 3s infinite;
-  pointer-events: none;
-}
 
-@keyframes christmasShine {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
-}
 
 .headerContainer {
   max-width: 1200px;
@@ -94,17 +65,14 @@
   display: flex;
   align-items: center;
   text-decoration: none;
-  padding: 8px;
-  border-radius: 12px;
-  transition: all 0.3s ease;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
   flex-shrink: 0;
 }
 
 .logo:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.05);
+  background: #fafafa;
 }
 
 /* Botones base - ESTILO MINIMALISTA INTEGRADO CON ACCESIBILIDAD */
@@ -116,22 +84,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 12px;
-  min-width: 56px;
-  min-height: 56px;
-  background: rgba(212, 165, 116, 0.1);
-  color: #0a0a0a;
-  border: 2px solid rgba(224, 159, 89, 0.2);
-  border-radius: 12px;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  min-width: 48px;
+  min-height: 48px;
+  background: white;
+  color: #1a1a1a;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease;
   text-decoration: none;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 0.9375rem;
+  font-weight: 500;
   font-family: inherit;
   white-space: nowrap;
-  transform: translateY(0);
 }
 
 /* Efectos hover con color verde del cliente para accesibilidad */
@@ -139,11 +106,9 @@
 .favoriteButton:hover,
 .cartButton:hover,
 .menuButton:hover {
-  background: #f8ca98;
-  color: white;
-  border-color: #2b1804;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(231, 175, 114, 0.3);
+  background: #fafafa;
+  border-color: #1a1a1a;
+  transform: translateY(-1px);
 }
 
 /* Efectos active (al hacer clic) */
@@ -160,8 +125,8 @@
 .favoriteButton:focus,
 .cartButton:focus,
 .menuButton:focus {
-  outline: 2px solid #333;
-  outline-offset: 2px;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.05);
 }
 
 /* Texto de botones */
@@ -173,20 +138,19 @@
 /* Badge para contador - estilo minimalista mejorado para accesibilidad */
 .badge {
   position: absolute;
-  top: -8px;
-  right: -8px;
-  background: #ff4757;
+  top: -6px;
+  right: -6px;
+  background: #1a1a1a;
   color: white;
   border-radius: 50%;
-  min-width: 22px;
-  height: 22px;
-  font-size: 13px;
+  min-width: 20px;
+  height: 20px;
+  font-size: 0.6875rem;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid white;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  border: 2px solid white;
 }
 
 @keyframes pulse {
@@ -209,17 +173,18 @@
 .dropdownMenu {
   position: absolute;
   top: 100%;
-  left: 160px;
+  left: 0;
   width: 320px;
   background: white;
-  border-radius: 0 0 12px 12px;
-  box-shadow: 0 8px 32px rgba(212, 165, 116, 0.15);
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transform: translateY(-10px);
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease;
   z-index: 1001;
-  border: 1px solid #e0e0e0;
+  margin-top: 0.5rem;
 }
 
 .dropdownMenu.open {
@@ -229,66 +194,66 @@
 }
 
 .menuHeader {
-  padding: 16px 20px;
-  border-bottom: 1px solid #e0e0e0;
-  background: #f8f9fa;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #f0f0f0;
+  background: #fafafa;
 }
 
 .menuHeader h3 {
   margin: 0;
-  font-size: 16px;
+  font-size: 0.9375rem;
   font-weight: 600;
-  color: #d4a574;
+  color: #1a1a1a;
 }
 
 .menuContent {
-  padding: 8px 0;
+  padding: 0.5rem 0;
 }
 
 .menuItem {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 16px 20px;
-  color: #333;
+  gap: 0.75rem;
+  padding: 0.875rem 1.25rem;
+  color: #1a1a1a;
   text-decoration: none;
-  transition: all 0.3s ease;
-  border-bottom: 1px solid #f0f0f0;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid #f5f5f5;
 }
 
 .menuItem:hover {
-  background: #f8f9fa;
-  color: #d4a574;
-  transform: translateX(4px);
+  background: #fafafa;
+  color: #1a1a1a;
 }
 
 .menuItem:last-child {
   border-bottom: none;
 }
 
-/* 
 .categoryIcon {
-  font-size: 18px;
-  width: 24px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  flex-shrink: 0;
 }
-*/
 
 .categoryName {
   flex: 1;
-  font-size: 16px;
+  font-size: 0.9375rem;
   font-weight: 500;
   color: inherit;
 }
 
 .arrowIcon {
   color: #999;
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 .menuItem:hover .arrowIcon {
   transform: translateX(4px);
-  color: #d4a574;
+  color: #1a1a1a;
 }
 
 /* Overlay */
@@ -1201,18 +1166,17 @@
   justify-content: center;
   min-width: 48px;
   min-height: 48px;
-  padding: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  padding: 0.5rem;
+  background: white;
+  border: 1px solid #e5e5e5;
   border-radius: 50%;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .userButton:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.4);
-  transform: scale(1.05);
+  background: #fafafa;
+  border-color: #1a1a1a;
 }
 
 .avatar {
@@ -1237,16 +1201,16 @@
 
 .userDropdown {
   position: absolute;
-  top: calc(100% + 12px);
+  top: calc(100% + 0.75rem);
   right: 0;
   min-width: 280px;
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(232, 201, 168, 0.3), 0 2px 8px rgba(0, 0, 0, 0.1);
-  border: 2px solid rgba(212, 165, 116, 0.5);
-  padding: 8px 0;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
   z-index: 99999;
-  animation: slideDown 0.3s ease-out;
+  animation: slideDown 0.2s ease-out;
 }
 
 @keyframes slideDown {
@@ -1261,49 +1225,48 @@
 }
 
 .userInfo {
-  padding: 16px 20px;
-  border-bottom: 1px solid #e2e8f0;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .userName {
   font-weight: 700;
-  font-size: 16px;
-  color: #1a202c;
-  margin: 0 0 4px 0;
+  font-size: 0.9375rem;
+  color: #1a1a1a;
+  margin: 0 0 0.25rem 0;
 }
 
 .userEmail {
-  font-size: 13px;
-  color: #718096;
-  margin: 0 0 8px 0;
+  font-size: 0.8125rem;
+  color: #666;
+  margin: 0 0 0.5rem 0;
   word-break: break-all;
 }
 
 .adminBadge {
   display: inline-block;
-  padding: 4px 10px;
-  background: linear-gradient(135deg, #2d4a4a 0%, #d4a574 100%);
+  padding: 0.25rem 0.625rem;
+  background: #1a1a1a;
   color: white;
-  border-radius: 12px;
-  font-size: 11px;
+  border-radius: 4px;
+  font-size: 0.6875rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: 0 2px 8px rgba(232, 201, 168, 0.3);
+  letter-spacing: 0.05em;
 }
 
 .userMenuDivider {
   height: 1px;
-  background: rgba(212, 165, 116, 0.3);
-  margin: 8px 0;
+  background: #f0f0f0;
+  margin: 0.5rem 0;
 }
 
 .userMenuItem {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 20px;
-  color: #2d4a4a;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  color: #1a1a1a;
   text-decoration: none;
   transition: all 0.2s ease;
   cursor: pointer;
@@ -1311,26 +1274,27 @@
   background: transparent;
   width: 100%;
   text-align: left;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
+  font-family: inherit;
 }
 
 .userMenuItem:hover {
-  background: rgba(247, 245, 243, 0.8);
-  color: #d4a574;
+  background: #fafafa;
 }
 
 .userMenuItem svg {
   flex-shrink: 0;
+  color: #666;
 }
 
 .logoutButton {
-  color: #e53e3e;
+  color: #dc2626;
 }
 
 .logoutButton:hover {
-  background: #fff5f5;
-  color: #c53030;
+  background: #fef2f2;
+  color: #991b1b;
 }
 
 .spinner {

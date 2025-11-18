@@ -101,6 +101,7 @@ model User {
   name          String
   avatar        String?
   phone         String?
+  rut           String?
   
   // Autenticación y Seguridad
   hashedPassword String

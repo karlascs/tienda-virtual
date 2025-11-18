@@ -1,33 +1,13 @@
 /* Footer principal de IZA&CAS */
 .footer {
-  background: linear-gradient(135deg, var(--primary-dark) 0%, #1a3333 50%, #0f2626 100%);
-  color: var(--light);
-  margin-top: 60px;
+  background: #f5f5f5;
+  color: #1a1a1a;
+  margin-top: 4rem;
   position: relative;
-  overflow: hidden;
+  border-top: 1px solid #e5e5e5;
 }
 
-.footer::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    var(--accent-gold) 20%, 
-    #FFD700 50%, 
-    var(--accent-gold) 80%, 
-    transparent 100%
-  );
-  animation: shimmer 3s ease-in-out infinite;
-}
 
-@keyframes shimmer {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
-}
 
 .container {
   max-width: 1200px;
@@ -51,60 +31,58 @@
 }
 
 .companyInfo {
-  background: rgba(255, 255, 255, 0.02);
-  padding: 24px;
-  border-radius: 16px;
-  border: 1px solid rgba(212, 165, 116, 0.1);
-  transition: all 0.3s ease;
+  background: transparent;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+  transition: all 0.2s ease;
 }
 
 .locationSection {
-  background: rgba(255, 255, 255, 0.02);
-  padding: 24px;
-  border-radius: 16px;
-  border: 1px solid rgba(212, 165, 116, 0.1);
-  transition: all 0.3s ease;
+  background: transparent;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+  transition: all 0.2s ease;
 }
 
 .socialAndSchedule {
-  background: rgba(255, 255, 255, 0.02);
-  padding: 24px;
-  border-radius: 16px;
-  border: 1px solid rgba(212, 165, 116, 0.1);
-  transition: all 0.3s ease;
+  background: transparent;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+  transition: all 0.2s ease;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 1.5rem;
 }
 
 /* Sección de enlaces (categorías y soporte) */
 .linksSection {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(212, 165, 116, 0.2);
+  gap: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e5e5;
 }
 
 .quickLinks,
 .support {
-  background: rgba(255, 255, 255, 0.02);
-  padding: 24px;
-  border-radius: 16px;
-  border: 1px solid rgba(212, 165, 116, 0.1);
-  transition: all 0.3s ease;
+  background: transparent;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+  transition: all 0.2s ease;
 }
 
-/* Efectos hover para todas las secciones */
 .companyInfo:hover,
 .locationSection:hover,
 .socialAndSchedule:hover,
 .quickLinks:hover,
 .support:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(212, 165, 116, 0.3);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border-color: #ccc;
+  background: white;
+  transform: translateY(-2px);
 }
 
 /* Estilos para horarios */
@@ -119,156 +97,106 @@
 }
 
 .scheduleList p {
-  color: #b8c5c5;
-  font-size: 0.9rem;
-  margin: 0;
+  color: #4a4a4a;
+  font-size: 0.875rem;
+  margin: 0 0 0.75rem 0;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
+}
+
+.scheduleList svg {
+  color: #1a1a1a;
+  flex-shrink: 0;
 }
 
 .highlight {
-  color: var(--accent-gold) !important;
+  color: #1a1a1a !important;
   font-weight: 600;
-  background: rgba(212, 165, 116, 0.1);
-  padding: 8px 12px;
-  border-radius: 8px;
-  border-left: 3px solid var(--accent-gold);
+  background: white;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border-left: 3px solid #1a1a1a;
 }
 
 .section {
-  animation: slideInUp 0.6s ease-out forwards;
-  background: rgba(255, 255, 255, 0.02);
+  background: transparent;
   padding: 24px;
-  border-radius: 16px;
-  border: 1px solid rgba(212, 165, 116, 0.1);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+  transition: all 0.2s ease;
 }
-
-.section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.section:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(212, 165, 116, 0.3);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-}
-
-.section:hover::before {
-  opacity: 1;
-}
-
-.section:nth-child(1) { animation-delay: 0.1s; }
-.section:nth-child(2) { animation-delay: 0.2s; }
-.section:nth-child(3) { animation-delay: 0.3s; }
-.section:nth-child(4) { animation-delay: 0.4s; }
 
 .title {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  color: var(--accent-gold);
-  margin-bottom: 16px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
 }
 
 .subtitle {
-  font-size: 1.2rem;
+  font-size: 0.9375rem;
   font-weight: 600;
-  color: var(--light);
-  margin-bottom: 16px;
-  border-bottom: 2px solid var(--accent-gold);
-  padding-bottom: 8px;
-  display: inline-block;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.8125rem;
 }
 
 .description {
-  color: #b8c5c5;
+  color: #4a4a4a;
   line-height: 1.6;
-  margin-bottom: 20px;
-  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.9375rem;
 }
 
 .contact p {
-  color: #b8c5c5;
-  margin-bottom: 8px;
-  font-size: 0.9rem;
+  color: #4a4a4a;
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
+}
+
+.contact svg {
+  color: #1a1a1a;
+  flex-shrink: 0;
 }
 
 /* Botones de WhatsApp */
 .whatsappButtons {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-top: 16px;
+  gap: 0.75rem;
+  margin-top: 1rem;
 }
 
 .whatsappButton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-  color: white;
-  padding: 12px 20px;
-  border-radius: 25px;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: white;
+  color: #1a1a1a;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
   text-decoration: none;
-  font-weight: 700;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-  border: 2px solid transparent;
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-}
-
-.whatsappButton::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  transition: left 0.5s ease;
-}
-
-.whatsappButton:hover::before {
-  left: 100%;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
 }
 
 .whatsappButton:hover {
-  background: linear-gradient(135deg, #20B858 0%, #25D366 100%);
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
-  border-color: rgba(255, 255, 255, 0.3);
-  color: white;
+  background: #fafafa;
+  transform: translateY(-1px);
 }
 
-/* Estilo para el botón secundario de WhatsApp */
-.whatsappSecondary {
-  background: linear-gradient(135deg, #128C7E 0%, #075E54 100%);
-  box-shadow: 0 4px 15px rgba(18, 140, 126, 0.4);
-}
-
-.whatsappSecondary:hover {
-  background: linear-gradient(135deg, #0F7A6C 0%, #128C7E 100%);
-  box-shadow: 0 6px 20px rgba(18, 140, 126, 0.5);
+.whatsappButton svg {
+  flex-shrink: 0;
 }
 
 .links {
@@ -282,37 +210,21 @@
 }
 
 .links a {
-  color: #b8c5c5;
+  color: #4a4a4a;
   text-decoration: none;
   font-size: 0.9rem;
-  transition: all 0.3s ease;
-  position: relative;
+  transition: all 0.2s ease;
   display: inline-block;
 }
 
 .links a:hover {
-  color: var(--accent-gold);
-  transform: translateX(5px);
-}
-
-.links a::before {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--accent-gold);
-  transition: width 0.3s ease;
-}
-
-.links a:hover::before {
-  width: 100%;
+  color: #1a1a1a;
+  transform: translateX(3px);
 }
 
 .divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(212, 165, 116, 0.3), transparent);
+  background: #e5e5e5;
   margin: 20px 0;
 }
 
@@ -321,15 +233,14 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid #e5e5e5;
   flex-wrap: wrap;
   gap: 20px;
 }
 
 .bottomLinks {
   text-align: center;
-  color: var(--accent-gold);
-  font-style: italic;
+  color: #1a1a1a;
   font-size: 0.9rem;
 }
 
@@ -337,7 +248,7 @@
 .backToTop {
   text-align: center;
   padding: 20px 0;
-  border-top: 1px solid rgba(212, 165, 116, 0.2);
+  border-top: 1px solid #e5e5e5;
   margin-top: 20px;
 }
 
@@ -345,40 +256,20 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: linear-gradient(135deg, var(--accent-gold) 0%, #FFD700 100%);
-  color: var(--primary-dark);
+  background: white;
+  color: #1a1a1a;
   padding: 12px 24px;
-  border: none;
-  border-radius: 30px;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
   font-weight: 600;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(212, 165, 116, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.backToTopButton::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-  transition: left 0.5s ease;
-}
-
-.backToTopButton:hover::before {
-  left: 100%;
+  transition: all 0.2s ease;
 }
 
 .backToTopButton:hover {
-  background: linear-gradient(135deg, #FFD700 0%, var(--accent-gold) 100%);
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 6px 20px rgba(212, 165, 116, 0.4);
-  color: var(--primary-dark);
+  background: #fafafa;
+  transform: translateY(-2px);
 }
 
 .backToTopButton svg {
@@ -399,12 +290,12 @@
 
 .copyright p {
   margin: 0;
-  color: #b8c5c5;
+  color: #4a4a4a;
   font-size: 0.85rem;
 }
 
 .developer {
-  color: var(--accent-gold) !important;
+  color: #1a1a1a !important;
   font-weight: 500;
 }
 
@@ -412,13 +303,13 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  color: #b8c5c5;
+  color: #4a4a4a;
   font-size: 0.9rem;
 }
 
 .social span {
   font-weight: 600;
-  color: var(--accent-gold);
+  color: #1a1a1a;
   font-size: 1rem;
   text-align: center;
 }
@@ -436,14 +327,19 @@
   justify-content: center;
   gap: 6px;
   padding: 8px 12px;
-  border-radius: 10px;
+  border-radius: 6px;
   text-decoration: none;
   font-weight: 500;
   font-size: 0.75rem;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
-  position: relative;
-  overflow: hidden;
+  transition: all 0.2s ease;
+  background: white;
+  color: #1a1a1a;
+  border: 1px solid #e5e5e5;
+}
+
+.socialLinks a:hover {
+  background: #fafafa;
+  transform: translateY(-2px);
 }
 
 .socialLinks a span {
@@ -456,73 +352,15 @@
   flex-shrink: 0;
 }
 
-/* Facebook */
-.facebook {
-  background: linear-gradient(135deg, #1877F2 0%, #42A5F5 100%);
-  color: white;
-  box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
-}
 
-.facebook:hover {
-  background: linear-gradient(135deg, #166FE5 0%, #1877F2 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(24, 119, 242, 0.4);
-  border-color: rgba(255, 255, 255, 0.3);
-}
 
-/* Instagram */
-.instagram {
-  background: linear-gradient(135deg, #E4405F 0%, #F56040 50%, #FFAD00 100%);
-  color: white;
-  box-shadow: 0 4px 15px rgba(228, 64, 95, 0.3);
-}
 
-.instagram:hover {
-  background: linear-gradient(135deg, #D73654 0%, #E4405F 50%, #F56040 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(228, 64, 95, 0.4);
-  border-color: rgba(255, 255, 255, 0.3);
-}
 
-/* TikTok */
-.tiktok {
-  background: linear-gradient(135deg, #000000 0%, #FF0050 50%, #00F2EA 100%);
-  color: white;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
 
-.tiktok:hover {
-  background: linear-gradient(135deg, #1a1a1a 0%, #FF0050 50%, #00F2EA 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 0, 80, 0.4);
-  border-color: rgba(255, 255, 255, 0.3);
-}
 
-/* WhatsApp */
-.whatsapp {
-  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-  color: white;
-  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-}
 
-.whatsapp:hover {
-  background: linear-gradient(135deg, #20B858 0%, #25D366 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-  border-color: rgba(255, 255, 255, 0.3);
-}
 
-/* Animaciones */
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+
 
 /* Responsivo */
 @media (max-width: 768px) {
@@ -649,41 +487,29 @@
 /* Estilos para el mapa de Google */
 .mapContainer {
   margin: 16px 0;
-  border-radius: 12px;
+  border-radius: 6px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  border: 2px solid rgba(212, 165, 116, 0.3);
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  border: 1px solid #e5e5e5;
 }
 
 .mapContainer:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-  border-color: var(--accent-gold);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .mapContainer iframe {
   width: 100%;
   height: 200px;
   border: none;
-  border-radius: 10px;
-  filter: grayscale(0.2) contrast(1.1);
-  transition: filter 0.3s ease;
-}
-
-.mapContainer:hover iframe {
-  filter: grayscale(0) contrast(1.2);
+  border-radius: 6px;
 }
 
 .mapDescription {
   font-size: 0.85rem;
-  color: #b8c5c5;
+  color: #4a4a4a;
   text-align: center;
   margin-top: 12px;
-  font-style: italic;
-  opacity: 0.9;
 }
 
 /* Responsivo para el mapa */

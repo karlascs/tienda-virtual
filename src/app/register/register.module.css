@@ -1,33 +1,21 @@
-/* Login Page - Colores IZA&CAS */
+/* Register Page - Minimalista */
 .container {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #2d4a4a 0%, #d4a574 100%);
+  background: #fafafa;
   padding: 2rem;
 }
 
 .formCard {
   background: white;
-  border-radius: 16px;
-  box-shadow: 0 20px 60px rgba(232, 201, 168, 0.3);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   padding: 3rem;
   width: 100%;
   max-width: 450px;
-  animation: slideUp 0.4s ease-out;
-  border: 2px solid rgba(212, 165, 116, 0.2);
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  border: 1px solid #e5e5e5;
 }
 
 .header {
@@ -38,15 +26,12 @@
 .header h1 {
   font-size: 2rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #2d4a4a 0%, #d4a574 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #1a1a1a;
   margin-bottom: 0.5rem;
 }
 
 .header p {
-  color: rgba(232, 201, 168, 0.7);
+  color: #666;
   font-size: 0.95rem;
 }
 
@@ -63,16 +48,9 @@
   padding: 1rem;
   background: #fee;
   border: 1px solid #fcc;
-  border-radius: 8px;
+  border-radius: 6px;
   color: #c53030;
   font-size: 0.9rem;
-  animation: shake 0.4s ease-out;
-}
-
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-10px); }
-  75% { transform: translateX(10px); }
 }
 
 .formGroup {
@@ -83,14 +61,14 @@
 
 .formGroup label {
   font-weight: 600;
-  color: #2d4a4a;
+  color: #1a1a1a;
   font-size: 0.95rem;
 }
 
 .formGroup input {
   padding: 0.875rem 1rem;
-  border: 2px solid rgba(212, 165, 116, 0.3);
-  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
   font-size: 1rem;
   transition: all 0.2s ease;
   background: white;
@@ -98,12 +76,12 @@
 
 .formGroup input:focus {
   outline: none;
-  border-color: #d4a574;
-  box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
+  border-color: #1a1a1a;
+  box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.05);
 }
 
 .formGroup input::placeholder {
-  color: rgba(232, 201, 168, 0.4);
+  color: #999;
 }
 
 .passwordInput {
@@ -123,7 +101,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: rgba(212, 165, 116, 0.6);
+  color: #666;
   padding: 0.5rem;
   display: flex;
   align-items: center;
@@ -133,13 +111,13 @@
 }
 
 .togglePassword:hover {
-  color: #d4a574;
-  background: rgba(212, 165, 116, 0.1);
+  color: #1a1a1a;
+  background: #fafafa;
 }
 
 .togglePassword:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(212, 165, 116, 0.2);
+  box-shadow: 0 0 0 2px rgba(26, 26, 26, 0.1);
 }
 
 .togglePassword svg {
@@ -149,14 +127,14 @@
 
 .submitButton {
   padding: 1rem;
-  background: linear-gradient(135deg, #2d4a4a 0%, #d4a574 100%);
+  background: #1a1a1a;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -165,8 +143,8 @@
 }
 
 .submitButton:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(232, 201, 168, 0.4);
+  background: #000;
+  transform: translateY(-1px);
 }
 
 .submitButton:active:not(:disabled) {
@@ -195,47 +173,47 @@
   margin-top: 2rem;
   text-align: center;
   padding-top: 1.5rem;
-  border-top: 1px solid rgba(212, 165, 116, 0.3);
+  border-top: 1px solid #e5e5e5;
 }
 
 .footer p {
-  color: rgba(232, 201, 168, 0.7);
+  color: #666;
   font-size: 0.95rem;
 }
 
 .link {
-  color: #d4a574;
+  color: #1a1a1a;
   font-weight: 600;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .link:hover {
-  color: #2d4a4a;
+  color: #000;
   text-decoration: underline;
 }
 
 .adminNote {
   margin-top: 1.5rem;
   padding: 1rem;
-  background: rgba(247, 245, 243, 0.5);
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
+  background: #fafafa;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
   font-size: 0.85rem;
-  color: #4a5568;
+  color: #666;
 }
 
 .adminNote svg {
   flex-shrink: 0;
   margin-top: 2px;
-  color: #667eea;
+  color: #1a1a1a;
 }
 
 .adminNote a {
-  color: #667eea;
+  color: #1a1a1a;
   font-weight: 600;
   text-decoration: none;
 }

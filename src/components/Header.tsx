@@ -12,13 +12,41 @@ import SearchBar from "./SearchBar";
 import { FEATURED_PRODUCTS, Product } from "@/data/products";
 
 const MENU_CATEGORIES = [
-  { name: 'Hogar', href: '/products/hogar', icon: '🏠' },
-  { name: 'Electro Hogar', href: '/products/electrohogar', icon: '⚡' },
-  { name: 'Tecnología', href: '/products/tecnologia', icon: '�' },
-  { name: 'Juguetes', href: '/products/juguetes', icon: '🧸' },
-  { name: 'Herramientas', href: '/products/herramientas', icon: '�' },
-  { name: 'Cuidado Personal', href: '/products/cuidadopersonal', icon: '�' },
-  { name: 'Actividad', href: '/products/actividad', icon: '⚽' },
+  { 
+    name: 'Hogar', 
+    href: '/products/hogar', 
+    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+  },
+  { 
+    name: 'Electro Hogar', 
+    href: '/products/electrohogar', 
+    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+  },
+  { 
+    name: 'Tecnología', 
+    href: '/products/tecnologia', 
+    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+  },
+  { 
+    name: 'Juguetes', 
+    href: '/products/juguetes', 
+    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/></svg>
+  },
+  { 
+    name: 'Herramientas', 
+    href: '/products/herramientas', 
+    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+  },
+  { 
+    name: 'Cuidado Personal', 
+    href: '/products/cuidadopersonal', 
+    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+  },
+  { 
+    name: 'Actividad', 
+    href: '/products/actividad', 
+    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+  },
 ];
 
 export default function Header() {
@@ -160,7 +188,7 @@ export default function Header() {
                       Panel de Admin
                     </Link>
                   )}
-                  <Link href="/orders" className={styles.userMenuItem} onClick={closeUserMenu}>
+                  <Link href="/profile/orders" className={styles.userMenuItem} onClick={closeUserMenu}>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
                     </svg>
@@ -230,6 +258,7 @@ export default function Header() {
                 className={styles.menuItem}
                 onClick={closeMenu}
               >
+                <span className={styles.categoryIcon}>{category.icon}</span>
                 <span className={styles.categoryName}>{category.name}</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={styles.arrowIcon}>
                   <path d="M9 18l6-6-6-6" />

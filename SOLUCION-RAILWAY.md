@@ -151,7 +151,7 @@ RUN npx prisma generate
 COPY src ./src
 COPY public ./public
 
-# Build
+
 RUN npm run build
 
 # Etapa 2: Producción

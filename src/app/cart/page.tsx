@@ -49,17 +49,21 @@ export default function CartPage() {
             </h1>
             
             <div style={{
-              background: 'var(--card-background)',
-              border: '1px solid var(--border-color)',
-              borderRadius: '16px',
+              background: 'white',
+              border: '1px solid #e5e5e5',
+              borderRadius: '8px',
               padding: '48px 24px',
               maxWidth: '500px',
               margin: '0 auto'
             }}>
-              <div style={{ fontSize: '64px', marginBottom: '24px' }}>🛒</div>
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="1.5" style={{ marginBottom: '24px' }}>
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
               <h2 style={{ 
                 fontSize: '24px', 
-                color: 'var(--text-primary)', 
+                color: '#1a1a1a', 
                 marginBottom: '16px' 
               }}>
                 Tu carrito está vacío
@@ -89,7 +93,7 @@ export default function CartPage() {
       <main>
         <div className={styles.container}>
           <h1 className={styles.title}>
-            Tu Carrito de Compras 🛒
+            Tu Carrito de Compras
           </h1>
           
           <div className={styles.cartGrid}>

@@ -1,0 +1,17 @@
+# Ignorar Prisma en Vercel (el backend está en Railway)
+prisma/
+node_modules/.prisma/
+node_modules/@prisma/
+
+# Ignorar rutas API que usan Prisma (van a Railway)
+src/app/api/products/
+src/app/api/categories/
+src/app/api/banners/
+src/app/api/admin/
+src/app/api/reviews/
+src/app/api/analytics/
+src/app/api/shipping/
+src/app/api/health/
+
+# Backend de Railway
+backend/

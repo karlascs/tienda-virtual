@@ -9,7 +9,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: admin123
-      POSTGRES_DB: iza&cas
+      POSTGRES_DB: "iza&cas"
     ports:
       - "5434:5432"  # Evitar conflicto con PostgreSQL local
     volumes:
@@ -18,7 +18,7 @@ services:
     networks:
       - izacas-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d 'iza&cas'"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d \"iza&cas\""]
       interval: 10s
       timeout: 5s
       retries: 5
