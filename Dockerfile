@@ -8,12 +8,13 @@ COPY package*.json ./
 COPY tsconfig.json ./
 COPY next.config.ts ./
 COPY prisma ./prisma/
+COPY scripts ./scripts/
 
 # Instalar dependencias
 RUN npm ci
 
 # Generar Prisma Client antes del build
-RUN npx prisma generate
+RUN npx prisma generate --schema=./prisma/schema.prisma
 
 # Copiar código fuente y archivos públicos
 COPY src ./src
