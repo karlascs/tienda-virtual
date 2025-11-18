@@ -3,8 +3,5 @@
   "installCommand": "npm install",
   "env": {
     "DATABASE_URL": "postgresql://temp:temp@localhost:5432/temp"
-  },
-  "includeFiles": [
-    "prisma/**"
-  ]
+  }
 }
