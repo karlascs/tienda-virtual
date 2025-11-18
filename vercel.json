@@ -1,0 +1,6 @@
+{
+  "buildCommand": "prisma generate && next build",
+  "env": {
+    "DATABASE_URL": "postgresql://temp:temp@localhost:5432/temp"
+  }
+}
