@@ -1,38 +1,38 @@
 /* ===================================
-   VARIABLES CSS - SISTEMA DE DISEÑO IZA&CAS MODERNO ✨
+   VARIABLES CSS - SISTEMA DE DISEÑO MINIMALISTA
    =================================== */
 :root { 
-  --bg: #f9f7f5;           /* Fondo principal - beige muy suave */
+  --bg: #fafafa;           /* Fondo principal - gris claro */
   --card: #ffffff;         /* Fondo de tarjetas - blanco puro */
-  --text: #5a5a5a;         /* Texto principal - gris medio */
-  --muted: #8a8a8a;        /* Texto secundario - gris suave */
-  --brand: #e9d0b5;        /* Color de marca - dorado suave */
-  --brand-light: #e8c9a8;  /* Color de marca más claro */
-  --brand-dark: #e9c8a0;   /* Color de marca más oscuro */
-  --accent: #f8d5af;       /* Color de acento - melocotón pastel */
-  --accent-hover: #f0c89d; /* Color de acento hover */
-  --accent-light: #fef5ed; /* Acento muy suave */
-  --border: #e8e3dd;       /* Bordes - beige suave */
+  --text: #1a1a1a;         /* Texto principal - negro suave */
+  --muted: #666666;        /* Texto secundario - gris medio */
+  --brand: #6b6b6b;        /* Color de marca - gris elegante */
+  --brand-light: #e5e5e5;  /* Color de marca más claro */
+  --brand-dark: #5a5a5a;   /* Color de marca más oscuro */
+  --accent: #6b6b6b;       /* Color de acento - gris */
+  --accent-hover: #5a5a5a; /* Color de acento hover */
+  --accent-light: #fafafa; /* Acento muy suave */
+  --border: #e5e5e5;       /* Bordes - gris claro */
   --shadow: rgba(0, 0, 0, 0.08); /* Sombras suaves */
   --shadow-strong: rgba(0, 0, 0, 0.15); /* Sombras más fuertes */
   
   /* Variables adicionales para categorías */
-  --background-secondary: #fef9f5;  /* Fondo secundario crema */
+  --background-secondary: #fafafa;  /* Fondo secundario */
   --text-primary: var(--text);      /* Texto principal */
   --text-secondary: var(--muted);   /* Texto secundario */
   --primary-color: var(--brand);    /* Color primario */
   --border-color: var(--border);    /* Color de borde */
   --card-background: var(--card);   /* Fondo de tarjetas */
   
-  /* Colores IZA&CAS para gradientes pasteles */
-  --gradient-start: #f8d5af;        /* Melocotón pastel */
-  --gradient-mid: #f5e6d3;          /* Crema suave */
-  --gradient-end: #e8c9a8;          /* Beige dorado suave */
-  --gradient-soft: #fefbf8;         /* Casi blanco cálido */
+  /* Colores minimalistas para gradientes sutiles */
+  --gradient-start: #fafafa;        /* Gris claro */
+  --gradient-mid: #ffffff;          /* Blanco */
+  --gradient-end: #e5e5e5;          /* Gris claro */
+  --gradient-soft: #fafafa;         /* Gris suave */
   
   /* Nuevos efectos glassmorphism */
   --glass-bg: rgba(255, 255, 255, 0.9);
-  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-border: rgba(229, 229, 229, 0.3);
   --glass-shadow: rgba(0, 0, 0, 0.1);
 }
 

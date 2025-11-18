@@ -213,15 +213,6 @@ export default function CartPage() {
                   </span>
                 </div>
                 
-                <div className={styles.summaryItem}>
-                  <span className={styles.summaryLabel} style={{ fontSize: '13px' }}>
-                    Comisión Transbank (2.95%)
-                  </span>
-                  <span className={styles.summaryValue} style={{ fontSize: '13px' }}>
-                    ${Math.round((state.total + shippingCost) * 0.0295 * 1.19).toLocaleString('es-CL')}
-                  </span>
-                </div>
-                
                 <hr style={{ 
                   border: 'none', 
                   borderTop: '1px solid var(--border-color)',
@@ -231,7 +222,7 @@ export default function CartPage() {
                 <div className={styles.summaryTotal}>
                   <span className={styles.totalLabel}>Total a Pagar</span>
                   <span className={styles.totalValue}>
-                    ${Math.round(state.total + shippingCost + ((state.total + shippingCost) * 0.0295 * 1.19)).toLocaleString('es-CL')}
+                    ${(state.total + shippingCost).toLocaleString('es-CL')}
                   </span>
                 </div>
                 <div style={{ 
