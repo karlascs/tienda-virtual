@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "prebuild": "node scripts/prebuild.js",
-    "build": "prisma generate && next build --turbopack",
-    "vercel-build": "node scripts/prebuild.js && prisma generate && next build",
+    "build": "prisma generate --schema=./prisma/schema.prisma && next build --turbopack",
+    "vercel-build": "node scripts/prebuild.js && prisma generate --schema=./prisma/schema.prisma && next build",
     "start": "next start",
     "lint": "eslint",
     "db:generate": "prisma generate",
