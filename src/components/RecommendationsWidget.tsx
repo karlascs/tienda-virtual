@@ -14,6 +14,7 @@ interface RecommendationsWidgetProps {
   limit?: number;
   showRefresh?: boolean;
   className?: string;
+  onProductClick?: (product: Product) => void;
 }
 
 export default function RecommendationsWidget({
@@ -23,7 +24,8 @@ export default function RecommendationsWidget({
   category,
   limit = 6,
   showRefresh = true,
-  className = ''
+  className = '',
+  onProductClick
 }: RecommendationsWidgetProps) {
   const [recommendations, setRecommendations] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -81,13 +83,13 @@ export default function RecommendationsWidget({
   const getDefaultTitle = () => {
     switch (type) {
       case 'personalized':
-        return '🎯 Recomendado para ti';
+        return 'Recomendado para ti';
       case 'similar':
-        return '🔍 Productos similares';
+        return 'Productos similares';
       case 'category':
-        return `📦 Más en ${category}`;
+        return `Más en ${category}`;
       case 'popular':
-        return '🔥 Productos populares';
+        return 'Productos populares';
       default:
         return 'Recomendaciones';
     }
@@ -162,22 +164,11 @@ export default function RecommendationsWidget({
               price={product.price}
               image={product.image}
               category={product.category}
-              onClick={() => {
-                // El tracking se manejará en la página del producto
-                console.log(`Navegando a producto ${product.id}`);
-              }}
+              onClick={() => onProductClick?.(product)}
             />
           </div>
         ))}
       </div>
-      
-      {type === 'personalized' && recommendations.length > 0 && (
-        <div className={styles.personalizedFooter}>
-          <p className={styles.footerText}>
-            💡 Basado en tus productos vistos y preferencias
-          </p>
-        </div>
-      )}
     </div>
   );
 }

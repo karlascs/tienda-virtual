@@ -5,7 +5,8 @@
 
 import { ReactNode, useState, useEffect } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
+import { signOut } from 'next-auth/react'
 import styles from './AdminLayout.module.css'
 
 interface AdminLayoutProps {
@@ -14,8 +15,15 @@ interface AdminLayoutProps {
 
 export default function AdminLayout({ children }: AdminLayoutProps) {
   const pathname = usePathname()
+  const router = useRouter()
   const [sidebarOpen, setSidebarOpen] = useState(false) // Cerrado por defecto en móviles
   const [isMobile, setIsMobile] = useState(false)
+
+  // Función para cerrar sesión
+  const handleLogout = async () => {
+    await signOut({ redirect: false })
+    router.push('/')
+  }
 
   // Detectar tamaño de pantalla
   useEffect(() => {
@@ -101,8 +109,24 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
             className={styles.backToStore}
             onClick={() => isMobile && setSidebarOpen(false)}
           >
-            ← Volver a la tienda
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            Volver a la tienda
           </Link>
+          
+          <button 
+            onClick={handleLogout}
+            className={styles.logoutBtn}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+              <polyline points="16 17 21 12 16 7"/>
+              <line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+            Cerrar Sesión
+          </button>
         </div>
       </aside>
 

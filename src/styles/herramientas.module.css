@@ -2,33 +2,14 @@
    PÁGINA DE HERRAMIENTAS - IZA & CAS
    =================================== */
 
-/* Fondo principal con gradiente animado */
+/* Fondo principal minimalista */
 .herramientasMain {
-  background: linear-gradient(135deg, 
-    rgb(99, 102, 241) 0%, 
-    var(--brand) 25%, 
-    rgb(239, 68, 68) 50%, 
-    #0a0e16 75%, 
-    rgb(156, 163, 175) 100%);
-  background-size: 300% 300%;
-  animation: izaCasGradient 12s ease-in-out infinite;
+  background: #fafafa;
   position: relative;
   min-height: 100vh;
 }
 
-/* Overlay de efectos */
-.herramientasOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 25% 75%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-              radial-gradient(circle at 75% 25%, rgba(239, 68, 68, 0.4) 0%, transparent 50%),
-              radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
-  pointer-events: none;
-  animation: izaCasBreath 10s ease-in-out infinite;
-}
+/* Overlay eliminado - diseño minimalista */
 
 /* Resto de estilos iguales */
 .herramientasContainer {
@@ -47,7 +28,7 @@
 
 .categoryCount {
   font-size: 16px;
-  color: rgba(255, 255, 255, 0.8);
+  color: #666;
   font-weight: 400;
 }
 

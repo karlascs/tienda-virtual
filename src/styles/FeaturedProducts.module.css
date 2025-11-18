@@ -69,7 +69,7 @@
 /* Wrapper de cada producto */
 .productWrapper {
   flex-shrink: 0;
-  width: 280px;
+  width: 220px;
   scroll-snap-align: start;
 }
 
@@ -85,7 +85,7 @@
   }
 
   .productWrapper {
-    width: 240px;
+    width: 200px;
   }
 }
 

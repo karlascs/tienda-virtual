@@ -89,16 +89,39 @@ export default function ElectrohogarPage() {
               <div style={{
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                gap: '16px',
+                justifyContent: 'space-between',
+                maxWidth: '1200px',
+                margin: '24px auto 0',
+                padding: '0 20px',
                 flexWrap: 'wrap',
-                marginTop: '24px'
+                gap: '16px'
               }}>
                 <span style={{
-                  color: 'var(--text-secondary)',
-                  fontSize: '14px'
+                  color: '#666',
+                  fontSize: '15px',
+                  fontWeight: '500'
                 }}>
-                  {filteredProducts.length} producto{filteredProducts.length !== 1 ? 's' : ''} encontrado{filteredProducts.length !== 1 ? 's' : ''}
+                <span style={{
+                  color: '#666',
+                  fontSize: '15px',
+                  fontWeight: '500'
+                }}>
+                  {filteredProducts.length === electrohogarProducts.length ? (
+                    `${electrohogarProducts.length} producto${electrohogarProducts.length !== 1 ? 's' : ''}`
+                  ) : (
+                    <>
+                      {electrohogarProducts.length} producto{electrohogarProducts.length !== 1 ? 's' : ''} disponible{electrohogarProducts.length !== 1 ? 's' : ''}
+                      <span style={{ color: '#1a1a1a', marginLeft: '8px' }}>
+                        ({filteredProducts.length} mostrado{filteredProducts.length !== 1 ? 's' : ''})
+                      </span>
+                    </>
+                  )}
+                </span>
+                  {filteredProducts.length !== electrohogarProducts.length && (
+                    <span style={{ color: '#1a1a1a', marginLeft: '8px' }}>
+                      ({filteredProducts.length} mostrado{filteredProducts.length !== 1 ? 's' : ''})
+                    </span>
+                  )}
                 </span>
               
                 <button
@@ -107,11 +130,11 @@ export default function ElectrohogarPage() {
                     display: 'flex',
                     alignItems: 'center',
                     gap: '8px',
-                    padding: '10px 16px',
-                    background: 'var(--brand)',
+                    padding: '10px 20px',
+                    background: '#6b6b6b',
                     color: 'white',
                     border: 'none',
-                    borderRadius: '8px',
+                    borderRadius: '6px',
                     fontSize: '14px',
                     fontWeight: '500',
                     cursor: 'pointer',

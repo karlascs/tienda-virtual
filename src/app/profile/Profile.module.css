@@ -11,12 +11,40 @@
   margin: 0 auto;
 }
 
+.headerSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 .title {
   font-size: 2rem;
   color: #1a1a1a;
-  margin-bottom: 2rem;
+  margin: 0;
   font-weight: 600;
   letter-spacing: -0.02em;
+}
+
+.homeBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  background: #6b6b6b;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.homeBtn:hover {
+  background: #5a5a5a;
+  transform: translateY(-1px);
 }
 
 .loading {
@@ -78,7 +106,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  background: #1a1a1a;
+  background: #6b6b6b;
   color: white;
   border-radius: 6px;
   text-decoration: none;
@@ -88,7 +116,7 @@
 }
 
 .editBtn:hover {
-  background: #333;
+  background: #5a5a5a;
   transform: translateY(-1px);
 }
 
@@ -140,7 +168,7 @@
   display: inline-flex;
   align-items: center;
   padding: 0.625rem 1.25rem;
-  background: #1a1a1a;
+  background: #6b6b6b;
   color: white;
   border-radius: 6px;
   text-decoration: none;
@@ -150,7 +178,7 @@
 }
 
 .addAddressBtn:hover {
-  background: #333;
+  background: #5a5a5a;
   transform: translateY(-1px);
 }
 
@@ -381,7 +409,7 @@
 .shopBtn {
   display: inline-block;
   padding: 0.75rem 2rem;
-  background: #1a1a1a;
+  background: #6b6b6b;
   color: white;
   border-radius: 6px;
   text-decoration: none;
@@ -391,7 +419,7 @@
 }
 
 .shopBtn:hover {
-  background: #333;
+  background: #5a5a5a;
   transform: translateY(-1px);
 }
 

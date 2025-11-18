@@ -37,6 +37,46 @@ interface DashboardStats {
   }>
 }
 
+// Función para formatear a pesos chilenos
+const formatCLP = (amount: number): string => {
+  return `$${Math.round(amount).toLocaleString('es-CL')} CLP`
+}
+
+// Iconos SVG profesionales (mismo estilo que ProductModal)
+const ProductsIcon = () => (
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+    <line x1="3" y1="6" x2="21" y2="6"/>
+    <path d="M16 10a4 4 0 0 1-8 0"/>
+  </svg>
+)
+
+const CategoriesIcon = () => (
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="8" y1="6" x2="21" y2="6"/>
+    <line x1="8" y1="12" x2="21" y2="12"/>
+    <line x1="8" y1="18" x2="21" y2="18"/>
+    <line x1="3" y1="6" x2="3.01" y2="6"/>
+    <line x1="3" y1="12" x2="3.01" y2="12"/>
+    <line x1="3" y1="18" x2="3.01" y2="18"/>
+  </svg>
+)
+
+const OrdersIcon = () => (
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="8" cy="21" r="1"/>
+    <circle cx="19" cy="21" r="1"/>
+    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+  </svg>
+)
+
+const RevenueIcon = () => (
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+    <line x1="1" y1="10" x2="23" y2="10"/>
+  </svg>
+)
+
 export default function AdminDashboard() {
   const [stats, setStats] = useState<DashboardStats | null>(null)
   const [loading, setLoading] = useState(true)
@@ -76,34 +116,42 @@ export default function AdminDashboard() {
 
         {/* Resumen general */}
         <div className={styles.statsGrid}>
-          <div className={styles.statCard}>
-            <div className={styles.statIcon}>📦</div>
+          <div key="products" className={styles.statCard}>
+            <div className={styles.statIcon}>
+              <ProductsIcon />
+            </div>
             <div className={styles.statContent}>
               <div className={styles.statValue}>{stats.overview.totalProducts}</div>
               <div className={styles.statLabel}>Productos</div>
             </div>
           </div>
 
-          <div className={styles.statCard}>
-            <div className={styles.statIcon}>🏷️</div>
+          <div key="categories" className={styles.statCard}>
+            <div className={styles.statIcon}>
+              <CategoriesIcon />
+            </div>
             <div className={styles.statContent}>
               <div className={styles.statValue}>{stats.overview.totalCategories}</div>
               <div className={styles.statLabel}>Categorías</div>
             </div>
           </div>
 
-          <div className={styles.statCard}>
-            <div className={styles.statIcon}>🛒</div>
+          <div key="orders" className={styles.statCard}>
+            <div className={styles.statIcon}>
+              <OrdersIcon />
+            </div>
             <div className={styles.statContent}>
               <div className={styles.statValue}>{stats.overview.totalOrders}</div>
               <div className={styles.statLabel}>Órdenes</div>
             </div>
           </div>
 
-          <div className={styles.statCard}>
-            <div className={styles.statIcon}>💰</div>
+          <div key="revenue" className={styles.statCard}>
+            <div className={styles.statIcon}>
+              <RevenueIcon />
+            </div>
             <div className={styles.statContent}>
-              <div className={styles.statValue}>${stats.overview.totalRevenue.toFixed(2)}</div>
+              <div className={styles.statValue}>{formatCLP(stats.overview.totalRevenue)}</div>
               <div className={styles.statLabel}>Ingresos Totales</div>
             </div>
           </div>
@@ -126,7 +174,7 @@ export default function AdminDashboard() {
                     </div>
                     <div className={styles.orderDetails}>
                       <div>{order.items.length} producto(s)</div>
-                      <div className={styles.orderTotal}>${order.total.toFixed(2)}</div>
+                      <div className={styles.orderTotal}>{formatCLP(order.total)}</div>
                     </div>
                     <div className={styles.orderDate}>
                       {new Date(order.createdAt).toLocaleDateString('es-ES')}

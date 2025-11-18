@@ -14,12 +14,16 @@ interface Product {
   category: string;
 }
 
+interface FeaturedProductsProps {
+  onProductClick?: (product: Product) => void;
+}
+
 /**
  * Componente de Productos Destacados
  * Muestra 2 productos destacados de cada categoría en un carrusel horizontal
  * Los productos rotan automáticamente cada semana
  */
-export default function FeaturedProducts() {
+export default function FeaturedProducts({ onProductClick }: FeaturedProductsProps) {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -114,7 +118,10 @@ export default function FeaturedProducts() {
         <div className={styles.carousel}>
           {featuredProducts.map((product) => (
             <div key={product.id} className={styles.productWrapper}>
-              <ProductCard {...product} />
+              <ProductCard 
+                {...product} 
+                onClick={() => onProductClick?.(product)}
+              />
             </div>
           ))}
         </div>

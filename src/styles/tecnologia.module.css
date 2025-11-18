@@ -2,33 +2,14 @@
    PÁGINA DE TECNOLOGÍA - IZA & CAS
    =================================== */
 
-/* Fondo principal con gradiente animado */
+/* Fondo principal minimalista */
 .tecnologiaMain {
-  background: linear-gradient(135deg, 
-    var(--gradient-start) 0%, 
-    var(--gradient-mid) 25%, 
-    var(--gradient-end) 50%, 
-    var(--gradient-mid) 75%, 
-    var(--gradient-start) 100%);
-  background-size: 300% 300%;
-  animation: izaCasGradient 12s ease-in-out infinite;
+  background: #fafafa;
   position: relative;
   min-height: 100vh;
 }
 
-/* Overlay de efectos */
-.tecnologiaOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 25% 75%, rgba(232, 201, 168, 0.15) 0%, transparent 50%),
-              radial-gradient(circle at 75% 25%, rgba(212, 165, 116, 0.4) 0%, transparent 50%),
-              radial-gradient(circle at 50% 50%, rgba(247, 245, 243, 0.2) 0%, transparent 70%);
-  pointer-events: none;
-  animation: izaCasBreath 10s ease-in-out infinite;
-}
+/* Overlay eliminado - diseño minimalista sin efectos */
 
 /* Resto de estilos iguales a hogar */
 .tecnologiaContainer {
@@ -47,7 +28,7 @@
 
 .categoryCount {
   font-size: 16px;
-  color: rgba(255, 255, 255, 0.8);
+  color: #666;
   font-weight: 400;
 }
 
@@ -134,21 +115,19 @@
 .title {
   font-size: 36px;
   font-weight: 700;
-  color: white;
+  color: #1a1a1a;
   margin-bottom: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .subtitle {
-  color: rgba(255, 255, 255, 0.9);
+  color: #4a4a4a;
   font-size: 18px;
   max-width: 600px;
   margin: 0 auto;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   text-align: center;
 }
 
@@ -159,19 +138,18 @@
 .subcategoryTitle {
   font-size: 28px;
   font-weight: 600;
-  color: white;
+  color: #1a1a1a;
   margin-bottom: 24px;
   display: flex;
   align-items: center;
   gap: 12px;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid #e5e5e5;
   padding-bottom: 12px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .productCount {
   font-size: 16px;
-  color: rgba(255, 255, 255, 0.8);
+  color: #666;
   font-weight: 400;
 }
 

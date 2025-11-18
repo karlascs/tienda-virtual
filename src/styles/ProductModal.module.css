@@ -1,11 +1,11 @@
-/* Modal de detalles del producto - Versión E-commerce Profesional */
+/* Modal de detalles del producto - Diseño Minimalista */
 .modalOverlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(212, 165, 116, 0.8);
+  background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
@@ -17,14 +17,14 @@
 
 .modalContent {
   background: white;
-  border-radius: 16px;
+  border-radius: 8px;
   max-width: 1000px;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
   animation: slideIn 0.3s ease-out;
-  box-shadow: 0 20px 60px rgba(212, 165, 116, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
 }
 
 .closeButton {
@@ -32,7 +32,7 @@
   top: 16px;
   right: 16px;
   background: rgba(255, 255, 255, 0.95);
-  border: none;
+  border: 1px solid #e5e5e5;
   border-radius: 50%;
   width: 44px;
   height: 44px;
@@ -43,14 +43,14 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
-  color: #d4a574;
+  color: #6b6b6b;
   font-weight: bold;
 }
 
 .closeButton:hover {
   background: white;
   transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(212, 165, 116, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .modalBody {
@@ -61,7 +61,7 @@
 
 /* Sección de imágenes mejorada */
 .imageSection {
-  background: #f5f2ed;
+  background: #fafafa;
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -71,9 +71,9 @@
 .mainImageContainer {
   position: relative;
   background: white;
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(212, 165, 116, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
 }
 
 .mainImage {
@@ -89,7 +89,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(212, 165, 116, 0.8);
+  background: rgba(107, 107, 107, 0.8);
   color: white;
   border: none;
   border-radius: 50%;
@@ -97,14 +97,14 @@
   height: 40px;
   font-size: 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .imageNavButton:hover {
-  background: #d4a574;
+  background: #5a5a5a;
   transform: translateY(-50%) scale(1.1);
 }
 
@@ -120,10 +120,10 @@
   position: absolute;
   bottom: 10px;
   right: 10px;
-  background: rgba(212, 165, 116, 0.8);
+  background: rgba(107, 107, 107, 0.8);
   color: white;
   padding: 4px 12px;
-  border-radius: 12px;
+  border-radius: 6px;
   font-size: 12px;
   font-weight: 500;
 }
@@ -141,10 +141,10 @@
   width: 60px;
   height: 60px;
   border: 2px solid transparent;
-  border-radius: 8px;
+  border-radius: 6px;
   overflow: hidden;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   background: white;
 }
 
@@ -155,13 +155,13 @@
 }
 
 .thumbnail:hover {
-  border-color: #e8c9a8;
+  border-color: #e5e5e5;
   transform: scale(1.05);
 }
 
 .activeThumbnail {
-  border-color: #d4a574;
-  box-shadow: 0 0 0 2px rgba(212, 165, 116, 0.2);
+  border-color: #6b6b6b;
+  box-shadow: 0 0 0 2px rgba(107, 107, 107, 0.2);
 }
 
 /* Sección de información */
@@ -173,35 +173,35 @@
 }
 
 .categoryTag {
-  background: linear-gradient(135deg, #e8ddd0 0%, #f0eae0 100%);
-  color: #d4a574;
+  background: #fafafa;
+  color: #6b6b6b;
   padding: 8px 16px;
-  border-radius: 20px;
+  border-radius: 6px;
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   width: fit-content;
-  border: 1px solid rgba(232, 221, 208, 0.5);
+  border: 1px solid #e5e5e5;
 }
 
 .productTitle {
   font-size: 28px;
   font-weight: 700;
-  color: #d4a574;
+  color: #1a1a1a;
   line-height: 1.3;
   margin: 0;
 }
 
 .productDescription {
-  color: #6b7069;
+  color: #4a4a4a;
   font-size: 16px;
   line-height: 1.6;
   margin: 0;
-  background: rgba(245, 242, 237, 0.5);
+  background: #fafafa;
   padding: 16px;
-  border-radius: 8px;
-  border-left: 3px solid #e8c9a8;
+  border-radius: 6px;
+  border-left: 3px solid #6b6b6b;
 }
 
 .priceSection {
@@ -211,13 +211,13 @@
 .price {
   font-size: 32px;
   font-weight: 800;
-  color: #d4a574;
-  background: linear-gradient(135deg, #e8ddd0 0%, #f0eae0 100%);
+  color: #1a1a1a;
+  background: #fafafa;
   padding: 12px 20px;
-  border-radius: 12px;
+  border-radius: 6px;
   display: inline-block;
-  border: 2px solid rgba(232, 221, 208, 0.6);
-  box-shadow: 0 4px 12px rgba(212, 165, 116, 0.1);
+  border: 2px solid #e5e5e5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .actionButtons {
@@ -228,51 +228,59 @@
 
 .addToCartBtn {
   flex: 2;
-  background: linear-gradient(135deg, #e8c9a8 0%, #d4a574 100%);
+  background: #6b6b6b;
   color: white;
   border: none;
-  border-radius: 12px;
+  border-radius: 6px;
   padding: 16px 24px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(212, 165, 116, 0.2);
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.addToCartBtn svg {
+  flex-shrink: 0;
 }
 
 .addToCartBtn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(212, 165, 116, 0.3);
-  background: linear-gradient(135deg, #d4a574 0%, #c89960 100%);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  background: #5a5a5a;
 }
 
 .continueShoppingBtn {
   flex: 1;
   background: transparent;
-  color: #d4a574;
-  border: 2px solid #e8ddd0;
-  border-radius: 12px;
+  color: #6b6b6b;
+  border: 2px solid #e5e5e5;
+  border-radius: 6px;
   padding: 16px 24px;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .continueShoppingBtn:hover {
-  background: #e8ddd0;
+  background: #fafafa;
   transform: translateY(-1px);
 }
 
 .features {
-  background: rgba(255, 255, 255, 0.7);
+  background: white;
   padding: 20px;
-  border-radius: 12px;
-  border: 1px solid rgba(232, 221, 208, 0.5);
+  border-radius: 6px;
+  border: 1px solid #e5e5e5;
 }
 
 .features h3 {
-  color: #d4a574;
+  color: #1a1a1a;
   margin: 0 0 12px 0;
   font-size: 18px;
   font-weight: 600;
@@ -284,13 +292,21 @@
   margin: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: 12px;
 }
 
 .features li {
-  color: #6b7069;
+  color: #4a4a4a;
   font-size: 14px;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.features li svg {
+  flex-shrink: 0;
+  color: #6b6b6b;
 }
 
 /* Nueva sección de información adicional */
@@ -305,24 +321,33 @@
 }
 
 .infoCard {
-  background: linear-gradient(135deg, #f5f2ed 0%, #e8ddd0 100%);
+  background: #fafafa;
   padding: 16px;
-  border-radius: 10px;
+  border-radius: 6px;
   text-align: center;
-  border: 1px solid rgba(232, 221, 208, 0.6);
+  border: 1px solid #e5e5e5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.infoCard svg {
+  color: #6b6b6b;
+  flex-shrink: 0;
 }
 
 .infoCard h4 {
-  margin: 0 0 8px 0;
+  margin: 0;
   font-size: 14px;
   font-weight: 600;
-  color: #d4a574;
+  color: #1a1a1a;
 }
 
 .infoCard p {
   margin: 0;
   font-size: 12px;
-  color: #6b7069;
+  color: #4a4a4a;
   line-height: 1.4;
 }
 
@@ -352,7 +377,7 @@
   
   .modalContent {
     margin: 0;
-    border-radius: 0;
+    border-radius: 8px;
     max-height: 100vh;
     width: 100vw;
     overflow-y: auto;

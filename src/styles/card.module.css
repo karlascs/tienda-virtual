@@ -6,26 +6,24 @@
   display: flex;
   flex-direction: column;
   background: transparent;
-  backdrop-filter: none;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(240, 240, 240, 0.3);
-  transition: all 0.3s ease;
+  border-radius: 8px;
+  box-shadow: none;
+  border: none;
+  transition: all 0.2s ease;
   cursor: pointer;
-  overflow: hidden;
+  overflow: visible;
   height: 100%;
   position: relative;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  border-color: rgba(224, 224, 224, 0.4);
-  background: transparent;
+  transform: translateY(-2px);
+  box-shadow: none;
+  border: none;
 }
 
 .card:focus {
-  outline: 2px solid #d4a574;
+  outline: 2px solid #1a1a1a;
   outline-offset: 2px;
 }
 
@@ -35,19 +33,24 @@
   aspect-ratio: 1;
   overflow: hidden;
   background: transparent;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.card:hover .imageContainer {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
 
 .productImage {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  padding: 12px;
 }
 
 .card:hover .productImage {
-  transform: scale(1.08);
+  transform: scale(1.03);
 }
 
 .imageOverlay {
@@ -69,25 +72,24 @@
 }
 
 .viewDetailsText {
-  color: #d4a574;
+  background: #6b6b6b;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 12px;
   font-weight: 600;
-  font-size: 13px;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
-  background: #ffffff;
-  padding: 10px 24px;
-  border-radius: 4px;
-  border: 2px solid #d4a574;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.5px;
+  border: none;
+  transition: all 0.2s ease;
 }
 
 .productInfo {
-  padding: 16px 16px 12px 16px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  flex-grow: 1;
-  justify-content: space-between;
+  flex: 1;
   background: transparent;
 }
 
@@ -103,7 +105,7 @@
 .productName {
   font-size: 13px;
   font-weight: 400;
-  color: #333;
+  color: #1a1a1a;
   margin: 0 0 8px 0;
   line-height: 1.4;
   display: -webkit-box;
@@ -146,10 +148,9 @@
 .productPrice {
   font-size: 20px;
   font-weight: 700;
-  color: #111827;
+  color: #1a1a1a;
   margin: 0;
   text-align: left;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .oldPrice {
@@ -235,9 +236,9 @@
 .addToCartBtn {
   width: 100%;
   padding: 10px 16px;
-  border: none;
+  border: 1px solid #e5e5e5;
   border-radius: 6px;
-  background: #d4a574;
+  background: #6b6b6b;
   color: white;
   font-weight: 600;
   font-size: 12px;
@@ -253,10 +254,8 @@
 }
 
 .addToCartBtn:hover:not(:disabled) {
-  background: #1a2e28;
-  border-color: #1a2e28;
+  background: #5a5a5a;
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(212, 165, 116, 0.2);
 }
 
 .addToCartBtn:disabled {
@@ -266,8 +265,7 @@
 }
 
 .addToCartBtn.adding {
-  background: #e8c9a8;
-  border-color: #e8c9a8;
+  background: #4a4a4a;
 }
 
 .loadingIcon {
@@ -283,14 +281,14 @@
   position: absolute;
   top: 12px;
   left: 12px;
-  background: #111827;
+  background: #6b6b6b;
   color: white;
   font-size: 9px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   padding: 4px 8px;
-  border-radius: 3px;
+  border-radius: 4px;
   z-index: 3;
 }
 
@@ -298,12 +296,12 @@
   position: absolute;
   top: 12px;
   right: 12px;
-  background: #ff0000;
+  background: #c00;
   color: white;
   font-size: 11px;
   font-weight: 700;
   padding: 4px 8px;
-  border-radius: 3px;
+  border-radius: 4px;
   z-index: 3;
 }
 

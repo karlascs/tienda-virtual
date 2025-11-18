@@ -110,8 +110,8 @@ export default function Header() {
             <Image 
               src="/logo_isa&cas.png"
               alt="IZA & CAS - Tienda Online"
-              width={50}
-              height={42}
+              width={90}
+              height={76}
               priority={true}
             />
           </Link>

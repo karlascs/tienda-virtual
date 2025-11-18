@@ -52,10 +52,18 @@
 .sectionTitle {
   font-size: 16px;
   font-weight: 600;
-  color: #667eea;
+  color: #1a1a1a;
   margin: 0 0 8px 0;
   padding-bottom: 8px;
-  border-bottom: 2px solid #e2e8f0;
+  border-bottom: 2px solid #e5e5e5;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sectionTitle svg {
+  color: #6b6b6b;
+  flex-shrink: 0;
 }
 
 .field {

@@ -2,57 +2,40 @@
    PÁGINA DE ELECTROHOGAR - IZA & CAS
    =================================== */
 
-/* Fondo principal con gradiente animado */
+/* Fondo principal minimalista */
 .electroHogarMain {
-  background: linear-gradient(135deg, 
-    var(--gradient-start) 0%, 
-    var(--gradient-mid) 25%, 
-    var(--gradient-end) 50%, 
-    var(--gradient-mid) 75%, 
-    var(--gradient-start) 100%);
-  background-size: 300% 300%;
-  animation: izaCasGradient 12s ease-in-out infinite;
+  background: #fafafa;
   position: relative;
   min-height: 100vh;
 }
 
-/* Overlay de efectos */
-.electroHogarOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 25% 75%, rgba(232, 201, 168, 0.15) 0%, transparent 50%),
-              radial-gradient(circle at 75% 25%, rgba(212, 165, 116, 0.4) 0%, transparent 50%),
-              radial-gradient(circle at 50% 50%, rgba(247, 245, 243, 0.2) 0%, transparent 70%);
-  pointer-events: none;
-  animation: izaCasBreath 10s ease-in-out infinite;
-}
+/* Overlay eliminado - diseño minimalista */
 
 /* Container principal */
 .electroHogarContainer {
   position: relative;
   z-index: 1;
   padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Títulos de subcategorías */
 .categoryTitle {
   font-size: 28px;
   font-weight: 600;
-  color: var(--text-primary);
+  color: #1a1a1a;
   margin-bottom: 24px;
   display: flex;
   align-items: center;
   gap: 12px;
-  border-bottom: 2px solid var(--border-color);
+  border-bottom: 1px solid #e5e5e5;
   padding-bottom: 12px;
 }
 
 .categoryCount {
   font-size: 16px;
-  color: var(--text-secondary);
+  color: #666;
   font-weight: 400;
 }
 

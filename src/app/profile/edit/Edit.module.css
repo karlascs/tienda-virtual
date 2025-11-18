@@ -240,8 +240,8 @@
   justify-content: center;
   gap: 0.5rem;
   padding: 0.875rem 1.5rem;
-  background: #1a1a1a;
-  border: 1px solid #1a1a1a;
+  background: #6b6b6b;
+  border: 1px solid #6b6b6b;
   border-radius: 6px;
   color: white;
   font-size: 0.9375rem;
@@ -252,8 +252,8 @@
 }
 
 .saveBtn:hover:not(:disabled) {
-  background: #333;
-  border-color: #333;
+  background: #5a5a5a;
+  border-color: #5a5a5a;
   transform: translateY(-1px);
 }
 

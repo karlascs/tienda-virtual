@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import Header from "@/components/Header";
 import Banner from "@/components/Banner";
 import Categories from "@/components/Categories";
@@ -7,6 +10,9 @@ import Footer from "@/components/Footer";
 import CompareModal from "@/components/CompareModal";
 import CompareFloating from "@/components/CompareFloating";
 import ChristmasEffects from "@/components/ChristmasEffects";
+import ProductModal from "@/components/ProductModal";
+import { useCart } from "@/context/CartContext";
+import { Product } from '@/data/products';
 
 /**
  * Página Principal de la Tienda Virtual - Fase 8 Completa
@@ -24,6 +30,19 @@ import ChristmasEffects from "@/components/ChristmasEffects";
  * Incluye sistema completo de navegación inteligente, recomendaciones y historial
  */
 export default function Home() {
+  const { addToCart } = useCart();
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleViewDetails = (product: Product) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+
+  const handleAddToCart = (product: Product) => {
+    addToCart(product);
+  };
+
   return (
     <>
       {/* Efectos navideños */}
@@ -39,7 +58,7 @@ export default function Home() {
       <Categories />
       
       {/* Productos destacados que rotan semanalmente */}
-      <FeaturedProducts />
+      <FeaturedProducts onProductClick={handleViewDetails} />
       
       {/*Contenido principal de la página*/}
       <main>
@@ -48,6 +67,7 @@ export default function Home() {
           type="personalized"
           limit={6}
           showRefresh={true}
+          onProductClick={handleViewDetails}
         />
         
         {/* Productos populares */}
@@ -56,6 +76,7 @@ export default function Home() {
           title="Los más populares"
           limit={4}
           showRefresh={false}
+          onProductClick={handleViewDetails}
         />
       </main>
       
@@ -65,6 +86,19 @@ export default function Home() {
       {/* Componentes de comparación */}
       <CompareFloating />
       <CompareModal />
+
+      {/* Modal de detalles del producto */}
+      {selectedProduct && (
+        <ProductModal
+          product={selectedProduct}
+          isOpen={isModalOpen}
+          onClose={() => {
+            setIsModalOpen(false);
+            setSelectedProduct(null);
+          }}
+          onAddToCart={handleAddToCart}
+        />
+      )}
     </>
   );
 }
