@@ -106,12 +106,40 @@ export async function POST(request: NextRequest) {
       },
       { status: 201 }
     );
-  } catch (error) {
+  } catch (error: any) {
     console.error("❌ Error al registrar usuario:", error);
+    console.error("Stack:", error?.stack);
+    console.error("Message:", error?.message);
+    
+    // Si es error de Prisma/DB, dar más detalles
+    if (error?.code === 'P2002') {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Este email ya está registrado",
+        },
+        { status: 409 }
+      );
+    }
+    
+    // Error de conexión a BD
+    if (error?.message?.includes('database') || error?.message?.includes('connect')) {
+      console.error("🔴 DATABASE_URL:", process.env.DATABASE_URL ? "Configurada" : "❌ FALTA");
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Error de conexión a la base de datos. Contacta al administrador.",
+          details: process.env.NODE_ENV === 'development' ? error.message : undefined
+        },
+        { status: 500 }
+      );
+    }
+    
     return NextResponse.json(
       {
         success: false,
         error: "Error interno del servidor",
+        details: process.env.NODE_ENV === 'development' ? error.message : undefined
       },
       { status: 500 }
     );
