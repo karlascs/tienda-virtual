@@ -1,9 +1,12 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const { PrismaClient } = require('@prisma/client');
 
 const app = express();
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  log: ['query', 'error', 'warn'],
+});
 const PORT = process.env.PORT || 8080;
 
 // Configuración de CORS para permitir solicitudes desde Vercel
@@ -20,6 +23,9 @@ app.use(cors({
 
 app.use(express.json());
 
+// Servir archivos estáticos (imágenes)
+app.use('/images', express.static(path.join(__dirname, 'public/images')));
+
 // Health check
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', message: 'Backend Railway funcionando' });
@@ -28,13 +34,18 @@ app.get('/health', (req, res) => {
 // ========== CATEGORÍAS ==========
 app.get('/api/categories', async (req, res) => {
   try {
+    console.log('📂 Obteniendo categorías...');
     const categories = await prisma.category.findMany({
       orderBy: { name: 'asc' }
     });
+    console.log(`✅ ${categories.length} categorías encontradas`);
     res.json(categories);
   } catch (error) {
-    console.error('Error al obtener categorías:', error);
-    res.status(500).json({ error: 'Error al obtener categorías' });
+    console.error('❌ Error al obtener categorías:', error);
+    res.status(500).json({ 
+      error: 'Error al obtener categorías',
+      details: error.message 
+    });
   }
 });
 
@@ -58,10 +69,27 @@ app.get('/api/products', async (req, res) => {
   try {
     const { category, search, minPrice, maxPrice, inStock } = req.query;
     
+    console.log('🛍️  Obteniendo productos con filtros:', { category, search, minPrice, maxPrice, inStock });
+    
     const where = {};
     
     if (category) {
-      where.categoryId = parseInt(category);
+      // Buscar por nombre o slug de categoría
+      const categoryRecord = await prisma.category.findFirst({
+        where: {
+          OR: [
+            { slug: category },
+            { name: { equals: category, mode: 'insensitive' } }
+          ]
+        }
+      });
+      
+      if (categoryRecord) {
+        where.categoryId = categoryRecord.id;
+        console.log(`📂 Filtrando por categoría: ${categoryRecord.name} (ID: ${categoryRecord.id})`);
+      } else {
+        console.log(`⚠️  Categoría "${category}" no encontrada`);
+      }
     }
     
     if (search) {
@@ -89,10 +117,14 @@ app.get('/api/products', async (req, res) => {
       orderBy: { createdAt: 'desc' }
     });
 
+    console.log(`✅ ${products.length} productos encontrados`);
     res.json(products);
   } catch (error) {
-    console.error('Error al obtener productos:', error);
-    res.status(500).json({ error: 'Error al obtener productos' });
+    console.error('❌ Error al obtener productos:', error);
+    res.status(500).json({ 
+      error: 'Error al obtener productos',
+      details: error.message 
+    });
   }
 });
 
@@ -203,9 +235,22 @@ app.use((err, req, res, next) => {
 });
 
 // Iniciar servidor
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`🚀 Backend Railway escuchando en puerto ${PORT}`);
   console.log(`📍 Health check: http://localhost:${PORT}/health`);
+  
+  // Verificar conexión a base de datos
+  try {
+    await prisma.$connect();
+    console.log('✅ Conectado a la base de datos PostgreSQL');
+    
+    // Mostrar estadísticas
+    const categoryCount = await prisma.category.count();
+    const productCount = await prisma.product.count();
+    console.log(`📊 Base de datos: ${categoryCount} categorías, ${productCount} productos`);
+  } catch (error) {
+    console.error('❌ Error al conectar con la base de datos:', error);
+  }
 });
 
 // Manejo de cierre graceful

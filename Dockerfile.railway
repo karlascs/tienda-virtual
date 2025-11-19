@@ -16,6 +16,9 @@ RUN npx prisma generate
 # Copiar el servidor Express
 COPY server.js ./
 
+# Copiar imágenes públicas
+COPY public ./public
+
 # Exponer puerto
 EXPOSE 8080
 
