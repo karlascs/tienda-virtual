@@ -5,6 +5,8 @@
  * que contienen caracteres especiales en Vercel
  */
 
+import { getImageUrl } from '@/lib/image-url';
+
 /**
  * Codifica una URL de imagen para que sea compatible con Vercel
  * Maneja caracteres especiales como +, =, espacios, etc.
@@ -15,13 +17,16 @@
 export function encodeImageUrl(imageUrl: string): string {
   if (!imageUrl) return '/images/placeholder.svg';
   
+  // Usar el helper para obtener la URL correcta (Railway o local)
+  const fullUrl = getImageUrl(imageUrl);
+  
   // Dividir la URL en partes
-  const parts = imageUrl.split('/');
+  const parts = fullUrl.split('/');
   
   // Codificar cada parte excepto la primera (vacía) y 'images'
   const encodedParts = parts.map((part, index) => {
     // No codificar la parte vacía inicial, 'images', o las dos primeras barras
-    if (part === '' || part === 'images' || index === 0) {
+    if (part === '' || part === 'images' || index === 0 || part.startsWith('http')) {
       return part;
     }
     
