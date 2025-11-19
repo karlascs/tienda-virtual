@@ -51,9 +51,20 @@ export default function Banner({
 
   // Cargar banners desde la API
   useEffect(() => {
-    fetch('/api/banners')
-      .then(res => res.json())
+    // Usar Railway backend en producción, API local en desarrollo
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL 
+      ? `${process.env.NEXT_PUBLIC_API_URL}/api/banners`
+      : '/api/banners';
+    
+    console.log('Cargando banners desde:', apiUrl);
+    
+    fetch(apiUrl)
+      .then(res => {
+        console.log('Respuesta banners:', res.status);
+        return res.json();
+      })
       .then(data => {
+        console.log('Banners recibidos:', data);
         if (data.success && data.data.length > 0) {
           setBanners(data.data);
         } else {
