@@ -74,11 +74,15 @@ app.get('/api/products', async (req, res) => {
     const where = {};
     
     if (category) {
-      // Buscar por nombre o slug de categoría
+      // Buscar por nombre o slug de categoría (normalizado)
+      const normalizedCategory = category.toLowerCase().replace(/\s+/g, '');
+      
       const categoryRecord = await prisma.category.findFirst({
         where: {
           OR: [
             { slug: category },
+            { slug: normalizedCategory },
+            { slug: category.replace(/\s+/g, '-') },
             { name: { equals: category, mode: 'insensitive' } }
           ]
         }
@@ -88,7 +92,9 @@ app.get('/api/products', async (req, res) => {
         where.categoryId = categoryRecord.id;
         console.log(`📂 Filtrando por categoría: ${categoryRecord.name} (ID: ${categoryRecord.id})`);
       } else {
-        console.log(`⚠️  Categoría "${category}" no encontrada`);
+        console.log(`⚠️  Categoría "${category}" no encontrada. Slugs probados: ${category}, ${normalizedCategory}, ${category.replace(/\s+/g, '-')}`);
+        // Si no se encuentra la categoría, devolver array vacío
+        return res.json([]);
       }
     }
     
@@ -153,6 +159,8 @@ app.get('/api/banners', async (req, res) => {
   try {
     const { active } = req.query;
     
+    console.log('🎨 Obteniendo banners...');
+    
     const where = active === 'true' ? { isActive: true } : {};
     
     const banners = await prisma.banner.findMany({
@@ -160,10 +168,20 @@ app.get('/api/banners', async (req, res) => {
       orderBy: { order: 'asc' }
     });
     
-    res.json(banners);
+    console.log(`✅ ${banners.length} banners encontrados`);
+    
+    // Devolver en formato esperado por el frontend
+    res.json({
+      success: true,
+      data: banners
+    });
   } catch (error) {
-    console.error('Error al obtener banners:', error);
-    res.status(500).json({ error: 'Error al obtener banners' });
+    console.error('❌ Error al obtener banners:', error);
+    res.status(500).json({ 
+      success: false,
+      error: 'Error al obtener banners',
+      details: error.message 
+    });
   }
 });
 
