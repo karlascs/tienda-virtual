@@ -1,0 +1,23 @@
+# Dockerfile específico para Railway Backend
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Copiar archivos de configuración
+COPY package*.json ./
+COPY prisma ./prisma/
+
+# Instalar dependencias
+RUN npm ci --only=production
+
+# Generar Prisma Client
+RUN npx prisma generate
+
+# Copiar el servidor Express
+COPY server.js ./
+
+# Exponer puerto
+EXPOSE 8080
+
+# Ejecutar migraciones y servidor
+CMD npx prisma migrate deploy && node server.js
