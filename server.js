@@ -31,6 +31,36 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', message: 'Backend Railway funcionando' });
 });
 
+// Debug: Listar todas las categorías (temporal)
+app.get('/api/debug/categories', async (req, res) => {
+  try {
+    const categories = await prisma.category.findMany({
+      select: {
+        id: true,
+        name: true,
+        slug: true,
+        _count: {
+          select: { products: true }
+        }
+      },
+      orderBy: { name: 'asc' }
+    });
+    
+    res.json({
+      success: true,
+      total: categories.length,
+      categories: categories.map(cat => ({
+        name: cat.name,
+        slug: cat.slug,
+        productCount: cat._count.products
+      }))
+    });
+  } catch (error) {
+    console.error('Error en debug:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // ========== CATEGORÍAS ==========
 app.get('/api/categories', async (req, res) => {
   try {
@@ -74,25 +104,37 @@ app.get('/api/products', async (req, res) => {
     const where = {};
     
     if (category) {
-      // Buscar por nombre o slug de categoría (normalizado)
-      const normalizedCategory = category.toLowerCase().replace(/\s+/g, '');
+      // Normalizar el slug de entrada: eliminar guiones, espacios, etc.
+      const normalizedInput = category.toLowerCase()
+        .replace(/[-_\s]+/g, '') // Quita guiones, guiones bajos y espacios
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, ''); // Quita tildes
       
+      console.log(`🔍 Buscando categoría: "${category}" → normalizado: "${normalizedInput}"`);
+      
+      // Buscar la categoría de múltiples formas
       const categoryRecord = await prisma.category.findFirst({
         where: {
           OR: [
+            // Búsqueda exacta por slug original
             { slug: category },
-            { slug: normalizedCategory },
+            // Búsqueda por slug con guiones
             { slug: category.replace(/\s+/g, '-') },
-            { name: { equals: category, mode: 'insensitive' } }
+            // Búsqueda por slug sin guiones ni espacios
+            { slug: normalizedInput },
+            // Búsqueda por nombre (case insensitive)
+            { name: { equals: category, mode: 'insensitive' } },
+            // Búsqueda por nombre con espacios
+            { name: { equals: category.replace(/-/g, ' '), mode: 'insensitive' } }
           ]
         }
       });
       
       if (categoryRecord) {
         where.categoryId = categoryRecord.id;
-        console.log(`📂 Filtrando por categoría: ${categoryRecord.name} (ID: ${categoryRecord.id})`);
+        console.log(`✅ Categoría encontrada: "${categoryRecord.name}" (slug: ${categoryRecord.slug}, ID: ${categoryRecord.id})`);
       } else {
-        console.log(`⚠️  Categoría "${category}" no encontrada. Slugs probados: ${category}, ${normalizedCategory}, ${category.replace(/\s+/g, '-')}`);
+        console.log(`❌ Categoría "${category}" no encontrada después de probar múltiples variantes`);
         // Si no se encuentra la categoría, devolver array vacío
         return res.json([]);
       }
