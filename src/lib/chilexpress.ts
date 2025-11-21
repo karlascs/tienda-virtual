@@ -245,11 +245,11 @@ export const chilexpress = new ChilexpressClient({
 // Configuración por defecto
 export const CHILEXPRESS_CONFIG = {
   defaultOrigin: {
-    streetName: 'Simón Bolívar',
-    streetNumber: '485',
-    commune: 'Valparaíso',
-    city: 'Valparaíso',
-    region: 'Valparaíso',
+    streetName: 'Calle Principal',
+    streetNumber: '123',
+    commune: 'Santiago',
+    city: 'Santiago',
+    region: 'Metropolitana',
     postalCode: '2390030',
   },
   defaultPackage: {

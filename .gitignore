@@ -38,6 +38,14 @@ lerna-debug.log*
 .env.test.local
 .env.production.local
 
+# Datos sensibles del cliente
+# No subir información específica del cliente
+**/cliente-info.md
+**/datos-sensibles.md
+README.CLIENTE-BACKUP.md
+*.backup.md
+*-PRIVADO.*
+
 # Vercel
 .vercel
 

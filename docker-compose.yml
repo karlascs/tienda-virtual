@@ -10,7 +10,7 @@ services:
     restart: unless-stopped
     environment:
       # Base de datos - Conectar a PostgreSQL del host (tu PC)
-      DATABASE_URL: "postgresql://izacas:izacas2024@host.docker.internal:5433/izacas?schema=public"
+      DATABASE_URL: "postgresql://postgres:${DB_PASSWORD:-your-password}@host.docker.internal:5433/ecommerce_db?schema=public"
       
       # NextAuth
       AUTH_SECRET: "ClLVfo1Ia7rOFAZQ+iCqlsy25PJdRJi+ArCbBc3TLBs="
@@ -26,8 +26,8 @@ services:
       NEXT_PUBLIC_API_URL: http://localhost:3000
       
       # Store
-      NEXT_PUBLIC_STORE_NAME: "IZA&CAS"
-      NEXT_PUBLIC_STORE_ADDRESS: "Simón Bolívar 485, 2390030 Valparaíso, Chile"
+      NEXT_PUBLIC_STORE_NAME: "Mi Tienda"
+      NEXT_PUBLIC_STORE_ADDRESS: "Calle Principal 123, Santiago, Chile"
       NEXT_PUBLIC_STORE_PHONE: "+56912345678"
       NEXT_PUBLIC_STORE_EMAIL: "contacto@izacas.cl"
       
