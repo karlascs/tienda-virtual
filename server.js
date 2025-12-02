@@ -1,15 +1,56 @@
+/**
+ * ========================================
+ * SERVIDOR EXPRESS PARA IZA&CAS E-COMMERCE
+ * ========================================
+ * 
+ * Este servidor actúa como backend API independiente para Railway.
+ * Maneja todas las operaciones de base de datos y endpoints REST.
+ * 
+ * Características principales:
+ * - API REST para productos, categorías, banners y órdenes
+ * - Conexión a PostgreSQL mediante Prisma ORM
+ * - CORS configurado para Vercel y desarrollo local
+ * - Logging de queries y errores para debugging
+ * - Manejo de errores global y cierre graceful
+ * - Health check endpoint para monitoreo
+ * 
+ * Estructura de endpoints:
+ * - GET  /health                    - Verificación de estado del servidor
+ * - GET  /api/categories            - Listar todas las categorías
+ * - GET  /api/categories/:slug      - Obtener categoría específica
+ * - GET  /api/products              - Listar productos (con filtros)
+ * - GET  /api/products/:id          - Obtener producto específico
+ * - GET  /api/banners               - Listar banners promocionales
+ * - POST /api/orders                - Crear nueva orden
+ * - GET  /api/orders/:id            - Obtener orden específica
+ * - GET  /api/debug/categories      - Debug: estadísticas de categorías
+ * 
+ * @requires express - Framework web para Node.js
+ * @requires cors - Middleware para habilitar CORS
+ * @requires @prisma/client - ORM para PostgreSQL
+ */
+
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const { PrismaClient } = require('@prisma/client');
 
+// Inicializar aplicación Express
 const app = express();
+
+// Inicializar cliente Prisma con logging habilitado para debugging
 const prisma = new PrismaClient({
-  log: ['query', 'error', 'warn'],
+  log: ['query', 'error', 'warn'], // Registrar todas las queries, errores y advertencias
 });
+
+// Puerto configurable desde variables de entorno
 const PORT = process.env.PORT || 8080;
 
-// Configuración de CORS para permitir solicitudes desde Vercel
+// ========================================
+// CONFIGURACIÓN DE MIDDLEWARE
+// ========================================
+
+// Configuración de CORS para permitir solicitudes desde frontend en Vercel y local
 app.use(cors({
   origin: [
     'https://iza-y-cas.vercel.app',
@@ -21,17 +62,43 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
+// Parser de JSON para manejar request bodies
 app.use(express.json());
 
-// Servir archivos estáticos (imágenes)
+// ========================================
+// ARCHIVOS ESTÁTICOS
+// ========================================
+
+/**
+ * Servir imágenes de productos, categorías y banners
+ * Ruta: /images/productos/, /images/categorias/, etc.
+ */
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
-// Health check
+// ========================================
+// ENDPOINTS DE SISTEMA
+// ========================================
+
+/**
+ * Health Check Endpoint
+ * Verifica que el servidor esté funcionando correctamente
+ * Usado por Railway para monitoreo de salud del servicio
+ * 
+ * @route GET /health
+ * @returns {Object} Estado del servidor
+ */
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', message: 'Backend Railway funcionando' });
 });
 
-// Debug: Listar todas las categorías (temporal)
+/**
+ * Debug: Listar estadísticas de categorías
+ * Endpoint temporal para debugging de categorías y productos
+ * Muestra el conteo de productos por categoría
+ * 
+ * @route GET /api/debug/categories
+ * @returns {Object} Lista de categorías con conteo de productos
+ */
 app.get('/api/debug/categories', async (req, res) => {
   try {
     const categories = await prisma.category.findMany({
@@ -61,7 +128,23 @@ app.get('/api/debug/categories', async (req, res) => {
   }
 });
 
-// ========== CATEGORÍAS ==========
+// ========================================
+// ENDPOINTS DE CATEGORÍAS
+// ========================================
+
+/**
+ * Obtener todas las categorías
+ * Lista todas las categorías disponibles ordenadas alfabéticamente
+ * 
+ * @route GET /api/categories
+ * @returns {Array<Category>} Lista de categorías
+ * @example
+ * // Respuesta:
+ * // [
+ * //   { id: 1, name: "Tecnología", slug: "tecnologia", ... },
+ * //   { id: 2, name: "Hogar", slug: "hogar", ... }
+ * // ]
+ */
 app.get('/api/categories', async (req, res) => {
   try {
     console.log('📂 Obteniendo categorías...');
@@ -79,6 +162,15 @@ app.get('/api/categories', async (req, res) => {
   }
 });
 
+/**
+ * Obtener categoría por slug
+ * Devuelve los detalles de una categoría específica
+ * 
+ * @route GET /api/categories/:slug
+ * @param {string} slug - Identificador único de la categoría (ej: "tecnologia")
+ * @returns {Category} Datos de la categoría
+ * @throws {404} Si la categoría no existe
+ */
 app.get('/api/categories/:slug', async (req, res) => {
   try {
     const category = await prisma.category.findUnique({
@@ -94,7 +186,25 @@ app.get('/api/categories/:slug', async (req, res) => {
   }
 });
 
-// ========== PRODUCTOS ==========
+// ========================================
+// ENDPOINTS DE PRODUCTOS
+// ========================================
+
+/**
+ * Obtener productos con filtros avanzados
+ * Soporta múltiples criterios de búsqueda y filtrado
+ * 
+ * @route GET /api/products
+ * @queryparam {string} [category] - Slug de categoría para filtrar
+ * @queryparam {string} [search] - Término de búsqueda (nombre o descripción)
+ * @queryparam {number} [minPrice] - Precio mínimo
+ * @queryparam {number} [maxPrice] - Precio máximo
+ * @queryparam {boolean} [inStock] - Solo productos con stock disponible
+ * @returns {Array<Product>} Lista de productos que cumplen los criterios
+ * @example
+ * // GET /api/products?category=tecnologia&minPrice=50000&inStock=true
+ * // Retorna productos de tecnología con precio >= 50000 y stock > 0
+ */
 app.get('/api/products', async (req, res) => {
   try {
     const { category, search, minPrice, maxPrice, inStock } = req.query;
@@ -176,12 +286,21 @@ app.get('/api/products', async (req, res) => {
   }
 });
 
+/**
+ * Obtener producto por ID
+ * Devuelve los detalles completos de un producto incluyendo su categoría
+ * 
+ * @route GET /api/products/:id
+ * @param {number} id - ID único del producto
+ * @returns {Product} Datos completos del producto con categoría
+ * @throws {404} Si el producto no existe
+ */
 app.get('/api/products/:id', async (req, res) => {
   try {
     const product = await prisma.product.findUnique({
       where: { id: parseInt(req.params.id) },
       include: {
-        category: true
+        category: true // Incluir información de la categoría
       }
     });
     
@@ -196,7 +315,21 @@ app.get('/api/products/:id', async (req, res) => {
   }
 });
 
-// ========== BANNERS ==========
+// ========================================
+// ENDPOINTS DE BANNERS PROMOCIONALES
+// ========================================
+
+/**
+ * Obtener banners promocionales
+ * Lista banners del carrusel principal, opcionalmente solo los activos
+ * 
+ * @route GET /api/banners
+ * @queryparam {boolean} [active] - Filtrar solo banners activos
+ * @returns {Object} Respuesta con lista de banners ordenados
+ * @example
+ * // GET /api/banners?active=true
+ * // Retorna solo banners activos ordenados por campo 'order'
+ */
 app.get('/api/banners', async (req, res) => {
   try {
     const { active } = req.query;
@@ -227,7 +360,20 @@ app.get('/api/banners', async (req, res) => {
   }
 });
 
-// ========== ÓRDENES ==========
+// ========================================
+// ENDPOINTS DE ÓRDENES DE COMPRA
+// ========================================
+
+/**
+ * Crear nueva orden de compra
+ * Procesa una compra completa con items y datos del cliente
+ * 
+ * @route POST /api/orders
+ * @body {Array} items - Items del pedido [{productId, quantity, price}]
+ * @body {number} total - Total de la orden
+ * @body {Object} customerInfo - Datos del cliente {name, email, phone, address}
+ * @returns {Order} Orden creada con items y productos relacionados
+ */
 app.post('/api/orders', async (req, res) => {
   try {
     const { items, total, customerInfo } = req.body;
@@ -264,6 +410,15 @@ app.post('/api/orders', async (req, res) => {
   }
 });
 
+/**
+ * Obtener orden por ID
+ * Devuelve los detalles completos de una orden incluyendo items y productos
+ * 
+ * @route GET /api/orders/:id
+ * @param {number} id - ID único de la orden
+ * @returns {Order} Orden completa con items y productos relacionados
+ * @throws {404} Si la orden no existe
+ */
 app.get('/api/orders/:id', async (req, res) => {
   try {
     const order = await prisma.order.findUnique({
@@ -271,7 +426,7 @@ app.get('/api/orders/:id', async (req, res) => {
       include: {
         items: {
           include: {
-            product: true
+            product: true // Incluir detalles del producto en cada item
           }
         }
       }
@@ -288,23 +443,37 @@ app.get('/api/orders/:id', async (req, res) => {
   }
 });
 
-// Manejo de errores global
+// ========================================
+// MANEJO DE ERRORES GLOBAL
+// ========================================
+
+/**
+ * Middleware de manejo de errores
+ * Captura todos los errores no manejados y devuelve respuesta 500
+ */
 app.use((err, req, res, next) => {
   console.error('Error no manejado:', err);
   res.status(500).json({ error: 'Error interno del servidor' });
 });
 
-// Iniciar servidor
+// ========================================
+// INICIO DEL SERVIDOR
+// ========================================
+
+/**
+ * Iniciar servidor Express
+ * Configura el puerto, conecta a la base de datos y muestra estadísticas
+ */
 app.listen(PORT, async () => {
   console.log(`🚀 Backend Railway escuchando en puerto ${PORT}`);
   console.log(`📍 Health check: http://localhost:${PORT}/health`);
   
-  // Verificar conexión a base de datos
+  // Verificar conexión a base de datos al iniciar
   try {
     await prisma.$connect();
     console.log('✅ Conectado a la base de datos PostgreSQL');
     
-    // Mostrar estadísticas
+    // Mostrar estadísticas iniciales de la base de datos
     const categoryCount = await prisma.category.count();
     const productCount = await prisma.product.count();
     console.log(`📊 Base de datos: ${categoryCount} categorías, ${productCount} productos`);
@@ -313,9 +482,17 @@ app.listen(PORT, async () => {
   }
 });
 
-// Manejo de cierre graceful
+// ========================================
+// MANEJO DE CIERRE GRACEFUL
+// ========================================
+
+/**
+ * Manejo de señal SIGINT (Ctrl+C)
+ * Cierra las conexiones limpiamente antes de terminar el proceso
+ */
 process.on('SIGINT', async () => {
-  console.log('Cerrando servidor...');
+  console.log('\n🛑 Cerrando servidor gracefully...');
   await prisma.$disconnect();
+  console.log('✅ Conexiones cerradas correctamente');
   process.exit(0);
 });

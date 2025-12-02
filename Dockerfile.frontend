@@ -1,8 +1,24 @@
 # ========================================
-# Dockerfile para FRONTEND
+# DOCKERFILE PARA FRONTEND - IZA&CAS
+# ========================================
+# 
+# Construye imagen Docker optimizada para el frontend web.
+# Sirve la aplicación Next.js con renderizado híbrido (SSR + CSR).
+# 
+# Servicios incluidos:
+# - Next.js Frontend (páginas, componentes, estilos)
+# - API Routes de autenticación (NextAuth)
+# - Servidor Node.js
+# 
+# Puerto: 3000
+# Tamaño final: ~350MB (con optimizaciones)
 # ========================================
 
-FROM node:20-alpine AS builder
+# ========================================
+# STAGE 1: BUILDER
+# Compilación del frontend
+# ========================================
+FROM node:22-alpine AS builder
 
 WORKDIR /app
 
@@ -22,32 +38,41 @@ COPY src ./src
 COPY server.js ./server.js
 
 # Build optimizado para frontend
+# Genera páginas estáticas y optimizaciones de producción
 RUN npm run build
 
 # ========================================
+# STAGE 2: RUNNER
 # Imagen de producción
 # ========================================
-FROM node:20-alpine AS runner
+FROM node:22-alpine AS runner
 
 WORKDIR /app
 
+# Variables de entorno
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 
+# Crear usuarios del sistema
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
+# Copiar archivos compilados desde builder
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 COPY --from=builder /app/prisma ./prisma
 
+# Ajustar permisos
 RUN chown -R nextjs:nodejs /app
 
+# Cambiar a usuario no-root
 USER nextjs
 
+# Exponer puerto del frontend
 EXPOSE 3000
 
+# Comando de inicio - Servidor Next.js
 CMD ["node", "server.js"]
