@@ -12,19 +12,19 @@ datasource db {
 
 // Modelo de Banners (Carousel de página principal)
 model Banner {
-  id          String   @id @default(cuid())
-  title       String
-  subtitle    String?
-  imageUrl    String
-  link        String?
-  order       Int      @default(0)
-  isActive    Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id        String   @id @default(cuid())
+  title     String
+  subtitle  String?
+  imageUrl  String
+  link      String?
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  @@map("banners")
   @@index([order])
   @@index([isActive])
+  @@map("banners")
 }
 
 // Modelo de Categorías
@@ -43,49 +43,49 @@ model Category {
 
 // Modelo de Productos
 model Product {
-  id          String   @id @default(cuid())
-  name        String
-  slug        String   @unique
-  sku         String   @unique // Código único del producto
-  description String?  @db.Text
-  price       Float
+  id            String   @id @default(cuid())
+  name          String
+  slug          String   @unique
+  sku           String   @unique // Código único del producto
+  description   String?  @db.Text
+  price         Float
   originalPrice Float?
-  discount    Int?     @default(0)
-  brand       String?
-  model       String?
-  features    String[] @default([])
-  images      String[] @default([])
-  stock       Int      @default(0)
-  isActive    Boolean  @default(true)
-  isFeatured  Boolean  @default(false)
-  
+  discount      Int?     @default(0)
+  brand         String?
+  model         String?
+  features      String[] @default([])
+  images        String[] @default([])
+  stock         Int      @default(0)
+  isActive      Boolean  @default(true)
+  isFeatured    Boolean  @default(false)
+
   // Relaciones
-  categoryId  String
-  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
   // Reseñas y ratings
-  reviews     Review[]
-  averageRating Float   @default(0)
-  totalReviews  Int     @default(0)
-  
+  reviews       Review[]
+  averageRating Float    @default(0)
+  totalReviews  Int      @default(0)
+
   // Carrito y wishlist
-  cartItems   CartItem[]
+  cartItems     CartItem[]
   wishlistItems WishlistItem[]
-  orderItems  OrderItem[]
-  
+  orderItems    OrderItem[]
+
   // Inventario
   inventoryMovements InventoryMovement[]
-  
-  // Metadata
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
 
-  @@map("products")
+  // Metadata
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@index([categoryId])
   @@index([slug])
   @@index([sku])
   @@index([price])
   @@index([averageRating])
+  @@map("products")
 }
 
 // Enum para roles de usuario
@@ -96,40 +96,40 @@ enum UserRole {
 
 // Modelo de Usuarios
 model User {
-  id            String    @id @default(cuid())
-  email         String    @unique
-  name          String
-  avatar        String?
-  phone         String?
-  rut           String?
-  
+  id     String  @id @default(cuid())
+  email  String  @unique
+  name   String
+  avatar String?
+  phone  String?
+  rut    String?
+
   // Autenticación y Seguridad
-  hashedPassword String
-  role          UserRole  @default(USER)
-  emailVerified Boolean   @default(false)
-  resetToken    String?   @unique
+  hashedPassword   String
+  role             UserRole  @default(USER)
+  emailVerified    Boolean   @default(false)
+  resetToken       String?   @unique
   resetTokenExpiry DateTime?
-  
+
   // Dirección
-  address   String?
-  city      String?
-  zipCode   String?
-  
+  address String?
+  city    String?
+  zipCode String?
+
   // Relaciones
-  reviews   Review[]
-  cart      Cart?
-  wishlist  Wishlist?
-  orders    Order[]
-  sessions  Session[]
-  accounts  Account[]
-  
+  reviews  Review[]
+  cart     Cart?
+  wishlist Wishlist?
+  orders   Order[]
+  sessions Session[]
+  accounts Account[]
+
   // Metadata
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("users")
   @@index([email])
   @@index([role])
+  @@map("users")
 }
 
 // Modelo de Cuentas (OAuth providers como Google)
@@ -162,9 +162,9 @@ model Session {
   expiresAt DateTime
   createdAt DateTime @default(now())
 
-  @@map("sessions")
   @@index([token])
   @@index([userId])
+  @@map("sessions")
 }
 
 // Modelo de Carrito
@@ -182,20 +182,20 @@ model Cart {
 
 // Items del carrito
 model CartItem {
-  id        String  @id @default(cuid())
+  id        String   @id @default(cuid())
   cartId    String
-  cart      Cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
   productId String
-  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
-  quantity  Int     @default(1)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  quantity  Int      @default(1)
   price     Float
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("cart_items")
   @@unique([cartId, productId])
   @@index([cartId])
   @@index([productId])
+  @@map("cart_items")
 }
 
 // Modelo de Lista de Deseos
@@ -219,82 +219,82 @@ model WishlistItem {
   product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
   createdAt  DateTime @default(now())
 
-  @@map("wishlist_items")
   @@unique([wishlistId, productId])
   @@index([wishlistId])
   @@index([productId])
+  @@map("wishlist_items")
 }
 
 // Modelo de Reseñas
 model Review {
-  id        String   @id @default(cuid())
+  id        String  @id @default(cuid())
   userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   productId String
-  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
   // Contenido de la reseña
-  rating    Int      // 1-5 estrellas
-  title     String?
-  comment   String
-  
+  rating  Int // 1-5 estrellas
+  title   String?
+  comment String
+
   // Metadata
   helpful   Int      @default(0)
   verified  Boolean  @default(false) // Compra verificada
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("reviews")
   @@unique([userId, productId]) // Un usuario solo puede hacer una reseña por producto
   @@index([productId])
   @@index([rating])
   @@index([createdAt])
+  @@map("reviews")
 }
 
 // Modelo de Órdenes
 model Order {
-  id            String      @id @default(cuid())
-  userId        String?     // Opcional para compras como invitado
-  user          User?       @relation(fields: [userId], references: [id])
-  
+  id     String  @id @default(cuid())
+  userId String? // Opcional para compras como invitado
+  user   User?   @relation(fields: [userId], references: [id])
+
   // Detalles de la orden
-  orderNumber   String      @unique
-  status        OrderStatus @default(PENDING)
-  total         Float
-  subtotal      Float
-  tax           Float       @default(0)
-  shipping      Float       @default(0)
-  transbankFee  Float       @default(0) // Comisión Transbank (2.95% + IVA)
-  
+  orderNumber  String      @unique
+  status       OrderStatus @default(PENDING)
+  total        Float
+  subtotal     Float
+  tax          Float       @default(0)
+  shipping     Float       @default(0)
+  transbankFee Float       @default(0) // Comisión Transbank (2.95% + IVA)
+
   // Información de envío (obligatoria para todos)
   shippingName    String
   shippingEmail   String
   shippingPhone   String
-  shippingRut     String?     // RUT chileno para facturación
+  shippingRut     String? // RUT chileno para facturación
   shippingAddress String
   shippingCity    String
-  shippingRegion  String      // Región de Chile
-  shippingZip     String?     // Código postal (opcional)
-  
-  // Guest checkout
-  isGuest       Boolean     @default(false)
-  
-  // Información de pago
-  paymentMethod   String?
-  paymentStatus   PaymentStatus @default(PENDING)
-  paymentId       String?
-  
-  // Items de la orden
-  items         OrderItem[]
-  
-  // Metadata
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
+  shippingRegion  String // Región de Chile
+  shippingZip     String? // Código postal (opcional)
 
-  @@map("orders")
+  // Guest checkout
+  isGuest Boolean @default(false)
+
+  // Información de pago
+  paymentMethod String?
+  paymentStatus PaymentStatus @default(PENDING)
+  paymentId     String?
+
+  // Items de la orden
+  items OrderItem[]
+
+  // Metadata
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@index([userId])
   @@index([status])
   @@index([createdAt])
+  @@map("orders")
 }
 
 // Items de la orden
@@ -304,16 +304,16 @@ model OrderItem {
   order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
   productId String
   product   Product @relation(fields: [productId], references: [id])
-  
-  // Detalles del item al momento de la compra
-  name      String
-  price     Float
-  quantity  Int
-  total     Float
 
-  @@map("order_items")
+  // Detalles del item al momento de la compra
+  name     String
+  price    Float
+  quantity Int
+  total    Float
+
   @@index([orderId])
   @@index([productId])
+  @@map("order_items")
 }
 
 // Enums
@@ -343,133 +343,133 @@ model ProductView {
   userAgent String?
   createdAt DateTime @default(now())
 
-  @@map("product_views")
   @@index([productId])
   @@index([userId])
   @@index([createdAt])
+  @@map("product_views")
 }
 
 // Modelo de Movimientos de Inventario
 model InventoryMovement {
-  id          String            @id @default(cuid())
-  productId   String
-  product     Product           @relation(fields: [productId], references: [id], onDelete: Cascade)
-  
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
   // Tipo de movimiento
-  type        InventoryMovementType
-  
+  type InventoryMovementType
+
   // Cantidad (positiva para entradas, negativa para salidas)
-  quantity    Int
-  
+  quantity Int
+
   // Stock antes y después del movimiento
   previousStock Int
   newStock      Int
-  
+
   // Detalles del movimiento
-  reason      String?
-  reference   String?  // Puede ser ID de orden, número de factura, etc.
-  notes       String?
-  
+  reason    String?
+  reference String? // Puede ser ID de orden, número de factura, etc.
+  notes     String?
+
   // Usuario que realizó el movimiento
   performedBy String?
-  
-  // Metadata
-  createdAt   DateTime @default(now())
 
-  @@map("inventory_movements")
+  // Metadata
+  createdAt DateTime @default(now())
+
   @@index([productId])
   @@index([type])
   @@index([createdAt])
+  @@map("inventory_movements")
 }
 
 // Tipos de movimientos de inventario
 enum InventoryMovementType {
-  PURCHASE      // Compra a proveedor
-  SALE          // Venta a cliente
-  RETURN        // Devolución de cliente
-  ADJUSTMENT    // Ajuste manual
-  DAMAGE        // Producto dañado
-  LOSS          // Pérdida
-  TRANSFER      // Transferencia entre almacenes
-  INITIAL       // Stock inicial
+  PURCHASE // Compra a proveedor
+  SALE // Venta a cliente
+  RETURN // Devolución de cliente
+  ADJUSTMENT // Ajuste manual
+  DAMAGE // Producto dañado
+  LOSS // Pérdida
+  TRANSFER // Transferencia entre almacenes
+  INITIAL // Stock inicial
 }
 
 // Modelo de Ventas (Online y Físicas)
 model Sale {
-  id            String      @id @default(cuid())
-  saleNumber    String      @unique
-  
+  id         String @id @default(cuid())
+  saleNumber String @unique
+
   // Tipo y canal de venta
-  type          SaleType    @default(ONLINE)
-  status        SaleStatus  @default(COMPLETED)
-  
+  type   SaleType   @default(ONLINE)
+  status SaleStatus @default(COMPLETED)
+
   // Información del cliente
   customerName  String?
   customerEmail String?
   customerPhone String?
   customerRut   String?
-  
+
   // Montos
-  subtotal      Float
-  discount      Float       @default(0)
-  tax           Float       @default(0)
-  shipping      Float       @default(0)
-  total         Float
-  
+  subtotal Float
+  discount Float @default(0)
+  tax      Float @default(0)
+  shipping Float @default(0)
+  total    Float
+
   // Pago
   paymentMethod String
   paymentStatus PaymentStatus @default(PAID)
-  
-  // Items de la venta
-  items         SaleItem[]
-  
-  // Usuario que registró la venta (para ventas físicas)
-  registeredBy  String?
-  
-  // Notas y observaciones
-  notes         String?
-  
-  // Metadata
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
 
-  @@map("sales")
+  // Items de la venta
+  items SaleItem[]
+
+  // Usuario que registró la venta (para ventas físicas)
+  registeredBy String?
+
+  // Notas y observaciones
+  notes String?
+
+  // Metadata
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@index([type])
   @@index([status])
   @@index([createdAt])
   @@index([saleNumber])
+  @@map("sales")
 }
 
 // Items de la venta
 model SaleItem {
-  id        String  @id @default(cuid())
+  id        String @id @default(cuid())
   saleId    String
-  sale      Sale    @relation(fields: [saleId], references: [id], onDelete: Cascade)
+  sale      Sale   @relation(fields: [saleId], references: [id], onDelete: Cascade)
   productId String
-  
+
   // Información del producto al momento de la venta
-  productName   String
-  productSku    String?
-  price         Float
-  quantity      Int
-  discount      Float   @default(0)
-  subtotal      Float
-  
-  @@map("sale_items")
+  productName String
+  productSku  String?
+  price       Float
+  quantity    Int
+  discount    Float   @default(0)
+  subtotal    Float
+
   @@index([saleId])
   @@index([productId])
+  @@map("sale_items")
 }
 
 // Tipos de venta
 enum SaleType {
-  ONLINE        // Venta por la página web
-  PHYSICAL      // Venta en local físico
+  ONLINE // Venta por la página web
+  PHYSICAL // Venta en local físico
 }
 
 // Estados de venta
 enum SaleStatus {
-  COMPLETED     // Venta completada
-  PENDING       // Pendiente de pago
-  CANCELLED     // Cancelada
-  REFUNDED      // Reembolsada
+  COMPLETED // Venta completada
+  PENDING // Pendiente de pago
+  CANCELLED // Cancelada
+  REFUNDED // Reembolsada
 }

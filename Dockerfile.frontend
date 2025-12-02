@@ -19,6 +19,7 @@ RUN npx prisma generate
 # Copiar código fuente
 COPY public ./public
 COPY src ./src
+COPY server.js ./server.js
 
 # Build optimizado para frontend
 RUN npm run build

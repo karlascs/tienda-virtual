@@ -1,32 +1,58 @@
 # ========================================
-# Dockerfile para BACKEND (Express API)
+# Dockerfile para BACKEND (Next.js API Routes)
 # ========================================
 
-FROM node:20-alpine
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Copiar package.json del backend
-COPY backend/package*.json ./
+# Copiar archivos de configuración
+COPY package*.json ./
+COPY tsconfig.json ./
+COPY next.config.ts ./
+COPY prisma ./prisma/
+COPY scripts ./scripts/
 
 # Instalar dependencias
-RUN npm install --omit=dev
-
-# Copiar el schema de Prisma desde la raíz
-COPY prisma ./prisma/
+RUN npm ci
 
 # Generar Prisma Client
 RUN npx prisma generate
 
-# Copiar código del backend
-COPY backend/server.js ./
+# Copiar código fuente
+COPY src ./src
+COPY public ./public
+COPY server.js ./
+COPY *.config.* ./
 
-# Variables de entorno
+# Build de Next.js
+RUN npm run build
+
+# ========================================
+# Imagen de producción - BACKEND
+# ========================================
+FROM node:20-alpine AS runner
+
+WORKDIR /app
+
 ENV NODE_ENV=production
-ENV PORT=4000
-ENV HOST=0.0.0.0
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV PORT=3001
 
-EXPOSE 4000
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
 
-# Comando de inicio: migrar y arrancar servidor
-CMD ["sh", "-c", "npx prisma migrate deploy && node server.js"]
+# Copiar archivos necesarios
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
+COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+COPY --from=builder --chown=nextjs:nodejs /app/server.js ./server.js
+
+USER nextjs
+
+EXPOSE 3001
+
+# Script de inicio - Usar el servidor directamente sin migraciones automáticas
+CMD ["node", "server.js"]

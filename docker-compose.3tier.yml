@@ -57,14 +57,6 @@ services:
       - ./public:/app/public
     networks:
       - izacas-network
-    command: >
-      sh -c "
-        echo '🔧 Ejecutando migraciones de base de datos...' &&
-        npx prisma migrate deploy &&
-        npx prisma generate &&
-        echo '🚀 Iniciando Backend API...' &&
-        node server.js
-      "
 
   # ========================================
   # 3. FRONTEND - Next.js Client (Separado)
